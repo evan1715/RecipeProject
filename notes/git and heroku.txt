@@ -1,0 +1,28 @@
+Steps for new git repository:
+- To start a new git: git init
+- Set up .getignore
+- git status to see if .getignore is registering the right folders
+- git add . to add all
+- git commit -m "Initial commit"
+- go to github and set up a new repository
+- Then use the …or push an existing repository from the command line option
+-- ex: git remote add origin git@github.com:evan1715/<REPOSITORY NAME>.git //modify the repository name
+- git push -u origin master
+
+
+//this will save the npm as a local dependency.
+npm install {package name} --save-dev
+
+git add .
+git commit -m "message here"
+git push or git push heroku
+
+Steps for new heroku:
+- heroku create url_name
+- To set up env var: heroku config: set key=value
+- To see the env vars: heroku config
+- To remove env var: heroku config:unset key=value
+- Add the JWT, SendGrid, and MongoDB
+-- For MongoDB, use the 'Connect to your application' in Atlas
+-- ex: mongodb+srv://taskapp:<PASSWORD>@cluster0.5jra7.mongodb.net/<DB_NAME>?retryWrites=true //modify the password and db name
+- git push heroku master

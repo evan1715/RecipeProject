@@ -3,6 +3,8 @@
     Will add other features: upload avatars/icons for the profile,
 */
 const express = require('express');
+const multer = require('multer');
+const sharp = require('sharp');
 const User = require('../models/userModel.js');
 const auth = require('../middleware/authentication.js');
 const router = new express.Router();

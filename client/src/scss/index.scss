@@ -1,0 +1,160 @@
+@import "./nav.scss";
+@import "./mixins.scss";
+
+$font-weight: 350;
+
+body {
+  @include flexCenter(center);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: rgb(240, 240, 240);
+  // width: 100vw;
+  // height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+// All children <Link /> components being rendered from react router will have no underline
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+  > * {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+a {
+  color: black;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.title {
+  font-weight: $font-weight;
+}
+
+// Home Page styles arrayed in descending order as the elements appear on the page
+
+// FilterByIngredient Component Styles
+
+.search-filters-container {
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid black;
+  margin-top: 50px;
+  background: white;
+  > div:first-of-type {
+    @include flexCenter(center);
+    font-size: 30px;
+    font-weight: 350;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  > div:last-of-type {
+    @include flexCenter(space-between);
+    width: 100.01%;
+    height: 270px;
+    > * {
+      height: 100%;
+      width: 19%;
+      border-radius: 18px;
+      border: 1px solid black;
+      overflow: hidden;
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+.filter-button-container {
+  transition: 0.2s;
+  &:hover {
+    letter-spacing: 2px;
+  }
+  img {
+    height: 200px;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  li {
+    @include flexCenter(center);
+    position: relative;
+    bottom: 4px;
+    height: 68px;
+    font-size: 25px;
+    font-weight: 350;
+    border-top: 2px solid black;
+    background-image: url("https://images.pexels.com/photos/2341290/pexels-photo-2341290.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  }
+}
+
+// // RandomRecipe Component Styles
+
+// #random-recipe-header {
+//   @include flexCenter(space-around);
+//   font-weight: 350;
+//   padding-top: 30px;
+// }
+
+// .random-recipe-container {
+//   // background: red;
+//   border: solid black 3px;
+//   width: 100%;
+//   margin-top: 50px;
+//   @include flexCenter(center);
+//   img {
+//     height: 100%;
+//     width: 100%;
+//   }
+//   div {
+//     background: white;
+//     height: 465px;
+//     width: 100%;
+//     > * {
+//       @include flexCenter(center);
+//       font-weight: $font-weight;
+//     }
+//     p {
+//       font-size: 22px;
+//       padding: 0 10px 0 10px;
+//     }
+//   }
+//   &:last-child {
+//     margin-bottom: 50px;
+//   }
+// }
+
+// Above are the styles for the original HomePage components. Below will be the styles for the reworked home page.
+
+// Reworked styles
+
+.create-an-account-home-page {
+  height: 600px;
+  margin-top: 5px;
+  border-top: solid 2px lightgrey;
+  background-image: url("https://i.ibb.co/Tt2pB4v/dust-scratches.png");
+}

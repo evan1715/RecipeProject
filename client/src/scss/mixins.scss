@@ -1,0 +1,11 @@
+@mixin flexCenter($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
+@mixin container {
+  @include flexCenter(center);
+  width: 1200px;
+  height: 100%;
+}

@@ -3,8 +3,8 @@
     Will add other features: upload avatars/icons for the profile,
 */
 const express = require('express');
-// const multer = require('multer');
-// const sharp = require('sharp');
+const multer = require('multer');
+const sharp = require('sharp');
 const User = require('../models/userModel.js');
 const auth = require('../middleware/authentication.js');
 const router = new express.Router();
@@ -99,6 +99,61 @@ router.delete('/user/profile', auth, async (req, res) => {
         res.status(500).send();
     }
 });
+
+
+//Profile icon
+const upload = multer({
+    limits: {
+        filesize: 1000000
+    },
+    fileFilter(req, file, callback) {
+        if (!file.originalname.match(/\.(png|jpg|jpeg|bmp|gif)$/)) {
+            return callback(new Error("Unsupported image file type."));
+        }
+        //If file is good, null, true to accept file.
+        callback(undefined, true);
+    }
+});
+
+//Upload a user's icon.
+router.post('/user/profile/icon', auth, upload.single('icon'), async (req, res) => {
+    const buffer = await sharp(req.file.buffer).resize({ width: 300, height: 300 }).jpeg().toBuffer();
+
+    req.user.icon = buffer;
+    await req.user.save();
+    res.send();
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
+});
+
+//Get user's icon.
+router.get('/user/:id/icon', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user || !user.icon) {
+            throw new Error("None found.");
+        }
+
+        res.set('Content-Type', 'image/jpeg');
+        console.log(user.icon);
+        res.send(user.icon);
+    } catch (error) {
+        res.status(404).send();
+    }
+});
+
+//Delete icon.
+router.delete('/user/profile/icon', auth, async (req, res) => {
+    try {
+        req.user.icon = null;
+        await req.user.save();
+        res.send();
+    } catch (error) {
+        res.status(500).send();
+    }
+});
+
 
 
 

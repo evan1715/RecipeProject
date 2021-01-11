@@ -55,6 +55,12 @@ const recipeSchema = new mongoose.Schema({
 });
 
 
+recipeSchema.path('pictures').validate((num) => {
+    if (num.length > 5) {
+        throw new Error("Maximum number of pictures per recipe is 5.");
+    }
+});
+
 
 
 const Recipe = mongoose.model('Recipe', recipeSchema);

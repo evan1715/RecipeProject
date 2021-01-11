@@ -124,26 +124,33 @@ const upload = multer({
 
 //Upload picture(s) of the food
 router.post('/recipes/:id/pictures', auth, upload.array('pictures', 5), async (req, res) => {
-    const recipe = await Recipe.findOne({ _id: req.params.id, owner: req.user._id });
+    
+    try {
+        const recipe = await Recipe.findOne({ _id: req.params.id, owner: req.user._id });
 
-    //const recipe = await Recipe.findOne(req.user._id);
-    // if (req.user._id.toString() !== recipe.owner.toString()) {
-    //     return res.status(403).send("User is not owner of the recipe.");
-    // }
+        //const recipe = await Recipe.findOne(req.user._id);
+        // if (req.user._id.toString() !== recipe.owner.toString()) {
+        //     return res.status(403).send("User is not owner of the recipe.");
+        // }
 
-    if (!recipe) {
-        return res.status(404).send("Cannot find recipe.");
+        if (!recipe) {
+            return res.status(404).send("Cannot find recipe.");
+        }
+
+        for (var i = 0; i < req.files.length; i++) {
+            const buffer = await sharp(req.files[i].buffer).resize({ width: 640, height: 360 }).jpeg().toBuffer();
+            recipe.pictures = recipe.pictures.concat({ picture: buffer });
+        }
+
+        await recipe.save();
+        res.send();
+    } catch (error) {
+        //Catch to handle Mongoose schema/model errors
+        res.status(400).send({ error: error.message });
     }
-
-    for (var i = 0; i < req.files.length; i++) {
-        const buffer = await sharp(req.files[i].buffer).resize({ width: 640, height: 360 }).jpeg().toBuffer();
-        recipe.pictures = recipe.pictures.concat({ picture: buffer });
-    }
-
-    await recipe.save();
-    res.send();
 }, (error, req, res, next) => {
-    res.send(400).send(error.message);
+    //This to handle multer upload errors
+    res.status(400).send({ error: error.message });
 });
 
 //Get picture(s)
@@ -151,13 +158,14 @@ router.post('/recipes/:id/pictures', auth, upload.array('pictures', 5), async (r
 router.get('/recipes/:id/pictures', async (req, res) => {
     try {
         const recipe = await Recipe.findById(req.params.id);
+        const pic = req.query.image;
 
         if (!recipe || !recipe.pictures) {
             throw new Error("None found.");
         }
 
         res.set('Content-Type', 'image/jpeg');
-        res.send(recipe.pictures);
+        res.send(recipe.pictures[pic].picture);
     } catch (error) {
         res.status(404).send();
     }
@@ -173,7 +181,9 @@ router.delete('/recipes/:id/pictures', auth, async (req, res) => {
             throw new Error();
         }
 
-        recipe.pictures = [];
+        if (req.query.image === 'all') {
+            recipe.pictures = [];
+        }
         await recipe.save();
         res.send();
     } catch (error) {

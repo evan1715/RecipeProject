@@ -14,7 +14,7 @@ app.use(recipeRouter);
 //This is a setup for the static directory. It will use all .html pages in the public folder to go to different paths.
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-app.get('', (req, res) => {
+app.get('*', (req, res) => {
     res.send('index.html');
 });
 

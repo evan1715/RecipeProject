@@ -47,5 +47,5 @@ ReactDOM.render(
     <LoadingBar />
     <App />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('root')
 );

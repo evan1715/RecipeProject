@@ -4,9 +4,14 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
+    "start-client": "cd client && react-scripts start",
+    "build": "cd client && react-scripts build",
+    "test": "cd client && react-scripts test --env=jsdom",
+    "eject": "cd client && react-scripts eject",
     "db": "startDB.bat",
-    "start": "node server/index.js",
-    "dev": "env-cmd -f server/config/dev.env nodemon server/index.js -e js,html,css,scss"
+    "start": "node server/server.js",
+    "dev": "concurrently \"cd client && react-scripts start\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
+    "heroku-postbuild": "cd client && react-scripts start"
   },
   "author": "Evan & Adrian",
   "license": "ISC",
@@ -17,18 +22,37 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.8",
     "multer": "^1.4.2",
-    "sharp": "^0.27.0",
-    "validator": "^13.5.2",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-ionicons": "^3.1.4",
     "react-redux": "^7.2.2",
     "react-redux-loading-bar": "^5.0.0",
-    "react-scripts": "4.0.1"
+    "react-scripts": "4.0.1",
+    "sharp": "^0.27.0",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.6.0",
+    "axios": "^0.21.1",
+    "concurrently": "^5.3.0",
+    "css-loader": "^5.0.1",
+    "env-cmd": "^10.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "nodemon": "^2.0.6",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.30.0",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "eslintConfig": {
     "extends": [
@@ -47,23 +71,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.6",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "css-loader": "^5.0.1",
-    "html-webpack-plugin": "^4.5.0",
-    "react-router-dom": "^5.2.0",
-    "sass": "^1.30.0",
-    "style-loader": "^2.0.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0",
-    "redux": "^4.0.5",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "axios": "^0.21.1"
   }
 }

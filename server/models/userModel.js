@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Recipe = require('./recipeModel.js');
+// const Recipe = require('./recipeModel.js');
 
 const userSchema = new mongoose.Schema({
     username: {

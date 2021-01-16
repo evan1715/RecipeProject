@@ -2,7 +2,7 @@ node_modules
 server/config
 startDB.bat
 .eslintcache
-# templates
+templates
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

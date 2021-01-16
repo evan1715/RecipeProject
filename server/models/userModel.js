@@ -91,6 +91,19 @@ userSchema.statics.loginUser = async (email, password) => {
     }
 }
 
+//Let's hide some user data here so the db only sends what's needed when called.
+/*  .toJSON allows us to use this function without actually calling it in the user routers.
+    When we send res.send(), it's calling JSON.stringify() by default. Whenever .toJSON is called,
+    the object gets stringified. This allows us to manipulate what exactly comes back when we stringify the object. */
+userSchema.methods.toJSON = function() {
+    //this being this user
+    delete this.toObject().password; //don't want that to be seen
+    delete this.toObject().tokens; //don't want tokens to be taken
+    delete this.toObject().avatar; //decrease the size of the profile
+
+    return this.toOjbect();
+}
+
 //Link together recipes with a user who will create them.
 userSchema.virtual('recipes', {
     ref: 'Recipe',

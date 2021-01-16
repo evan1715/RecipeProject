@@ -1,0 +1,21 @@
+body {
+    margin: auto; /*first value is top and bottom, second is left and right*/
+    /*Percentage that will make it the height of the browser. VH stands for viewport height.*/
+    min-height: 100vh;
+}
+
+.login-container {
+    /*flexbox will take over leftover space*/
+    flex-grow: 1;
+}
+
+input {
+    padding: 8px;
+    border: 2px solid whitesmoke;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid whitesmoke;
+}

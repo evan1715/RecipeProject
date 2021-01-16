@@ -2,14 +2,15 @@
   "name": "recipe",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start-client": "cd client && react-scripts start",
+    "client": "cd client && react-scripts start",
     "build": "cd client && react-scripts build",
     "test": "cd client && react-scripts test --env=jsdom",
     "eject": "cd client && react-scripts eject",
-    "db": "startDB.bat",
     "start": "node server/server.js",
+    "db": "startDB.bat",
+    "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
     "dev": "concurrently \"cd client && react-scripts start\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
     "heroku-postbuild": "cd client && react-scripts start"
   },

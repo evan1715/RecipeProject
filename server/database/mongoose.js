@@ -14,7 +14,7 @@
     }
     - useUnifiedTopology {
         From Mongoose documentation: https://mongoosejs.com/docs/deprecations.html 
-        Mongoose 5.7 uses MongoDB driver 3.3.x, which introduced a significant refactor of how it handles monitoring all the servers in a replica set or sharded cluster. In MongoDB parlance, this is known as server discovery and monitoring.
+        Mongoose 5.7 uses MongoDB driver 3.3.x, which introduced a significant refactor of how it handles monitoring all the servers in a replica set or shared cluster. In MongoDB parlance, this is known as server discovery and monitoring.
 
         To opt in to using the new topology engine, use the below line:
         mongoose.set('useUnifiedTopology', true);

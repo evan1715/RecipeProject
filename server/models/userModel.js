@@ -101,7 +101,7 @@ userSchema.methods.toJSON = function() {
     delete this.toObject().tokens; //don't want tokens to be taken
     delete this.toObject().avatar; //decrease the size of the profile
 
-    return this.toOjbect();
+    return this.toObject();
 }
 
 //Link together recipes with a user who will create them.

@@ -3,19 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
+  "author": "Evan & Adrian",
+  "license": "ISC",
   "scripts": {
-    "client": "cd client && react-scripts start",
-    "build": "cd client && react-scripts build",
-    "test": "cd client && react-scripts test --env=jsdom",
-    "eject": "cd client && react-scripts eject",
     "start": "node server/server.js",
     "db": "startDB.bat",
     "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
     "dev": "concurrently \"cd client && react-scripts start\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
-    "heroku-postbuild": "cd client && react-scripts start"
+    "heroku-postbuild": "cd client && react-scripts start",
+    "dev-server": "concurrently \"cd client && webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
+    "webdev": "concurrently \"cd client && webpack serve\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
+    "web-server": "cd client && webpack serve",
+    "web-build": "cd client && webpack"
   },
-  "author": "Evan & Adrian",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
@@ -29,7 +29,7 @@
     "react-ionicons": "^3.1.4",
     "react-redux": "^7.2.2",
     "react-redux-loading-bar": "^5.0.0",
-    "react-scripts": "4.0.1",
+    "react-transition-group": "^4.4.1",
     "sharp": "^0.27.0",
     "validator": "^13.5.2"
   },
@@ -37,40 +37,26 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
     "concurrently": "^5.3.0",
     "css-loader": "^5.0.1",
     "env-cmd": "^10.1.0",
-    "html-webpack-plugin": "^4.5.0",
     "nodemon": "^2.0.6",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sass": "^1.30.0",
+    "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
     ]
   }
 }

@@ -99,7 +99,7 @@ userSchema.methods.toJSON = function() {
     //this being this user
     delete this.toObject().password; //don't want that to be seen
     delete this.toObject().tokens; //don't want tokens to be taken
-    delete this.toObject().avatar; //decrease the size of the profile
+    delete this.toObject().icon; //decrease the size of the profile
 
     return this.toObject();
 }

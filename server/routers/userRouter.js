@@ -1,6 +1,5 @@
 /*  Description
     The user will be able to create a login, login, log out, log out of all locations, delete, and update their profile.
-    Will add other features: upload avatars/icons for the profile,
 */
 const express = require('express');
 const multer = require('multer');

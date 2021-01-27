@@ -2,15 +2,15 @@
 
 // Nav
 
-.placeholder {
-  @include flexCenter(center);
-}
-
 .nav-container {
+  @include flexCenter(space-around);
+  overflow: hidden;
+  flex-direction: column;
   height: 125px;
   width: 1400px;
   nav {
-    @include flexCenter(center);
+    width: 100%;
+    @include flexCenter(space-around);
     img {
       height: 75px;
     }
@@ -20,25 +20,12 @@
 .nav-links {
   @include flexCenter(space-around);
   width: 100%;
-  a {
-    text-decoration: none;
-  }
   li {
     @include flexCenter(space-around);
     font-size: 18px;
     height: 40px;
     width: 135px;
-    // transition: 0.2s;
-    // &:last-child {
-    //   border: solid black 1px;
-    //   border-radius: 7px;
-    //   height: 40px;
-    //   width: 135px;
-    //   &:hover {
-    //     background: black;
-    //     color: white;
-    //   }
-    // }
+    transition: 0.2s;
     &:hover {
       letter-spacing: 0.5px;
     }
@@ -56,10 +43,50 @@
   }
 }
 
-#nav-link {
-  transition: 0.2s;
-  &:hover {
-    letter-spacing: 0.5px;
+@media screen and (min-width: 1420px) {
+  .burger-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .nav-container {
+    width: 100vw;
+    nav {
+      @include flexCenter(space-between);
+      width: 90vw;
+      .nav-links {
+        display: none;
+      }
+    }
+    .searchbar {
+      width: 90%;
+    }
+  }
+}
+
+// Popout Nav
+
+.popout-nav {
+  @include flexCenter(space-around);
+  flex-direction: column;
+  position: absolute;
+  top: 125px;
+  right: 3.5vw;
+  width: auto;
+  border: solid black 2px;
+  li {
+    padding: 20px;
+    &:hover {
+      color: darkred;
+    }
+  }
+  background: white;
+}
+
+@media screen and (min-width: 1420px) {
+  .popout-nav {
+    display: none;
   }
 }
 
@@ -80,12 +107,9 @@
     &:focus {
       outline: none;
     }
-    &::placeholder {
-      font-size: 20px;
-    }
   }
   button {
-    width: 5%;
+    min-width: 5%;
     height: 100%;
     background: white;
     border: none;

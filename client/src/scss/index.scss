@@ -1,4 +1,5 @@
 @import "./nav.scss";
+@import "./search-results";
 @import "./mixins.scss";
 
 $font-weight: 350;
@@ -14,13 +15,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: rgb(240, 240, 240);
-  // width: 100vw;
-  // height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
 }
 
 // All children <Link /> components being rendered from react router will have no underline
@@ -35,6 +39,7 @@ li {
 }
 
 a {
+  text-decoration: none;
   color: black;
 }
 
@@ -43,118 +48,173 @@ a {
   flex-direction: row;
 }
 
-.container {
-  width: 100vw;
-  height: 100vh;
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 .title {
   font-weight: $font-weight;
 }
 
+.button {
+  width: auto;
+  height: 50px;
+  padding: 0 30px 0 30px;
+  color: white;
+  background: #3c280d;
+  border: solid #3c280d 1px;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(240, 240, 240);
+    color: #3c280d;
+    border: solid #3c280d 1px;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
 // Home Page styles arrayed in descending order as the elements appear on the page
 
-// FilterByIngredient Component Styles
+// Media queries for each element is placed directly underneath it
 
-.search-filters-container {
-  height: auto;
-  border-radius: 18px;
-  border: 1px solid black;
-  margin-top: 50px;
-  background: white;
-  > div:first-of-type {
-    @include flexCenter(center);
-    font-size: 30px;
-    font-weight: 350;
-    padding: 15px;
-    border-radius: 15px;
-  }
-  > div:last-of-type {
-    @include flexCenter(space-between);
-    width: 100.01%;
-    height: 270px;
-    > * {
-      height: 100%;
-      width: 19%;
-      border-radius: 18px;
-      border: 1px solid black;
-      overflow: hidden;
-      text-decoration: none;
-      color: black;
-    }
-  }
-}
-
-.filter-button-container {
-  transition: 0.2s;
-  &:hover {
-    letter-spacing: 2px;
-  }
-  img {
-    height: 200px;
-    width: 100%;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    transition: transform 0.2s;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-  li {
-    @include flexCenter(center);
-    position: relative;
-    bottom: 4px;
-    height: 68px;
-    font-size: 25px;
-    font-weight: 350;
-    border-top: 2px solid black;
-    background-image: url("https://images.pexels.com/photos/2341290/pexels-photo-2341290.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-  }
-}
-
-// // RandomRecipe Component Styles
-
-// #random-recipe-header {
-//   @include flexCenter(space-around);
-//   font-weight: 350;
-//   padding-top: 30px;
-// }
-
-// .random-recipe-container {
-//   // background: red;
-//   border: solid black 3px;
-//   width: 100%;
-//   margin-top: 50px;
-//   @include flexCenter(center);
-//   img {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   div {
-//     background: white;
-//     height: 465px;
-//     width: 100%;
-//     > * {
-//       @include flexCenter(center);
-//       font-weight: $font-weight;
-//     }
-//     p {
-//       font-size: 22px;
-//       padding: 0 10px 0 10px;
-//     }
-//   }
-//   &:last-child {
-//     margin-bottom: 50px;
-//   }
-// }
-
-// Above are the styles for the original HomePage components. Below will be the styles for the reworked home page.
-
-// Reworked styles
-
-.create-an-account-home-page {
-  height: 600px;
-  margin-top: 5px;
+.create-account-home-page-container {
+  height: 500px;
   border-top: solid 2px lightgrey;
   background-image: url("https://i.ibb.co/Tt2pB4v/dust-scratches.png");
+  div {
+    @include flexCenter(center);
+    width: 1400px;
+    height: 100%;
+    div:first-of-type {
+      align-items: flex-start;
+      flex: 1;
+      flex-direction: column;
+      h1 {
+        font-weight: bold;
+        color: #455059;
+      }
+      p {
+        font-size: larger;
+        padding: 0 20px 20px 0;
+      }
+    }
+    div:last-of-type {
+      flex: 2;
+      max-height: 500px;
+      img {
+        width: 100%;
+        height: 100%;
+        border: solid black 2px;
+        box-shadow: 2px 2px 2px 2px grey;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .create-account-home-page-container {
+    height: 750px;
+    div {
+      width: 90%;
+      flex-direction: column;
+      div:first-child {
+        width: 100%;
+        button {
+          margin-bottom: 30px;
+        }
+      }
+      div:nth-child(2) {
+        width: 100%;
+        flex: 2;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .create-account-home-page-container {
+    div {
+      div:nth-child(2) {
+        img {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .create-account-home-page-container {
+    div {
+      div:nth-child(2) {
+        img {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1420px) {
+  .create-account-home-page-container {
+    div {
+      div:nth-child(2) {
+        img {
+          width: 60%;
+          height: 90%;
+        }
+      }
+    }
+  }
+}
+
+// Recipe Roulette Styles
+
+.recipe-roulette {
+  height: auto;
+  div {
+    background: rgb(240, 240, 240);
+    width: 1400px;
+  }
+}
+
+.recipe-roulette-cards-container {
+  @include flexCenter(space-around);
+  flex-wrap: wrap;
+  > * {
+    flex: 18%;
+    margin: 10px;
+  }
+}
+
+.recipe-roulette-card {
+  background: white;
+  width: 100%;
+  height: 450px;
+  margin-bottom: 20px;
+  border: solid 1px grey;
+  img {
+    box-sizing: border-box;
+    height: 50%;
+    width: 100%;
+    border: solid 1px black;
+  }
+  p:first-of-type {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px;
+  }
+  p {
+    @include flexCenter(center);
+    font-weight: $font-weight;
+  }
 }

@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 
 //'*' is a wildcard character in Express that we can use to mean, "match anything that we haven't matched so far."
 app.get('*', (req, res) => {
-    res.send('index.html');
+    res.sendFile(__dirname, 'index.html');
 });
 
 app.listen(process.env.PORT, () => {

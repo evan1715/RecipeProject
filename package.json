@@ -8,13 +8,11 @@
   "scripts": {
     "start": "node server/server.js",
     "db": "startDB.bat",
+    "build": "cd client && webpack",
+    "client": "cd client && webpack serve",
     "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
-    "dev": "concurrently \"cd client && react-scripts start\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
-    "heroku-postbuild": "cd client && react-scripts start",
-    "dev-server": "concurrently \"cd client && webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
-    "webdev": "concurrently \"cd client && webpack serve\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
-    "web-server": "cd client && webpack serve",
-    "web-build": "cd client && webpack"
+    "dev": "concurrently \"cd client && webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
+    "webdev": "concurrently \"cd client && webpack serve\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

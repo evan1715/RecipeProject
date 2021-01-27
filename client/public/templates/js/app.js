@@ -33,15 +33,15 @@ userForm.addEventListener('submit', (event) => {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({
-            username,
-            email,
-            password,
-            name
+            username: username,
+            email: email,
+            password: password,
+            name: name
         })
     })
     .then(res => {
         return res.json()
     })
     .then(data => console.log(data))
-    .catch(error => alert(error.message));
+    .catch(error => console.log(error.message));
 });

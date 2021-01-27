@@ -1,3 +1,11 @@
+//To list all global packages
+npm list -g
+
+//To remove global packages
+npm uninstall -g packageName
+
+
+
 chalk //modifies color of terminal
 
 nodemon //runs a server locally with auto-restart

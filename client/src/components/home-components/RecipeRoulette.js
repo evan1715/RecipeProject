@@ -46,7 +46,7 @@ export default function RecipeRoulette() {
                 <h2 className='title'>Nothing piquing your interest? Take it for a 
                     <button 
                         className='button' 
-                        onClick={() => { setInProp(false); dispatch(handleRecipeRoulette(url, 10))}}
+                        onClick={() => { setInProp(false); dispatch(handleRecipeRoulette(url, 10)) }}
                     >
                         spin!
                     </button>

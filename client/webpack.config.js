@@ -1,28 +1,37 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    entry: './app/index.js',
+    entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js',
-        publicPath: '/'
+        path: path.join(__dirname, 'public'),
+        filename: 'bundle.js'
     },
     module: {
-        rules: [
-            { test: /\.(js)$/, use: 'babel-loader' },
-            { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+        rules: [{
+            loader: 'babel-loader',
+            test: /\.js$/,
+            exclude: /node_modules/
+        },
+        { 
+            use: ['style-loader', 'css-loader', 'sass-loader'],
+            test: /\.s?css$/
+        }
         ]
     },
-    mode: process.env.NODE_ENV === 'production' ? 'development' : 'production',
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'app/index.html'
-        }),
-        new CopyPlugin({ patterns: [{ from: '_redirects' }] })
-    ],
+    devtool: 'eval-cheap-module-source-map',
+    mode: 'development',
     devServer: {
-        historyApiFallback: true
+        contentBase: path.join(__dirname, 'public'),
+        port: 3000,
+        proxy: {
+            '/api': {
+                target: 'http:localhost:3001',
+                pathRewrite: {'^/api' : '' }
+            }
+        },
+        open: true,
+        liveReload: true
     }
 }

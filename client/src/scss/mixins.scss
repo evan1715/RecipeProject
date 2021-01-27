@@ -6,6 +6,6 @@
 
 @mixin container {
   @include flexCenter(center);
-  width: 1200px;
+  width: 60%;
   height: 100%;
 }

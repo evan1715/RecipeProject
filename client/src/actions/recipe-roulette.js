@@ -1,16 +1,16 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import axios from 'axios'
 
-export const RECEIVE_RANDOM_RECIPES = 'RECEIVE_RANDOM_RECIPES'
+export const RECEIVE_RECIPE_ROULETTE = 'RECEIVE_RECIPE_ROULETTE'
 
-function receiveRandomRecipes(recipes) {
+function receiveRecipeRoulette(recipes) {
     return {
-        type: RECEIVE_RANDOM_RECIPES,
+        type: RECEIVE_RECIPE_ROULETTE,
         recipes
     }
 }
 
-export function handleRandomRecipes(url, number) {
+export function handleRecipeRoulette(url, number) {
     const API = '3273002619e04c89b625192940c7dbb1'
 
     const options = {
@@ -24,7 +24,7 @@ export function handleRandomRecipes(url, number) {
 
         return axios.request(options)
             .then(res => {
-                dispatch(receiveRandomRecipes(res.data.recipes))
+                dispatch(receiveRecipeRoulette(res.data.recipes))
                 dispatch(hideLoading())
             })
             .catch(err => {

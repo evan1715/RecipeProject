@@ -15,7 +15,7 @@ export default function Nav() {
             <div className='nav-container'>
                 <nav>
                     <Link to='/'>
-                        <img src='https://simg.nicepng.com/png/small/206-2060627_willie-flaherty-small-taco-bell-logo.png' alt='dished online logo' />
+                        <img src='' alt='dished online logo' />
                     </Link>
 
                     {/* Give the last item in the array an id of 'sign-up' */}

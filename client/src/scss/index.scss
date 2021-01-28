@@ -140,6 +140,16 @@ a {
   }
 }
 
+@media screen and (min-width: 510px) {
+  .create-account-home-page-container {
+    div {
+      h1 {
+        margin-bottom: -10px;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 800px) {
   .create-account-home-page-container {
     div {
@@ -196,7 +206,7 @@ a {
   }
 }
 
-.recipe-roulette-card {
+#recipe-roulette-card {
   background: white;
   width: 100%;
   height: 450px;
@@ -216,5 +226,40 @@ a {
   p {
     @include flexCenter(center);
     font-weight: $font-weight;
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .recipe-roulette {
+    div {
+      width: 90%;
+      margin-top: 30px;
+      justify-content: center;
+      div {
+        width: 100%;
+        justify-content: space-between;
+        li {
+          width: 40vw;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  #recipe-roulette-card {
+    width: 20vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #recipe-roulette-card {
+    width: 42vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #recipe-roulette-card {
+    width: 40vw;
   }
 }

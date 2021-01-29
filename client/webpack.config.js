@@ -23,11 +23,11 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         port: 3000,
-        proxy: {
-            context: () => true,
-            target: 'http://localhost:3001'
-        },
-        open: true,
-        liveReload: true
+        // proxy: {
+        //     target: 'http://localhost:3001',
+        //     context: () => true
+        // },
+        open: true, //open browser
+        liveReload: true //reload browser tab on change
     }
 }

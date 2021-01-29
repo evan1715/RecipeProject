@@ -4,13 +4,19 @@
 
 
 
-/*  1-26-2021
-    *New package. Need to run npm install.
+/*  1-28-2021
+    ****New packages. Need to run npm install.
     - Installed sass-loader in order for webpack to be able to properly compile SCSS.
+    - Installed react-transition-group from pull.
+    - Uninstalled packages that weren't being used.
+    - Uninstalled react-scripts from create-react-app.
     
-    *might delete these two:
-    - Installed copy-webpack-plugin because it was missing
-    - Installed webpack because it wasn't installed already for some reason.
+    - Reworked webpack, package.json for all-in-one and working full stack.
+    - Set up babel config in package.json
+    - Added bundle.js to index.html for when compiled version is used.
+    -* Look at notes\notes.txt for information.
+
+    - Got rid of a link to the taco bell image because it no longer worked and caused the page to loop.
 */
 
 
@@ -27,8 +33,8 @@
     \server\utils
     - Added in a description to time.js for why it's there for now.
 
-    Note to Team: 
-    There's a typo in webpack.config.js. 'development' is spelled wrong. Try using the VSC extension Code Spell Checker. When there's something you want to be a word, if it doesn't fit the spell checker dictionary, you can right click it and press, "Add Word to User Dictionary"
+    Note to "Team": 
+    Try using the VSC extension Code Spell Checker. When there's something you want to be a word, if it doesn't fit the spell checker dictionary, you can right click it and press, "Add Word to User Dictionary"
 */
 
 

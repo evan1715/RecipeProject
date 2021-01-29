@@ -5,7 +5,6 @@ startDB.bat
 server/controllers
 server/utils
 templates
-notes/notes.txt
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

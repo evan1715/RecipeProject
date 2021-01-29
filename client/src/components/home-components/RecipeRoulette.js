@@ -15,7 +15,7 @@ export default function RecipeRoulette() {
 
     // Transition state + variables
     const [inProp, setInProp] = React.useState(true)
-    const duration = 300
+    const duration = 400
     const defaultStyle = {
         transition: `opacity ${duration}ms ease-in-out`,
         opacity: 0
@@ -29,7 +29,7 @@ export default function RecipeRoulette() {
     }
 
     React.useEffect(() => {
-        dispatch(handleRecipeRoulette(url, 10))
+        dispatch(handleRecipeRoulette(url))
     }, [dispatch])
 
     // After 800ms, set inProp to true so that the cards fade back onto the screen after the API request finishes
@@ -46,7 +46,7 @@ export default function RecipeRoulette() {
                 <h2 className='title'>Nothing piquing your interest? Take it for a 
                     <button 
                         className='button' 
-                        onClick={() => { setInProp(false); dispatch(handleRecipeRoulette(url, 10)) }}
+                        onClick={() => { setInProp(false); dispatch(handleRecipeRoulette(url)) }}
                     >
                         spin!
                     </button>
@@ -60,7 +60,7 @@ export default function RecipeRoulette() {
                                     ...defaultStyle,
                                     ...transitionStyles[state]
                                 }}>
-                                    <li key={index} className='recipe-roulette-card'>
+                                    <li key={index} id='recipe-roulette-card'>
                                         <img src={recipe.image} alt='finished dish' />
                                         <p>{recipe.title}</p>
                                         <p><IoTimeOutline /> {recipe.readyInMinutes} minutes</p>

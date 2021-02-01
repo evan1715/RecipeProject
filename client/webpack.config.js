@@ -8,13 +8,18 @@ module.exports = {
     },
     module: {
         rules: [{
-            loader: 'babel-loader',
             test: /\.js$/,
+            use: {
+                loader: 'babel-loader', //loader runs a single loader
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
+                }
+            },
             exclude: /node_modules/
         },
         { 
-            use: ['style-loader', 'css-loader', 'sass-loader'],
-            test: /\.s?css$/
+            test: /\.s?css$/,
+            use: ['style-loader', 'css-loader', 'sass-loader'] //use allows us to use an array of loaders
         }
         ]
     },
@@ -22,7 +27,10 @@ module.exports = {
     mode: 'development',
     devServer: {
         contentBase: path.join(__dirname, 'public'),
+        //historyApiFallback says that we're going to handle all of our routing through React clientside.
+        historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,
+        //Uncomment the proxy section to use the NodeJS server, API, and database.
         // proxy: {
         //     target: 'http://localhost:3001',
         //     context: () => true

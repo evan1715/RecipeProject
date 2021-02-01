@@ -35,7 +35,35 @@
 
 
 
-
+//Three ways to set up babel configuration.
+npm install @babel/preset-env @babel/preset-react @babel-core @babel-loader --save-dev
+// https://babeljs.io/docs/en/configuration 
+1. Create .babelrc or babel.config.json or .babelrc.json file in the root and put in 
+{
+  "presets": [
+      "@babel/env",
+      "@babel/react"
+  ]
+}
+2. Add in babel configuration to package.json
+  "babel": {
+    "presets": [
+        "@babel/env",
+        "@babel/react"
+    ]
+  }
+3. Place the presets inside webpack.config.js
+ module: {
+        rules: [{
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader', //loader runs a single loader
+                options: {
+                    presets: ['@babel/preset-env, @babel/preset-react']
+                }
+            },
+            exclude: /node_modules/
+        }
 
 
 

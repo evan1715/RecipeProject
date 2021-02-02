@@ -16,12 +16,10 @@ module.exports = {
                 }
             },
             exclude: /node_modules/
-        },
-        { 
+        }, { 
             test: /\.s?css$/,
             use: ['style-loader', 'css-loader', 'sass-loader'] //use allows us to use an array of loaders
-        }
-        ]
+        }]
     },
     devtool: 'eval-cheap-module-source-map',
     mode: 'development',

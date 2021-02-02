@@ -2,7 +2,16 @@
 [Github guide for writing markdown file](https://guides.github.com/features/mastering-markdown/)
 
 
+/*  2-2-2021
+    - Removed unused server folders. Controllers and utils.
+    - Since create-react-app is gone, we can remove the ESLint config file. Can use the ESLint extension in VSC.
+*/
 
+/*  2-1-2021
+    - Moved Babel configuration from package.json to webpack.config.js.
+    - Turned on historyApiFallback in webpack. 
+    -- historyApiFallback says that we're going to handle all of our routing through React clientside. This will return index.html for all 404 routes.
+*/
 
 /*  1-28-2021
     ****New packages. Need to run npm install.

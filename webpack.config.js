@@ -1,9 +1,9 @@
 const path = require('path')
 
 module.exports = {
-    entry: './src/index.js',
+    entry: '/client/src/index.js',
     output: {
-        path: path.join(__dirname, 'public'),
+        path: path.join(__dirname, './client/public'),
         filename: 'bundle.js'
     },
     module: {
@@ -24,11 +24,10 @@ module.exports = {
     devtool: 'eval-cheap-module-source-map',
     mode: 'development',
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
+        contentBase: path.join(__dirname, './client/public'),
         //historyApiFallback says that we're going to handle all of our routing through React clientside.
         historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,
-        //Uncomment the proxy section to use the NodeJS server, API, and database.
         // proxy: {
         //     target: 'http://localhost:3001',
         //     context: () => true

@@ -2,6 +2,31 @@
 [Github guide for writing markdown file](https://guides.github.com/features/mastering-markdown/)
 
 
+
+/*  2-9-2021
+    * Need to run npm install
+    - Updated the methods of dev server to be simpler and easier. Modified webpack.config, package.json, added dev server.
+    - Added this part to a new file called dev-server to enable convenience:
+*/
+```JavaScript
+    //Webpack Dev
+    const webpack = require('webpack');
+    const webpackDevServer = require('webpack-dev-server');
+    const config = require('../webpack.config.js');
+
+    const options = {
+        contentBase: './client/public',
+        // host: 'localhost',
+        historyApiFallback: true, //This will return index.html for all 404 routes.
+        open: true,
+        liveReload: true
+    }
+    webpackDevServer.addDevServerEntrypoints(config, options);
+    const compiler = webpack(config);
+    const server = new webpackDevServer(compiler, options);
+```
+
+
 /*  2-2-2021
     - Removed unused server folders. Controllers and utils.
     - Since create-react-app is gone, we can remove the ESLint config file. Can use the ESLint extension in VSC.

@@ -8,11 +8,12 @@
   "scripts": {
     "start": "node server/server.js",
     "db": "startDB.bat",
-    "build": "cd client && webpack",
-    "client": "cd client && webpack serve",
+    "build": "webpack",
+    "client": "webpack serve",
     "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
-    "dev": "concurrently \"cd client && webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\"",
-    "webdev": "concurrently \"cd client && webpack serve\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
+    "dev": "env-cmd -f server/config/dev.env node server/dev-server.js",
+    "webdev": "env-cmd -f server/config/dev.env nodemon server/dev-server.js -e js,html,css,scss",
+    "prod": "concurrently \"webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -48,7 +49,8 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "^5.18.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

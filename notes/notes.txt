@@ -1,4 +1,40 @@
 *~~~~~=~~~~~* Running client, server, etc. *~~~~~=~~~~~*
+> Terminal must be in root folder.
+
+- If compiling front into a build:
+    1. npm run build
+
+- If working on only client: 
+    1. npm run client
+    * This will allow active reload in the browser on port 3000.
+
+- If working on only server:
+    1. Turn on database service with npm run db
+    2. In a new terminal, use npm run server
+    * Server will be on port 3001.
+
+- If working on client & server without server auto-restarting (nodemon):
+    1. Turn on database service with npm run db
+    2. In a new terminal, use npm run dev
+    * Will run on port 3001.
+
+- If working on client & server WITH server auto-restarting (nodemon):
+    *This may cause a new tab to open every time a change is saved.
+    1. Turn on database service with npm run db
+    2. In a new terminal, use npm run webdev
+    * Will run on port 3001.
+
+- If working on production build:
+    1. Turn on database service with npm run db
+    2. npm run prod
+    * This will build out the project and will have to open the browser manually. Webpack will be watched to recompile when changes are made and the server will restart because nodemon is on.
+    * Will run on port 3001.
+
+
+
+
+//DEPRECATED METHOD:
+*~~~~~=~~~~~* Running client, server, etc. *~~~~~=~~~~~*
 
 > Terminal must be in root folder.
 

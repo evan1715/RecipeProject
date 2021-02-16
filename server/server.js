@@ -15,8 +15,9 @@ app.use(recipeRouter);
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 //'*' is a wildcard character in Express that we can use to mean, "match anything that we haven't matched so far."
+//Using this, it'll match all unmatched routes.
 app.get('*', (req, res) => {
-    res.sendFile(__dirname, 'index.html');
+    res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 app.listen(process.env.PORT, () => {

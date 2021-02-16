@@ -7,11 +7,12 @@ if (!devMode) {
     plugins.push(new MiniCssExtractPlugin({ filename: 'styles.css' }));
 }
 console.log(process.env.NODE_ENV);
+console.log(plugins);
 
 module.exports = {
     entry: '/client/src/index.js',
     output: {
-        path: path.join(__dirname, './client/public/dist'),
+        path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -51,7 +52,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, './client/public'),
         //publicPath is to specify where the bundled assets should be.
-        publicPath: '/dist/',
+        publicPath: devMode ? '/' : '/dist/',
         //historyApiFallback says that we're going to handle all of our routing through React clientside.
         historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,

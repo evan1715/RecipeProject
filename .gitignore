@@ -1,5 +1,6 @@
 node_modules/
 client/public/dist/
+client/public/bundle.js
 server/config/
 startDB.bat
 templates

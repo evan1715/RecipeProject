@@ -7,13 +7,15 @@
   "license": "ISC",
   "scripts": {
     "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod",
     "db": "startDB.bat",
-    "build": "webpack",
-    "client": "webpack serve",
+    "build:dev": "webpack --node-env development",
+    "build:prod": "webpack --node-env production",
+    "client": "webpack serve --node-env development",
     "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
     "dev": "env-cmd -f server/config/dev.env node server/dev-server.js",
     "webdev": "env-cmd -f server/config/dev.env nodemon server/dev-server.js -e js,html,css,scss",
-    "prod": "concurrently \"webpack --watch\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
+    "prod": "concurrently \"webpack --watch --node-env production\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -41,6 +43,7 @@
     "concurrently": "^5.3.0",
     "css-loader": "^5.0.1",
     "env-cmd": "^10.1.0",
+    "mini-css-extract-plugin": "^1.3.7",
     "nodemon": "^2.0.6",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",

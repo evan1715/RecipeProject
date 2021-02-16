@@ -3,6 +3,23 @@
 
 
 
+
+
+
+    2-16-2021
+    - Fixed server path to return to the homepage on all unmatched routes.
+```JavaScript
+    res.sendFile(__dirname, 'index.html');
+    //to 
+    res.sendFile(path.join(__dirname, '../client/public/index.html'));
+```
+    - Installed mini-css-extract-plugin webpack plugin to separate CSS files from being rendered in a production build (instead of all in one JS file).
+    - Updated webpack to use webpack cli 4.5.0's --node-env cmd.
+    - Updated webpack to use a plugin to separate CSS in the build and modified source mapping.
+    - Updated webpack for better production vs development modes.
+
+
+
 /*  2-9-2021
     * Need to run npm install
     - Updated the methods of dev server to be simpler and easier. Modified webpack.config, package.json, added dev server.

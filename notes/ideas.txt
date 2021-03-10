@@ -4,3 +4,7 @@
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
+
+
+- Fix issue with only production build and server communicating so that dev mode also can do it.
+- Redirect once account is created. Put a "modify profile" link and show we're actively signed in.

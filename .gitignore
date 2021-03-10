@@ -1,10 +1,26 @@
+#node_modules
 node_modules/
-client/public/dist/
-client/public/bundle.js
-server/config/
-startDB.bat
-templates
 
+#config
+server/config/
+
+#database bat file
+startDB.bat
+
+#bundled/compiled
+client/public/dist/bundle.js
+client/public/dist/bundle.js.LICENSE.txt
+client/public/dist/bundle.js.map
+client/public/dist/styles.css
+client/public/dist/styles.css.map
+client/public/bundle.js
+
+
+
+
+
+
+#create-react-app autofill:
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

@@ -1,0 +1,20 @@
+.button {
+    width: auto;
+    height: 50px;
+    padding: 0 30px 0 30px;
+    margin: 10px;
+    color: white;
+    background: #3c280d;
+    border: solid #3c280d 1px;
+    border-radius: 3px;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+        background: rgb(240, 240, 240);
+        color: #3c280d;
+        border: solid #3c280d 1px;
+    }
+    &:focus {
+        outline: none;
+    }
+}

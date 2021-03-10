@@ -29,7 +29,7 @@ const config = require('../webpack.config.js');
 const options = {
     // contentBase: './client/public',
     contentBase: path.join(__dirname, '../client/public'),
-    // host: 'localhost',
+    host: 'localhost',
     historyApiFallback: true, //This will return index.html for all 404 routes.
     open: true,
     liveReload: true
@@ -42,6 +42,6 @@ const server = new webpackDevServer(compiler, options);
 
 
 
-server.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, 'localhost', () => {
     console.log(`Development server is up on port ${process.env.PORT}.`);
 });

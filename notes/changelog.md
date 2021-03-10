@@ -6,6 +6,22 @@
 
 
 
+
+    3-8-2021 - 3-9-2021
+    Package:
+    - Installed react-modal.
+    Component:
+    - Created CreateAccountModal.js component.
+    - Incorporated it into CreateAccount.js component.
+    SCSS:
+    - Set up _base.scss, _createAccountModal.scss, and styles.scss to style the modal and create organization.
+    - Put .button in _base.scss from index.scss
+    Hook:
+    - Created a useScript hook for incorporating outside scripts. Although, not currently in use.
+
+
+
+
     2-16-2021
     - Fixed server path to return to the homepage on all unmatched routes.
 ```JavaScript
@@ -20,11 +36,11 @@
 
 
 
-/*  2-9-2021
+
+    2-9-2021
     * Need to run npm install
     - Updated the methods of dev server to be simpler and easier. Modified webpack.config, package.json, added dev server.
     - Added this part to a new file called dev-server to enable convenience:
-*/
 ```JavaScript
     //Webpack Dev
     const webpack = require('webpack');
@@ -44,18 +60,24 @@
 ```
 
 
-/*  2-2-2021
+
+
+    2-2-2021
     - Removed unused server folders. Controllers and utils.
     - Since create-react-app is gone, we can remove the ESLint config file. Can use the ESLint extension in VSC.
-*/
 
-/*  2-1-2021
+
+
+
+    2-1-2021
     - Moved Babel configuration from package.json to webpack.config.js.
     - Turned on historyApiFallback in webpack. 
     -- historyApiFallback says that we're going to handle all of our routing through React clientside. This will return index.html for all 404 routes.
-*/
 
-/*  1-28-2021
+
+
+
+    1-28-2021
     ****New packages. Need to run npm install.
     - Installed sass-loader in order for webpack to be able to properly compile SCSS.
     - Installed react-transition-group from pull.
@@ -68,10 +90,11 @@
     -* Look at notes\notes.txt for information.
 
     - Got rid of a link to the taco bell image because it no longer worked and caused the page to loop.
-*/
 
 
-/*  1-25-2021
+
+
+    1-25-2021
     \general director
     - Added a folder to .gitignore
     - Reorganized package.json
@@ -86,17 +109,19 @@
 
     Note to "Team": 
     Try using the VSC extension Code Spell Checker. When there's something you want to be a word, if it doesn't fit the spell checker dictionary, you can right click it and press, "Add Word to User Dictionary"
-*/
 
 
-/*  1-19-2021
+
+
+    1-19-2021
     \server
     - Fixed some basic spelling typos in comments in mongoose.js and recipeRouter.js
     - Fixed a typo in userModel.js to correctly return this.toObject(); under userSchema.methods.toJSON.
-*/
 
 
-/*  1-16-2021
+
+
+    1-16-2021
     \general directory
     - Added templates folder to .gitignore.
     - Reworked package.json a little.
@@ -111,10 +136,10 @@
     \server
     - Added a comment describing what '*' does in an Express route.
     - Created a mongoose method to return db information that would only be needed. Excludes private data such as tokens and password, as well as decreasing the size of it by omitting the icon.
-*/
 
 
-/*  1-12-2021
+
+
+    1-12-2021
     \server
     - Commented out some unused requires under \models in recipeModel.js and userModel.js
-*/

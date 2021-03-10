@@ -9,7 +9,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import middleware from './middleware'
 import reducer from './reducers'
-import './scss/index.scss';
+import './scss/styles.scss'; //all styles
 import Nav from './components/nav-components/Nav'
 import HomePage from './components/home-components/HomePage'
 import LoadingBar from 'react-redux-loading-bar'

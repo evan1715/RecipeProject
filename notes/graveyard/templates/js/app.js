@@ -17,7 +17,7 @@ userForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     // console.log(submitLogin);
-    // console.log(username, email, password, name);
+    console.log(username, email, password, name);
 
     //GET
     // fetch('localhost:3001/user').then((response) => response.json()).then((json) => {

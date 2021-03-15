@@ -1,4 +1,4 @@
-//This file will effect the Create Account Modal.
+//This file will effect the CreateAccount and SignIn modal, as well as any other modals we may add.
 
 //The greater than sign > is to only target any div that are direct descendants (as opposed to children of children).
 .ReactModalPortal > div {
@@ -28,12 +28,12 @@
     text-align: center;
 }
 
-.createAccountModal__title {
+.modal__title {
     font-size: 30px;
     margin: 1px 1px 16px 1px; //top right bottom left
 }
 
-.createAccountModal__form-input {
+.modal__form-input {
     font-size: 15px;
     margin: 12px;
     padding: 12px;

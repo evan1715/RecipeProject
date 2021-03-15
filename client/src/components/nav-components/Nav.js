@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import IosMenu from 'react-ionicons/lib/IosMenu'
+import SignInModal from './SignInModal.js';
 
 export default function Nav() {
     const [showMenu, setShowMenu] = React.useState(false)
@@ -9,6 +10,7 @@ export default function Nav() {
     const iconStyles = {
         cursor: 'pointer'
     }
+    const [openModal, setOpenModal] = useState('');
 
     return (
         <div className='center'>
@@ -23,11 +25,19 @@ export default function Nav() {
                         {navLinks.map((navLink, index) => {
                             if(navLinks.length === index + 1) {
                                 return (
-                                    <Link id='sign-up' key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>
-                                        <li>
-                                            {navLink}
-                                        </li>   
-                                    </Link>
+                                    // <Link id='sign-up' key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>
+                                    //     <li>
+                                    //         {navLink}
+                                    //     </li>   
+                                    // </Link>
+                                    <>
+                                        <button id='sign-up' key={index} onClick={ () => setOpenModal('true') }>
+                                            <li>
+                                                {navLink}
+                                            </li>   
+                                        </button>
+                                        <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } />
+                                    </>
                                 )} else {
                                     return (
                                         <Link key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>

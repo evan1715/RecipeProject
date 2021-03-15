@@ -5,6 +5,12 @@
 
 
 
+    3-13-2021 - 
+    SCSS:
+    - Rearranged some to organize it a bit.
+    - Made a pop out modal for sign in, but pending on whether to just make it a page or make the modal work on the burger drop down menu.
+
+
 
 
     3-8-2021 - 3-9-2021

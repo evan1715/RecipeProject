@@ -36,37 +36,15 @@
 
 
 
-//DEPRECATED METHOD:
-*~~~~~=~~~~~* Running client, server, etc. *~~~~~=~~~~~*
 
-> Terminal must be in root folder.
+//To run a command WITH a script, use something like:
+npm run test -- --watch
+npm run dev -- --node-env development
 
-- If compiling front into a build:
-    1. npm run build
 
-- If working on only client: 
-    1. Ensure the proxy section in webpack.config.js is commented out.
-    2. npm run client
-    * This will allow active reload in the browser.
 
-- If working on only server:
-    1. Turn on database service with npm run db
-    2. In a new terminal, use npm run server
-    * Server will be on port 3001.
-
-- If working on client & server with build (production style):
-    1. Turn on database service with npm run db
-    2. npm run dev
-    * This will not have active reload in the browser. This will tell webpack to build the front end into a file and run the server off of it.
-    * Webpack --watch will be enabled so that when files change, it will be recompiled as well as nodemon restarting the server when files are saved.
-    * To access it, it will be on port 3001.
-
-- If working on client & server with live reload:
-    1. Ensure the proxy section in webpack.config.js is NOT commented out.
-    2. Turn on database service with npm run db
-    3. In a new terminal, use npm run webdev
-    * This will have the database, server, and client running with active reload in the browser.
-
+//cmd line palette for VSC
+ctrl shift p
 
 
 

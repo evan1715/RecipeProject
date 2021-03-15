@@ -1,0 +1,104 @@
+// Home Page styles arrayed in descending order as the elements appear on the page
+// Media queries for each element is placed directly underneath it
+@import '../partials/mixins.scss';
+
+.create-account-home-page-container {
+    height: 500px;
+    border-top: solid 2px lightgrey;
+    background-image: url("https://i.ibb.co/Tt2pB4v/dust-scratches.png");
+    div {
+        @include flexCenter(center);
+        width: 1400px;
+        height: 100%;
+        div:first-of-type {
+            align-items: flex-start;
+            flex: 1;
+            flex-direction: column;
+            h1 {
+                font-weight: bold;
+                color: #455059;
+            }
+            p {
+                font-size: larger;
+                padding: 0 20px 20px 0;
+            }
+        }
+        div:last-of-type {
+            flex: 2;
+            max-height: 500px;
+            img {
+                width: 100%;
+                height: 100%;
+                border: solid black 2px;
+                box-shadow: 2px 2px 2px 2px grey;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1420px) {
+    .create-account-home-page-container {
+        height: 750px;
+        div {
+            width: 90%;
+            flex-direction: column;
+            div:first-child {
+                width: 100%;
+                button {
+                    margin-bottom: 30px;
+                }
+            }
+            div:nth-child(2) {
+                width: 100%;
+                flex: 2;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 510px) {
+    .create-account-home-page-container {
+        div {
+            h1 {
+                margin-bottom: -10px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .create-account-home-page-container {
+        div {
+            div:nth-child(2) {
+                img {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .create-account-home-page-container {
+        div {
+            div:nth-child(2) {
+                img {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1420px) {
+    .create-account-home-page-container {
+        div {
+            div:nth-child(2) {
+                img {
+                    width: 60%;
+                    height: 90%;
+                }
+            }
+        }
+    }
+}

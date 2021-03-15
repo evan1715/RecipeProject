@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
+
 
 const CreateAccountModal = (props) => {
     const [username, setUsername] = useState('');
@@ -46,18 +46,18 @@ const CreateAccountModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <h3 className="createAccountModal__title">Create Account</h3>
+            <h3 className="modal__title">Create Account</h3>
             {/* <form onSubmit={ createAccount }> */}
             {/* Changed this to a submit button outside of the form */}
             <form>
-                <input className="createAccountModal__form-input" value={ username } placeholder="username" onChange={ (e) => setUsername(e.target.value) } />
-                <input className="createAccountModal__form-input" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="createAccountModal__form-input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
-                <input className="createAccountModal__form-input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
+                <input className="modal__form-input" value={ username } placeholder="username" onChange={ (e) => setUsername(e.target.value) } />
+                <input className="modal__form-input" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
+                <input className="modal__form-input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form-input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
                 {/* <button className="createAccountModal__button">Submit</button> */}
             </form>
-            <button className="button" onClick={ createAccount }>Submit</button>
             <button className="button" onClick={ props.handleCloseModal }>Close</button>
+            <button className="button" onClick={ createAccount }>Submit</button>
         </Modal>
     )
 }

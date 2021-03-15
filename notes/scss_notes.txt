@@ -1,0 +1,30 @@
+/*  Udemy Notes:
+    Naming convention: http://getbem.com/naming/ BEM (Block Element Modifier)
+
+    Architecture and Header Styles
+    - Partials files starts with an underscore.
+    - When setting up the font-family, the first one will be the one we want the most. If it doesn't work on one's computer, it will fallback to the next one, and then the third one.
+    - For sizing, the most popular tends to be px for pixels. 
+    -- We could use rem instead of px. The one advantage is that they'll have better support for accessibility. That's going to allow users to customize things like their global font size, allowing them to scale the font size up and down in a way that works for them.
+    -- By default, 1rem is equal to 16px.
+    -- If we use font-size 62.5% under html {} selector itself, it'll convert it into a base 10px, making it easier to manage.
+
+    - scss allows for nested selectors like h1 under .header
+        h1 {
+            color: red;
+        }
+    - The problem with nesting it is that we get into a situation where we have a lot of nesting and a lot of specificity issues, much like javascript callback hell is something we may want to avoid. So, inside of our styles, we want to avoid complex nesting.
+    - A class selector naming convention is to put two underscores and then the name for elements. Example: .header__title {}.
+    -- This is known as the BEM naming convention, which stands for Block Element Modifier.
+    -- A Block is the core building block. Something big like the actual header.
+    -- Elements are things that go inside of blocks to make them useful. 
+    -- For modifiers, we use the name with .button--link. Instead of underscores, we use two hyphens.
+
+    Big Button & Options List
+    - In SCSS, we have a set of predefined functions that we can use.
+    - The function darken() gets called just like in JS and returns some value.
+    -- The first argument is the color we want to darken. The second value is the percentage of how much to darken it.
+    - The built-in disabled psuedo class can be accessed like this: .big-button:disabled {}
+
+
+*/

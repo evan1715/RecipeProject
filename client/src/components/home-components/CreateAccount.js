@@ -5,10 +5,6 @@ import CreateAccountModal from './CreateAccountModal.js';
 export default function CreateAccount() {
     const [openModal, setOpenModal] = useState('');
 
-    const handleCloseModal = () => {
-        setOpenModal('');
-    }
-
     return (
         <div className='center create-account-home-page-container'>
             <div>
@@ -21,7 +17,7 @@ export default function CreateAccount() {
                     <button className='button' onClick={ () => setOpenModal('true') }>
                         Create An Account
                     </button>
-                    <CreateAccountModal openModal={ openModal } handleCloseModal={ handleCloseModal } />
+                    <CreateAccountModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } />
                 </div>
 
                 <div>

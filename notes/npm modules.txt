@@ -31,3 +31,6 @@ multer //it's created and maintained by the same people who made Express
 sharp //Auto-Cropping and Image Formatting
 
 env-cmd //environment variables made easy
+
+react-modal //allows modal pop ups on pages
+

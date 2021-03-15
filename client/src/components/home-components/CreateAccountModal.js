@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import Modal from 'react-modal';
+// import { createAccountAction } from '../../actions/account.js';
+// import accountReducer from '../../reducers/account.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
 
 
 const CreateAccountModal = (props) => {
+    // const [token, dispatch] = useReducer(accountReducer, []);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,35 +18,16 @@ const CreateAccountModal = (props) => {
 
     const createAccount = (e) => {
         e.preventDefault();
-
-        // const error = props.createAccount(e.target.elements.value.trim());
-        // setError(() => ({ error: error }));
-        
-        fetch('/user', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                email: email,
-                password: password,
-                name: name
-            })
-        })
-        .then(res => {
-            console.log(res);
-            return res.json();
-        })
-        .then(data => console.log(data))
-        .catch(error => console.log(error.message));
+        createAccountAction(username, email, password, name);
+        //should i just bring the fetch back here and get rid of createAccountAction?
+        // dispatch({ type: 'LOGIN', user: email, token: token })
     }
     
     return (
         <Modal
             isOpen={ !!props.openModal }
             onRequestClose={ props.handleCloseModal }
-            contentLabel=""
+            contentLabel="Create Account"
             closeTimeoutMS={ 250 }
             className="modal"
         >

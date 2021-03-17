@@ -1,9 +1,14 @@
 //~~~file not currently in use because i can't get it to work. pending update~~~~~~
+/*  if (action.type === 'CREATE_ACCOUNT') {
+        return 
+    }
+*/
 const accountReducer = (state = {}, action) => {
     switch (action.type) {
         // case 'CREATE_ACCOUNT':
         //     return [...state, action.user];
         case 'LOGIN':
+            console.log("From reducer:", action.user, token.user);
             return {
                 user: action.user,
                 token: action.token

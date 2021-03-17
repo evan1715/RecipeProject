@@ -22,7 +22,7 @@ code {
 }
 
 .container {
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
 }
 
@@ -42,11 +42,13 @@ a {
     color: black;
 }
 
+//Row currently isn't being used.
 .row {
     display: flex;
     flex-direction: row;
 }
 
+//Column is used in HomePage.js
 .column {
     display: flex;
     flex-direction: column;

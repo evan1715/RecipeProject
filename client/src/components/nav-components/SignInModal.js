@@ -36,10 +36,10 @@ const SignInModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <h3 className="modal__title">Sign In</h3>
+            <h1 className="title">Sign In</h1>
             <form>
-                <input className="modal__form-input" value={ email } placeholder="email" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="modal__form-input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form--input" value={ email } placeholder="email" onChange={ (e) => setEmail(e.target.value) } />
+                <input className="modal__form--input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
             </form>
             <button className="button" onClick={ props.handleCloseModal }>Close</button>
             <button className="button" onClick={ signIn }>Submit</button>

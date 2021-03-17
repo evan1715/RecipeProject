@@ -97,11 +97,13 @@ userSchema.statics.loginUser = async (email, password) => {
     the object gets stringified. This allows us to manipulate what exactly comes back when we stringify the object. */
 userSchema.methods.toJSON = function() {
     //this being this user
-    delete this.toObject().password; //don't want that to be seen
-    delete this.toObject().tokens; //don't want tokens to be taken
-    delete this.toObject().icon; //decrease the size of the profile
+    const userObject = this.toObject();
 
-    return this.toObject();
+    delete userObject.password; //don't want that to be seen
+    delete userObject.loginTokens; //don't want tokens to be taken
+    delete userObject.icon; //decrease the size of the profile
+
+    return userObject;
 }
 
 //Link together recipes with a user who will create them.

@@ -1,69 +1,30 @@
-// import { useDispatch } from 'react-redux';
-// const dispatch = useDispatch();
-
 //~~~~~~~~working, sort of, but i don't think this is it. working on it~~~~~
 
 //CREATE_ACCOUNT
-// const createAccountAction = ({ username, email, password, name }) => {
-const createAccountAction = (username, email, password, name) => {
+const createAccountAction = ({ user, token }) => {
+    const { _id, username, email, name } = user;
 
-    fetch('/user', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-            name: name
-        })
-    })
-    .then(res => {
-        if (res.status === 201) {
-            dispatch({
-                type: 'LOGIN',
-                user: {
-                    user: email,
-                    token: res.data.token
-                }
-            })
-            console.log("Logged in.");
+    return {
+        type: 'LOGIN',
+        user: {
+            user: {
+                _id: _id,
+                username: username,
+                email: email,
+                name: name
+            },
+            token: token
         }
-        console.log(res);
-        return res.json();
-    })
-    .then(data => {
-        // dispatch({ 
-        //     type: 'LOGIN',
-        //     user: {
-        //         user: email,
-        //         token: data.token
-        //     }
-        // })
-        console.log(data.token);
-        console.log(data);
-    })
-    .catch(error => console.log(error.message));
-
-
-    // return {
-    //     type: 'CREATE_ACCOUNT',
-    //     user: {
-    //         username: username,
-    //         password: password,
-    //     }
-    // }
-
+    }
 };
 
 
 //LOG_IN
-const logInAction = ({ email, password }) => ({
-    type: 'LOG_IN',
+const loginAction = ({ user, token }) => ({
+    type: 'LOGIN',
     user: {
-        email: email,
-        password: password
+        user: user,
+        token: token
     }
 });
 
@@ -96,8 +57,8 @@ const loadInAction = () => (dispatch, getState) => {
 }
 
 //LOG_OUT
-const logOutAction = ({ id }) => ({
-    type: 'LOG_OUT',
+const logoutAction = ({ id }) => ({
+    type: 'LOGOUT',
     id: id
 });
 
@@ -122,5 +83,5 @@ const deleteAccountAction = ({ id }) => ({
 
 export {
     createAccountAction,
-    logInAction
+    loginAction
 }

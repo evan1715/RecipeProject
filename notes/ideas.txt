@@ -5,6 +5,9 @@
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
 
-
 - Fix issue with only production build and server communicating so that dev mode also can do it.
 - Redirect once account is created. Put a "modify profile" link and show we're actively signed in.
+- Put a pop up module on deleting recipes asking, "Are you sure?"
+- Set up private links and public links. "My account" settings for example.
+- Send back errors from mongodb when creating account or logging in.
+- Rework the ServerAPI call and make it useful for all API calls.

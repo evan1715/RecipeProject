@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux'
 import useServerAPI from '../../hooks/useServerAPI.js';
+// import { placeholder } from '../../actions/account.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -14,10 +16,13 @@ const CreateAccountModal = (props) => {
     const [name, setName] = useState('');
     // const [error, setError] = useState(undefined);
 
+    const dispatch = useDispatch()
+
     const createAccount = (e) => {
         e.preventDefault();
         const config = { username, email, password, name }
-        useServerAPI('/user', 'POST', config);
+        dispatch(useServerAPI('/user', 'POST', config));
+        // dispatch(placeholder('/user', 'POST', config));
     }
     
     return (

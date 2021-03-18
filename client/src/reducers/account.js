@@ -8,7 +8,7 @@ const accountReducer = (state = {}, action) => {
         // case 'CREATE_ACCOUNT':
         //     return [...state, action.user];
         case 'LOGIN':
-            console.log("From reducer:", action.user, token.user);
+            // console.log("From reducer:", action.user, action.user);
             return {
                 user: action.user,
                 token: action.token

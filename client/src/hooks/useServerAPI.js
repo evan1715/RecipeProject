@@ -27,30 +27,32 @@
 import { createAccountAction } from '../actions/account.js';
 
 const useServerAPI = (url, method, config) => {
-    //Deconstruct the incoming config
-    const { username, email, password, name} = config;
+    return dispatch => {
+        //Deconstruct the incoming config
+        const { username, email, password, name} = config;
 
-    //fetch & post the information
-    fetch(url, {
-        method: method,
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ username, email, password, name })
-    })
-    .then(res => {
-        if (res.status === 200 || res.status === 201) {
-            console.log("Server URL success.");
-            console.log(res);
-        } else if (res.status === 400 || res.status === 404 || res.status === 500) {
-            console.log("Server URL unsuccessful.");
-            console.log(res.json()); //figure out how to dispatch error back to redux to display what error mongodb gets.
-        }
-        return res.json();
-    }).then(data => {
-        createAccountAction(data);
-        console.log(data);
-    })
-    .catch(error => 
-        console.log("Response error message: ", error));
+        // fetch & post the information
+        return fetch(url, {
+                    method: method,
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify({ username, email, password, name })
+                })
+                .then(res => {
+                    if (res.status === 200 || res.status === 201) {
+                        console.log("Server URL success.");
+                        console.log(res);
+                    } else if (res.status === 400 || res.status === 404 || res.status === 500) {
+                        console.log("Server URL unsuccessful.");
+                        console.log(res.json()); //figure out how to dispatch error back to redux to display what error mongodb gets.
+                    }
+                    return res.json();
+                }).then(data => {
+                    dispatch(createAccountAction(data));
+                    console.log(data);
+                })
+                .catch(error => 
+                    console.log("Response error message: ", error));
+    }
 
 }
 

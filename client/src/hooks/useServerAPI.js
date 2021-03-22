@@ -24,36 +24,146 @@
     Delete icon.
     - /user/profile/icon
 */
-import { createAccountAction } from '../actions/account.js';
 
-const useServerAPI = (url, method, config) => {
-    return dispatch => {
-        //Deconstruct the incoming config
-        const { username, email, password, name} = config;
+import { createAccountAction, serverErrorAction } from '../actions/account.js';
 
-        // fetch & post the information
-        return fetch(url, {
-                    method: method,
-                    headers: { 'Content-type': 'application/json' },
-                    body: JSON.stringify({ username, email, password, name })
-                })
-                .then(res => {
-                    if (res.status === 200 || res.status === 201) {
-                        console.log("Server URL success.");
-                        console.log(res);
-                    } else if (res.status === 400 || res.status === 404 || res.status === 500) {
-                        console.log("Server URL unsuccessful.");
-                        console.log(res.json()); //figure out how to dispatch error back to redux to display what error mongodb gets.
-                    }
-                    return res.json();
-                }).then(data => {
-                    dispatch(createAccountAction(data));
-                    console.log(data);
-                })
-                .catch(error => 
-                    console.log("Response error message: ", error));
+const useServerAPI = (type, config) => {
+    
+    if (type === 'createAccount') {
+        return createAccount(config)
     }
 
 }
+
+const handleMongoError = (data) => {
+    var message;
+
+    if (data.keyPattern) {
+        if (data.keyPattern.username) {
+            message = `The username \"${data.keyValue.username}\" is already taken!`;
+        }
+
+        if (data.keyPattern.email) {
+            message = `The email \"${data.keyValue.email}\" is already being used!`;
+        }
+    } else if (data.errors) {
+        if (data.errors.password) {
+            message = "Password must be a minimum length of 8 characters.";
+        }
+
+        if (data.errors.email) {
+            message = data.errors.email.message;
+        }
+    } else {
+        message = "Unknown error."
+    }
+
+    return message;
+}
+
+
+//Contact the server to create an account and dispatch what the server responds with.
+const createAccount = (config) => {
+    //Deconstruct the incoming config
+    const { username, email, password, name} = config;
+
+    // fetch & post the information
+    return dispatch => {
+        fetch('/user', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ username, email, password, name })
+        })
+        .then(res => {
+            if (res.ok) { //if res.status = 200-299
+                console.log(res.status, "Server URL success. Server response: ", res);
+                // console.log(res.json());
+            } else if (!res.ok) { //if res.status = 400-599
+                console.log(res.status, "Server URL unsuccessful.");
+                // console.log(res.json());
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log("Server data sent back: ", data);
+            if (data.token) {
+                dispatch(createAccountAction(data));
+            } else if (data.name === 'MongoError' || data.errors) {
+                dispatch(serverErrorAction(handleMongoError(data)));
+            }
+        })
+        .catch(error => console.log("Response error message: ", error.message))
+    }
+}
+
+/*
+//Login
+const login = (config) => {
+    const { email, password } = config;
+
+    return dispatch => {
+
+    }
+}
+
+//Logout of current location.
+const logout = (id) => {
+    const { _id } = id;
+
+    return dispatch => {
+
+    }
+}
+
+//Logout of all locations.
+const logoutAll = (id) => {
+    const { _id } = id;
+
+    return dispatch => {
+
+    }
+}
+
+//Get user profile/account.
+const getProfile = (id) => {
+    return dispatch => {
+
+    }
+}
+
+//Update a user.
+const updateUser = (config) => {
+    return dispatch => {
+
+    }
+}
+
+//Delete a user.
+const deleteUser = (id) => {
+    return dispatch => {
+
+    }
+}
+
+//Upload a user's icon.
+const uploadIcon = (config) => {
+    return dispatch => {
+
+    }
+}
+
+//Get a user's icon.
+const getIcon = (id) => {
+    return dispatch => {
+
+    }
+}
+
+const deleteIcon = (id) => {
+    return dispatch => {
+
+    }
+}
+*/
 
 export { useServerAPI as default }

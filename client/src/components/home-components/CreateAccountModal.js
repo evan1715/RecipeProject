@@ -1,29 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import useServerAPI from '../../hooks/useServerAPI.js';
-// import { placeholder } from '../../actions/account.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
 
 
 const CreateAccountModal = (props) => {
-    // const [token, dispatch] = useReducer(accountReducer, []);
+    const serverResponse = useSelector(state => state.accountReducer);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    // const [error, setError] = useState(undefined);
-
-    const dispatch = useDispatch()
+    const [response, setResponse] = useState('');
+    const dispatch = useDispatch();
 
     const createAccount = (e) => {
-        e.preventDefault();
         const config = { username, email, password, name }
-        dispatch(useServerAPI('/user', 'POST', config));
-        // dispatch(placeholder('/user', 'POST', config));
+        e.preventDefault(); //is this even necessary?
+        dispatch(useServerAPI('createAccount', config));
     }
+
+    useEffect(() => {        
+        if (serverResponse.error) {
+            setResponse(serverResponse.error);
+        }
+
+        if (serverResponse.token) {
+            setResponse("Account created!");
+        }
+    }, [serverResponse])
     
     return (
         <Modal
@@ -43,6 +50,9 @@ const CreateAccountModal = (props) => {
                 <input className="modal__form--input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
                 {/* <button className="createAccountModal__button">Submit</button> */}
             </form>
+            { /* If there's a response, then show the response to the user here. */
+                response && <p>{ response }</p> 
+            } 
             <button className="button" onClick={ props.handleCloseModal }>Close</button>
             <button className="button" onClick={ createAccount }>Submit</button>
         </Modal>

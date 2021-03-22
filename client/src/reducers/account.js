@@ -10,13 +10,9 @@ const accountReducer = (state = {}, action) => {
         case 'LOGIN':
             // console.log("From reducer:", action.user, action.user);
             return {
-                user: action.user,
-                token: action.token
+                user: action.user.user,
+                token: action.user.token
             }
-        // case 'LOGIN_ERROR':
-        //     return {
-                
-        //     }
         // case 'LOGOUT':
         //     return {}
         // case 'LOGOUT_ALL':
@@ -33,6 +29,10 @@ const accountReducer = (state = {}, action) => {
         //     return;
         // case 'DELETE_USER_ICON':
         //     return;
+        case 'SERVER_ERROR':
+            return {
+                error: action.error
+            }
         default:
             return state;
     }

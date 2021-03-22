@@ -18,36 +18,6 @@ const createAccountAction = ({ user, token }) => {
     }
 };
 
-export function placeholder(url, method, config) {
-    return dispatch => {
-        const { username, email, password, name} = config;
-
-        
-        return fetch(url, {
-                method: method,
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify({ username, email, password, name })
-            })
-            .then(res => {
-                if (res.status === 200 || res.status === 201) {
-                    console.log("Server URL success.");
-                    console.log(res);
-                } else if (res.status === 400 || res.status === 404 || res.status === 500) {
-                    console.log("Server URL unsuccessful.");
-                    console.log(res.json()); //figure out how to dispatch error back to redux to display what error mongodb gets.
-                }
-                return res.json();
-            }).then(data => {
-                dispatch(createAccountAction(data));
-                console.log(data);
-            })
-            .catch(error => {
-                // throw new Error(error)
-                console.log("Response error message: ", error);
-            })
-    }
-}
-
 
 //LOG_IN
 const loginAction = ({ user, token }) => ({
@@ -59,32 +29,32 @@ const loginAction = ({ user, token }) => ({
 });
 
 
-const loadInAction = () => (dispatch, getState) => {
-    //loading user
-    dispatch({ type: 'USER_LOADING' });
+// const loadInAction = () => (dispatch, getState) => {
+//     //loading user
+//     dispatch({ type: 'USER_LOADING' });
 
-    //get token from local storage
-    const token = getState().auth.token;
+//     //get token from local storage
+//     const token = getState().auth.token;
 
-    fetch('/user/login', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-    .then(res => {
-        if (res.status === 200) {
-            console.log("Logged in.");
-        }
-        return res.json();
-    })
-    .then(data => console.log(data))
-    .catch(error => console.log(error.message));
-}
+//     fetch('/user/login', {
+//         method: 'POST',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             email: email,
+//             password: password
+//         })
+//     })
+//     .then(res => {
+//         if (res.status === 200) {
+//             console.log("Logged in.");
+//         }
+//         return res.json();
+//     })
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error.message));
+// }
 
 //LOG_OUT
 const logoutAction = ({ id }) => ({
@@ -110,8 +80,22 @@ const deleteAccountAction = ({ id }) => ({
 
 //DELETE_USER_ICON
 
+//SERVER_ERROR
+const serverErrorAction = (data) => {
+    console.log("serverErrorAction fired:", data)
+    return {
+        type: 'SERVER_ERROR',
+        error: data
+    }
+}
+
+
+
 
 export {
     createAccountAction,
-    loginAction
+    loginAction,
+    logoutAction,
+    deleteAccountAction,
+    serverErrorAction
 }

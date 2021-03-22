@@ -1,0 +1,16 @@
+    var:
+    - With var variables, we can reassign it AND redefine it.
+    -- reassigning: var nameVar = 'Evan' ... nameVar = 'Mike'
+    -- redefining: var nameVar = 'Evan' ... var nameVar = 'Mike'
+    - Var variables are function-scoped. Each variable is specific to the function it was created in.
+    - It is not block-scoped, meaning it can work outside of if, for, or other conditional statements. If var is defined inside, it can be used outside of it.
+
+    let:
+    - With let variables, we can reassign it but cannot redefine it.
+    - let variables are function-scoped. Cannot use outside of function.
+    - It is block-scoped. Cannot use let variable outside of conditional or loops.
+
+    const:
+    - With const variables, we cannot reassign nor redefine it.
+    - const variables are function-scoped. Cannot use outside of function.
+    - It is block-scoped. Cannot use let variable outside of conditional or loops.

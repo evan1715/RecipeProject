@@ -25,14 +25,37 @@
     - /user/profile/icon
 */
 
-import { createAccountAction, serverErrorAction } from '../actions/account.js';
+import { 
+    loginAction,
+    serverErrorAction 
+} from '../actions/account.js';
+
+
 
 const useServerAPI = (type, config) => {
     
     if (type === 'createAccount') {
-        return createAccount(config)
+        return createAccount(config);
     }
 
+    if (type === 'signIn') {
+        return login(config);
+    }
+
+    if (type === 'getUser') {
+        return getUser(config);
+    }
+}
+
+const handleResponse = (res) => {
+    if (res.ok) { //if res.status = 200-299
+        console.log(res.status, "Server URL success. Server response: ", res);
+        // console.log(res.json());
+    } else if (!res.ok) { //if res.status = 400-599
+        console.log(res.status, "Server URL unsuccessful.");
+        // console.log(res.json());
+    }
+    return res.json();
 }
 
 const handleMongoError = (data) => {
@@ -74,20 +97,11 @@ const createAccount = (config) => {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ username, email, password, name })
         })
-        .then(res => {
-            if (res.ok) { //if res.status = 200-299
-                console.log(res.status, "Server URL success. Server response: ", res);
-                // console.log(res.json());
-            } else if (!res.ok) { //if res.status = 400-599
-                console.log(res.status, "Server URL unsuccessful.");
-                // console.log(res.json());
-            }
-            return res.json();
-        })
+        .then(res => handleResponse(res))
         .then(data => {
             console.log("Server data sent back: ", data);
             if (data.token) {
-                dispatch(createAccountAction(data));
+                dispatch(loginAction(data));
             } else if (data.name === 'MongoError' || data.errors) {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
@@ -96,16 +110,33 @@ const createAccount = (config) => {
     }
 }
 
-/*
+
 //Login
 const login = (config) => {
     const { email, password } = config;
 
     return dispatch => {
-
+        fetch('/user/login', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(res => handleResponse(res))
+        .then(data => {
+            console.log("Server data sent back: ", data);
+            if (data.token) {
+                dispatch(loginAction(data));
+            } else if (data.name === 'MongoError' || data.errors) {
+                dispatch(serverErrorAction(handleMongoError(data)));
+            }
+        })
+        .catch(error => console.log("Response error message: ", error.message))
     }
 }
-
+/*
 //Logout of current location.
 const logout = (id) => {
     const { _id } = id;
@@ -123,14 +154,27 @@ const logoutAll = (id) => {
 
     }
 }
-
+*/
 //Get user profile/account.
-const getProfile = (id) => {
+const getUser = (token) => {
     return dispatch => {
-
+        fetch('/user/profile', {
+            method: 'GET',
+            headers: { 'Authorization': token }
+        })
+        .then(res => handleResponse(res))
+        .then(data => {
+            console.log("Server data sent back: ", data);
+            if (data.username) {
+                dispatch(loginAction(data, token));
+            } else if (data.name === 'MongoError' || data.errors) {
+                dispatch(serverErrorAction(handleMongoError(data)));
+            }
+        })
+        .catch(error => console.log("Response error message: ", error.message))
     }
 }
-
+/*
 //Update a user.
 const updateUser = (config) => {
     return dispatch => {

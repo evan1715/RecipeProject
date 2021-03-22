@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux'
+import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
@@ -8,17 +8,17 @@ Modal.setAppElement('#root');
 
 
 const CreateAccountModal = (props) => {
+    const dispatch = useDispatch();
     const serverResponse = useSelector(state => state.accountReducer);
+    const [response, setResponse] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [response, setResponse] = useState('');
-    const dispatch = useDispatch();
 
-    const createAccount = (e) => {
+    const createAccount = () => {
         const config = { username, email, password, name }
-        e.preventDefault(); //is this even necessary?
+        // e.preventDefault(); //is this even necessary? -- no, doesn't seem like it.
         dispatch(useServerAPI('createAccount', config));
     }
 
@@ -26,11 +26,10 @@ const CreateAccountModal = (props) => {
         if (serverResponse.error) {
             setResponse(serverResponse.error);
         }
-
         if (serverResponse.token) {
             setResponse("Account created!");
         }
-    }, [serverResponse])
+    }, [serverResponse]);
     
     return (
         <Modal

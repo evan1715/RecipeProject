@@ -1,60 +1,27 @@
-//~~~~~~~~working, sort of, but i don't think this is it. working on it~~~~~
-
-//CREATE_ACCOUNT
-const createAccountAction = ({ user, token }) => {
-    const { _id, username, email, name } = user;
-    // console.log(user, token)
-    return {
-        type: 'LOGIN',
-        user: {
+//LOG_IN
+const loginAction = (user, token) => {
+    if (token) {
+        return {
+            type: 'LOGIN',
             user: {
-                _id: _id,
-                username: username,
-                email: email,
-                name: name
-            },
-            token: token
+                user: user,
+                token: token
+            }
+        }
+    }
+
+    if (user.token) {
+        localStorage.setItem('token', user.token);
+
+        return {
+            type: 'LOGIN',
+            user: {
+                user: user.user,
+                token: user.token
+            }
         }
     }
 };
-
-
-//LOG_IN
-const loginAction = ({ user, token }) => ({
-    type: 'LOGIN',
-    user: {
-        user: user,
-        token: token
-    }
-});
-
-
-// const loadInAction = () => (dispatch, getState) => {
-//     //loading user
-//     dispatch({ type: 'USER_LOADING' });
-
-//     //get token from local storage
-//     const token = getState().auth.token;
-
-//     fetch('/user/login', {
-//         method: 'POST',
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             email: email,
-//             password: password
-//         })
-//     })
-//     .then(res => {
-//         if (res.status === 200) {
-//             console.log("Logged in.");
-//         }
-//         return res.json();
-//     })
-//     .then(data => console.log(data))
-//     .catch(error => console.log(error.message));
-// }
 
 //LOG_OUT
 const logoutAction = ({ id }) => ({
@@ -65,6 +32,10 @@ const logoutAction = ({ id }) => ({
 //LOG_OUT_ALL
 
 //GET_USER //would this just be a hook instead?
+const getUserAction = (profile) => ({
+    type: 'GET_USER',
+    user: profile
+})
 
 //UPDATE_USER
 
@@ -93,9 +64,9 @@ const serverErrorAction = (data) => {
 
 
 export {
-    createAccountAction,
     loginAction,
     logoutAction,
+    getUserAction,
     deleteAccountAction,
     serverErrorAction
 }

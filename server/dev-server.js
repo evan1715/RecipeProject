@@ -3,6 +3,7 @@ const express = require('express'); //npm module
 require('./database/mongoose.js'); //start the db with the server
 const userRouter = require('./routers/userRouter.js');
 const recipeRouter = require('./routers/recipeRouter.js');
+
 const app = express();
 
 //Have Express automatically configure incoming JSON. Allows us to have an object that is accessible in our request handlers by using req.body
@@ -19,29 +20,27 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
-
+app.listen(process.env.PORT, () => {
+    console.log(`Server is up on port ${process.env.PORT}.`);
+});
 
 //Webpack Dev
-const webpack = require('webpack');
-const webpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.config.js');
+// const webpack = require('webpack');
+// const webpackDevServer = require('webpack-dev-server');
+// const config = require('../webpack.config.js');
 
-const options = {
-    // contentBase: './client/public',
-    contentBase: path.join(__dirname, '../client/public'),
-    host: 'localhost',
-    historyApiFallback: true, //This will return index.html for all 404 routes.
-    open: true,
-    liveReload: true
-}
-webpackDevServer.addDevServerEntrypoints(config, options);
-const compiler = webpack(config);
-const server = new webpackDevServer(compiler, options);
+// const options = {
+//     // contentBase: './client/public',
+//     contentBase: path.join(__dirname, '../client/public'),
+//     host: 'localhost',
+//     historyApiFallback: true, //This will return index.html for all 404 routes.
+//     open: true,
+//     liveReload: true
+// }
+// webpackDevServer.addDevServerEntrypoints(config, options);
+// const compiler = webpack(config);
+// const server = new webpackDevServer(compiler, options);
 
-
-
-
-
-server.listen(process.env.PORT, 'localhost', () => {
-    console.log(`Development server is up on port ${process.env.PORT}.`);
-});
+// server.listen(process.env.PORT, 'localhost', () => {
+//     console.log(`Development server is up on port ${process.env.PORT}.`);
+// });

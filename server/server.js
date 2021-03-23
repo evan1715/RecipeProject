@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../client/public/dist')));
 //'*' is a wildcard character in Express that we can use to mean, "match anything that we haven't matched so far."
 //Using this, it'll match all unmatched routes.
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/public/dist/index_bundle.html'));
+    res.sendFile(path.join(__dirname, '../client/public/dist/index.html'));
 });
 
 app.listen(process.env.PORT, () => {

@@ -13,8 +13,7 @@
     "build:prod": "webpack --node-env production",
     "client": "webpack serve --node-env development",
     "server": "env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss",
-    "dev": "env-cmd -f server/config/dev.env node server/dev-server.js",
-    "webdev": "env-cmd -f server/config/dev.env nodemon server/dev-server.js -e js,html,css,scss",
+    "dev": "concurrently \"webpack --watch --node-env development\" \"env-cmd -f server/config/dev.env nodemon server/dev-server.js -e js,html,css,scss\"",
     "prod": "concurrently \"webpack --watch --node-env production\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
   },
   "dependencies": {

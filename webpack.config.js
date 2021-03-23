@@ -16,7 +16,7 @@ console.log(plugins);
 module.exports = {
     entry: '/client/src/index.js',
     output: {
-        path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'), //!=='production'
+        path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -48,13 +48,8 @@ module.exports = {
         }]
     },
     plugins,
-    // optimization: {
-    //     nodeEnv: devMode ? 'development' : 'production'
-    // },
     devtool: devMode ? 'inline-source-map' : 'source-map', //!=='production'
     mode: devMode ? 'development' : 'production', //!=='production'
-    // devtool: 'inline-source-map',
-    // mode: 'development',
     devServer: {
         contentBase: path.join(__dirname, './client/public'),
         //publicPath is to specify where the bundled assets should be.

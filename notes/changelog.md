@@ -5,16 +5,25 @@
 
 
 
-    3-13-2021 - 
+    3-13-2021 - 3-23-2021
     SCSS:
-    - Rearranged some to organize it a bit.
+    - Rearranged and cleaned up a bit.
     - Made a pop out modal for sign in, but pending on whether to just make it a page or make the modal work on the burger drop down menu.
     - Fixed server server issue returning all user info without excluding password, tokens, and icon.
+    - Fixed issue where @include flexCenter(center); was preventing tab usage on keyboard by getting rid of it from body {}.
+    Component:
+    - Modified CreateAccountModal and SignInModal.
+    - Created placeholder account components. SubmitRecipe and ViewMyRecipes.
+    - Created placeholder about page.
+    Store:
     - Added support for the Redux Devtool Extension for browsers. With that, had to rearrange the store configuration. 
         - Added a new folder and new .js file for store configuration. Inside is includes reducers and middleware.
         - Removed middleware/index.js & reducers/index.js to the graveyard. Graveyard is a folder in notes.
         - Modified index.js to support these changes.
-    - Working on logging in and storing in redux.
+    - Connected create account and login to redux. Created action and reducer. Saved token to local storage and wired up login.
+    General:
+    - Created separate folder for routers.
+    - Made useServerAPI.
 
 
 

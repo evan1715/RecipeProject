@@ -41,11 +41,10 @@ export default function Nav() {
                                     // </Link>
                                     // <><button id='sign-up' key={ index }
                                     <div key={index}>
-                                        <button id='sign-up' key={ index } onClick={ 
-                                        isAuth ? logout : () => setOpenModal(true) }>
-                                        <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
-                                    </button>
-                                    <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
+                                        <button id='sign-up' key={ index } onClick={ isAuth ? logout : () => setOpenModal(true) }>
+                                            <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
+                                        </button>
+                                        <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
                                     </div>
                                 )} else {
                                     return (

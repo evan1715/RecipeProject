@@ -46,6 +46,10 @@ const useServerAPI = (type, config) => {
         return logout(config);
     }
 
+    if (type === 'logoutAll') {
+        return logoutAll(config);
+    }
+
     if (type === 'getUser') {
         return getUser(config);
     }
@@ -90,6 +94,10 @@ const handleMongoError = (data) => {
     return message;
 }
 
+const handleCatchError = (error) => {
+    console.log("Response error message: ", error.message);
+}
+
 
 //Contact the server to create an account and dispatch what the server responds with.
 const createAccount = (config) => {
@@ -112,7 +120,7 @@ const createAccount = (config) => {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
         })
-        .catch(error => console.log("Response error message: ", error.message))
+        .catch(error => handleCatchError(error));
     }
 }
 
@@ -139,7 +147,7 @@ const login = (config) => {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
         })
-        .catch(error => console.log("Response error message: ", error.message))
+        .catch(error => handleCatchError(error));
     }
 }
 
@@ -154,23 +162,29 @@ const logout = (token) => {
             handleResponse(res);
             if (res.ok) {
                 dispatch(logoutAction(token));
-            } else {
-                dispatch(serverErrorAction(res.status));
             }
         })
-        .catch(error => console.log("Response error message: ", error.message))
+        .catch(error => handleCatchError(error));
     }
 }
-/*
+
 //Logout of all locations.
-const logoutAll = (id) => {
-    const { _id } = id;
-
+const logoutAll = (token) => {
     return dispatch => {
-
+        fetch('user/logoutAll', {
+            method: 'POST',
+            headers: { 'Authorization': token }
+        })
+        .then(res => {
+            handleResponse(res);
+            if (res.ok) {
+                dispatch(logoutAction(token));
+            }
+        })
+        .catch(error => handleCatchError(error));
     }
 }
-*/
+
 //Get user profile/account.
 const getUser = (token) => {
     return dispatch => {
@@ -187,7 +201,7 @@ const getUser = (token) => {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
         })
-        .catch(error => console.log("Response error message: ", error.message))
+        .catch(error => handleCatchError(error));
     }
 }
 /*

@@ -1,20 +1,26 @@
-import React from 'react'
-import IoSearchOutline from 'react-ionicons/lib/IosSearchOutline'
+import React from 'react';
+import IoSearchOutline from 'react-ionicons/lib/IosSearchOutline';
+import MyAccountMenu from './MyAccountMenu.js';
 
-export default function SearchBar() {
+const SearchBar = () => {
     // ref will store the value of the input field so that this component can be without state.
     const input = React.useRef('')
 
     return (
-        <div className='searchbar'>
-            <input 
-                ref={input}
-                placeholder='Search All Recipes' 
-            />
+        <div className='search-and-account-container'>
+            <div className='searchbar'>
+                <input 
+                    ref={input}
+                    placeholder='Search All Recipes' 
+                />
 
-            <button>
-                <IoSearchOutline />
-            </button>
+                <button>
+                    <IoSearchOutline />
+                </button>
+            </div>
+            <MyAccountMenu />
         </div>
     )
 }
+
+export { SearchBar as default }

@@ -1,0 +1,8 @@
+/*
+    - A class selector naming convention is to put two underscores and then the name for elements. Example: .header__title {}.
+    -- This is known as the BEM naming convention, which stands for Block Element Modifier.
+    -- A Block is the core building block. Something big like the actual header.
+    -- Elements are things that go inside of blocks to make them useful. 
+    -- For modifiers, we use the name with .button--link. Instead of underscores, we use two hyphens.
+*/
+

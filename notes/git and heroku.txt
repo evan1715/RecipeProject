@@ -17,12 +17,27 @@ git add .
 git commit -m "message here"
 git push or git push heroku
 
-Steps for new heroku:
-- heroku create url_name
-- To set up env var: heroku config: set key=value
-- To see the env vars: heroku config
-- To remove env var: heroku config:unset key=value
-- Add the JWT, SendGrid, and MongoDB
--- For MongoDB, use the 'Connect to your application' in Atlas
--- ex: mongodb+srv://taskapp:<PASSWORD>@cluster0.5jra7.mongodb.net/<DB_NAME>?retryWrites=true //modify the password and db name
-- git push heroku master
+Steps for new heroku: {
+    - Type in terminal: heroku create "name you want your url to be"
+
+    - View current config and env variables, type in terminal: heroku config
+
+    - To set up env var: heroku config: set key=value
+    - To see the env vars: heroku config
+    - To remove env var: heroku config:unset key=value
+
+    - Add the JWT, SendGrid, and MongoDB
+    -- For MongoDB, use the 'Connect to your application' in Atlas
+        //modify the password and db name:
+    -- ex: mongodb+srv://taskapp:<PASSWORD>@cluster0.5jra7.mongodb.net/<DB_NAME>?retryWrites=true //modify the password and db name
+    - git push heroku master
+
+
+
+    //From heroku initial creation for this project:
+        Evan@Evan-PC MINGW64 /c/Coding/Projects/RecipeProject (master)
+        $ heroku create jd1715-recipe-project
+        »   Warning: heroku update available from 7.47.6 to 7.51.0.
+        Creating ⬢ jd1715-recipe-project... done
+        https://jd1715-recipe-project.herokuapp.com/ | https://git.heroku.com/jd1715-recipe-project.git
+}

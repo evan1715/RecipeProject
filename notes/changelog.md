@@ -16,6 +16,8 @@
     - Created placeholder about page.
     - Got rid of server response message when exiting a modal.
     - Got rid of child key value error on Nav.js and RecipeRoulette.js
+    - Fixed up create account, sign in, sign out, view my recipes buttons and modals.
+    - Wired up log out.
 ````JavaScript
 <></> /* to => */ <div key={index}></div>
 <Transition in={inProp} timeout={800}> /* to => */ <Transition key={index} in={inProp} timeout={800}>

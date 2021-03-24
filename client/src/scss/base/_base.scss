@@ -1,7 +1,6 @@
+@import './mixins.scss';
+@import './settings.scss';
 @import '../components/nav.scss';
-@import '../partials/mixins.scss';
-
-$font-weight: 350;
 
 body {
     // @include flexCenter(center); //disabled because it prevents tab key from being used. 
@@ -82,4 +81,11 @@ a {
     &:focus {
         outline: none;
     }
+}
+
+.search-and-account-container {
+    @include flexCenter(space-around);
+    flex-direction: row;
+    height: 45px;
+    width: 90%;
 }

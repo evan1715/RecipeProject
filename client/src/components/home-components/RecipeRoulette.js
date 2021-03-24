@@ -54,7 +54,7 @@ export default function RecipeRoulette() {
 
                 <div className='recipe-roulette-cards-container'>
                     {recipeRoulette.map((recipe, index) => (
-                        <Transition in={inProp} timeout={800}>
+                        <Transition key={index} in={inProp} timeout={800}>
                             {state => (
                                 <div style={{
                                     ...defaultStyle,

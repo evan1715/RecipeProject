@@ -14,7 +14,9 @@ const accountReducer = (state = {}, action) => {
             }
         case 'LOGOUT':
             localStorage.removeItem('token');
-            return {}
+            return {
+                authenticated: false
+            }
         // case 'LOGOUT_ALL':
         //     return;
         case 'GET_USER':

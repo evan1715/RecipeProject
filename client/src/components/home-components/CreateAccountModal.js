@@ -23,13 +23,19 @@ const CreateAccountModal = (props) => {
     }
 
     useEffect(() => {        
-        if (serverResponse.error) {
+        if (serverResponse.error !== "Incorrect email and password combination.") {
             setResponse(serverResponse.error);
         }
         if (serverResponse.token) {
             setResponse("Account created!");
         }
     }, [serverResponse]);
+
+    useEffect(() => {
+        if (!props.openModal) {
+            setResponse('');
+        }
+    }, [props.openModal])
     
     return (
         <Modal

@@ -19,13 +19,21 @@ const SignInModal = (props) => {
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
+        if (serverResponse.error === "Incorrect email and password combination.") {
             setResponse(serverResponse.error);
         }
         if (serverResponse.token) {
-            setResponse("Logged in!");
+            setResponse('');
+            props.handleCloseModal();
         }
+
     }, [serverResponse]);
+    
+    useEffect(() => {
+        if (!props.openModal) {
+            setResponse('');
+        }
+    }, [props.openModal])
 
     return (
         <Modal
@@ -44,8 +52,8 @@ const SignInModal = (props) => {
                 response && <p>{ response }</p> 
             } 
             <button className="button" onClick={ props.handleCloseModal }>Close</button>
-            <button className="button" onClick={ signIn }>Submit</button>
-        </Modal>
+            <button className="button" onClick={() => { signIn() }}>Submit</button>
+        </Modal> //; props.handleCloseModal();
     )
 }
 

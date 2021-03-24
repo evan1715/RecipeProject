@@ -24,9 +24,9 @@ const loginAction = (user, token) => {
 };
 
 //LOG_OUT
-const logoutAction = ({ id }) => ({
+const logoutAction = (token) => ({
     type: 'LOGOUT',
-    id: id
+    token: token
 });
 
 //LOG_OUT_ALL

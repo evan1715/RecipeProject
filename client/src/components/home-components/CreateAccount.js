@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
-// import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import CreateAccountModal from './CreateAccountModal.js';
 
 export default function CreateAccount() {
+    const isAuthenticated = useSelector(state => state.accountReducer);
     const [openModal, setOpenModal] = useState('');
+    const isAuth = isAuthenticated.authenticated;
+
+    const myRecipesOrCreateAccount = () => {
+        if (!isAuth) {
+            setOpenModal('true');
+        }
+    }
 
     return (
         <div className='center create-account-home-page-container'>
@@ -14,8 +23,8 @@ export default function CreateAccount() {
                     on your mobile device.</p>
                     {/* This button will be a <Link> to /createaccount where redux will dispatch whatever action will create a new user */}
                     {/* <Link to='/createaccount'><button className='button'>Create An Account</button></Link> */}
-                    <button className='button' onClick={ () => setOpenModal('true') }>
-                        Create An Account
+                    <button className='button' onClick={ myRecipesOrCreateAccount }>
+                        { !isAuth ? 'Create An Account' : <Link to='/about'>View My Recipes</Link> }
                     </button>
                     <CreateAccountModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } />
                 </div>

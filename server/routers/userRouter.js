@@ -29,8 +29,9 @@ router.post('/user/login', async (req, res) => {
         const token = await user.createToken();
 
         res.send({ user: user, token: token });
-    } catch (error) {
-        res.status(400).send();
+    } catch (e) {
+        const error = "Unable to login.";
+        res.status(400).send({ error });
     }
 });
 

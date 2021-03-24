@@ -1,16 +1,25 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from './SearchBar'
 import IosMenu from 'react-ionicons/lib/IosMenu'
 import SignInModal from './SignInModal.js';
+import useServerAPI from '../../hooks/useServerAPI.js';
 
 export default function Nav() {
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.accountReducer);
     const [showMenu, setShowMenu] = React.useState(false)
+    const [openModal, setOpenModal] = useState(false);
     const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'About', 'Sign In']
-    const iconStyles = {
-        cursor: 'pointer'
+    const iconStyles = { cursor: 'pointer' }
+    const isAuth = isAuthenticated.authenticated;
+
+    const logout = () => {
+        const token = isAuthenticated.token;
+        dispatch(useServerAPI('logout', token));
+        setOpenModal(false);
     }
-    const [openModal, setOpenModal] = useState('');
 
     return (
         <div className='center'>
@@ -30,14 +39,14 @@ export default function Nav() {
                                     //         {navLink}
                                     //     </li>   
                                     // </Link>
-                                    <>
-                                        <button id='sign-up' key={index} onClick={ () => setOpenModal('true') }>
-                                            <li>
-                                                {navLink}
-                                            </li>   
-                                        </button>
-                                        <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } />
-                                    </>
+                                    // <><button id='sign-up' key={ index }
+                                    <div key={index}>
+                                        <button id='sign-up' key={ index } onClick={ 
+                                        isAuth ? logout : () => setOpenModal(true) }>
+                                        <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
+                                    </button>
+                                    <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
+                                    </div>
                                 )} else {
                                     return (
                                         <Link key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>

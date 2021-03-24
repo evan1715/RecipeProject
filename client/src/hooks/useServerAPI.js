@@ -27,19 +27,23 @@
 
 import { 
     loginAction,
+    logoutAction,
     serverErrorAction 
 } from '../actions/account.js';
 
 
 
 const useServerAPI = (type, config) => {
-    
     if (type === 'createAccount') {
         return createAccount(config);
     }
 
     if (type === 'signIn') {
         return login(config);
+    }
+
+    if (type === 'logout') {
+        return logout(config);
     }
 
     if (type === 'getUser') {
@@ -77,6 +81,8 @@ const handleMongoError = (data) => {
         if (data.errors.email) {
             message = data.errors.email.message;
         }
+    } else if (data.error === 'Unable to login.') {
+        message = "Incorrect email and password combination."
     } else {
         message = "Unknown error."
     }
@@ -129,23 +135,33 @@ const login = (config) => {
             console.log("Server data sent back: ", data);
             if (data.token) {
                 dispatch(loginAction(data));
-            } else if (data.name === 'MongoError' || data.errors) {
+            } else if (data.error) {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
         })
         .catch(error => console.log("Response error message: ", error.message))
     }
 }
-/*
+
 //Logout of current location.
-const logout = (id) => {
-    const { _id } = id;
-
+const logout = (token) => {
     return dispatch => {
-
+        fetch('/user/logout', {
+            method: 'POST',
+            headers: { 'Authorization': token }
+        })
+        .then(res => {
+            handleResponse(res);
+            if (res.ok) {
+                dispatch(logoutAction(token));
+            } else {
+                dispatch(serverErrorAction(res.status));
+            }
+        })
+        .catch(error => console.log("Response error message: ", error.message))
     }
 }
-
+/*
 //Logout of all locations.
 const logoutAll = (id) => {
     const { _id } = id;

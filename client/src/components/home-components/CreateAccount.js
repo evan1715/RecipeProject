@@ -8,12 +8,6 @@ export default function CreateAccount() {
     const [openModal, setOpenModal] = useState('');
     const isAuth = isAuthenticated.authenticated;
 
-    const myRecipesOrCreateAccount = () => {
-        if (!isAuth) {
-            setOpenModal('true');
-        }
-    }
-
     return (
         <div className='center create-account-home-page-container'>
             <div>
@@ -23,10 +17,11 @@ export default function CreateAccount() {
                     on your mobile device.</p>
                     {/* This button will be a <Link> to /createaccount where redux will dispatch whatever action will create a new user */}
                     {/* <Link to='/createaccount'><button className='button'>Create An Account</button></Link> */}
-                    <button className='button' onClick={ myRecipesOrCreateAccount }>
-                        { !isAuth ? 'Create An Account' : <Link to='/about'>View My Recipes</Link> }
-                    </button>
-                    <CreateAccountModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } />
+                    { isAuth ? 
+                        <Link to='/about'><button className='button' onClick={ () => setOpenModal('false') }>View My Recipes</button></Link> :
+                        <><button className='button' onClick={ () => setOpenModal('true') }>Create An Account</button>
+                        <CreateAccountModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } /> </>
+                    }
                 </div>
 
                 <div>

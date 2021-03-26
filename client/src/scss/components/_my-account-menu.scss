@@ -6,3 +6,59 @@
     -- For modifiers, we use the name with .button--link. Instead of underscores, we use two hyphens.
 */
 
+.second-row-nav-container {
+    @include flexCenter(space-around);
+    flex-direction: row;
+    height: 45px;
+    width: 90%;
+}
+
+.my-account-menu {
+    flex: auto;
+    text-align-last: center;
+    width: 30%;
+}
+
+.button--menu {
+    // box-sizing: border-box;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 45px;
+    // justify-content: center;
+    vertical-align: center;
+    width: 55%;
+    // p {
+    //     align-items: center;
+    //     text-align: bottom;
+    //     margin: 0;
+    // }
+    // text-align: justify;
+    // text-align-last: end;
+}
+
+.button--menu:disabled {
+    opacity: 0.5;
+}
+
+.dropdown-icon {
+    // justify-content: center;
+    text-align-last: end;
+}
+
+// .popout-menu:focus-visible {
+.popout-menu {
+    @include flexCenter(space-around);
+    border: solid black 2px;
+    flex-direction: column;
+    top: 125px;
+    position: relative;
+    right: 3.5vw;
+    width: auto;
+    li {
+        padding: 20px;
+        &:hover {
+            color: darkred;
+        }
+    }
+    background: white;
+}

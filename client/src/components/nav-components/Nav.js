@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import SearchBar from './SearchBar'
 import IosMenu from 'react-ionicons/lib/IosMenu'
-import SignInModal from './SignInModal.js';
 import useServerAPI from '../../hooks/useServerAPI.js';
+import SignInModal from './SignInModal.js';
+import SearchBar from './SearchBar'
+import MyAccountMenu from './MyAccountMenu.js';
+
 
 export default function Nav() {
     const dispatch = useDispatch();
+    const history = useHistory(); //hook that uses history npm package
     const isAuthenticated = useSelector(state => state.accountReducer);
     const [showMenu, setShowMenu] = React.useState(false)
     const [openModal, setOpenModal] = useState(false);
@@ -17,8 +20,9 @@ export default function Nav() {
 
     const logout = () => {
         const token = isAuthenticated.token;
-        dispatch(useServerAPI('logout', token));
-        setOpenModal(false);
+        dispatch(useServerAPI('logout', token)); //logout from local and server
+        setOpenModal(false); //keep modal closed
+        history.push('/'); //redirect them to the homepage once logged out
     }
 
     return (
@@ -77,7 +81,10 @@ export default function Nav() {
                     
                 </nav>
 
-                <SearchBar />
+                <div className='second-row-nav-container'>
+                    <SearchBar />
+                    <MyAccountMenu />
+                </div>
             </div>
         </div>
     )

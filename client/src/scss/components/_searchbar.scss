@@ -2,7 +2,7 @@
 
 .searchbar {
     @include flexCenter(space-between);
-    width: 90%;
+    width: 70%; //modified from 90%
     height: 45px; //modified from 50px
     border: solid 0.5px black;
     box-sizing: border-box;

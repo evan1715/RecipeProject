@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ViewMyRecipes = () => {
+const ViewMyRecipesPage = () => {
     const [recipes, setRecipes] = useState([]);
     
     //How do we retrieve recipe ids, recipe titles and list them for a user?
@@ -8,6 +8,13 @@ const ViewMyRecipes = () => {
     //is recipe.id and recipe.title correct? is setRecipes correct?
     //should we use <li> to list out them all?
     //let's include a remove option with an "are you sure?" modal
+
+    //view my recipes
+    //get a recipe by id
+    //update a recipe
+    //delete a recipe
+    //upload pictures to recipe
+    //delete pictures of recipe
 
     return (
         <div>
@@ -21,4 +28,4 @@ const ViewMyRecipes = () => {
     )
 }
 
-export { ViewMyRecipes as default }
+export { ViewMyRecipesPage as default }

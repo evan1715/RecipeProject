@@ -17,8 +17,6 @@ const accountReducer = (state = {}, action) => {
             return {
                 authenticated: false
             }
-        // case 'LOGOUT_ALL':
-        //     return;
         case 'GET_USER':
             return {
                 authenticated: true,
@@ -26,8 +24,6 @@ const accountReducer = (state = {}, action) => {
                 token: token
             }
         // case 'UPDATE_USER':
-        //     return;
-        // case 'DELETE_ACCOUNT':
         //     return;
         // case 'UPLOAD_USER_ICON':
         //     return;

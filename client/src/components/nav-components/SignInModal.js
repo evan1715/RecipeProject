@@ -15,7 +15,7 @@ const SignInModal = (props) => {
 
     const signIn = () => {
         const config = { email, password }
-        dispatch(useServerAPI('signIn', config));
+        dispatch(useServerAPI('login', config));
     }
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const SignInModal = (props) => {
         <Modal
             isOpen={ !!props.openModal }
             onRequestClose={ props.handleCloseModal }
-            contentLabel=""
+            contentLabel="Sign in" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
         >
@@ -52,8 +52,8 @@ const SignInModal = (props) => {
                 response && <p>{ response }</p> 
             } 
             <button className="button" onClick={ props.handleCloseModal }>Close</button>
-            <button className="button" onClick={() => { signIn() }}>Submit</button>
-        </Modal> //; props.handleCloseModal();
+            <button className="button" onClick={ signIn }>Submit</button>
+        </Modal>
     )
 }
 

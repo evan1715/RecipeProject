@@ -39,12 +39,6 @@ const getUserAction = (profile) => ({
 
 //UPDATE_USER
 
-//DELETE_ACCOUNT
-const deleteAccountAction = ({ id }) => ({
-    type: 'DELETE_ACCOUNT',
-    id: id
-});
-
 //UPLOAD_USER_ICON
 
 //GET_USER_ICON
@@ -67,6 +61,5 @@ export {
     loginAction,
     logoutAction,
     getUserAction,
-    deleteAccountAction,
     serverErrorAction
 }

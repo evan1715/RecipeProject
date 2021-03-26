@@ -31,27 +31,28 @@ import {
     serverErrorAction 
 } from '../actions/account.js';
 
-
-
 const useServerAPI = (type, config) => {
-    if (type === 'createAccount') {
-        return createAccount(config);
-    }
-
-    if (type === 'signIn') {
-        return login(config);
-    }
-
-    if (type === 'logout') {
-        return logout(config);
-    }
-
-    if (type === 'logoutAll') {
-        return logoutAll(config);
-    }
-
-    if (type === 'getUser') {
-        return getUser(config);
+    switch (type) {
+        case 'createAccount':
+            return createAccount(config);
+        case 'login':
+            return login(config);
+        case 'logout':
+            return logout(config);
+        case 'logoutAll':
+            return logoutAll(config);
+        case 'getUser':
+            return getUser(config);
+        case 'updateUser':
+            return updateUser(config);
+        case 'deleteUser':
+            return deleteUser(config);
+        case 'uploadIcon':
+            return uploadIcon(config);
+        case 'getIcon':
+            return getIcon(config);
+        case 'deleteIcon':
+            return deleteIcon(config);
     }
 }
 
@@ -211,14 +212,24 @@ const updateUser = (config) => {
 
     }
 }
-
+*/
 //Delete a user.
-const deleteUser = (id) => {
+const deleteUser = (token) => {
     return dispatch => {
-
+        fetch('/user/profile', {
+            method: 'DELETE',
+            headers: { 'Authorization': token }
+        })
+        .then(res => {
+            handleResponse(res);
+            if (res.ok) {
+                dispatch(logoutAction(token));
+            }
+        })
+        .catch(error => handleCatchError(error));
     }
 }
-
+/*
 //Upload a user's icon.
 const uploadIcon = (config) => {
     return dispatch => {

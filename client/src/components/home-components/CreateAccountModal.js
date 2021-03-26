@@ -6,7 +6,6 @@ import useServerAPI from '../../hooks/useServerAPI.js';
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
 
-
 const CreateAccountModal = (props) => {
     const dispatch = useDispatch();
     const serverResponse = useSelector(state => state.accountReducer);

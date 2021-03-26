@@ -14,3 +14,15 @@
     - With const variables, we cannot reassign nor redefine it.
     - const variables are function-scoped. Cannot use outside of function.
     - It is block-scoped. Cannot use let variable outside of conditional or loops.
+
+
+
+####JSX
+If we want to reference a function, we simply call the name of it:
+    <button onClick={ handleRoute }>View or edit my recipes</button>
+
+If we want to call a function every time it loads, we use () at the end:
+    <button onClick={ handleRoute() }>View or edit my recipes</button>
+
+If we want to reference a function and pass an argument into it, we set up an arrow function before it:
+    <button onClick={ () => handleRoute('/myrecipes') }>View or edit my recipes</button>

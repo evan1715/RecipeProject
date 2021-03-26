@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux';
 import CreateAccountModal from './CreateAccountModal.js';
 
 export default function CreateAccount() {
-    const isAuthenticated = useSelector(state => state.accountReducer);
+    const isAuth = useSelector(state => state.accountReducer.authenticated);
     const [openModal, setOpenModal] = useState('');
-    const isAuth = isAuthenticated.authenticated;
 
     return (
         <div className='center create-account-home-page-container'>

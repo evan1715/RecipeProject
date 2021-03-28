@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
@@ -10,16 +10,36 @@ Modal.setAppElement('#root');
 
 
 const UploadUserIconModal = props => {
+    const dispatch = useDispatch();
+    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const [icon, setIcon] = useState();
+    const [iconFile, setIconFile] = useState();
+    
+    // const callIcon = () => {
+    //     const currentIcon = useServerAPI('getIcon', user._id);
+    //     return currentIcon;
+    // }
+
+    const uploadIcon = () => {
+        const config = { iconFile, token }
+        dispatch(useServerAPI('uploadIcon', config));
+    }
 
     return (
         <Modal
-            isOpen={ props.openModal }
+            isOpen={ props.openUploadUserIconModal }
             onRequestClose={ props.handleCloseModal }
             contentLabel="Upload user icon" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
         >
-
+            <form encType='multipart/form-data'>
+                { icon && <p>{ icon }</p> }
+                <input type='file' id='image-upload' onChange={ (e) => setIconFile(e.target.files[0]) } />
+            </form>
+            <button className='button' onClick={ props.handleCloseModal }>Cancel</button>
+            <button className='button' onClick={ isAuth && (() => dispatch(useServerAPI('deleteIcon', token))) }>Delete icon</button>
+            <button className='button' onClick={ isAuth && uploadIcon }>Upload</button>
         </Modal>
     )
 }
@@ -28,13 +48,13 @@ const ChangeUserInfoModal = props => {
 
     return (
         <Modal
-            isOpen={ props.openModal }
+            isOpen={ props.openChangeUserInfoModal }
             onRequestClose={ props.handleCloseModal }
             contentLabel="Change account information" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
         >
-
+            <p>placeholder</p>
         </Modal>
     )
 }

@@ -19,16 +19,22 @@ const accountReducer = (state = {}, action) => {
             }
         case 'GET_USER':
             return {
-                authenticated: true,
                 user: action.user,
-                token: token
+                token: token,
+                authenticated: true
             }
-        // case 'UPDATE_USER':
-        //     return;
+        case 'UPDATE_USER':
+            return {
+                user: action.user,
+                token: token,
+                authenticated: true
+            }
         // case 'UPLOAD_USER_ICON':
         //     return;
-        // case 'GET_USER_ICON':
-        //     return;
+        case 'GET_USER_ICON':
+            return {
+                user_icon: action.icon
+            }
         // case 'DELETE_USER_ICON':
         //     return;
         case 'SERVER_ERROR':

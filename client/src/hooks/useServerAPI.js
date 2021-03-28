@@ -28,6 +28,9 @@
 import { 
     loginAction,
     logoutAction,
+    updateUserAction,
+    getIconAction,
+    deleteUserIconAction,
     serverErrorAction 
 } from '../actions/account.js';
 
@@ -103,7 +106,7 @@ const handleCatchError = (error) => {
 //Contact the server to create an account and dispatch what the server responds with.
 const createAccount = (config) => {
     //Deconstruct the incoming config
-    const { username, email, password, name} = config;
+    const { username, email, password, name } = config;
 
     // fetch & post the information
     return dispatch => {
@@ -205,14 +208,36 @@ const getUser = (token) => {
         .catch(error => handleCatchError(error));
     }
 }
-/*
+
 //Update a user.
 const updateUser = (config) => {
-    return dispatch => {
+    //Server will only accept changes to username, email, password, and name.
+    const { token, username, email, password, name } = config;
 
+    return dispatch => {
+        fetch('/user/profile', {
+            method: 'PATCH',
+            headers: { 'Authorization': token },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                name: name
+            })
+        })
+        .then(res => handleResponse(res))
+        .then(data => {
+            console.log("Server data sent back: ", data);
+            if (data.username) {
+                dispatch(updateUserAction(data, token));
+            } else if (data.name === 'MongoError' || data.errors) {
+                dispatch(serverErrorAction(handleMongoError(data)));
+            }
+        })
+        .catch(error => handleCatchError(error));
     }
 }
-*/
+
 //Delete a user.
 const deleteUser = (token) => {
     return dispatch => {
@@ -229,26 +254,52 @@ const deleteUser = (token) => {
         .catch(error => handleCatchError(error));
     }
 }
-/*
-//Upload a user's icon.
-const uploadIcon = (config) => {
-    return dispatch => {
 
+//Upload a user's icon.
+const uploadIcon = (data) => {
+    const { iconFile, token } = data;
+    const icon = new FormData();
+
+    icon.append('icon', iconFile);
+
+    return dispatch => {
+        fetch('/user/profile/icon', {
+            method: 'POST',
+            headers: { 'Authorization': token },
+            body: icon
+        })
+        .then(res => handleResponse(res))
+        .catch(error => handleCatchError(error));
     }
 }
 
 //Get a user's icon.
 const getIcon = (id) => {
     return dispatch => {
-
+        fetch(`/user/${id}/icon`, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => dispatch(getIconAction(data)))
+        .catch(error => handleCatchError(error));
     }
 }
 
-const deleteIcon = (id) => {
+const deleteIcon = (token) => {
     return dispatch => {
-
+        fetch('/user/profile/icon', {
+            method: 'DELETE',
+            headers: { 'Authorization': token }
+        })
+        .then(res => {
+            handleResponse(res);
+            if (res.ok) {
+                dispatch(deleteUserIconAction());
+            }
+        })
+        .catch(error => handleCatchError(error));
     }
 }
-*/
+
 
 export { useServerAPI as default }

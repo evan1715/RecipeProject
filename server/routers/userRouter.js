@@ -117,11 +117,15 @@ const upload = multer({
 
 //Upload a user's icon.
 router.post('/user/profile/icon', auth, upload.single('icon'), async (req, res) => {
-    const buffer = await sharp(req.file.buffer).resize({ width: 300, height: 300 }).jpeg().toBuffer();
+    try {
+        console.log(req.file);
+        req.user.icon = await sharp(req.file.buffer).resize({ width: 300, height: 300 }).jpeg().toBuffer();
 
-    req.user.icon = buffer;
-    await req.user.save();
-    res.send();
+        await req.user.save();
+        res.send();
+    } catch (error) {
+        res.status(400).send({ error: error.message })
+    }
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message });
 });
@@ -136,7 +140,7 @@ router.get('/user/:id/icon', async (req, res) => {
         }
 
         res.set('Content-Type', 'image/jpeg');
-        console.log(user.icon);
+        
         res.send(user.icon);
     } catch (error) {
         res.status(404).send();

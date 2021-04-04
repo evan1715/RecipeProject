@@ -16,10 +16,22 @@ if (token) {
     store.dispatch(useServerAPI('getUser', token));
 }
 
-ReactDOM.render(
-    <Provider store={store}>
-        <LoadingBar />
-        <AppRouter />
-    </Provider>,
-    document.getElementById('root')
-);
+//Waiting for server to respond if there's a user then loading.
+setTimeout(() => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <LoadingBar />
+            <AppRouter />
+        </Provider>,
+        document.getElementById('root')
+    );
+}, 1000)
+
+
+// ReactDOM.render(
+//     <Provider store={store}>
+//         <LoadingBar />
+//         <AppRouter />
+//     </Provider>,
+//     document.getElementById('root')
+// );

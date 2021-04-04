@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
@@ -9,21 +9,51 @@ Modal.setAppElement('#root');
 
 
 
-const UploadUserIconModal = props => {
+const UploadUserIconModal = (props) => {
     const dispatch = useDispatch();
-    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
-    const [icon, setIcon] = useState();
+    const { user, token, authenticated: isAuth, icon, error } = useSelector(state => state.accountReducer);
+    const [userIcon, setUserIcon] = useState();
     const [iconFile, setIconFile] = useState();
-    
-    // const callIcon = () => {
-    //     const currentIcon = useServerAPI('getIcon', user._id);
-    //     return currentIcon;
-    // }
+    const [response, setResponse] = useState();
+    const user_id = user._id;
+    // const htmlImage = `data:image/jpg;base64,${user.icon}`;
+    // const imageURL = `/user/${user._id}/icon`;
 
     const uploadIcon = () => {
-        const config = { iconFile, token }
-        dispatch(useServerAPI('uploadIcon', config));
+        console.log("File type attempted to upload:", iconFile.type);
+        if (!iconFile.type.match(/(png|jpg|jpeg|bmp|gif)/)) {
+            return setResponse("Not a supported file type.");
+        }
+        const config = { iconFile, token, user_id }
+        // dispatch(useServerAPI('uploadIcon', config));
+        useServerAPI('uploadIcon', config);
+        setResponse('Uploaded!');
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
     }
+
+    useEffect(() => {
+        setUserIcon(icon);
+        console.log("From useEffect:", icon);
+    }, [icon]);
+
+    useEffect(() => {
+        if (error) {
+            setResponse(error);
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (!props.openUploadUserIconModal) {
+            setResponse('');
+        }
+    }, [props.openUploadUserIconModal])
+
+    // useEffect(() => {
+    //     dispatch(useServerAPI('getIcon', user_id));
+    // }, []);
+
 
     return (
         <Modal
@@ -34,9 +64,10 @@ const UploadUserIconModal = props => {
             className="modal"
         >
             <form encType='multipart/form-data'>
-                { icon && <p>{ icon }</p> }
+                <img src={ userIcon }></img>
                 <input type='file' id='image-upload' onChange={ (e) => setIconFile(e.target.files[0]) } />
             </form>
+            { response && <p>{ response }</p> }
             <button className='button' onClick={ props.handleCloseModal }>Cancel</button>
             <button className='button' onClick={ isAuth && (() => dispatch(useServerAPI('deleteIcon', token))) }>Delete icon</button>
             <button className='button' onClick={ isAuth && uploadIcon }>Upload</button>

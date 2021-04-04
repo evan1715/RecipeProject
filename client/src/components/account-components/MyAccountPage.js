@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useServerAPI from '../../hooks/useServerAPI.js';
@@ -7,11 +7,12 @@ import { UploadUserIconModal, ChangeUserInfoModal, LogoutAllModal, DeleteAccount
 const MyAccountPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const { user, token, authenticated: isAuth, icon } = useSelector(state => state.accountReducer);
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
     const [openChangeUserInfoModal, setOpenChangeUserInfoModal] = useState(false);
     const [openLogoutAllModal, setOpenLogoutAllModal] = useState(false);
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
+    const user_id = user._id;
     //view my recipes
     //submit a new recipe
     //edit/update profile such as username, email, password, name
@@ -19,6 +20,9 @@ const MyAccountPage = () => {
     //get icon
     //delete icon
 
+    useEffect(() => {
+        dispatch(useServerAPI('getIcon', user._id));
+    }, []);
 
     return (
         <div>
@@ -49,7 +53,7 @@ const MyAccountPage = () => {
             </>
 
             <>
-                <button className='button' onClick={ () => setOpenLogoutAllModal(true), () => useServerAPI('getIcon', user._id) }>
+                <button className='button' onClick={ () => setOpenLogoutAllModal(true) }>
                     Log out of all locations
                 </button>
                 <LogoutAllModal 
@@ -67,6 +71,7 @@ const MyAccountPage = () => {
                     handleCloseModal={ () => setOpenDeleteAccountModal(false) } 
                 />
             </>
+            <img src={ icon }></img>
         </div>
     )
 }

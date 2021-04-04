@@ -30,15 +30,20 @@ const accountReducer = (state = {}, action) => {
                 authenticated: true
             }
         // case 'UPLOAD_USER_ICON':
-        //     return;
+        //     return icon;
         case 'GET_USER_ICON':
             return {
-                user_icon: action.icon
+                ...state,
+                icon: action.icon
             }
-        // case 'DELETE_USER_ICON':
-        //     return;
+        case 'DELETE_USER_ICON':
+            return {
+                ...state,
+                icon: null
+            }
         case 'SERVER_ERROR':
             return {
+                ...state,
                 error: action.error
             }
         default:

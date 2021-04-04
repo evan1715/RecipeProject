@@ -28,9 +28,10 @@ export default function RecipeRoulette() {
 
     }
 
-    React.useEffect(() => {
-        dispatch(handleRecipeRoulette(url, 10))
-    }, [dispatch])
+    //disabled this so that it doesn't load immediately on the homepage (for now?)
+    // React.useEffect(() => {
+    //     dispatch(handleRecipeRoulette(url, 10))
+    // }, []) //got rid of [dispatch] because this would fire every time dispatch was fired
 
     // After 800ms, set inProp to true so that the cards fade back onto the screen after the API request finishes
     React.useEffect(() => {

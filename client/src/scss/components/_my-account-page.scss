@@ -1,0 +1,23 @@
+// @mixin flexCenter($justify) {
+//     display: flex;
+//     justify-content: $justify;
+//     align-items: center;
+// }
+
+.my-account-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-color: green;
+}
+
+.my-account-page-icon-div {
+    text-align: right;
+    justify-content: right;
+}
+
+// .my-account-page-icon {
+//     text-align: right;
+//     border-color: red;
+//     justify-content: right;
+// }

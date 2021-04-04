@@ -44,7 +44,7 @@ const CreateAccountModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <h1 className="title">Create Account</h1>
+            <h2 className="title">Create Account</h2>
             {/* <form onSubmit={ createAccount }> */}
             {/* Changed this to a submit button outside of the form */}
             <form>

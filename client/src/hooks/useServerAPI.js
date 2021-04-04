@@ -260,35 +260,18 @@ const deleteUser = (token) => {
 
 //Upload a user's icon.
 const uploadIcon = (data) => {
-    const { iconFile, token, user_id: id } = data;
+    const { iconFile, token } = data;
     const icon = new FormData();
 
     icon.append('icon', iconFile);
 
-    // return dispatch => {
-        fetch('/user/profile/icon', {
-            method: 'POST',
-            headers: { 'Authorization': token },
-            body: icon
-        })
-        .then(res => handleResponse(res)
-            // {
-            // handleResponse(res);
-            // if (res.ok) { //if res.status = 200-299
-            //     console.log(res.status, "Server URL success. Server response: ", res);
-            //     // console.log(res.json());
-            // } else if (!res.ok) { //if res.status = 400-599
-            //     console.log(res.status, "Server URL unsuccessful.", res.message);
-            //     // dispatch(serverErrorAction(handleMongoError(res.error)))
-            //     // console.log(res.json());
-            // }
-            // return res.json();
-        // }
-        )
-        // .then(data => dispatch(serverErrorAction(handleMongoError(data))))
-        .catch(error => handleCatchError(error));
-    //     dispatch(getIcon(id));
-    // }
+    fetch('/user/profile/icon', {
+        method: 'POST',
+        headers: { 'Authorization': token },
+        body: icon
+    })
+    .then(res => handleResponse(res))
+    .catch(error => handleCatchError(error));
 }
 
 //Get a user's icon.
@@ -299,16 +282,14 @@ const getIcon = (id) => {
         })
         .then(res => res.blob())
         .then(image => {
-            // dispatch(getIconAction(image));
-            // console.log("From getIcon fetch: image:", image);
             //Check if there's a file at all.
             if (image.size > 0) {
+                //Convert it to a url to call upon.
                 const url = URL.createObjectURL(image);
-                // console.log("From getIcon fetch: url:", url);
                 dispatch(getIconAction(url));
             }
         })
-        .catch(error => handleCatchError(error))
+        .catch(error => handleCatchError(error));
     }
 }
 

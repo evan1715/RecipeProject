@@ -12,13 +12,9 @@ const MyAccountPage = () => {
     const [openChangeUserInfoModal, setOpenChangeUserInfoModal] = useState(false);
     const [openLogoutAllModal, setOpenLogoutAllModal] = useState(false);
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
-    const user_id = user._id;
     //view my recipes
     //submit a new recipe
     //edit/update profile such as username, email, password, name
-    //upload icon
-    //get icon
-    //delete icon
 
     useEffect(() => {
         dispatch(useServerAPI('getIcon', user._id));
@@ -26,52 +22,58 @@ const MyAccountPage = () => {
 
     return (
         <div>
-            <h2>My Recipes</h2>
-                <button className='button' onClick={ () => history.push('/myrecipes') }>View or edit my recipes</button>
-                <button className='button' onClick={ () => history.push('/submitrecipe') }>Submit a new recipe</button>
+            <div className="my-account-page-icon-div">
+                <img id="my-account-page-icon" src={ icon }></img>
+            </div>
+
+            <div className="my-account-page">
             
+                <h2>My Recipes</h2>
+                    <button className="button" onClick={ () => history.push('/myrecipes') }>View or edit my recipes</button>
+                    <button className="button" onClick={ () => history.push('/submitrecipe') }>Submit a new recipe</button>
+                
 
-            <h2>My Account</h2>
-            <>
-                <button className='button' onClick={ () => setOpenUploadUserIconModal(true) }>
-                    Upload or modify user icon
-                </button>
-                <UploadUserIconModal
-                    openUploadUserIconModal={ openUploadUserIconModal }
-                    handleCloseModal={ () => setOpenUploadUserIconModal(false) }
-                />
-            </>
+                <h2>My Account</h2>
+                <>
+                    <button className="button" onClick={ () => setOpenUploadUserIconModal(true) }>
+                        Upload or modify user icon
+                    </button>
+                    <UploadUserIconModal
+                        openUploadUserIconModal={ openUploadUserIconModal }
+                        handleCloseModal={ () => setOpenUploadUserIconModal(false) }
+                    />
+                </>
 
-            <>
-                <button className='button' onClick={ () => setOpenChangeUserInfoModal(true) }>
-                    Change username, email, password, or name
-                </button>
-                <ChangeUserInfoModal
-                    openChangeUserInfoModal={ openChangeUserInfoModal }
-                    handleCloseModal={ () => setOpenChangeUserInfoModal(false) }
-                />
-            </>
+                <>
+                    <button className="button" onClick={ () => setOpenChangeUserInfoModal(true) }>
+                        Change username, email, password, or name
+                    </button>
+                    <ChangeUserInfoModal
+                        openChangeUserInfoModal={ openChangeUserInfoModal }
+                        handleCloseModal={ () => setOpenChangeUserInfoModal(false) }
+                    />
+                </>
 
-            <>
-                <button className='button' onClick={ () => setOpenLogoutAllModal(true) }>
-                    Log out of all locations
-                </button>
-                <LogoutAllModal 
-                    openLogoutAllModal={ openLogoutAllModal } 
-                    handleCloseModal={ () => setOpenLogoutAllModal(false) } 
-                />
-            </>
+                <>
+                    <button className="button" onClick={ () => setOpenLogoutAllModal(true) }>
+                        Log out of all locations
+                    </button>
+                    <LogoutAllModal 
+                        openLogoutAllModal={ openLogoutAllModal } 
+                        handleCloseModal={ () => setOpenLogoutAllModal(false) } 
+                    />
+                </>
 
-            <>
-                <button className='button' onClick={ () => setOpenDeleteAccountModal(true) }>
-                    Delete my account
-                </button>
-                <DeleteAccountModal 
-                    openDeleteAccountModal={ openDeleteAccountModal } 
-                    handleCloseModal={ () => setOpenDeleteAccountModal(false) } 
-                />
-            </>
-            <img src={ icon }></img>
+                <>
+                    <button className="button" onClick={ () => setOpenDeleteAccountModal(true) }>
+                        Delete my account
+                    </button>
+                    <DeleteAccountModal 
+                        openDeleteAccountModal={ openDeleteAccountModal } 
+                        handleCloseModal={ () => setOpenDeleteAccountModal(false) } 
+                    />
+                </>
+            </div>
         </div>
     )
 }

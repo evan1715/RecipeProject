@@ -35,28 +35,35 @@ const logoutAction = (token) => ({
 const getUserAction = (profile) => ({
     type: 'GET_USER',
     user: profile
-})
+});
 
 //UPDATE_USER
 const updateUserAction = (user, token) => ({
     type: 'UPDATE_USER',
     user: user,
     token: token
-})
+});
 
 //UPLOAD_USER_ICON
+// const uploadIconAction = (icon) => {
+//     console.log("From uploadIconAction:", icon);
+//     return {
+//         type: 'UPLOAD_USER_ICON',
+//         icon: icon
+//     }
+// }
 
 //GET_USER_ICON
 const getIconAction = (icon) => ({
-    type: 'GET_ICON',
+    type: 'GET_USER_ICON',
     icon: icon
-})
+});
 
 //DELETE_USER_ICON
 const deleteUserIconAction = (user) => ({
     type: 'DELETE_USER_ICON',
     user: user
-})
+});
 
 //SERVER_ERROR
 const serverErrorAction = (data) => {
@@ -73,6 +80,7 @@ export {
     logoutAction,
     getUserAction,
     updateUserAction,
+    // uploadIconAction,
     getIconAction,
     deleteUserIconAction,
     serverErrorAction

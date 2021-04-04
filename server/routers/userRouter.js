@@ -118,7 +118,7 @@ const upload = multer({
 //Upload a user's icon.
 router.post('/user/profile/icon', auth, upload.single('icon'), async (req, res) => {
     try {
-        req.user.icon = await sharp(req.file.buffer).resize({ width: 300, height: 300 }).jpeg().toBuffer();
+        req.user.icon = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).jpeg().toBuffer();
 
         await req.user.save();
         res.send();

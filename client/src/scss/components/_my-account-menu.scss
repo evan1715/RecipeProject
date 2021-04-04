@@ -7,22 +7,24 @@
 */
 
 .second-row-nav-container {
-    @include flexCenter(space-around);
+    align-items: center;
+    display: flex;
     flex-direction: row;
     height: 45px;
-    width: 90%;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .my-account-menu {
-    flex: auto;
+    // flex: auto;
     text-align-last: center;
     width: 30%;
 }
 
 .button--menu {
     // box-sizing: border-box;
-    flex-grow: 1;
-    flex-shrink: 1;
+    // flex-grow: 1;
+    // flex-shrink: 1;
     height: 45px;
     // justify-content: center;
     vertical-align: center;

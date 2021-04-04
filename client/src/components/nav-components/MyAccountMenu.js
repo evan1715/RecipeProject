@@ -18,12 +18,12 @@ const MyAccountMenu = () => {
     }
 
     return (
-        <div className='my-account-menu' 
+        <div className="my-account-menu" 
         // onClick={() => setShowMenu(showMenu === true ? false : true)}
         >
-            <button className='button button--menu' disabled={ !isAuth } onClick={ handleClick }>
-                My Account <IosMenu className='dropdown-icon' 
-                            fontSize='25px' 
+            <button className="button button--menu" disabled={ !isAuth } onClick={ handleClick }>
+                My Account <IosMenu className="dropdown-icon" 
+                            fontSize="25px" 
                             color={ iconColor } 
                             style={ verticalAlign } />
             </button>

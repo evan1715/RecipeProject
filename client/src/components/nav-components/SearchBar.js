@@ -6,10 +6,10 @@ const SearchBar = () => {
     const input = React.useRef('')
 
     return (
-            <div className='searchbar'>
+            <div className="searchbar">
                 <input 
                     ref={input}
-                    placeholder='Search All Recipes' 
+                    placeholder="Search All Recipes" 
                 />
 
                 <button>

@@ -11,7 +11,7 @@ Modal.setAppElement('#root');
 
 const UploadUserIconModal = (props) => {
     const dispatch = useDispatch();
-    const { user, token, authenticated: isAuth, icon, error } = useSelector(state => state.accountReducer);
+    const { user, token, authenticated: isAuth, icon } = useSelector(state => state.accountReducer);
     const [userIcon, setUserIcon] = useState();
     const [iconFile, setIconFile] = useState();
     const [response, setResponse] = useState();
@@ -21,13 +21,17 @@ const UploadUserIconModal = (props) => {
 
     const uploadIcon = () => {
         console.log("File type attempted to upload:", iconFile.type);
+    
+        //Check the file type
         if (!iconFile.type.match(/(png|jpg|jpeg|bmp|gif)/)) {
             return setResponse("Not a supported file type.");
         }
+    
+        //If file type is good, pass it to the app and the server. The server will also check the filetype.
         const config = { iconFile, token, user_id }
-        // dispatch(useServerAPI('uploadIcon', config));
+    
         useServerAPI('uploadIcon', config);
-        setResponse('Uploaded!');
+        setResponse("Uploaded!");
         setTimeout(() => {
             window.location.reload();
         }, 2000);
@@ -35,24 +39,13 @@ const UploadUserIconModal = (props) => {
 
     useEffect(() => {
         setUserIcon(icon);
-        console.log("From useEffect:", icon);
     }, [icon]);
-
-    useEffect(() => {
-        if (error) {
-            setResponse(error);
-        }
-    }, [error])
 
     useEffect(() => {
         if (!props.openUploadUserIconModal) {
             setResponse('');
         }
-    }, [props.openUploadUserIconModal])
-
-    // useEffect(() => {
-    //     dispatch(useServerAPI('getIcon', user_id));
-    // }, []);
+    }, [props.openUploadUserIconModal]);
 
 
     return (
@@ -65,17 +58,30 @@ const UploadUserIconModal = (props) => {
         >
             <form encType='multipart/form-data'>
                 <img src={ userIcon }></img>
-                <input type='file' id='image-upload' onChange={ (e) => setIconFile(e.target.files[0]) } />
+                <input type="file" id="image-upload" onChange={ (e) => setIconFile(e.target.files[0]) } />
             </form>
             { response && <p>{ response }</p> }
-            <button className='button' onClick={ props.handleCloseModal }>Cancel</button>
-            <button className='button' onClick={ isAuth && (() => dispatch(useServerAPI('deleteIcon', token))) }>Delete icon</button>
-            <button className='button' onClick={ isAuth && uploadIcon }>Upload</button>
+            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
+            <button className="button" onClick={ isAuth && (() => dispatch(useServerAPI('deleteIcon', token))) }>Delete icon</button>
+            <button className="button" onClick={ isAuth && uploadIcon }>Upload</button>
         </Modal>
     )
 }
 
-const ChangeUserInfoModal = props => {
+const ChangeUserInfoModal = (props) => {
+    const dispatch = useDispatch();
+    const serverResponse = useSelector(state => state.accountReducer);
+    const { user, token, authenticated: isAuth } = serverResponse;
+    const [response, setResponse] = useState('');
+    const [username, setUsername] = useState(user.username);
+    const [email, setEmail] = useState(user.email);
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState(user.name);
+
+    const updateUser = () => {
+        const config = { username, email, password, name }
+        dispatch(useServerAPI('updateUser', config));
+    }
 
     return (
         <Modal
@@ -85,7 +91,7 @@ const ChangeUserInfoModal = props => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <p>placeholder</p>
+            <h2 className="title">Update user account information</h2>
         </Modal>
     )
 }
@@ -103,11 +109,11 @@ const LogoutAllModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <h2 className='title'>Are you sure you want to logout of all locations?</h2>
-            <button className='button' onClick={ isAuth && (() => (history.push('/'), dispatch(useServerAPI('logoutAll', token)))) }>
+            <h2 className="title">Are you sure you want to logout of all locations?</h2>
+            <button className="button" onClick={ isAuth && (() => (history.push('/'), dispatch(useServerAPI('logoutAll', token)))) }>
                 Yes
             </button>
-            <button className='button' onClick={ props.handleCloseModal }>
+            <button className="button" onClick={ props.handleCloseModal }>
                 No
             </button>
         </Modal>
@@ -135,16 +141,17 @@ const DeleteAccountModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <h2 className='title'>Are you sure you want to delete your account?</h2>
+            <h2 className="title">Are you sure you want to delete your account?</h2>
             <p>Type your username to delete your account.</p>
             <form>
-                <input className='modal__form--input' value={ username } onChange={ (e) => setUsername(e.target.value) } />
+                <input className="modal__form--input" value={ username } onChange={ (e) => setUsername(e.target.value) } />
             </form>
-            <button className='button' onClick={ props.handleCloseModal }>Cancel</button>
-            <button className='button' onClick={ handleDeleteUser }>Delete</button>
+            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
+            <button className="button" onClick={ handleDeleteUser }>Delete</button>
         </Modal>
     )
 }
+
 
 export {
     UploadUserIconModal,

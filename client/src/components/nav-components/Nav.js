@@ -26,15 +26,15 @@ export default function Nav() {
     }
 
     return (
-        <div className='center'>
-            <div className='nav-container'>
+        <div className="center">
+            <div className="nav-container">
                 <nav>
                     <Link to='/'>
-                        <img src='' alt='dished online logo' />
+                        <img src="" alt="dished online logo" />
                     </Link>
 
                     {/* Give the last item in the array an id of 'sign-up' */}
-                    <div className='nav-links'>
+                    <div className="nav-links">
                         {navLinks.map((navLink, index) => {
                             if(navLinks.length === index + 1) {
                                 return (
@@ -45,7 +45,7 @@ export default function Nav() {
                                     // </Link>
                                     // <><button id='sign-up' key={ index }
                                     <div key={index}>
-                                        <button id='sign-up' key={ index } onClick={ isAuth ? logout : () => setOpenModal(true) }>
+                                        <button id="sign-up" key={ index } onClick={ isAuth ? logout : () => setOpenModal(true) }>
                                             <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
                                         </button>
                                         <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
@@ -65,10 +65,10 @@ export default function Nav() {
 
                     {/* Only show this burger when the screen is too small for the nav bar */}
                     {/* When the burger is clicked, then toggle the showMenu state property and show the nav menu popout */}
-                    <div onClick={() => setShowMenu(showMenu === true ? false : true)} className='burger-container'><IosMenu style={iconStyles} fontSize='35px' /></div>
+                    <div onClick={() => setShowMenu(showMenu === true ? false : true)} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
 
                     {showMenu && 
-                        <div className='popout-nav'>
+                        <div className="popout-nav">
                             {navLinks.map((navLink, index) => (
                                 <Link key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>
                                     <li>
@@ -81,7 +81,7 @@ export default function Nav() {
                     
                 </nav>
 
-                <div className='second-row-nav-container'>
+                <div className="second-row-nav-container">
                     <SearchBar />
                     <MyAccountMenu />
                 </div>

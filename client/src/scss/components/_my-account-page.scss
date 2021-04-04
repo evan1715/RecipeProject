@@ -7,26 +7,28 @@
 .my-account-page__container {
     // @include flexCenter(center);
     // align-items: center; //y-axis
-    border-color: red;
+    // border-color: red;
     display: flex;
-    justify-content: space-evenly; //x-axis
+    justify-content: center; //x-axis
     width: 100%;
 }
 
 .my-account-page__placeholder {
-    min-width: 9%;
+    // flex-shrink: 1;
+    min-width: 11%;
     order: 1;
 }
 
 .my-account-page__center {
     align-items: center;
-    border-color: green;
+    // border-color: green;
     display: flex;
     // flex: 1;
     flex-direction: column;
     // flex-grow: 1;
     justify-content: center;
     order: 2;
+    width: 40%;
 }
 
 .my-account-page__icon {
@@ -39,6 +41,7 @@
     // flex: 2;
     // justify-content: flex-end; //x-axis
     // text-align: right;
+    // width: 50%;
 }
 
 // .my-account-page-icon {

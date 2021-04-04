@@ -29,7 +29,7 @@ const UploadUserIconModal = (props) => {
     
         //If file type is good, pass it to the app and the server. The server will also check the filetype.
         const config = { iconFile, token, user_id }
-    
+        
         useServerAPI('uploadIcon', config);
         setResponse("Uploaded!");
         setTimeout(() => {
@@ -38,6 +38,11 @@ const UploadUserIconModal = (props) => {
     }
 
     useEffect(() => {
+        if (userIcon) {
+            console.log("Current userIcon link:", userIcon);
+            URL.revokeObjectURL(userIcon);
+            console.log("New userIcon link:", icon);
+        }
         setUserIcon(icon);
     }, [icon]);
 

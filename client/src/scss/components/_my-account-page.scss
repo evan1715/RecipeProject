@@ -4,20 +4,45 @@
 //     align-items: center;
 // }
 
-.my-account-page {
-    align-items: center;
+.my-account-page__container {
+    // @include flexCenter(center);
+    // align-items: center; //y-axis
+    border-color: red;
     display: flex;
-    flex-direction: column;
-    border-color: green;
+    justify-content: space-evenly; //x-axis
+    width: 100%;
 }
 
-.my-account-page-icon-div {
-    text-align: right;
-    justify-content: right;
+.my-account-page__placeholder {
+    min-width: 9%;
+    order: 1;
+}
+
+.my-account-page__center {
+    align-items: center;
+    border-color: green;
+    display: flex;
+    // flex: 1;
+    flex-direction: column;
+    // flex-grow: 1;
+    justify-content: center;
+    order: 2;
+}
+
+.my-account-page__icon {
+    // align-self: flex-end; //y-axis
+    // border-color: red;
+    // display: flex;
+    // flex-shrink: 1;
+    order: 3;
+    // text-align-last: center;
+    // flex: 2;
+    // justify-content: flex-end; //x-axis
+    // text-align: right;
 }
 
 // .my-account-page-icon {
-//     text-align: right;
+//     // text-align: right;
 //     border-color: red;
 //     justify-content: right;
 // }

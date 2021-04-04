@@ -21,13 +21,10 @@ const MyAccountPage = () => {
     }, []);
 
     return (
-        <div>
-            <div className="my-account-page-icon-div">
-                <img id="my-account-page-icon" src={ icon }></img>
-            </div>
-
-            <div className="my-account-page">
-            
+        <div className="my-account-page__container">
+            <div className="my-account-page__placeholder" />
+            <div className="my-account-page__center">
+    
                 <h2>My Recipes</h2>
                     <button className="button" onClick={ () => history.push('/myrecipes') }>View or edit my recipes</button>
                     <button className="button" onClick={ () => history.push('/submitrecipe') }>Submit a new recipe</button>
@@ -73,6 +70,9 @@ const MyAccountPage = () => {
                         handleCloseModal={ () => setOpenDeleteAccountModal(false) } 
                     />
                 </>
+            </div>
+            <div className="my-account-page__icon">
+                <img src={ icon } />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import IosMenu from 'react-ionicons/lib/IosMenu'
@@ -23,6 +23,7 @@ export default function Nav() {
         dispatch(useServerAPI('logout', token)); //logout from local and server
         setOpenModal(false); //keep modal closed
         history.push('/'); //redirect them to the homepage once logged out
+        // setShowMenu(false);
     }
 
     return (
@@ -74,21 +75,30 @@ export default function Nav() {
                                 if (navLinks.length === index + 1) {
                                     return (
                                         <div key={ index }>
-                                            <li key={ index } onClick={ isAuth ? logout : () => setOpenModal(true)}>
+                                            <li 
+                                                key={ index }
+                                                // If we click logout or sign in, set show meu to false
+                                                onClick={ isAuth ? 
+                                                    () => (logout, setShowMenu(false))
+                                                    :
+                                                    () => (setOpenModal(true), setShowMenu(false)) 
+                                                }
+                                            >
                                                 { isAuth ? 'Log Out' : 'Sign In' }
                                             </li>
-                                            <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
+                                            <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) }/>
                                         </div>
                                     )
                                 } else {
                                     return (
                                         <Link key={ index } to={`${navLink.toLowerCase().replace(' ', '')}`}>
-                                            <li>{ navLink }</li>
+                                            {/* When we click a link, close the menu. */}
+                                            <li onClick={ () => setShowMenu(false) }>{ navLink }</li>
                                         </Link>
                                     )
                                 }
+                            })
                             }
-                        )}
                         </div>
                     }
 

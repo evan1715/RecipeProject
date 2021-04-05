@@ -63,9 +63,40 @@ export default function Nav() {
                         )}
                     </div>
 
+
+
                     {/* Only show this burger when the screen is too small for the nav bar */}
                     {/* When the burger is clicked, then toggle the showMenu state property and show the nav menu popout */}
                     <div onClick={() => setShowMenu(showMenu === true ? false : true)} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
+                    { showMenu && 
+                        <div className="popout-nav">
+                            { navLinks.map((navLink, index) => {
+                                if (navLinks.length === index + 1) {
+                                    return (
+                                        <div key={ index }>
+                                            <li key={ index } onClick={ isAuth ? logout : () => setOpenModal(true)}>
+                                                { isAuth ? 'Log Out' : 'Sign In' }
+                                            </li>
+                                            <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
+                                        </div>
+                                    )
+                                } else {
+                                    return (
+                                        <Link key={ index } to={`${navLink.toLowerCase().replace(' ', '')}`}>
+                                            <li>{ navLink }</li>
+                                        </Link>
+                                    )
+                                }
+                            }
+                        )}
+                        </div>
+                    }
+
+
+
+                    {/* Only show this burger when the screen is too small for the nav bar */}
+                    {/* When the burger is clicked, then toggle the showMenu state property and show the nav menu popout */}
+                    {/* <div onClick={() => setShowMenu(showMenu === true ? false : true)} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
 
                     {showMenu && 
                         <div className="popout-nav">
@@ -77,7 +108,7 @@ export default function Nav() {
                             </Link>
                             ))}
                         </div>
-                    }
+                    } */}
                     
                 </nav>
 

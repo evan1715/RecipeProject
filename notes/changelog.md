@@ -24,6 +24,7 @@
     -- Created errors, closing modals, resetting responses, filtering upload files, and a lot more.
     -- Added URL.revokeObjectURL to UploadUserIconModal to free up temporary browser storage while in the app.
     -- Added timer for modals to exit after successful update.
+    -- Added some userinfo to the left side of the page.
     -- If they log out or delete account, they'll be rerouted to the homepage.
     - Got rid of server response message when exiting a modal.
     - Got rid of child key value error on Nav.js and RecipeRoulette.js

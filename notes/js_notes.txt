@@ -26,3 +26,6 @@ If we want to call a function every time it loads, we use () at the end:
 
 If we want to reference a function and pass an argument into it, we set up an arrow function before it:
     <button onClick={ () => handleRoute('/myrecipes') }>View or edit my recipes</button>
+
+If we want to reference a function and pass an argument into it with additional functions being called:
+    <button onClick={ () => { handleRoute('/myrecipes'); handleOtherThing() }}>View or edit my recipes</button>

@@ -216,17 +216,26 @@ const getUser = (token) => {
 const updateUser = (config) => {
     //Server will only accept changes to username, email, password, and name.
     const { token, username, email, password, name } = config;
+    let newUserInfo = {}
+    
+    if (username) {
+        newUserInfo = { username: username };
+    } else if (email) {
+        newUserInfo = { email: email }
+    } else if (password) {
+        newUserInfo = { password: password }
+    } else if (name) {
+        newUserInfo = { name: name }
+    }
 
     return dispatch => {
         fetch('/user/profile', {
             method: 'PATCH',
-            headers: { 'Authorization': token },
-            body: JSON.stringify({
-                username: username,
-                email: email,
-                password: password,
-                name: name
-            })
+            headers: { 
+                'Authorization': token,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(newUserInfo)
         })
         .then(res => handleResponse(res))
         .then(data => {

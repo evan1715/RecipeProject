@@ -2,19 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useServerAPI from '../../hooks/useServerAPI.js';
-import { UploadUserIconModal, ChangeUserInfoModal, LogoutAllModal, DeleteAccountModal } from './AccountModals.js';
+import { 
+    UploadUserIconModal, 
+    ChangeUsernameModal,
+    ChangeEmailModal,
+    ChangePasswordModal,
+    ChangeNameModal,
+    LogoutAllModal, 
+    DeleteAccountModal 
+} from './AccountModals.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { user, token, authenticated: isAuth, icon } = useSelector(state => state.accountReducer);
+    // const [openModal, setOpenModal] = useState(false);
+    // const [response, setResponse] = useState('');
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
-    const [openChangeUserInfoModal, setOpenChangeUserInfoModal] = useState(false);
+    const [openChangeUsernameModal, setOpenChangeUsernameModal] = useState(false);
+    const [openChangeEmailModal, setOpenChangeEmailModal] = useState(false);
+    const [openChangePasswordModal, setOpenChangePasswordModal] = useState(false);
+    const [openChangeNameModal, setOpenChangeNameModal] = useState(false);
     const [openLogoutAllModal, setOpenLogoutAllModal] = useState(false);
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
     //view my recipes
     //submit a new recipe
-    //edit/update profile such as username, email, password, name
+    //set new password by verifying old one and reconfirming the new one
+
+    // const handleCloseModal = () => {
+    //     if (openModal) {
+    //         setOpenModal(false);
+    //     } else if (!openModal) {
+    //         setOpenModal(true);
+    //     }
+    // }
 
     useEffect(() => {
         dispatch(useServerAPI('getIcon', user._id));
@@ -42,12 +63,42 @@ const MyAccountPage = () => {
                 </>
 
                 <>
-                    <button className="button" onClick={ () => setOpenChangeUserInfoModal(true) }>
-                        Change username, email, password, or name
+                    <button className="button" onClick={ () => setOpenChangeUsernameModal(true) }>
+                        Change my username
                     </button>
-                    <ChangeUserInfoModal
-                        openChangeUserInfoModal={ openChangeUserInfoModal }
-                        handleCloseModal={ () => setOpenChangeUserInfoModal(false) }
+                    <ChangeUsernameModal
+                        openChangeUsernameModal={ openChangeUsernameModal }
+                        handleCloseModal={ () => setOpenChangeUsernameModal(false) }
+                    />
+                </>
+
+                <>
+                    <button className="button" onClick={ () => setOpenChangeEmailModal(true) }>
+                        Change my email
+                    </button>
+                    <ChangeEmailModal
+                        openChangeEmailModal={ openChangeEmailModal }
+                        handleCloseModal={ () => setOpenChangeEmailModal(false) }
+                    />
+                </>
+
+                <>
+                    <button className="button" onClick={ () => setOpenChangePasswordModal(true) }>
+                        Set a new password
+                    </button>
+                    <ChangePasswordModal
+                        openChangePasswordModal={ openChangePasswordModal }
+                        handleCloseModal={ () => setOpenChangePasswordModal(false) }
+                    />
+                </>
+
+                <>
+                    <button className="button" onClick={ () => setOpenChangeNameModal(true) }>
+                        Modify my name
+                    </button>
+                    <ChangeNameModal
+                        openChangeNameModal={ openChangeNameModal }
+                        handleCloseModal={ () => setOpenChangeNameModal(false) }
                     />
                 </>
 

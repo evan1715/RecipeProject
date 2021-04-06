@@ -13,7 +13,7 @@ export default function Nav() {
     const history = useHistory(); //hook that uses history npm package
     const isAuthenticated = useSelector(state => state.accountReducer);
     const [showMenu, setShowMenu] = React.useState(false)
-    const [openModal, setOpenModal] = useState(false);
+    const [openSigninModal, setOpenSigninModal] = useState(false);
     const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'About', 'Sign In']
     const iconStyles = { cursor: 'pointer' }
     const isAuth = isAuthenticated.authenticated;
@@ -21,7 +21,6 @@ export default function Nav() {
     const logout = () => {
         const token = isAuthenticated.token;
         dispatch(useServerAPI('logout', token)); //logout from local and server
-        setOpenModal(false); //keep modal closed
         history.push('/'); //redirect them to the homepage once logged out
         // setShowMenu(false);
     }
@@ -46,10 +45,10 @@ export default function Nav() {
                                     // </Link>
                                     // <><button id='sign-up' key={ index }
                                     <div key={index}>
-                                        <button id="sign-up" key={ index } onClick={ isAuth ? logout : () => setOpenModal(true) }>
+                                        <button id="sign-up" key={ index } onClick={ isAuth ? logout : () => setOpenSigninModal(true) }>
                                             <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
                                         </button>
-                                        <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) } />
+                                        <SignInModal openSigninModal={ openSigninModal } handleCloseModal={ () => setOpenSigninModal(false) } />
                                     </div>
                                 )} else {
                                     return (
@@ -79,14 +78,14 @@ export default function Nav() {
                                                 key={ index }
                                                 // If we click logout or sign in, set show meu to false
                                                 onClick={ isAuth ? 
-                                                    () => (logout, setShowMenu(false))
+                                                    () => (logout(), setShowMenu(false))
                                                     :
-                                                    () => (setOpenModal(true), setShowMenu(false)) 
+                                                    () => (setOpenSigninModal(true), setShowMenu(false)) 
                                                 }
                                             >
                                                 { isAuth ? 'Log Out' : 'Sign In' }
                                             </li>
-                                            <SignInModal openModal={ openModal } handleCloseModal={ () => setOpenModal(false) }/>
+                                            <SignInModal openSigninModal={ openSigninModal } handleCloseModal={ () => setOpenSigninModal(false) }/>
                                         </div>
                                     )
                                 } else {

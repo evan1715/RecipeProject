@@ -32,6 +32,8 @@
     - Wired up log out.
     - Connected sign in/log out modal to drop-down/pop-out burger menu.
     -- Added feature when clicking a link or button on the popout menu, the menu will close.
+    - Got rid of [dispatch] on useEffect in RecipeRoulette so it doesn't fire every time there's a dispatch.
+    - Commented out the RecipeRoulette useEffect so it doesn't fire when initially loading for now. Helps clear up the console logs and redux logger.
     Store:
     - Added support for the Redux Devtool Extension for browsers. With that, had to rearrange the store configuration. 
         - Added a new folder and new .js file for store configuration. Inside is includes reducers and middleware.

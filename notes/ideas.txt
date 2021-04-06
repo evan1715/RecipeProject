@@ -1,17 +1,22 @@
-- Use a react modal to pop up and sign into the website.
 - Introduce a profanity filter for usernames and recipe creations.
 - Comment box for recipes. Perhaps use it via a socket.io method?
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
-- Fix issue with only production build and server communicating so that dev mode also can do it.
-- Redirect once account is created. Put a "modify profile" link and show we're actively signed in.
 - Put a pop up module on deleting recipes asking, "Are you sure?"
 - Set up private links and public links. "My account" settings for example.
-- Send back errors from mongodb when creating account or logging in.
-- Rework the ServerAPI call and make it useful for all API calls.
+- Have the popout/burger menu close when clicking outside of it.
 
 
 
 Completed:
 + Send back errors from mongodb when creating account or logging in.
++ Use a react modal to pop up and sign into the website.
++ Redirect once account is created. PShow we're actively signed in.
++ Send back errors from mongodb when creating account or logging in.
+
+
+
+Decided to drop:
+- Fix issue with only production build and server communicating so that dev mode also can do it.
++/ Rework the ServerAPI call and make it useful for all API calls. //Sort of already did, sort of.

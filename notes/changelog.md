@@ -29,10 +29,8 @@
     - Got rid of child key value error on Nav.js and RecipeRoulette.js
     - Fixed up create account, sign in, sign out, view my recipes buttons and modals.
     - Wired up log out.
-````JavaScript
-<></> /* to => */ <div key={index}></div>
-<Transition in={inProp} timeout={800}> /* to => */ <Transition key={index} in={inProp} timeout={800}>
-````
+    - Connected sign in/log out modal to drop-down/pop-out burger menu.
+    -- Added feature when clicking a link or button on the popout menu, the menu will close.
     Store:
     - Added support for the Redux Devtool Extension for browsers. With that, had to rearrange the store configuration. 
         - Added a new folder and new .js file for store configuration. Inside is includes reducers and middleware.

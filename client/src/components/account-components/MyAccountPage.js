@@ -43,7 +43,22 @@ const MyAccountPage = () => {
 
     return (
         <div className="my-account-page__container">
-            <div className="my-account-page__placeholder" />
+
+            <div className="my-account-page__userinfo">
+                <h3 className="center">My recent recipes</h3>
+                <ol>
+                    <li>placeholder for recipes</li>
+                </ol>
+
+                <h3 className="center">User Info:</h3>
+                <ol>
+                    <li>Username: { user.username }</li>
+                    <li>Email: { user.email }</li>
+                    <li>Name: { user.name }</li>
+                </ol>
+            </div>
+
+            
             <div className="my-account-page__center">
     
                 <h2>My Recipes</h2>

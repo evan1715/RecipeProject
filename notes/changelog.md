@@ -5,15 +5,26 @@
 
 
 
-    3-13-2021 - 3-24-2021
+    3-13-2021 - 4-6-2021
     SCSS:
     - Rearranged and cleaned up a bit.
     - Made a pop out modal for sign in, but pending on whether to just make it a page or make the modal work on the burger drop down menu.
     - Fixed issue where @include flexCenter(center); was preventing tab usage on keyboard by getting rid of it from body {}.
+    - Added scss for my-account-menu.
+    - Added scss for my-account-page.
     Component:
     - Modified CreateAccountModal and SignInModal.
     - Created placeholder account components. SubmitRecipe and ViewMyRecipes.
+    -- Renamed them to SubmitRecipePage and ViewMyRecipesPage
     - Created placeholder about page.
+    - Created MyAccountMenu, but pending work.
+    - Created MyAccountPage.
+    - Created modals for MyAccountPage.
+    -- Users can now upload or modify their user icon, change their username, email, password, name, log out of all locations, and delete account through the website to the server to the database.
+    -- Created errors, closing modals, resetting responses, filtering upload files, and a lot more.
+    -- Added URL.revokeObjectURL to UploadUserIconModal to free up temporary browser storage while in the app.
+    -- Added timer for modals to exit after successful update.
+    -- If they log out or delete account, they'll be rerouted to the homepage.
     - Got rid of server response message when exiting a modal.
     - Got rid of child key value error on Nav.js and RecipeRoulette.js
     - Fixed up create account, sign in, sign out, view my recipes buttons and modals.
@@ -31,10 +42,15 @@
     Server:
     - Fixed server server issue returning all user info without excluding password, tokens, and icon.
     - Added an error response when can't log in to better handle errors.
+    - Decreased the resize of incoming icons from 300x300 to 250x250.
     General:
     - Created separate folder for routers.
     - Made useServerAPI.
+    - Reworked useServerAPI and added stuff (like hundreds of times).
     - Modified some package.json scripts, index.html files, webpack, and server.js.
+    - Modified some pages to use double quotes in HTML, single quotes in JS, and double quotes when sending messages.
+    - Added more notes in the notes folder.
+    - Added a one second timer to React loading in so that the server has time to respond with user's information for the page to load properly, especially on private only routes.
 
 
 

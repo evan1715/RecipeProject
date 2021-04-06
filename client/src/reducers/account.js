@@ -25,9 +25,11 @@ const accountReducer = (state = {}, action) => {
             }
         case 'UPDATE_USER':
             return {
-                user: action.user,
-                token: token,
-                authenticated: true
+                // user: action.user,
+                // token: action.token,
+                // authenticated: true
+                ...state,
+                user: action.user
             }
         // case 'UPLOAD_USER_ICON':
         //     return icon;

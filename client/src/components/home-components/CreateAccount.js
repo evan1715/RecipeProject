@@ -17,7 +17,8 @@ export default function CreateAccount() {
                     {/* This button will be a <Link> to /createaccount where redux will dispatch whatever action will create a new user */}
                     {/* <Link to='/createaccount'><button className='button'>Create An Account</button></Link> */}
                     { isAuth ? 
-                        <Link to='/about'><button className="button" onClick={ () => setOpenModal('false') }>View My Recipes</button></Link> :
+                        <Link to='/about'><button className="button" onClick={ () => setOpenModal('false') }>View My Recipes</button></Link> 
+                        :
                         <><button className="button" onClick={ () => setOpenModal('true') }>Create An Account</button>
                         <CreateAccountModal openModal={ openModal } handleCloseModal={ () => setOpenModal('') } /> </>
                     }

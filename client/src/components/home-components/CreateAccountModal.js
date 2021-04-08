@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
+import { serverErrorAction } from '../../actions/account.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -21,25 +22,27 @@ const CreateAccountModal = (props) => {
         dispatch(useServerAPI('createAccount', config));
     }
 
+    const handleClearError = () => {
+        if (serverResponse.error != null) {
+            dispatch(serverErrorAction(null))
+        }
+    }
+
     useEffect(() => {        
-        if (serverResponse.error !== "Incorrect email and password combination.") {
+        if (serverResponse.error) {
             setResponse(serverResponse.error);
         }
         if (serverResponse.token) {
             setResponse("Account created!");
         }
     }, [serverResponse]);
-
-    useEffect(() => {
-        if (!props.openModal) {
-            setResponse('');
-        }
-    }, [props.openModal])
     
     return (
         <Modal
-            isOpen={ !!props.openModal }
+            isOpen={ !!props.openCreateAccountModal }
             onRequestClose={ props.handleCloseModal }
+            onAfterOpen={ () => setResponse('') } //Empty response on open
+            onAfterClose={ () => (setResponse(''), handleClearError()) } //If modal gets closed, reset any response
             contentLabel="Create Account"
             closeTimeoutMS={ 250 }
             className="modal"

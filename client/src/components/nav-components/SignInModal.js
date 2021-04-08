@@ -40,6 +40,7 @@ const SignInModal = (props) => {
         <Modal
             isOpen={ props.openSigninModal }
             onRequestClose={ props.handleCloseModal }
+            onAfterOpen={ () => setResponse('') } //Empty response on open
             onAfterClose={ () => (setResponse(''), handleClearError()) } //If modal gets closed, reset any response
             contentLabel="Sign in" //Accessability label
             closeTimeoutMS={ 250 }

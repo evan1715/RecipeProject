@@ -71,22 +71,34 @@ router.patch('/user/profile', auth, async (req, res) => {
     //We'll use Object.keys(req.body) in order to convert an object into an array of its properties.
     const updates = Object.keys(req.body);
     const validUpdates = updates.every((update) => {
-        return ['username', 'email', 'password', 'name'].includes(update);
+        return ['username', 'email', 'previousPassword', 'password', 'name'].includes(update);
     });
 
     if (!validUpdates) {
         return res.status(400).send("Update not valid.");
     }
-    
+
     try {
+        //Check for valid previous password before changing to new password
+        if (updates.includes('previousPassword', 'password')) {
+            await User.loginUser(req.body.email, req.body.previousPassword);
+            delete updates.previousPassword;
+        }
+
         updates.forEach((update) => {
             //Use bracket notation to access a property dynamically.
             req.user[update] = req.body[update];
         });
+
         await req.user.save(); //middleware used
         res.send(req.user);
-    } catch (error) {
-        res.status(400).send(error);
+    } catch (errors) {
+        const error = "Invalid current password.";
+        if (errors.message === "Unable to login.") {
+            res.status(400).send({ error });
+        } else {
+            res.status(400).send(errors);
+        }
     }
 });
 

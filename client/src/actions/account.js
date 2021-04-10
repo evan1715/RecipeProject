@@ -29,8 +29,6 @@ const logoutAction = (token) => ({
     token: token
 });
 
-//LOG_OUT_ALL
-
 //GET_USER //would this just be a hook instead?
 const getUserAction = (profile) => ({
     type: 'GET_USER',
@@ -43,15 +41,6 @@ const updateUserAction = (user, token) => ({
     user: user,
     token: token
 });
-
-//UPLOAD_USER_ICON
-// const uploadIconAction = (icon) => {
-//     console.log("From uploadIconAction:", icon);
-//     return {
-//         type: 'UPLOAD_USER_ICON',
-//         icon: icon
-//     }
-// }
 
 //GET_USER_ICON
 const getIconAction = (icon) => ({
@@ -80,7 +69,6 @@ export {
     logoutAction,
     getUserAction,
     updateUserAction,
-    // uploadIconAction,
     getIconAction,
     deleteUserIconAction,
     serverErrorAction

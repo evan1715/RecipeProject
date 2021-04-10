@@ -10,14 +10,12 @@ import {
     ChangeNameModal,
     LogoutAllModal, 
     DeleteAccountModal 
-} from './AccountModals.js';
+} from './MyAccountModals.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { user, token, authenticated: isAuth, icon } = useSelector(state => state.accountReducer);
-    // const [openModal, setOpenModal] = useState(false);
-    // const [response, setResponse] = useState('');
+    const { user, icon } = useSelector(state => state.accountReducer);
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
     const [openChangeUsernameModal, setOpenChangeUsernameModal] = useState(false);
     const [openChangeEmailModal, setOpenChangeEmailModal] = useState(false);
@@ -27,15 +25,7 @@ const MyAccountPage = () => {
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
     //view my recipes
     //submit a new recipe
-    //set new password by verifying old one and reconfirming the new one
 
-    // const handleCloseModal = () => {
-    //     if (openModal) {
-    //         setOpenModal(false);
-    //     } else if (!openModal) {
-    //         setOpenModal(true);
-    //     }
-    // }
 
     useEffect(() => {
         dispatch(useServerAPI('getIcon', user._id));

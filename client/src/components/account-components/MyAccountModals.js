@@ -219,15 +219,19 @@ const ChangePasswordModal = (props) => {
     const { user, token, authenticated: isAuth } = serverResponse;
     const [response, setResponse] = useState('');
     const [previousPassword, setPreviousPassword] = useState('');
-    const [password, setPassword] = useState('');
-    const email = user.email;
+    const [newPassword, setNewPassword] = useState('');
+    const [newPasswordVerified, setNewPasswordVerified] = useState('');
 
     const updateUser = () => {
+        const email = user.email;
+        const password = newPasswordVerified;
         const config = { token, email, previousPassword, password }
-        console.log("From updateUser Password:", config);
+        
+        if (newPassword !== newPasswordVerified) {
+            return setResponse("New passwords do not match.");
+        }
+
         dispatch(useServerAPI('updateUser', config));
-        // setPassword('');
-        // setPreviousPassword('');
     }
 
     const handleClearError = () => {
@@ -260,8 +264,9 @@ const ChangePasswordModal = (props) => {
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
                 //If modal gets closed, clear user input
-                setPassword('');
                 setPreviousPassword('');
+                setNewPassword('');
+                setNewPasswordVerified('');
                 //If modal gets closed, reset any response
                 setResponse(''); 
                 handleClearError(); 
@@ -271,7 +276,6 @@ const ChangePasswordModal = (props) => {
             className="modal"
         >
             <h2 className="title">Update password</h2>
-            {/* <p>Current email: { user.email }</p> */}
 
             <input 
                 className="modal__form--input" 
@@ -279,11 +283,17 @@ const ChangePasswordModal = (props) => {
                 placeholder="current password"
                 onChange={ (e) => setPreviousPassword(e.target.value) }
             />
+            <input
+                className="modal__form--input"
+                value={ newPassword }
+                placeholder="new password"
+                onChange={ (e) => setNewPassword(e.target.value) }
+            />
             <input 
                 className="modal__form--input" 
-                value={ password } 
-                placeholder="new password" 
-                onChange={ (e) => setPassword(e.target.value) } 
+                value={ newPasswordVerified } 
+                placeholder="verify new password" 
+                onChange={ (e) => setNewPasswordVerified(e.target.value) } 
             />
 
             { /* If there's a response, then show the response to the user here. */

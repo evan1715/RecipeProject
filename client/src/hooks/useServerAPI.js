@@ -73,7 +73,7 @@ const handleResponse = (res) => {
 
 const handleMongoError = (data) => {
     var message;
-
+    
     if (data.keyPattern) {
         if (data.keyPattern.username) {
             message = `The username \"${data.keyValue.username}\" is already taken!`;
@@ -83,13 +83,19 @@ const handleMongoError = (data) => {
             message = `The email \"${data.keyValue.email}\" is already being used!`;
         }
     } else if (data.errors) {
-        if (data.errors.password) {
+        if (data.errors.password.kind === 'minlength') {
             message = "Password must be a minimum length of 8 characters.";
+        }
+
+        if (data.errors.password.message === 'Password cannot contain the word password.') {
+            message = data.errors.password.message;
         }
 
         if (data.errors.email) {
             message = data.errors.email.message;
         }
+    } else if (data.error === 'Invalid current password.') {
+        message = data.error;
     } else if (data.error === 'Unable to login.') {
         message = "Incorrect email and password combination."
     } else if (data.error === 'Unsupported image file type.') {
@@ -215,15 +221,20 @@ const getUser = (token) => {
 //Update a user.
 const updateUser = (config) => {
     //Server will only accept changes to username, email, password, and name.
-    const { token, username, email, password, name } = config;
+    const { token, username, email, previousPassword, password, name } = config;
     let newUserInfo = {}
     
     if (username) {
-        newUserInfo = { username: username };
-    } else if (email) {
+        newUserInfo = { username: username }
+    } else if (email && !password && !previousPassword) {
         newUserInfo = { email: email }
     } else if (password) {
-        newUserInfo = { password: password }
+        newUserInfo = { 
+            email: email, 
+            previousPassword: previousPassword, 
+            password: password
+        }
+
     } else if (name) {
         newUserInfo = { name: name }
     }
@@ -242,7 +253,7 @@ const updateUser = (config) => {
             console.log("Server data sent back: ", data);
             if (data.username) {
                 dispatch(updateUserAction(data, token));
-            } else if (data.name === 'MongoError' || data.errors) {
+            } else if (data.name === 'MongoError' || data.errors || data.error) {
                 dispatch(serverErrorAction(handleMongoError(data)));
             }
         })

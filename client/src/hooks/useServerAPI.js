@@ -29,7 +29,6 @@ import {
     loginAction,
     logoutAction,
     updateUserAction,
-    // uploadIconAction,
     getIconAction,
     deleteUserIconAction,
     serverErrorAction

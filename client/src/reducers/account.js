@@ -1,9 +1,3 @@
-// const defaultState = {
-//     user: undefined,
-//     token: localStorage.getItem('token'),
-//     authenticated: undefined
-// }
-
 const accountReducer = (state = {}, action) => {
     switch (action.type) {
         case 'LOGIN':
@@ -25,14 +19,9 @@ const accountReducer = (state = {}, action) => {
             }
         case 'UPDATE_USER':
             return {
-                // user: action.user,
-                // token: action.token,
-                // authenticated: true
                 ...state,
                 user: action.user
             }
-        // case 'UPLOAD_USER_ICON':
-        //     return icon;
         case 'GET_USER_ICON':
             return {
                 ...state,
@@ -52,7 +41,6 @@ const accountReducer = (state = {}, action) => {
             return state;
     }
 }
-
 
 
 export { accountReducer as default };

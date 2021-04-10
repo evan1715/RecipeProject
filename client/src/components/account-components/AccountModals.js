@@ -98,10 +98,12 @@ const ChangeUsernameModal = (props) => {
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
         setResponse("Updated!");
-        //Close the modal after a little
-        setTimeout(() => {
-            props.handleCloseModal();
-        }, 2000);
+        //Close the modal after a little, but don't close it when the page loads. Only when it's opened.
+        if (props.openChangeUsernameModal) {
+            setTimeout(() => {
+                props.handleCloseModal();
+            }, 2000);
+        }
     }, [user.username]);
 
     return (
@@ -109,7 +111,13 @@ const ChangeUsernameModal = (props) => {
             isOpen={ props.openChangeUsernameModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
-            onAfterClose={ () => { setResponse(''); handleClearError() }} //If modal gets closed, reset any response
+            onAfterClose={ () => { 
+                //If modal gets closed, clear user input
+                setUsername('');
+                //If modal gets closed, reset any response
+                setResponse('');
+                handleClearError();
+            }}
             contentLabel="Change username" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
@@ -161,10 +169,12 @@ const ChangeEmailModal = (props) => {
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
         setResponse("Updated!");
-        //Close the modal after a little
-        setTimeout(() => {
-            props.handleCloseModal();
-        }, 2000);
+        //Close the modal after a little, but don't close it when the page loads. Only when it's opened.
+        if (props.openChangeEmailModal) {
+            setTimeout(() => {
+                props.handleCloseModal();
+            }, 2000);
+        }
     }, [user.email]);
 
     return (
@@ -172,7 +182,13 @@ const ChangeEmailModal = (props) => {
             isOpen={ props.openChangeEmailModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
-            onAfterClose={ () => { setResponse(''); handleClearError() }} //If modal gets closed, reset any response
+            onAfterClose={ () => { 
+                //If modal gets closed, clear user input
+                setEmail('');
+                //If modal gets closed, reset any response
+                setResponse(''); 
+                handleClearError();
+            }}
             contentLabel="Change email" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
@@ -202,11 +218,16 @@ const ChangePasswordModal = (props) => {
     const serverResponse = useSelector(state => state.accountReducer);
     const { user, token, authenticated: isAuth } = serverResponse;
     const [response, setResponse] = useState('');
+    const [previousPassword, setPreviousPassword] = useState('');
     const [password, setPassword] = useState('');
+    const email = user.email;
 
     const updateUser = () => {
-        const config = { token, password }
+        const config = { token, email, previousPassword, password }
+        console.log("From updateUser Password:", config);
         dispatch(useServerAPI('updateUser', config));
+        // setPassword('');
+        // setPreviousPassword('');
     }
 
     const handleClearError = () => {
@@ -224,10 +245,12 @@ const ChangePasswordModal = (props) => {
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
         setResponse("Updated!");
-        //Close the modal after a little
-        setTimeout(() => {
-            props.handleCloseModal();
-        }, 2000);
+        //Close the modal after a little, but don't close it when the page loads. Only when it's opened.
+        if (props.openChangePasswordModal) {
+            setTimeout(() => {
+                props.handleCloseModal();
+            }, 2000);
+        }
     }, [user]);
 
     return (
@@ -235,7 +258,14 @@ const ChangePasswordModal = (props) => {
             isOpen={ props.openChangePasswordModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
-            onAfterClose={ () => { setResponse(''); handleClearError() }} //If modal gets closed, reset any response
+            onAfterClose={ () => { 
+                //If modal gets closed, clear user input
+                setPassword('');
+                setPreviousPassword('');
+                //If modal gets closed, reset any response
+                setResponse(''); 
+                handleClearError(); 
+            }}
             contentLabel="Change password" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
@@ -245,8 +275,14 @@ const ChangePasswordModal = (props) => {
 
             <input 
                 className="modal__form--input" 
+                value={ previousPassword } 
+                placeholder="current password"
+                onChange={ (e) => setPreviousPassword(e.target.value) }
+            />
+            <input 
+                className="modal__form--input" 
                 value={ password } 
-                placeholder="password" 
+                placeholder="new password" 
                 onChange={ (e) => setPassword(e.target.value) } 
             />
 
@@ -287,10 +323,12 @@ const ChangeNameModal = (props) => {
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
         setResponse("Updated!");
-        //Close the modal after a little
-        setTimeout(() => {
-            props.handleCloseModal();
-        }, 2000);
+        //Close the modal after a little, but don't close it when the page loads. Only when it's opened.
+        if (props.openChangeNameModal) {
+            setTimeout(() => {
+                props.handleCloseModal();
+            }, 2000);
+        }
     }, [user.name]);
 
     return (
@@ -298,7 +336,13 @@ const ChangeNameModal = (props) => {
             isOpen={ props.openChangeNameModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
-            onAfterClose={ () => { setResponse(''); handleClearError() }} //If modal gets closed, reset any response
+            onAfterClose={ () => { 
+                //If modal gets closed, clear user input
+                setName('');
+                //If modal gets closed, reset any response
+                setResponse(''); 
+                handleClearError(); 
+            }}
             contentLabel="Change name" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"

@@ -5,7 +5,7 @@
 
 
 
-    3-13-2021 - 4-6-2021
+    3-13-2021 - 4-10-2021
     SCSS:
     - Rearranged and cleaned up a bit.
     - Made a pop out modal for sign in, but pending on whether to just make it a page or make the modal work on the burger drop down menu.
@@ -26,6 +26,11 @@
     -- Added timer for modals to exit after successful update.
     -- Added some userinfo to the left side of the page.
     -- If they log out or delete account, they'll be rerouted to the homepage.
+    -- Renamed openModal to signinModal, put modal closed when logging out.
+    -- Set all modals to reset responses and state once modal closes. 
+    -- Opening a modal now also resets response.
+    -- Better cleared errors by dispatching server response to null upon closing modals.
+    -- Added current password check when setting a new password.
     - Got rid of server response message when exiting a modal.
     - Got rid of child key value error on Nav.js and RecipeRoulette.js
     - Fixed up create account, sign in, sign out, view my recipes buttons and modals.
@@ -44,6 +49,7 @@
     - Fixed server server issue returning all user info without excluding password, tokens, and icon.
     - Added an error response when can't log in to better handle errors.
     - Decreased the resize of incoming icons from 300x300 to 250x250.
+    - Added previousPassword check to updating user password in userRouter.
     General:
     - Created separate folder for routers.
     - Made useServerAPI.

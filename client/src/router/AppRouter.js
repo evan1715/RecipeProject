@@ -6,6 +6,7 @@ import AboutPage from '../components/home-components/AboutPage.js';
 import MyAccountPage from '../components/account-components/MyAccountPage.js';
 import SubmitRecipePage from '../components/account-components/SubmitRecipePage.js';
 import ViewMyRecipesPage from '../components/account-components/ViewMyRecipesPage.js';
+import UserRoute from './UserRoute.js';
 
 const AppRouter = () => (
     <Router>
@@ -23,11 +24,11 @@ const AppRouter = () => (
 
             <Route path={'/about'} component={AboutPage} />
 
-            <Route path='/myaccount' component={ MyAccountPage } />
+            <UserRoute path='/myaccount' component={ MyAccountPage } />
 
-            <Route path='/submitrecipe' component={ SubmitRecipePage } />
+            <UserRoute path='/submitrecipe' component={ SubmitRecipePage } />
             
-            <Route path='/myrecipes' component={ ViewMyRecipesPage } />
+            <UserRoute path='/myrecipes' component={ ViewMyRecipesPage } />
 
             <Route render={() => <h1>404</h1>} />
         </Switch>

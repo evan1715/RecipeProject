@@ -41,15 +41,15 @@ const SignInModal = (props) => {
             isOpen={ props.openSigninModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Empty response on open
-            onAfterClose={ () => (setResponse(''), handleClearError()) } //If modal gets closed, reset any response
+            onAfterClose={ () => (setResponse(''), handleClearError(), setPassword('')) } //If modal gets closed, reset any response
             contentLabel="Sign in" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
         >
             <h1 className="title">Sign In</h1>
             <form>
-                <input className="modal__form--input" value={ email } placeholder="email" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="modal__form--input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form--input" type="email" value={ email } placeholder="email" onChange={ (e) => setEmail(e.target.value) } />
+                <input className="modal__form--input" type="password" placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
             </form>
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 

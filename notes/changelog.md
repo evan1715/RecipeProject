@@ -61,6 +61,8 @@
         - Removed middleware/index.js & reducers/index.js to the graveyard. Graveyard is a folder in notes.
         - Modified index.js to support these changes.
     - Connected create account and login to redux. Created action and reducer. Saved token to local storage and wired up login.
+    Router: 
+    - Set up user private routes and redirect user if they aren't authenticated to the homepage if they're trying to access user pages.
     Server:
     - Fixed server server issue returning all user info without excluding password, tokens, and icon.
     - Added an error response when can't log in to better handle errors.

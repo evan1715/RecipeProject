@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom'; //not needed since user router was set up
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
@@ -446,7 +446,7 @@ const ChangeNameModal = (props) => {
 //Log out of all locations
 const LogoutAllModal = (props) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const { token, authenticated: isAuth } = useSelector(state => state.accountReducer);
 
     return (
@@ -461,7 +461,9 @@ const LogoutAllModal = (props) => {
             <button 
                 className="button" 
                 //If they're authorized, log out all, and push them to the homepage.
-                onClick={ isAuth && (() => (history.push('/'), dispatch(useServerAPI('logoutAll', token)))) }
+                onClick={ isAuth && (() => (
+                    // history.push('/'), //not needed since user router was set up
+                    dispatch(useServerAPI('logoutAll', token)))) }
             >
                 Yes
             </button>
@@ -475,7 +477,7 @@ const LogoutAllModal = (props) => {
 //Delete account
 const DeleteAccountModal = (props) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
     const [username, setUsername] = useState('');
 
@@ -483,7 +485,7 @@ const DeleteAccountModal = (props) => {
         //Just double checking to make sure the data seems right.
         if (isAuth && username === user.username) {
             //Once they're deleted and logged out, push them to the homepage.
-            history.push('/');
+            // history.push('/'); //not needed since user router was set up
             dispatch(useServerAPI('deleteUser', token));
         }
     }

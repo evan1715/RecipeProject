@@ -21,6 +21,11 @@ const UploadUserIconModal = (props) => {
     // const imageURL = `/user/${user._id}/icon`;
 
     const uploadIcon = () => {
+        //If no icon file is set, no need to dispatch
+        if (!iconFile) {
+            return;
+        }
+
         console.log("File type attempted to upload:", iconFile.type);
     
         //Check the file type
@@ -37,6 +42,12 @@ const UploadUserIconModal = (props) => {
         setTimeout(() => {
             window.location.reload();
         }, 2000);
+    }
+
+    const deleteIcon = () => {
+        if (isAuth && icon) {
+            dispatch(useServerAPI('deleteIcon', token));
+        }
     }
 
     useEffect(() => {
@@ -64,7 +75,7 @@ const UploadUserIconModal = (props) => {
             </form>
             { response && <p>{ response }</p> }
             <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ isAuth && (() => dispatch(useServerAPI('deleteIcon', token))) }>Delete icon</button>
+            <button className="button" onClick={ deleteIcon }>Delete icon</button>
             <button className="button" onClick={ isAuth && uploadIcon }>Upload</button>
         </Modal>
     )
@@ -80,7 +91,11 @@ const ChangeUsernameModal = (props) => {
 
     const updateUser = () => {
         const config = { token, username }
-        dispatch(useServerAPI('updateUser', config));
+
+        //If they haven't entered a username or if it isn't new, don't dispatch.
+        if (username && username !== user.username) {
+            dispatch(useServerAPI('updateUser', config));
+        }
     }
 
     const handleClearError = () => {
@@ -112,7 +127,7 @@ const ChangeUsernameModal = (props) => {
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
-                //If modal gets closed, clear user input
+                //If modal gets closed, clear user input from state
                 setUsername('');
                 //If modal gets closed, reset any response
                 setResponse('');
@@ -127,7 +142,7 @@ const ChangeUsernameModal = (props) => {
 
             <input 
                 className="modal__form--input" 
-                value={ username } 
+                // value={ username } 
                 placeholder="username" 
                 onChange={ (e) => setUsername(e.target.value) } 
             />
@@ -151,7 +166,11 @@ const ChangeEmailModal = (props) => {
 
     const updateUser = () => {
         const config = { token, email }
-        dispatch(useServerAPI('updateUser', config));
+
+        //if they haven't entered an email or it isn't new, don't dispatch.
+        if (email && email !== user.email) {
+            dispatch(useServerAPI('updateUser', config));
+        }
     }
 
     const handleClearError = () => {
@@ -183,7 +202,7 @@ const ChangeEmailModal = (props) => {
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
-                //If modal gets closed, clear user input
+                //If modal gets closed, clear user input from state
                 setEmail('');
                 //If modal gets closed, reset any response
                 setResponse(''); 
@@ -198,7 +217,7 @@ const ChangeEmailModal = (props) => {
 
             <input 
                 className="modal__form--input" 
-                value={ email } 
+                // value={ email } 
                 placeholder="email" 
                 onChange={ (e) => setEmail(e.target.value) } 
             />
@@ -221,6 +240,7 @@ const ChangePasswordModal = (props) => {
     const [previousPassword, setPreviousPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordVerified, setNewPasswordVerified] = useState('');
+    // const [previousPassBlur, setPreviousPassBlur] = useState([]);
 
     const updateUser = () => {
         const email = user.email;
@@ -231,7 +251,10 @@ const ChangePasswordModal = (props) => {
             return setResponse("New passwords do not match.");
         }
 
-        dispatch(useServerAPI('updateUser', config));
+        //If they haven't given all fields, don't dispatch.
+        if (previousPassword && newPassword && newPasswordVerified) {
+            dispatch(useServerAPI('updateUser', config));
+        }
     }
 
     const handleClearError = () => {
@@ -254,8 +277,18 @@ const ChangePasswordModal = (props) => {
             setTimeout(() => {
                 props.handleCloseModal();
             }, 2000);
+            // setTimeout(() => props.handleCloseModal(), 2000);
         }
     }, [user]);
+
+    // const handlePrevPassBlur = () => {
+    //     let str = '*';
+    //     for (var i = 0; i < previousPassword.length; i++) {
+    //         str += '*'
+    //     }
+    //     // setTimeout(() => setPreviousPassBlur(str), 1000);
+    //     setPreviousPassBlur(str);
+    // }
 
     return (
         <Modal
@@ -263,7 +296,9 @@ const ChangePasswordModal = (props) => {
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
-                //If modal gets closed, clear user input
+                //temp
+                // setPreviousPassBlur('');
+                //If modal gets closed, clear user input from state
                 setPreviousPassword('');
                 setNewPassword('');
                 setNewPasswordVerified('');
@@ -276,26 +311,54 @@ const ChangePasswordModal = (props) => {
             className="modal"
         >
             <h2 className="title">Update password</h2>
-
-            <input 
-                className="modal__form--input" 
-                value={ previousPassword } 
-                placeholder="current password"
-                onChange={ (e) => setPreviousPassword(e.target.value) }
-            />
-            <input
-                className="modal__form--input"
-                value={ newPassword }
-                placeholder="new password"
-                onChange={ (e) => setNewPassword(e.target.value) }
-            />
-            <input 
-                className="modal__form--input" 
-                value={ newPasswordVerified } 
-                placeholder="verify new password" 
-                onChange={ (e) => setNewPasswordVerified(e.target.value) } 
-            />
-
+            <form /*onSubmit={ (e) => e.preventDefault() }*/>
+                <input 
+                    className="modal__form--input" 
+                    id="prevPass"
+                    // value={ previousPassword } 
+                    // value={ previousPassBlur }
+                    title="current password"
+                    placeholder="current password"
+                    required
+                    type="password"
+                    onChange={ (e) => {
+                        setPreviousPassword(e.target.value);
+                        // handlePrevPassBlur();
+                    }}
+                />
+                <input type="checkbox" title="toggle visibility" onClick={ () => {
+                    var toggle = document.getElementById('prevPass');
+                    toggle.type === "password" ? toggle.type = "text" : toggle.type = "password"
+                }} />
+                <input
+                    className="modal__form--input"
+                    id="newPass"
+                    // value={ newPassword }
+                    title="new password"
+                    placeholder="new password"
+                    required
+                    type="password"
+                    onChange={ (e) => setNewPassword(e.target.value) }
+                />
+                <input type="checkbox" title="toggle visibility" onClick={ () => {
+                    var toggle = document.getElementById('newPass');
+                    toggle.type === "password" ? toggle.type = "text" : toggle.type = "password"
+                }} />
+                <input 
+                    className="modal__form--input" 
+                    id="verifyPass"
+                    // value={ newPasswordVerified } 
+                    title="verify new password"
+                    placeholder="verify new password"
+                    required
+                    type="password"
+                    onChange={ (e) => setNewPasswordVerified(e.target.value) } 
+                />
+                <input type="checkbox" title="toggle visibility" onClick={ () => {
+                    var toggle = document.getElementById('verifyPass');
+                    toggle.type === "password" ? toggle.type = "text" : toggle.type = "password"
+                }} />
+            </form>
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
@@ -315,7 +378,11 @@ const ChangeNameModal = (props) => {
 
     const updateUser = () => {
         const config = { token, name }
-        dispatch(useServerAPI('updateUser', config));
+
+        //If they haven't entered a name or it isn't new, don't dispatch
+        if (name && name !== user.name) {
+            dispatch(useServerAPI('updateUser', config));
+        }
     }
 
     const handleClearError = () => {
@@ -347,7 +414,7 @@ const ChangeNameModal = (props) => {
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
-                //If modal gets closed, clear user input
+                //If modal gets closed, clear user input from state
                 setName('');
                 //If modal gets closed, reset any response
                 setResponse(''); 
@@ -362,7 +429,7 @@ const ChangeNameModal = (props) => {
 
             <input 
                 className="modal__form--input" 
-                value={ name } 
+                // value={ name } 
                 placeholder="name" 
                 onChange={ (e) => setName(e.target.value) } 
             />
@@ -433,7 +500,7 @@ const DeleteAccountModal = (props) => {
             <p>Type your username to delete your account.</p>
             <input 
                 className="modal__form--input" 
-                value={ username } 
+                // value={ username } 
                 onChange={ (e) => setUsername(e.target.value) } 
             />
             <button className="button" onClick={ props.handleCloseModal }>Cancel</button>

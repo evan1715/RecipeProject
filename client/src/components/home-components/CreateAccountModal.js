@@ -14,11 +14,15 @@ const CreateAccountModal = (props) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordVerify, setPasswordVerify] = useState('');
     const [name, setName] = useState('');
 
     const createAccount = () => {
         const config = { username, email, password, name }
         // e.preventDefault(); //is this even necessary? -- no, doesn't seem like it.
+        if (password !== passwordVerify) {
+            return setResponse("Passwords do not match.");
+        }
         dispatch(useServerAPI('createAccount', config));
     }
 
@@ -32,9 +36,11 @@ const CreateAccountModal = (props) => {
         if (serverResponse.error) {
             setResponse(serverResponse.error);
         }
-        if (serverResponse.token) {
-            setResponse("Account created!");
-        }
+        // if (serverResponse.token) {
+            // setResponse("Account created!");
+            // props.handleCloseModal();
+            // setTimeout(() => props.handleCloseModal(), 1000);
+        // }
     }, [serverResponse]);
     
     return (
@@ -42,7 +48,16 @@ const CreateAccountModal = (props) => {
             isOpen={ !!props.openCreateAccountModal }
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Empty response on open
-            onAfterClose={ () => (setResponse(''), handleClearError()) } //If modal gets closed, reset any response
+            onAfterClose={ () => {
+                //Reset password input
+                setPassword('');
+                setPasswordVerify('');
+                //If modal gets closed, reset any response
+                setResponse('');
+                handleClearError();
+                //putting this here because modal will pop up if user immediately signs out without changing the page
+                props.handleCloseModal();
+            }}
             contentLabel="Create Account"
             closeTimeoutMS={ 250 }
             className="modal"
@@ -52,8 +67,9 @@ const CreateAccountModal = (props) => {
             {/* Changed this to a submit button outside of the form */}
             <form>
                 <input className="modal__form--input" value={ username } placeholder="username" onChange={ (e) => setUsername(e.target.value) } />
-                <input className="modal__form--input" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="modal__form--input" value={ password } placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form--input" type="email" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
+                <input className="modal__form--input" type="password" placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form--input" type="password" placeholder="verify password" onChange={ (e) => setPasswordVerify(e.target.value) } />
                 <input className="modal__form--input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
                 {/* <button className="createAccountModal__button">Submit</button> */}
             </form>

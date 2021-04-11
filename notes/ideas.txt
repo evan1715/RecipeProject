@@ -4,7 +4,6 @@
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
 - Put a pop up module on deleting recipes asking, "Are you sure?"
-- Set up private links and public links. "My account" settings for example.
 - Have the popout/burger menu close when clicking outside of it.
 
 
@@ -14,6 +13,7 @@ Completed:
 + Use a react modal to pop up and sign into the website.
 + Redirect once account is created. PShow we're actively signed in.
 + Send back errors from mongodb when creating account or logging in.
++ Set up private links and public links. "My account" settings for example.
 
 
 

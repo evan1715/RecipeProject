@@ -5,7 +5,7 @@
 
 
 
-    3-13-2021 - 4-10-2021
+    3-13-2021 - 4-11-2021
     SCSS:
     - Rearranged and cleaned up a bit.
     - Made a pop out modal for sign in, but pending on whether to just make it a page or make the modal work on the burger drop down menu.
@@ -14,23 +14,39 @@
     - Added scss for my-account-page.
     Component:
     - Modified CreateAccountModal and SignInModal.
+    -- Added html type password & type email.
+    -- Reset states on close.
+    -- CreateAccountModal now has verify password for the user to type twice. Added check to ensure both passwords are the same.
+    -- CreateAccountModal now has props.handleCloseModal() in onAfterClose to close the modal after a successful login and the buttons change. This was because if the user immediately logged out after creating an account, the modal would pop up again.
     - Created placeholder account components. SubmitRecipe and ViewMyRecipes.
     -- Renamed them to SubmitRecipePage and ViewMyRecipesPage
     - Created placeholder about page.
     - Created MyAccountMenu, but pending work.
     - Created MyAccountPage.
-    - Created modals for MyAccountPage.
-    -- Users can now upload or modify their user icon, change their username, email, password, name, log out of all locations, and delete account through the website to the server to the database.
-    -- Created errors, closing modals, resetting responses, filtering upload files, and a lot more.
-    -- Added URL.revokeObjectURL to UploadUserIconModal to free up temporary browser storage while in the app.
-    -- Added timer for modals to exit after successful update.
-    -- Added some userinfo to the left side of the page.
-    -- If they log out or delete account, they'll be rerouted to the homepage.
-    -- Renamed openModal to signinModal, put modal closed when logging out.
-    -- Set all modals to reset responses and state once modal closes. 
-    -- Opening a modal now also resets response.
-    -- Better cleared errors by dispatching server response to null upon closing modals.
-    -- Added current password check when setting a new password.
+    - Created modals for MyAccountPage. {
+        -- Users can now upload or modify their user icon, change their username, email, password, name, log out of all locations, and delete account through the website to the server to the database.
+        -- Created errors, closing modals, resetting responses, filtering upload files, and a lot more.
+        -- Added URL.revokeObjectURL to UploadUserIconModal to free up temporary browser storage while in the app.
+        -- Added timer for modals to exit after successful update.
+        -- Added some userinfo to the left side of the page.
+        -- If they log out or delete account, they'll be rerouted to the homepage.
+        -- Renamed openModal to signinModal, put modal closed when logging out.
+        -- Set all modals to reset responses and state once modal closes. 
+        -- Opening a modal now also resets response.
+        -- Better cleared errors by dispatching server response to null upon closing modals.
+        -- Added current password check when setting a new password.
+        -- Renamed AccountModals.js to MyAccountModals.js to align with MyAccountPage
+        -- Closing modals reset states on close.
+        -- Changing password now asks for previous password, checks it on the server, blurs the passwords with html type password, and now has a toggle for each field to view the password or to blur it again.
+        -- Added dispatch checks {
+            -- If there is no iconFile, it will be returned and not dispatch.
+            -- If there is no icon to delete, it will not dispatch.
+            -- If there is no username and the username hasn't changed, it will not dispatch.
+            -- If there is no email and the email hasn't changed, it will not dispatch.
+            -- If there is no password in all three fields, it will not dispatch.
+            -- If there is no name and the name hasn't changed, it will not dispatch.
+        }
+    }
     - Got rid of server response message when exiting a modal.
     - Got rid of child key value error on Nav.js and RecipeRoulette.js
     - Fixed up create account, sign in, sign out, view my recipes buttons and modals.
@@ -54,6 +70,7 @@
     - Created separate folder for routers.
     - Made useServerAPI.
     - Reworked useServerAPI and added stuff (like hundreds of times).
+    -- Added better error handling of useServerAPI
     - Modified some package.json scripts, index.html files, webpack, and server.js.
     - Modified some pages to use double quotes in HTML, single quotes in JS, and double quotes when sending messages.
     - Added more notes in the notes folder.

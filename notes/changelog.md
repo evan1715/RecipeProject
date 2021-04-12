@@ -4,6 +4,32 @@
 
 
 
+    4-12-2021 - 
+    Client:
+        Actions:
+            - 4-12, Made up a draft for userRecipes actions.
+        Components:
+            - 4-12, Set up a draft for SubmitRecipePage.
+        Database/Hooks/Utilities:
+            - 4-12, Made a draft for recipeServerAPI for fetching from the server.
+        Index:
+            - 
+        Reducers:
+            - 4-12, Created a draft for userRecipe reducer
+        Router:
+            - 
+        SCSS:
+            - 
+        Store:
+            - 
+    General/Notes:
+        - 4-12, Edited changelog and ideas.
+    Server:
+        - 
+
+
+
+
 
     3-13-2021 - 4-11-2021
     SCSS:

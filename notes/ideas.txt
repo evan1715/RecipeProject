@@ -5,6 +5,7 @@
 - Convert project to NextJS.
 - Put a pop up module on deleting recipes asking, "Are you sure?"
 - Have the popout/burger menu close when clicking outside of it.
+- Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
 
 
 

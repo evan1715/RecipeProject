@@ -7,25 +7,44 @@
     4-12-2021 - 
     Client:
         Actions:
-            - 4-12, Made up a draft for userRecipes actions.
+            - 4-12: Made up a draft for userRecipes actions.
+            - 4-13: {
+                - Extracted serverErrorAction from account actions and made it its own thing.
+                - Edited submitRecipeAction to take in the data received.
+            }
         Components:
-            - 4-12, Set up a draft for SubmitRecipePage.
+            - 4-12: Set up a draft for SubmitRecipePage.
+            - 4-13: {
+                - Since serverError is now its own thing, CreateAccountModal, SignInModal, and all MyAccountModals were modified accordingly to adapt to the new method of handling errors.
+                - Cleaned up MyAccountModal some.
+                - Expanded SubmitRecipePage by making it more functional and ready to use. Added dispatch, state, selector, use effect, server response handling, adding ingredients, deleting ingredients, mapping and displaying ingredients as they're added, and a place for the response above the buttons.
+                - Made an Ingredient.js to see if I am going to extract pieces of SubmitRecipePage into multiple components or not. Pending on what I'll do.
+            }
         Database/Hooks/Utilities:
-            - 4-12, Made a draft for recipeServerAPI for fetching from the server.
+            - 4-12: Made a draft for recipeServerAPI for fetching from the server.
+            - 4-13: {
+                - useServerAPI now reflects the serverError difference and was cleaned up some.
+                - recipeServerAPI was modified to reflect separate file for serverErrorAction and modified some of the fetch, mainly submitRecipe.
+            }
         Index:
             - 
         Reducers:
-            - 4-12, Created a draft for userRecipe reducer
+            - 4-12: Created a draft for userRecipe reducer.
+            - 4-13: {
+                - Extracted serverError from accountReducer and made its own reducer.
+                - userRecipeReducer now takes in the data from action.
+            }
         Router:
             - 
         SCSS:
             - 
         Store:
-            - 
+            - 4-13: Added serverErrorReducer.
     General/Notes:
-        - 4-12, Edited changelog and ideas.
+        - 4-12: Edited changelog and ideas.
+        - 4-13: Edited changelog and notes.
     Server:
-        - 
+        - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
 
 
 

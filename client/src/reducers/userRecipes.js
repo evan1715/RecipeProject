@@ -1,7 +1,9 @@
 const userRecipesReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SUBMIT_RECIPE':
-            return;
+            return {
+                ...action.recipe
+            };
         case 'ALL_RECIPES':
             return;
         case 'MY_RECIPES':

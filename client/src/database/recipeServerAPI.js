@@ -25,7 +25,7 @@
     - /recipes/:id/pictures
 */
 
-import { serverErrorAction } from '../actions/account.js';
+import { serverErrorAction } from '../actions/serverError.js';
 import {
     submitRecipeAction,
     allRecipesAction,
@@ -33,11 +33,11 @@ import {
     getRecipeAction,
     updateRecipeAction,
     deleteRecipeAction,
-    // uploadPicturesAction,
     getRecipePicturesAction,
     deletePicturesAction
 } from '../actions/userRecipes.js';
 
+//Take in the call. Based on type, send it to a function as well as what's being passed into it (config).
 const recipeServerAPI = (type, config) => {
     switch (type) {
         case 'submitRecipe': //post
@@ -76,19 +76,17 @@ const handleResponse = (res) => {
 const handleDataError = (data) => {
     var message;
     
-    console.log("Server data sent back: ", data);
+    // console.log("Server data sent back: ", data);
 
     if (data.name === 'MongoError') {
         message = data;
     } else if (data.error) {
         message = data.error;
     } else if (data.errors) {
-        message = data.errors
+        message = data.errors;
     }
 
-    if (message) {
-        return dispatch => dispatch(serverErrorAction(message));
-    }
+    return message;
 }
 
 //Handle errors caught by catch.
@@ -101,6 +99,8 @@ const handleCatchError = (error) => {
 const submitRecipe = (config) => {
     const { title, cookTime, ingredients, instructions, token } = config;
     //ingredients is an array containing amount{}, measurement{}, item{}
+
+    console.log("Config from SubmitRecipe fetch:", config);
 
     return dispatch => {
         fetch('/recipes', {
@@ -118,8 +118,12 @@ const submitRecipe = (config) => {
         })
         .then(res => handleResponse(res))
         .then(data => {
-            dispatch(submitRecipeAction(data));
-            handleDataError(data);
+            console.log("Server data sent back: ", data);
+            if (data._id) {
+                dispatch(submitRecipeAction(data));
+            } else if (data.errors) {
+                dispatch(serverErrorAction(handleDataError(data)));
+            }
         })
         .catch(error => handleCatchError(error));
     }
@@ -133,6 +137,7 @@ const allRecipes = () => {
         })
         .then(res => handleResponse(res))
         .then(data => {
+            console.log("Server data sent back: ", data);
             dispatch(allRecipesAction(data));
             handleDataError(data);
         })
@@ -148,6 +153,7 @@ const myRecipes = (username) => {
         })
         .then(res => handleResponse(res))
         .then(data => {
+            console.log("Server data sent back: ", data);
             dispatch(myRecipesAction(data));
             handleDataError(data);
         })
@@ -163,6 +169,7 @@ const getRecipe = (recipe_id) => {
         })
         .then(res => handleResponse(res))
         .then(data => {
+            console.log("Server data sent back: ", data);
             dispatch(getRecipeAction);
             handleDataError(data);
         })
@@ -188,6 +195,7 @@ const updateRecipe = (config) => {
         })
         .then(res => handleResponse(res))
         .then(data => {
+            console.log("Server data sent back: ", data);
             dispatch(updateRecipeAction(data));
             handleDataError(data);
         })

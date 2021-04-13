@@ -1,6 +1,7 @@
 //Submit a recipe
-const submitRecipeAction = () => ({
-    type: 'SUBMIT_RECIPE'
+const submitRecipeAction = (data) => ({
+    type: 'SUBMIT_RECIPE',
+    recipe: data
 });
 
 //ALL_RECIPES
@@ -45,7 +46,6 @@ export {
     getRecipeAction,
     updateRecipeAction,
     deleteRecipeAction,
-    // uploadPicturesAction,
     getRecipePicturesAction,
     deletePicturesAction
 }

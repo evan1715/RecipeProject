@@ -61,6 +61,17 @@ recipeSchema.path('pictures').validate((num) => {
     }
 });
 
+//Adding array of ingredients to the schema
+// recipeSchema.methods.addIngredient = async function () {
+//     const recipe = this;
+//     const ingredient = ingrdient......
+
+//     recipe.ingredients = recipe.ingredients.concat({})
+//     recipe.save();
+
+//     return;
+// }
+
 
 
 const Recipe = mongoose.model('Recipe', recipeSchema);

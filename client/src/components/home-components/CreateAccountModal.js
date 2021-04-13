@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
-import { serverErrorAction } from '../../actions/account.js';
+import { clearErrorAction } from '../../actions/serverError.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
 
 const CreateAccountModal = (props) => {
     const dispatch = useDispatch();
-    const serverResponse = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -19,29 +19,25 @@ const CreateAccountModal = (props) => {
 
     const createAccount = () => {
         const config = { username, email, password, name }
-        // e.preventDefault(); //is this even necessary? -- no, doesn't seem like it.
+
         if (password !== passwordVerify) {
             return setResponse("Passwords do not match.");
         }
+        
         dispatch(useServerAPI('createAccount', config));
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction())
         }
     }
 
     useEffect(() => {        
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
-        // if (serverResponse.token) {
-            // setResponse("Account created!");
-            // props.handleCloseModal();
-            // setTimeout(() => props.handleCloseModal(), 1000);
-        // }
-    }, [serverResponse]);
+    }, [serverError]);
     
     return (
         <Modal
@@ -63,15 +59,12 @@ const CreateAccountModal = (props) => {
             className="modal"
         >
             <h2 className="title">Create Account</h2>
-            {/* <form onSubmit={ createAccount }> */}
-            {/* Changed this to a submit button outside of the form */}
             <form>
                 <input className="modal__form--input" value={ username } placeholder="username" onChange={ (e) => setUsername(e.target.value) } />
                 <input className="modal__form--input" type="email" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
                 <input className="modal__form--input" type="password" placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
                 <input className="modal__form--input" type="password" placeholder="verify password" onChange={ (e) => setPasswordVerify(e.target.value) } />
                 <input className="modal__form--input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
-                {/* <button className="createAccountModal__button">Submit</button> */}
             </form>
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 

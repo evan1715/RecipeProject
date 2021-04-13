@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
-import { serverErrorAction } from '../../actions/account.js';
+import { clearErrorAction } from '../../actions/serverError.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -10,6 +10,7 @@ Modal.setAppElement('#root');
 const SignInModal = (props) => {
     const dispatch = useDispatch();
     const serverResponse = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,21 +21,21 @@ const SignInModal = (props) => {
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction());
         }
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
         if (serverResponse.token) {
             setResponse('');
             props.handleCloseModal();
         }
 
-    }, [serverResponse]);
+    }, [serverResponse, serverError]);
 
     return (
         <Modal

@@ -31,8 +31,8 @@ import {
     updateUserAction,
     getIconAction,
     deleteUserIconAction,
-    serverErrorAction
 } from '../actions/account.js';
+import { serverErrorAction } from '../actions/serverError.js';
 
 const useServerAPI = (type, config) => {
     switch (type) {
@@ -62,11 +62,10 @@ const useServerAPI = (type, config) => {
 const handleResponse = (res) => {
     if (res.ok) { //if res.status = 200-299
         console.log(res.status, "Server URL success. Server response: ", res);
-        // console.log(res.json());
     } else if (!res.ok) { //if res.status = 400-599
         console.log(res.status, "Server URL unsuccessful.");
-        // console.log(res.json());
     }
+
     return res.json();
 }
 
@@ -84,9 +83,7 @@ const handleMongoError = (data) => {
     } else if (data.errors) {
         //email handler
         if (data.errors.email) {
-            // if (data.errors.email.message === 'Email is invalid.') {
-                message = data.errors.email.message;
-            // }
+            message = data.errors.email.message;
         }
 
         //password handler
@@ -194,12 +191,7 @@ const logout = (token) => {
             method: 'POST',
             headers: { 'Authorization': token }
         })
-        .then(res => {
-            handleResponse(res);
-            if (res.ok) {
-                dispatch(logoutAction(token));
-            }
-        })
+        .then(res => res.ok && dispatch(logoutAction(token)))
         .catch(error => handleCatchError(error));
     }
 }
@@ -211,12 +203,7 @@ const logoutAll = (token) => {
             method: 'POST',
             headers: { 'Authorization': token }
         })
-        .then(res => {
-            handleResponse(res);
-            if (res.ok) {
-                dispatch(logoutAction(token));
-            }
-        })
+        .then(res => res.ok && dispatch (logoutAction(token)))
         .catch(error => handleCatchError(error));
     }
 }

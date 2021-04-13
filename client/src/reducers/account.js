@@ -32,11 +32,6 @@ const accountReducer = (state = {}, action) => {
                 ...state,
                 icon: null
             }
-        case 'SERVER_ERROR':
-            return {
-                ...state,
-                error: action.error
-            }
         default:
             return state;
     }

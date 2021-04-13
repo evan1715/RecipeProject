@@ -31,3 +31,8 @@ If we want to reference a function and pass an argument into it with additional 
     <button onClick={ () => { handleRoute('/myrecipes'); handleOtherThing() }}>View or edit my recipes</button>
     or
     <button onClick={ () => (handleRoute('/myrecipes'), handleOtherThing()) }>View or edit my recipes</button>
+
+
+
+// const htmlImage = `data:image/jpg;base64,${user.icon}`;
+// const imageURL = `/user/${user._id}/icon`;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom'; //not needed since user router was set up
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
 import useServerAPI from '../../hooks/useServerAPI.js';
-import { serverErrorAction } from '../../actions/account.js';
+import { clearErrorAction } from '../../actions/serverError.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -17,8 +16,6 @@ const UploadUserIconModal = (props) => {
     const [iconFile, setIconFile] = useState();
     const [response, setResponse] = useState();
     const user_id = user._id;
-    // const htmlImage = `data:image/jpg;base64,${user.icon}`;
-    // const imageURL = `/user/${user._id}/icon`;
 
     const uploadIcon = () => {
         //If no icon file is set, no need to dispatch
@@ -84,8 +81,8 @@ const UploadUserIconModal = (props) => {
 //Change username
 const ChangeUsernameModal = (props) => {
     const dispatch = useDispatch();
-    const serverResponse = useSelector(state => state.accountReducer);
-    const { user, token, authenticated: isAuth } = serverResponse;
+    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState('');
     const [username, setUsername] = useState('');
 
@@ -99,16 +96,16 @@ const ChangeUsernameModal = (props) => {
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction())
         }
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
-    }, [serverResponse.error]);
+    }, [serverError]);
 
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
@@ -142,7 +139,6 @@ const ChangeUsernameModal = (props) => {
 
             <input 
                 className="modal__form--input" 
-                // value={ username } 
                 placeholder="username" 
                 onChange={ (e) => setUsername(e.target.value) } 
             />
@@ -159,8 +155,8 @@ const ChangeUsernameModal = (props) => {
 //Change email
 const ChangeEmailModal = (props) => {
     const dispatch = useDispatch();
-    const serverResponse = useSelector(state => state.accountReducer);
-    const { user, token, authenticated: isAuth } = serverResponse;
+    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer)
     const [response, setResponse] = useState('');
     const [email, setEmail] = useState('');
 
@@ -174,16 +170,16 @@ const ChangeEmailModal = (props) => {
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction())
         }
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
-    }, [serverResponse.error]);
+    }, [serverError]);
 
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
@@ -217,7 +213,6 @@ const ChangeEmailModal = (props) => {
 
             <input 
                 className="modal__form--input" 
-                // value={ email } 
                 placeholder="email" 
                 onChange={ (e) => setEmail(e.target.value) } 
             />
@@ -234,13 +229,12 @@ const ChangeEmailModal = (props) => {
 //Change password
 const ChangePasswordModal = (props) => {
     const dispatch = useDispatch();
-    const serverResponse = useSelector(state => state.accountReducer);
-    const { user, token, authenticated: isAuth } = serverResponse;
+    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState('');
     const [previousPassword, setPreviousPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordVerified, setNewPasswordVerified] = useState('');
-    // const [previousPassBlur, setPreviousPassBlur] = useState([]);
 
     const updateUser = () => {
         const email = user.email;
@@ -258,16 +252,16 @@ const ChangePasswordModal = (props) => {
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction())
         }
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
-    }, [serverResponse.error]);
+    }, [serverError]);
 
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
@@ -277,18 +271,8 @@ const ChangePasswordModal = (props) => {
             setTimeout(() => {
                 props.handleCloseModal();
             }, 2000);
-            // setTimeout(() => props.handleCloseModal(), 2000);
         }
     }, [user]);
-
-    // const handlePrevPassBlur = () => {
-    //     let str = '*';
-    //     for (var i = 0; i < previousPassword.length; i++) {
-    //         str += '*'
-    //     }
-    //     // setTimeout(() => setPreviousPassBlur(str), 1000);
-    //     setPreviousPassBlur(str);
-    // }
 
     return (
         <Modal
@@ -296,8 +280,6 @@ const ChangePasswordModal = (props) => {
             onRequestClose={ props.handleCloseModal }
             onAfterOpen={ () => setResponse('') } //Clear responses when modal opens
             onAfterClose={ () => { 
-                //temp
-                // setPreviousPassBlur('');
                 //If modal gets closed, clear user input from state
                 setPreviousPassword('');
                 setNewPassword('');
@@ -311,20 +293,15 @@ const ChangePasswordModal = (props) => {
             className="modal"
         >
             <h2 className="title">Update password</h2>
-            <form /*onSubmit={ (e) => e.preventDefault() }*/>
+            <form>
                 <input 
                     className="modal__form--input" 
                     id="prevPass"
-                    // value={ previousPassword } 
-                    // value={ previousPassBlur }
                     title="current password"
                     placeholder="current password"
                     required
                     type="password"
-                    onChange={ (e) => {
-                        setPreviousPassword(e.target.value);
-                        // handlePrevPassBlur();
-                    }}
+                    onChange={ (e) => setPreviousPassword(e.target.value) }
                 />
                 <input type="checkbox" title="toggle visibility" onClick={ () => {
                     var toggle = document.getElementById('prevPass');
@@ -333,7 +310,6 @@ const ChangePasswordModal = (props) => {
                 <input
                     className="modal__form--input"
                     id="newPass"
-                    // value={ newPassword }
                     title="new password"
                     placeholder="new password"
                     required
@@ -347,7 +323,6 @@ const ChangePasswordModal = (props) => {
                 <input 
                     className="modal__form--input" 
                     id="verifyPass"
-                    // value={ newPasswordVerified } 
                     title="verify new password"
                     placeholder="verify new password"
                     required
@@ -371,8 +346,8 @@ const ChangePasswordModal = (props) => {
 //Change name
 const ChangeNameModal = (props) => {
     const dispatch = useDispatch();
-    const serverResponse = useSelector(state => state.accountReducer);
-    const { user, token, authenticated: isAuth } = serverResponse;
+    const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState('');
     const [name, setName] = useState('');
 
@@ -386,16 +361,16 @@ const ChangeNameModal = (props) => {
     }
 
     const handleClearError = () => {
-        if (serverResponse.error != null) {
-            dispatch(serverErrorAction(null))
+        if (serverError.error != null) {
+            dispatch(clearErrorAction())
         }
     }
 
     useEffect(() => {
-        if (serverResponse.error) {
-            setResponse(serverResponse.error);
+        if (serverError.error) {
+            setResponse(serverError.error);
         }
-    }, [serverResponse.error]);
+    }, [serverError]);
 
     useEffect(() => {
         //If the userinfo changes in redux, that means it worked. Tell the user it updated.
@@ -446,7 +421,6 @@ const ChangeNameModal = (props) => {
 //Log out of all locations
 const LogoutAllModal = (props) => {
     const dispatch = useDispatch();
-    // const history = useHistory();
     const { token, authenticated: isAuth } = useSelector(state => state.accountReducer);
 
     return (
@@ -460,10 +434,8 @@ const LogoutAllModal = (props) => {
             <h2 className="title">Are you sure you want to logout of all locations?</h2>
             <button 
                 className="button" 
-                //If they're authorized, log out all, and push them to the homepage.
-                onClick={ isAuth && (() => (
-                    // history.push('/'), //not needed since user router was set up
-                    dispatch(useServerAPI('logoutAll', token)))) }
+                //If they're authorized, log out all, and they'll be redirected to the homepage.
+                onClick={ isAuth && (() => (dispatch(useServerAPI('logoutAll', token)))) }
             >
                 Yes
             </button>
@@ -477,15 +449,13 @@ const LogoutAllModal = (props) => {
 //Delete account
 const DeleteAccountModal = (props) => {
     const dispatch = useDispatch();
-    // const history = useHistory();
     const { user, token, authenticated: isAuth } = useSelector(state => state.accountReducer);
     const [username, setUsername] = useState('');
 
     const handleDeleteUser = () => {
         //Just double checking to make sure the data seems right.
         if (isAuth && username === user.username) {
-            //Once they're deleted and logged out, push them to the homepage.
-            // history.push('/'); //not needed since user router was set up
+            //Once they're deleted and logged out, they'll be redirected to the homepage.
             dispatch(useServerAPI('deleteUser', token));
         }
     }
@@ -500,11 +470,7 @@ const DeleteAccountModal = (props) => {
         >
             <h2 className="title">Are you sure you want to delete your account?</h2>
             <p>Type your username to delete your account.</p>
-            <input 
-                className="modal__form--input" 
-                // value={ username } 
-                onChange={ (e) => setUsername(e.target.value) } 
-            />
+            <input className="modal__form--input" onChange={ (e) => setUsername(e.target.value) } />
             <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
             <button className="button" onClick={ handleDeleteUser }>Delete</button>
         </Modal>

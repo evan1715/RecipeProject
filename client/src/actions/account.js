@@ -54,15 +54,6 @@ const deleteUserIconAction = (user) => ({
     user: user
 });
 
-//SERVER_ERROR
-const serverErrorAction = (data) => {
-    console.log("serverErrorAction fired:", data)
-    return {
-        type: 'SERVER_ERROR',
-        error: data
-    }
-}
-
 
 export {
     loginAction,
@@ -71,5 +62,4 @@ export {
     updateUserAction,
     getIconAction,
     deleteUserIconAction,
-    serverErrorAction
 }

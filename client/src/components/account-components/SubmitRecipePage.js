@@ -6,7 +6,7 @@ const SubmitRecipe = () => {
     const dispatch = useDispatch();
     const userState = useSelector(state => state.accountReducer);
     const userRecipeState = useSelector(state => state.userRecipesReducer);
-    const serverError = useSelector(state => state.serverError);
+    const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState();
     const [title, setTitle] = useState(''); //title of recipe
     const [cookTime, setCookTime] = useState();

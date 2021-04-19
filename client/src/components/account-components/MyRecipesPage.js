@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const MyRecipesPage = () => {
-    const [recipes, setRecipes] = useState([]);
-    
-    //How do we retrieve recipe ids, recipe titles and list them for a user?
-        //^^could create local recipes in state to test it out first before retrieving the database
-    //is recipe.id and recipe.title correct? is setRecipes correct?
-    //should we use <li> to list out them all?
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.accountReducer);
+    const userRecipes = useSelector(state => state.userRecipesReducer);
+
     //let's include a remove option with an "are you sure?" modal
 
     //view my recipes
@@ -16,13 +16,16 @@ const MyRecipesPage = () => {
     //upload pictures to recipe
     //delete pictures of recipe
 
+    useEffect(() => {
+        dispatch(recipeServerAPI('myRecipes', user.username));
+    }, []);
+
     return (
         <div>
-            <h1 className="title"></h1>
-            { recipes.map((recipe) => (
-                <div key={ recipe.id }>
-                    <h3>{ recipe.title }</h3>
-                </div>
+            <h1 className="title">My Recipes</h1>
+            { userRecipes.length < 1 && <p>You haven't submitted any recipes yet!</p> }
+            { userRecipes.length > 0 && userRecipes.map((recipe) => (
+                <h3 key={ recipe._id }>{ recipe.title }</h3>
             ))}
         </div>
     )

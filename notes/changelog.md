@@ -47,6 +47,7 @@
             - 
         Store:
             - 4-13: Added serverErrorReducer.
+            - 4-18: Redux logger now collapses messages so it doesn't take up as much space.
     General/Notes:
         - 4-12: Edited changelog and ideas.
         - 4-13: Edited changelog and notes.

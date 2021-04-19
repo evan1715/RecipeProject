@@ -5,8 +5,9 @@ const submitRecipeAction = (data) => ({
 });
 
 //ALL_RECIPES
-const allRecipesAction = () => ({
-    type: 'ALL_RECIPES'
+const allRecipesAction = (recipes) => ({
+    type: 'ALL_RECIPES',
+    recipes
 });
 
 //MY_RECIPES
@@ -38,6 +39,10 @@ const deletePicturesAction = () => ({
     type: 'DELETE_RECIPE_PICTURES'
 });
 
+const clearUserRecipesAction = () => ({
+    type: 'CLEAR_USER_RECIPES'
+});
+
 
 export {
     submitRecipeAction,
@@ -47,5 +52,6 @@ export {
     updateRecipeAction,
     deleteRecipeAction,
     getRecipePicturesAction,
-    deletePicturesAction
+    deletePicturesAction,
+    clearUserRecipesAction
 }

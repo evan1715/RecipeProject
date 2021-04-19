@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ViewMyRecipesPage = () => {
+const MyRecipesPage = () => {
     const [recipes, setRecipes] = useState([]);
     
     //How do we retrieve recipe ids, recipe titles and list them for a user?
@@ -28,4 +28,4 @@ const ViewMyRecipesPage = () => {
     )
 }
 
-export { ViewMyRecipesPage as default }
+export { MyRecipesPage as default }

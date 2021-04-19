@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
+import { clearErrorAction } from '../../actions/serverError.js';
+import { clearUserRecipesAction } from '../../actions/userRecipes.js';
 
 const SubmitRecipe = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const userState = useSelector(state => state.accountReducer);
     const userRecipeState = useSelector(state => state.userRecipesReducer);
     const serverError = useSelector(state => state.serverErrorReducer);
@@ -21,7 +25,8 @@ const SubmitRecipe = () => {
         const token = userState.token;
         const config = { title, cookTime, ingredients, instructions, token }
         
-        if (ingredients) {
+        if (ingredients.length > 0) {
+            dispatch(clearErrorAction());
             dispatch(recipeServerAPI('submitRecipe', config));
         } else {
             setResponse("You have to add ingredients!");
@@ -44,16 +49,24 @@ const SubmitRecipe = () => {
 
             newState.splice(index, 1);
 
-            return [...newState];
+            return newState;
         })
     )}
 
     //Check if there's any server errors sent back whenever the state changes and display them.
     useEffect(() => {
-        if (serverError.errors) {
-            setResponse(serverError.message);
-        }
+            setResponse(serverError.error);
     }, [serverError]);
+
+    useEffect(() => {
+        if (userRecipeState._id) {
+            setResponse("Submitted!");
+            setTimeout(() => {
+                history.push('/');
+                dispatch(clearUserRecipesAction());
+            }, 2000);
+        }
+    }, [userRecipeState._id]);
 
     return (
         <div>
@@ -108,7 +121,10 @@ const SubmitRecipe = () => {
                 />
             </form>
             { response && <p>{ response }</p> }
-                <button className="button">Cancel</button>
+                <button className="button" onClick={ () => {
+                    dispatch(clearErrorAction());
+                    history.push('/');
+                }}>Cancel</button>
                 <button className="button" onClick={ submitRecipe }>Submit</button>
         </div>
     )

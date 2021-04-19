@@ -74,7 +74,7 @@ const handleResponse = (res) => {
 
 //Handle errors sent back in data.
 const handleDataError = (data) => {
-    var message;
+    let message;
     
     // console.log("Server data sent back: ", data);
 
@@ -83,7 +83,21 @@ const handleDataError = (data) => {
     } else if (data.error) {
         message = data.error;
     } else if (data.errors) {
-        message = data.errors;
+        if (data.errors.instructions) {
+            message = "Instructions for your recipe are required.";
+        } else if (data.errors.title) {
+            message = "Title for your recipe is required.";
+        }
+    }
+    
+    if (data.message) {
+        if (data.message.includes('amount') || data.message.includes('measurement') || data.message.includes('item')) {
+            message = "All three fields of amount, measurement, and ingredient type are required for each added ingredient.";
+        }
+        if (data.message.includes('Cast to Number failed')) {
+            message = "Number not accepted. Could be a fractional error. Try converting to decimal."
+        }
+        console.log(data.message);
     }
 
     return message;
@@ -91,7 +105,7 @@ const handleDataError = (data) => {
 
 //Handle errors caught by catch.
 const handleCatchError = (error) => {
-    console.log("Response error message: ", error.message);
+    console.log("Response error message: ", error);
 }
 
 
@@ -99,8 +113,6 @@ const handleCatchError = (error) => {
 const submitRecipe = (config) => {
     const { title, cookTime, ingredients, instructions, token } = config;
     //ingredients is an array containing amount{}, measurement{}, item{}
-
-    console.log("Config from SubmitRecipe fetch:", config);
 
     return dispatch => {
         fetch('/recipes', {
@@ -284,4 +296,10 @@ const deletePictures = (config) => {
 }
 
 
-export { recipeServerAPI as default }
+export { 
+    recipeServerAPI as default,
+    handleResponse,
+    handleDataError,
+    handleCatchError,
+    allRecipes
+ }

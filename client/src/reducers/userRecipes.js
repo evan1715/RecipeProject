@@ -5,7 +5,9 @@ const userRecipesReducer = (state = {}, action) => {
                 ...action.recipe
             };
         case 'ALL_RECIPES':
-            return;
+            return [
+                ...action.recipes
+            ]
         case 'MY_RECIPES':
             return;
         case 'GET_RECIPE':
@@ -26,6 +28,8 @@ const userRecipesReducer = (state = {}, action) => {
                 ...state,
                 pictures: null
             };
+        case 'CLEAR_USER_RECIPES':
+            return {};
         default:
             return state;
     }

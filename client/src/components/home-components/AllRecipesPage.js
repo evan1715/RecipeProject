@@ -1,31 +1,25 @@
 import React, { 
-    useState, 
+    // useState, 
     useEffect, 
     // useLayoutEffect 
 } from 'react';
 // import { useHistory } from 'react-router-dom';
-// import { 
-//     useDispatch, 
-//     useSelector 
-// } from 'react-redux';
-// import recipeServerAPI from '../../database/recipeServerAPI.js';
+import { useDispatch, useSelector } from 'react-redux';
+import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 
 const AllRecipesPage = () => {
-    // const dispatch = useDispatch();
-    // const allRecipes = useSelector(state => state.userRecipesReducer);
-    const [recipes, setRecipes] = useState([]);
-    // const recipes = await (await fetch('/recipes/all')).json();
+    const dispatch = useDispatch();
+    const allRecipes = useSelector(state => state.userRecipesReducer);
+    // const [recipes, setRecipes] = useState([]);
 
-    useEffect(async () => {
-        const data = await (await fetch('/recipes/all')).json();
-        setRecipes(data);
-        // dispatch(recipeServerAPI('allRecipes'));
+    useEffect(() => {
+        dispatch(recipeServerAPI('allRecipes'));
     }, []);
 
     return (
         <ul>
-            { recipes.length > 0 && recipes.map((recipe, index) => {
+            { allRecipes.length > 0 && allRecipes.map((recipe, index) => {
                 return (
                     <li key={ index }>
                         <p>Title: { recipe.title } Cooktime: { recipe.cookTime } Instructions: { recipe.instructions }</p>

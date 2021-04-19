@@ -25,12 +25,8 @@ const getUser = async () => {
 
     //If there's a token, retrieve user data before rendering the app.
     if (token) {
-        await fetch('/user/profile', {
-            method: 'GET',
-            headers: { 'Authorization': token }
-        })
-        .then(res => res.json())
-        .then(data => store.dispatch(loginAction(data, token)));
+        const user = await (await fetch('/user/profile', { headers: { 'Authorization': token }})).json();
+        store.dispatch(loginAction(user, token));
 
         renderApp();
     } else { //If there is no token, render the app.

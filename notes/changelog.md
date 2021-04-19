@@ -20,14 +20,21 @@
                 - Expanded SubmitRecipePage by making it more functional and ready to use. Added dispatch, state, selector, use effect, server response handling, adding ingredients, deleting ingredients, mapping and displaying ingredients as they're added, and a place for the response above the buttons.
                 - Made an Ingredient.js to see if I am going to extract pieces of SubmitRecipePage into multiple components or not. Pending on what I'll do.
             }
+            - 4-17: Fixed a typo error in SubmitRecipePage to serverErrorReducer instead of serverError.
+            - 4-18: {
+                - Renamed ViewMyRecipesPage to MyRecipesPage. 
+                - Drafted AllRecipesPage and adapted userRecipe reducer, & userRecipe action. 
+                - Added clearUserRecipes to action and reducer.
+                - Updated SubmitRecipePage to return to homepage on submit or cancel button. Added clearing errors.
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
                 - useServerAPI now reflects the serverError difference and was cleaned up some.
                 - recipeServerAPI was modified to reflect separate file for serverErrorAction and modified some of the fetch, mainly submitRecipe.
             }
+            - 4-18: Improved error handling for recipeServerAPI.
         Index:
-            - 
+            - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
         Reducers:
             - 4-12: Created a draft for userRecipe reducer.
             - 4-13: {
@@ -35,7 +42,7 @@
                 - userRecipeReducer now takes in the data from action.
             }
         Router:
-            - 
+            - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
         SCSS:
             - 
         Store:
@@ -43,6 +50,8 @@
     General/Notes:
         - 4-12: Edited changelog and ideas.
         - 4-13: Edited changelog and notes.
+        - 4-18: Updated packages and installed @babel/plugin-transform-runtime, @babel/runtime, and css-minimizer-webpack-plugin. Updated webpack, changed the plugin condition, and included css minimizer plugin as well as plugin-transform-runtime.
+        - 4-19: Deleted/moved files (middleware/logger.js, actions/shared.js, hooks/useAxios.js, hooks/useScript.js) to graveyard that weren't being used.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
 

@@ -11,8 +11,9 @@ const allRecipesAction = (recipes) => ({
 });
 
 //MY_RECIPES
-const myRecipesAction = () => ({
-    type: 'MY_RECIPES'
+const myRecipesAction = (recipes) => ({
+    type: 'MY_RECIPES',
+    recipes
 });
 
 //GET_RECIPE

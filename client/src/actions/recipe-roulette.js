@@ -19,6 +19,7 @@ const handleRecipeRoulette = (url, number) => async dispatch => {
         })
     } catch (error) {
         console.log(error);
+        dispatch(hideLoading());
     }
 }
 

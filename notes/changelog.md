@@ -13,7 +13,7 @@
                 - Edited submitRecipeAction to take in the data received.
             }
             - 4-18: Updated userRecipes. Added clear error.
-            - 4-21: Updated recipeRoulette.
+            - 4-21: Updated recipeRoulette. Added try catch in index.js to still load the app if there is a token, but can't contact database.
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleRecipeRoulette } from '../../actions/recipe-roulette'
+import handleRecipeRoulette from '../../actions/recipe-roulette'
 import IoTimeOutline from 'react-ionicons/lib/IosTimeOutline'
 import { Transition } from 'react-transition-group'
 

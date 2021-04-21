@@ -12,6 +12,8 @@
                 - Extracted serverErrorAction from account actions and made it its own thing.
                 - Edited submitRecipeAction to take in the data received.
             }
+            - 4-18: Updated userRecipes. Added clear error.
+            - 4-21: Updated recipeRoulette.
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -26,6 +28,7 @@
                 - Drafted AllRecipesPage and adapted userRecipe reducer, & userRecipe action. 
                 - Added clearUserRecipes to action and reducer.
                 - Updated SubmitRecipePage to return to homepage on submit or cancel button. Added clearing errors.
+                - Updated MyRecipesPage to show some functionality to it and list a user's recipes. Adapted action and reducer.
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -41,6 +44,8 @@
                 - Extracted serverError from accountReducer and made its own reducer.
                 - userRecipeReducer now takes in the data from action.
             }
+            -4-18: Updated user recipes. Added clear error.
+            - 4-21: Updated recipeRoulette.
         Router:
             - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
         SCSS:

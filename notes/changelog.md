@@ -38,6 +38,7 @@
             - 4-18: Improved error handling for recipeServerAPI.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
+            - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
         Reducers:
             - 4-12: Created a draft for userRecipe reducer.
             - 4-13: {

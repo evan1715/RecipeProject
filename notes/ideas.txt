@@ -3,7 +3,6 @@
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
-- Put a pop up module on deleting recipes asking, "Are you sure?"
 - Have the popout/burger menu close when clicking outside of it.
 - Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
 
@@ -15,6 +14,7 @@ Completed:
 + Redirect once account is created. PShow we're actively signed in.
 + Send back errors from mongodb when creating account or logging in.
 + Set up private links and public links. "My account" settings for example.
++ Put a pop up module on deleting recipes asking, "Are you sure?" -- No pop up, just asks for confirmation.
 
 
 

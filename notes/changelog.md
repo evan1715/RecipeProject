@@ -14,6 +14,7 @@
             }
             - 4-18: Updated userRecipes. Added clear error.
             - 4-21: Updated recipeRoulette. Added try catch in index.js to still load the app if there is a token, but can't contact database.
+            - 4-23: getRecipeAction now takes in data.
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -29,6 +30,14 @@
                 - Added clearUserRecipes to action and reducer.
                 - Updated SubmitRecipePage to return to homepage on submit or cancel button. Added clearing errors.
                 - Updated MyRecipesPage to show some functionality to it and list a user's recipes. Adapted action and reducer.
+            - 4-23: {
+                - MyAccountPage now clears any recipe state, waits for response, then gets pushed to submit recipe page on click.
+                - Created a ViewRecipePage draft.
+                - Created a RecipeForm component to be reused in submitting a new recipe and editing a previous recipe. Took the previous SubmitRecipePage's and modified to to be applicable to both a new recipe and to edit a recipe.
+                - Created an EditRecipePage.
+                - Updated SubmitRecipePage to take in RecipeForm component.
+                - Updated MyRecipesPage to handle deleting a recipe, confirming with the user to delete the recipe, getting the new recipe list after deleting, and pushing to the edit page when button is clicked. Only pushes once the store has been updated from the server's database. 
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -36,6 +45,7 @@
                 - recipeServerAPI was modified to reflect separate file for serverErrorAction and modified some of the fetch, mainly submitRecipe.
             }
             - 4-18: Improved error handling for recipeServerAPI.
+            - 4-23: getRecipe now takes in the data to dispatch. updateRecipe now has checks before dispatching.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -45,10 +55,12 @@
                 - Extracted serverError from accountReducer and made its own reducer.
                 - userRecipeReducer now takes in the data from action.
             }
-            -4-18: Updated user recipes. Added clear error.
+            - 4-18: Updated user recipes. Added clear error.
             - 4-21: Updated recipeRoulette.
+            - 4-23: GET_RECIPE now takes in data.
         Router:
             - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
+            - 4-23: Updated AppRouter to include ViewRecipePage and EditRecipePage. Organized the imports area alphabetically and the route section.
         SCSS:
             - 
         Store:
@@ -59,6 +71,7 @@
         - 4-13: Edited changelog and notes.
         - 4-18: Updated packages and installed @babel/plugin-transform-runtime, @babel/runtime, and css-minimizer-webpack-plugin. Updated webpack, changed the plugin condition, and included css minimizer plugin as well as plugin-transform-runtime.
         - 4-19: Deleted/moved files (middleware/logger.js, actions/shared.js, hooks/useAxios.js, hooks/useScript.js) to graveyard that weren't being used.
+        - 4-23: Added SubmitRecipePage without RecipeForm component to the graveyard. Updated notes.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
 

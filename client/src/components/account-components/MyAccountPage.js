@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import useServerAPI from '../../hooks/useServerAPI.js';
 import { 
     UploadUserIconModal, 
     ChangeUsernameModal,
@@ -11,11 +10,15 @@ import {
     LogoutAllModal, 
     DeleteAccountModal 
 } from './MyAccountModals.js';
+import { clearUserRecipesAction } from '../../actions/userRecipes.js';
+import useServerAPI from '../../hooks/useServerAPI.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { user, icon } = useSelector(state => state.accountReducer);
+    const userRecipes = useSelector(state => state.userRecipesReducer);
+    const [approveSubmitRecipePush, setApproveSubmitRecipePush] = useState(false);
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
     const [openChangeUsernameModal, setOpenChangeUsernameModal] = useState(false);
     const [openChangeEmailModal, setOpenChangeEmailModal] = useState(false);
@@ -23,13 +26,16 @@ const MyAccountPage = () => {
     const [openChangeNameModal, setOpenChangeNameModal] = useState(false);
     const [openLogoutAllModal, setOpenLogoutAllModal] = useState(false);
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
-    //view my recipes
-    //submit a new recipe
-
 
     useEffect(() => {
         dispatch(useServerAPI('getIcon', user._id));
     }, []);
+
+    useEffect(() => {
+        if (approveSubmitRecipePush) {
+            history.push('/submitrecipe')
+        }
+    }, [userRecipes])
 
     return (
         <div className="my-account-page__container">
@@ -53,7 +59,10 @@ const MyAccountPage = () => {
     
                 <h2>My Recipes</h2>
                     <button className="button" onClick={ () => history.push('/myrecipes') }>View or edit my recipes</button>
-                    <button className="button" onClick={ () => history.push('/submitrecipe') }>Submit a new recipe</button>
+                    <button className="button" onClick={ () => {
+                        dispatch(clearUserRecipesAction());
+                        setApproveSubmitRecipePush(true);
+                    }}>Submit a new recipe</button>
                 
 
                 <h2>My Account</h2>

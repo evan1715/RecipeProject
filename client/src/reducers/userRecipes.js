@@ -13,7 +13,9 @@ const userRecipesReducer = (state = {}, action) => {
                 ...action.recipes
             ]
         case 'GET_RECIPE':
-            return;
+            return {
+                ...action.recipe
+            }
         case 'UPDATE_RECIPE':
             return;
         case 'DELETE_RECIPE':

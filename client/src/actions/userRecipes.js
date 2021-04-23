@@ -17,8 +17,9 @@ const myRecipesAction = (recipes) => ({
 });
 
 //GET_RECIPE
-const getRecipeAction = () => ({
-    type: 'GET_RECIPE'
+const getRecipeAction = (data) => ({
+    type: 'GET_RECIPE',
+    recipe: data
 });
 
 //UPDATE_RECIPE

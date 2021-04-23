@@ -182,7 +182,7 @@ const getRecipe = (recipe_id) => {
         .then(res => handleResponse(res))
         .then(data => {
             console.log("Server data sent back: ", data);
-            dispatch(getRecipeAction);
+            dispatch(getRecipeAction(data));
             handleDataError(data);
         })
         .catch(error => handleCatchError(error));
@@ -208,8 +208,11 @@ const updateRecipe = (config) => {
         .then(res => handleResponse(res))
         .then(data => {
             console.log("Server data sent back: ", data);
-            dispatch(updateRecipeAction(data));
-            handleDataError(data);
+            if (data._id) {
+                dispatch(submitRecipeAction(data));
+            } else if (data.errors) {
+                dispatch(serverErrorAction(handleDataError(data)));
+            }
         })
         .catch(error => handleCatchError(error));
     }

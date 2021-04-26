@@ -12,6 +12,7 @@ const MyRecipesPage = () => {
     const [selectedRecipe, setSelectedRecipe] = useState();
     const [selectedPictures, setSelectedPictures] = useState([]);
     const [confirmDelete, setConfirmDelete] = useState(false);
+    const [approveViewRecipePush, setApproveViewRecipePush] = useState(false);
     const [approveEditRecipePush, setApproveEditRecipePush] = useState(false);
     const [openModifyRecipePicturesModal, setOpenModifyRecipePicturesModal] = useState(false);
 
@@ -39,6 +40,9 @@ const MyRecipesPage = () => {
         if (approveEditRecipePush) {
             history.push('/editrecipe');
         }
+        if (approveViewRecipePush) {
+            history.push('/recipe');
+        }
     }, [userRecipes])
 
     return (
@@ -50,7 +54,10 @@ const MyRecipesPage = () => {
                     <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
 
                     <div className="my-recipes-buttons">
-                        <button className="button">View</button>
+                        <button className="button" onClick={ () => {
+                            dispatch(recipeServerAPI('getRecipe', recipe._id));
+                            setApproveViewRecipePush(true);
+                        }}>View</button>
 
                         <button className="button" onClick={ () => {
                             dispatch(recipeServerAPI('getRecipe', recipe._id));

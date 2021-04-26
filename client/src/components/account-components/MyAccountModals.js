@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-modal';
 import { clearErrorAction } from '../../actions/serverError.js';
-import useServerAPI from '../../hooks/useServerAPI.js';
+import userServerAPI from '../../database/userServerAPI.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -33,7 +33,7 @@ const UploadUserIconModal = (props) => {
         //If file type is good, pass it to the app and the server. The server will also check the filetype.
         const config = { iconFile, token, user_id }
         
-        useServerAPI('uploadIcon', config);
+        userServerAPI('uploadIcon', config);
         setResponse("Uploaded!");
         //Let's reload the page after it uploaded.
         setTimeout(() => {
@@ -43,7 +43,7 @@ const UploadUserIconModal = (props) => {
 
     const deleteIcon = () => {
         if (isAuth && icon) {
-            dispatch(useServerAPI('deleteIcon', token));
+            dispatch(userServerAPI('deleteIcon', token));
         }
     }
 
@@ -91,7 +91,7 @@ const ChangeUsernameModal = (props) => {
 
         //If they haven't entered a username or if it isn't new, don't dispatch.
         if (username && username !== user.username) {
-            dispatch(useServerAPI('updateUser', config));
+            dispatch(userServerAPI('updateUser', config));
         }
     }
 
@@ -165,7 +165,7 @@ const ChangeEmailModal = (props) => {
 
         //if they haven't entered an email or it isn't new, don't dispatch.
         if (email && email !== user.email) {
-            dispatch(useServerAPI('updateUser', config));
+            dispatch(userServerAPI('updateUser', config));
         }
     }
 
@@ -247,7 +247,7 @@ const ChangePasswordModal = (props) => {
 
         //If they haven't given all fields, don't dispatch.
         if (previousPassword && newPassword && newPasswordVerified) {
-            dispatch(useServerAPI('updateUser', config));
+            dispatch(userServerAPI('updateUser', config));
         }
     }
 
@@ -356,7 +356,7 @@ const ChangeNameModal = (props) => {
 
         //If they haven't entered a name or it isn't new, don't dispatch
         if (name && name !== user.name) {
-            dispatch(useServerAPI('updateUser', config));
+            dispatch(userServerAPI('updateUser', config));
         }
     }
 
@@ -435,7 +435,7 @@ const LogoutAllModal = (props) => {
             <button 
                 className="button" 
                 //If they're authorized, log out all, and they'll be redirected to the homepage.
-                onClick={ isAuth && (() => (dispatch(useServerAPI('logoutAll', token)))) }
+                onClick={ isAuth && (() => (dispatch(userServerAPI('logoutAll', token)))) }
             >
                 Yes
             </button>
@@ -456,7 +456,7 @@ const DeleteAccountModal = (props) => {
         //Just double checking to make sure the data seems right.
         if (isAuth && username === user.username) {
             //Once they're deleted and logged out, they'll be redirected to the homepage.
-            dispatch(useServerAPI('deleteUser', token));
+            dispatch(userServerAPI('deleteUser', token));
         }
     }
 

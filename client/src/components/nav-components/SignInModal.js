@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import useServerAPI from '../../hooks/useServerAPI.js';
 import { clearErrorAction } from '../../actions/serverError.js';
+import userServerAPI from '../../database/userServerAPI.js';
 
 //Modal requires us to pass in the main <div> to Modal.setAppElement. In this project's case, it's #root since that's what React is in the index.html.
 Modal.setAppElement('#root');
@@ -17,7 +17,7 @@ const SignInModal = (props) => {
 
     const signIn = () => {
         const config = { email, password }
-        dispatch(useServerAPI('login', config));
+        dispatch(userServerAPI('login', config));
     }
 
     const handleClearError = () => {

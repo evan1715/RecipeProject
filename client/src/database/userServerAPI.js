@@ -34,7 +34,7 @@ import {
 } from '../actions/account.js';
 import { serverErrorAction } from '../actions/serverError.js';
 
-const useServerAPI = (type, config) => {
+const userServerAPI = (type, config) => {
     switch (type) {
         case 'createAccount':
             return createAccount(config);
@@ -341,4 +341,4 @@ const deleteIcon = (token) => {
 }
 
 
-export { useServerAPI as default }
+export { userServerAPI as default }

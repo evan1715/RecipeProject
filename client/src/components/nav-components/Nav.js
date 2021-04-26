@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import IosMenu from 'react-ionicons/lib/IosMenu'
-import useServerAPI from '../../hooks/useServerAPI.js';
+import userServerAPI from '../../database/userServerAPI.js';
 import SignInModal from './SignInModal.js';
 import SearchBar from './SearchBar'
 import MyAccountMenu from './MyAccountMenu.js';
@@ -20,7 +20,7 @@ export default function Nav() {
 
     const logout = () => {
         const token = isAuthenticated.token;
-        dispatch(useServerAPI('logout', token)); //logout from local and server
+        dispatch(userServerAPI('logout', token)); //logout from local and server
         history.push('/'); //redirect them to the homepage once logged out
         // setShowMenu(false);
     }

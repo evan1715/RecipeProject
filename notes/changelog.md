@@ -50,6 +50,7 @@
                 - Removed unused file FilterIngredients and put it in the graveyard.
                 - Added functionality and database recipe information to ViewRecipePage to actually view recipes now (finally).
                 - Wired up MyRecipesPage to ViewRecipe page whenever one hits "view" on the selected recipe. Checks that the reducer has changed before going. However, might change this to direct database api and use recipe id's in the URL directly to view them.
+                - After renaming useServerAPI to userServerAPI, all components were modified to adapt to change.
             }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
@@ -60,6 +61,7 @@
             - 4-18: Improved error handling for recipeServerAPI.
             - 4-23: getRecipe now takes in the data to dispatch. updateRecipe now has checks before dispatching.
             - 4-25: Created a function to handle a response without json to avoid error in console "error at json row 1, column 1" thing. Catch error now only console logs goes if error exists. Created a loop to append pictures to get ready to send to the server. Modified delete pictures to temporarily delete all with ?image=all query.
+                - Renamed useServerAPI to userServerAPI and placed in in the database folder instead of hook folder.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -88,7 +90,7 @@
         - 4-19: Deleted/moved files (middleware/logger.js, actions/shared.js, hooks/useAxios.js, hooks/useScript.js) to graveyard that weren't being used.
         - 4-23: Added SubmitRecipePage without RecipeForm component to the graveyard. Updated notes.
         - 4-25: Updated changelog and ideas.
-        - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it.
+        - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it. Added RandomRecipe to graveyard since it wasn't in use.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
 

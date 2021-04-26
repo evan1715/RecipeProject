@@ -9,7 +9,7 @@ const SubmitRecipe = () => {
 
     return (
         <div>
-            <h1 className="title">Submit a recipe</h1>
+            <h1 className="title center">Submit a recipe</h1>
             <RecipeForm
                 onSubmit={ (config) => {
                     dispatch(recipeServerAPI('submitRecipe', config));

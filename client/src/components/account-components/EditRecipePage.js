@@ -17,7 +17,7 @@ const EditRecipePage = () => {
 
     return (
         <div>
-            <h1 className="title">Edit Recipe</h1>
+            <h1 className="title center">Edit Recipe</h1>
             <RecipeForm
                 onSubmit={ (recipe) => {
                     onSubmit(recipe)

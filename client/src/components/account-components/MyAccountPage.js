@@ -11,7 +11,7 @@ import {
     DeleteAccountModal 
 } from './MyAccountModals.js';
 import { clearUserRecipesAction } from '../../actions/userRecipes.js';
-import useServerAPI from '../../hooks/useServerAPI.js';
+import userServerAPI from '../../database/userServerAPI.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const MyAccountPage = () => {
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 
     useEffect(() => {
-        dispatch(useServerAPI('getIcon', user._id));
+        dispatch(userServerAPI('getIcon', user._id));
     }, []);
 
     useEffect(() => {

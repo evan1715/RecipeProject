@@ -25,7 +25,7 @@ import SubmitRecipePage from '../components/account-components/SubmitRecipePage.
 const AppRouter = () => (
     <Router>
         <Nav />
-        <React.Suspense fallback={<p>Loading...</p>}>
+        <React.Suspense fallback={<p className="center">Loading...</p>}>
             <Switch>
                 <Route exact path={'/'} component={HomePage} />
 
@@ -37,7 +37,7 @@ const AppRouter = () => (
 
                 <Route path={'/cookingvideos'} component={HomePage} />
 
-                <Route path={'/about'} component={AboutPage} />
+                <Route path={'/about'} component={ AboutPage } />
 
                 <Route path={`/recipe`} component={ ViewRecipePage } />
 
@@ -49,7 +49,7 @@ const AppRouter = () => (
 
                 <UserRoute path='/submitrecipe' component={ SubmitRecipePage } />
 
-                <Route render={() => <h1>404</h1>} />
+                <Route render={() => <h1 className="center">404: Page Not Found</h1>} />
             </Switch>
         </React.Suspense>
     </Router>

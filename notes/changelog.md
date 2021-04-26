@@ -16,6 +16,7 @@
             - 4-21: Updated recipeRoulette. Added try catch in index.js to still load the app if there is a token, but can't contact database.
             - 4-23: getRecipeAction now takes in data.
             - 4-25: Added a function to convert the buffer image coming in from the database to store the pictures as a binary to make it easier to render them in the userRecipes action file.
+            - 4-26: Added buffer to binary image conversion in userRecipes action if the data received is not an array, but is one singular image. It was previously working for only an array of recipes, but not if just one came back. It's fixed now.
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -44,6 +45,12 @@
                 - MyRecipesPage was updated to now include ModifyRecipePicturesModal, increased font size of title, added some CSS, added button to modify pictures to display them, delete, and upload.
                 - Created RecipePicturesModal to view images, delete them, upload, dispatch actions, process incoming files, process other data, and usage of multiple files to upload.
             }
+            - 4-26: {
+                - Re-enabled initial load of recipe roulette on the homepage.
+                - Removed unused file FilterIngredients and put it in the graveyard.
+                - Added functionality and database recipe information to ViewRecipePage to actually view recipes now (finally).
+                - Wired up MyRecipesPage to ViewRecipe page whenever one hits "view" on the selected recipe. Checks that the reducer has changed before going. However, might change this to direct database api and use recipe id's in the URL directly to view them.
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -68,6 +75,7 @@
         Router:
             - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
             - 4-23: Updated AppRouter to include ViewRecipePage and EditRecipePage. Organized the imports area alphabetically and the route section.
+            - 4-26: Attempted lazy loading page components in router, but I put it back to regular imports for now. It didn't seem to reduce the size enough for me. To be determined later.
         SCSS:
             - 4-25: Added _my-recipes-page.scss and _recipe-form.scss then included them in styles.scss master file.
         Store:
@@ -80,6 +88,7 @@
         - 4-19: Deleted/moved files (middleware/logger.js, actions/shared.js, hooks/useAxios.js, hooks/useScript.js) to graveyard that weren't being used.
         - 4-23: Added SubmitRecipePage without RecipeForm component to the graveyard. Updated notes.
         - 4-25: Updated changelog and ideas.
+        - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
 

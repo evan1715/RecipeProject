@@ -1,22 +1,37 @@
 const convertBufferToImage = (data) => {
     let recipes = data;
 
-    for (let i = 0; i < data.length; i++) {
-        const picAmount = data[i].pictures.length;
-
-        for (let j = 0; j < picAmount; j++) {
-            const buffer = data[i].pictures[j].picture.data;
+    //If it's just one recipe, the length will be undefined, so only process it based on one recipe.
+    if (data.length === undefined) {
+        for (let  j = 0; j < data.pictures.length; j++) {
+            const buffer = data.pictures[j].picture.data;
             const bytes = new Uint8Array(buffer);
             let binary = '';
-            
+
             bytes.forEach((byte) => binary += String.fromCharCode(byte));
 
-            // recipes[i].pictures.splice(j, 1, btoa(binary));
-            recipes[i].pictures[j].picture.data = (btoa(binary));
-            recipes[i].pictures[j].picture.type = "Binary"
+            recipes.pictures[j].picture.data = (btoa(binary));
+            recipes.pictures[j].picture.type = "Binary";
         }
+        return recipes;
     }
-    return recipes;
+
+    //If it's an array of recipes, the length will be defined, so process all recipes.
+    if (data.length !== undefined) {
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[i].pictures.length; j++) {
+                const buffer = data[i].pictures[j].picture.data;
+                const bytes = new Uint8Array(buffer);
+                let binary = '';
+                
+                bytes.forEach((byte) => binary += String.fromCharCode(byte));
+
+                recipes[i].pictures[j].picture.data = (btoa(binary));
+                recipes[i].pictures[j].picture.type = "Binary"
+            }
+        }
+        return recipes;
+    }
 }
 
 //Submit a recipe
@@ -53,10 +68,14 @@ const myRecipesAction = (data) => {
 // });
 
 //GET_RECIPE
-const getRecipeAction = (data) => ({
-    type: 'GET_RECIPE',
-    recipe: data
-});
+const getRecipeAction = (recipe) => {
+    const data = convertBufferToImage(recipe);
+    
+    return {
+        type: 'GET_RECIPE',
+        recipe: data
+    }
+}
 
 //UPDATE_RECIPE
 const updateRecipeAction = () => ({

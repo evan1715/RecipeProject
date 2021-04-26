@@ -31,10 +31,10 @@ import {
     allRecipesAction,
     myRecipesAction,
     getRecipeAction,
-    updateRecipeAction,
+    // updateRecipeAction,
     deleteRecipeAction,
     getRecipePicturesAction,
-    deletePicturesAction
+    // deletePicturesAction
 } from '../actions/userRecipes.js';
 
 //Take in the call. Based on type, send it to a function as well as what's being passed into it (config).
@@ -72,11 +72,20 @@ const handleResponse = (res) => {
     return res.json();
 }
 
+const handleResponseNoJSON = (res) => {
+    if (res.ok) { //if res.status = 200-299
+        console.log(res.status, "Server URL success. Server response: ", res);
+    } else if (!res.ok) { //if res.status = 400-599
+        console.log(res.status, "Server URL unsuccessful.", res);
+    }
+}
+
 //Handle errors sent back in data.
 const handleDataError = (data) => {
     let message;
     
-    // console.log("Server data sent back: ", data);
+    // console.log("1. Server data sent back: ", data);
+    // console.log("2. Server data sent back.json", data.json);
 
     if (data.name === 'MongoError') {
         message = data;
@@ -105,7 +114,9 @@ const handleDataError = (data) => {
 
 //Handle errors caught by catch.
 const handleCatchError = (error) => {
-    console.log("Response error message: ", error);
+    if (error) {
+        console.log("Catch response error message: ", error);
+    }
 }
 
 
@@ -244,35 +255,36 @@ const uploadPictures = (data) => {
     const { pictureFiles, recipe_id, token } = data;
     const pictures = new FormData();
 
-    pictures.append('pictures', pictureFiles);
+    for (let i = 0; i < pictureFiles.length; i++) {
+        pictures.append('pictures', pictureFiles[i]);
+    }
+    console.log("From fetch:", pictures);
 
     fetch(`/recipes/${recipe_id}/pictures`, {
         method: 'POST',
         headers: { 'Authorization': token },
         body: pictures
     })
-    .then(res => {
-        handleResponse(res);
-        //If ok, send it to getRecipePictures to dispatch pictures back
-        if (res.ok) {
-            getRecipePictures(recipe_id);
-        }
-    })
+    .then(res => handleResponseNoJSON(res))
     .then(error => handleCatchError(error));
 }
 
 //Get the pictures for a recipe, non-auth
+/*  This may not get used since I'm sending the images with each recipe anyway. Therefore, 
+    can call images off of state rather than a separate database call to recipe pictures. */
 const getRecipePictures = (recipe_id) => {
     return dispatch => {
         fetch(`/recipes/${recipe_id}/pictures`, {
             method: 'GET'
         })
         .then(res => res.blob())
-        .then(image => {
+        .then(data => {
             //Check if there's a file at all.
-            if (image.size > 0) {
-                const url = URL.createObjectURL(image);
+            if (data.size > 0) {
+                const url = URL.createObjectURL(data);
                 dispatch(getRecipePicturesAction(url));
+            } else if (data.error) {
+                dispatch(serverErrorAction(handleDataError(data)));
             }
         })
         .catch(error => handleCatchError(error));
@@ -281,17 +293,17 @@ const getRecipePictures = (recipe_id) => {
 
 //Delete pictures for a recipe
 const deletePictures = (config) => {
-    const { recipe_id, token } = config
-
+    const { recipe_id, token, username } = config
+    console.log("From deletePics fetch:", config);
     return dispatch => {
-        fetch(`/recipes/${recipe_id}/pictures`, {
+        fetch(`/recipes/${recipe_id}/pictures?image=all`, {
             method: 'DELETE',
             headers: { 'Authorization': token }
         })
         .then(res => {
-            handleResponse(res);
+            handleResponseNoJSON(res);
             if (res.ok) {
-                dispatch(deletePicturesAction());
+                dispatch(myRecipes(username));
             }
         })
         .catch(error => handleCatchError(error));

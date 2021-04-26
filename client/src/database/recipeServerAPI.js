@@ -258,7 +258,6 @@ const uploadPictures = (data) => {
     for (let i = 0; i < pictureFiles.length; i++) {
         pictures.append('pictures', pictureFiles[i]);
     }
-    console.log("From fetch:", pictures);
 
     fetch(`/recipes/${recipe_id}/pictures`, {
         method: 'POST',

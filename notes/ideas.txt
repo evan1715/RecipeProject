@@ -5,6 +5,7 @@
 - Convert project to NextJS.
 - Have the popout/burger menu close when clicking outside of it.
 - Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
+- Modify recipeRouter to take in which picture at a time. Delete currently only takes in query ?image=all
 
 
 

@@ -50,7 +50,10 @@
                 - Removed unused file FilterIngredients and put it in the graveyard.
                 - Added functionality and database recipe information to ViewRecipePage to actually view recipes now (finally).
                 - Wired up MyRecipesPage to ViewRecipe page whenever one hits "view" on the selected recipe. Checks that the reducer has changed before going. However, might change this to direct database api and use recipe id's in the URL directly to view them.
+                -- MyRecipesPage now goes to history.push(`/recipe?id=${recipe._id}) on click to View button.
                 - After renaming useServerAPI to userServerAPI, all components were modified to adapt to change.
+                - ViewRecipePage now takes in the location of the URL, takes the recipe_id off of the URL, dispatches to get the recipe with the id, and only renders the information if successful fetched recipe.
+                - Anyone can now visit /recipe?id={recipe_id} whether they're a user or not and still view the recipe.
             }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.

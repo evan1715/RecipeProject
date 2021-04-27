@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { showLoading } from 'react-redux-loading-bar';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 
@@ -14,6 +15,7 @@ const AllRecipesPage = () => {
     // const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
+        dispatch(showLoading());
         dispatch(recipeServerAPI('allRecipes'));
     }, []);
 
@@ -22,7 +24,7 @@ const AllRecipesPage = () => {
             { allRecipes.length > 0 && allRecipes.map((recipe, index) => {
                 return (
                     <li key={ index }>
-                        <p>Title: { recipe.title } Cooktime: { recipe.cookTime } Instructions: { recipe.instructions }</p>
+                        <p>Title: { recipe.title } Cook time: { recipe.cookTime } Instructions: { recipe.instructions }</p>
                     </li>
                 )
             })}

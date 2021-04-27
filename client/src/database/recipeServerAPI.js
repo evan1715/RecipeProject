@@ -25,6 +25,7 @@
     - /recipes/:id/pictures
 */
 
+import { hideLoading } from 'react-redux-loading-bar';
 import { serverErrorAction } from '../actions/serverError.js';
 import {
     submitRecipeAction,
@@ -162,6 +163,7 @@ const allRecipes = () => {
         .then(data => {
             console.log("Server data sent back: ", data);
             dispatch(allRecipesAction(data));
+            dispatch(hideLoading());
             handleDataError(data);
         })
         .catch(error => handleCatchError(error));
@@ -178,6 +180,7 @@ const myRecipes = (username) => {
         .then(data => {
             console.log("Server data sent back: ", data);
             dispatch(myRecipesAction(data));
+            dispatch(hideLoading());
             handleDataError(data);
         })
         .catch(error => handleCatchError(error));
@@ -194,6 +197,7 @@ const getRecipe = (recipe_id) => {
         .then(data => {
             console.log("Server data sent back: ", data);
             dispatch(getRecipeAction(data));
+            dispatch(hideLoading());
             handleDataError(data);
         })
         .catch(error => handleCatchError(error));

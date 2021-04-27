@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { showLoading } from 'react-redux-loading-bar'
 import ModifyRecipePicturesModal from './RecipePictures.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
@@ -26,12 +27,14 @@ const MyRecipesPage = () => {
 
     //Get the recipes when page initializes.
     useEffect(() => {
+        dispatch(showLoading());
         dispatch(recipeServerAPI('myRecipes', user.username));
     }, []);
 
     //Get the recipes after one has been deleted.
     useEffect(() => {
         if (userRecipes.recipe === null) {
+            dispatch(showLoading());
             dispatch(recipeServerAPI('myRecipes', user.username));
         }
     }, [userRecipes.recipe]);

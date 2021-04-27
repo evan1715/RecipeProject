@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { showLoading } from 'react-redux-loading-bar';
 import { 
     UploadUserIconModal, 
     ChangeUsernameModal,
@@ -28,6 +29,7 @@ const MyAccountPage = () => {
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 
     useEffect(() => {
+        dispatch(showLoading());
         dispatch(userServerAPI('getIcon', user._id));
     }, []);
 

@@ -25,6 +25,7 @@
     - /user/profile/icon
 */
 
+import { hideLoading } from 'react-redux-loading-bar';
 import { 
     loginAction,
     logoutAction,
@@ -317,6 +318,7 @@ const getIcon = (id) => {
                 //Convert it to a url to call upon.
                 const url = URL.createObjectURL(image);
                 dispatch(getIconAction(url));
+                dispatch(hideLoading());
             }
         })
         .catch(error => handleCatchError(error));

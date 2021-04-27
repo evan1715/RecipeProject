@@ -6,6 +6,15 @@
 - Have the popout/burger menu close when clicking outside of it.
 - Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
 - Modify recipeRouter to take in which picture at a time. Delete currently only takes in query ?image=all
+- Have a username on recipes to show who submitted them.
+--Make them clickable to view a user's profile and the rest of their recipes.
+- On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance.
+- Have selectors for recipes to indicate if it's vegan or vegetarian or something similar.
+- On All Recipes, make them all clickable as well as displaying images and description previews.
+- Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
+- Add pagination to all recipes, my recipes, searching recipes.
+- Add "View My Recipes" button next to "My Account", maybe even a "submit a new recipe"
+- Add loading bar to more locations. Especially if we're going to lazy load stuff.
 
 
 

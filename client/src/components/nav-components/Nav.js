@@ -12,9 +12,10 @@ export default function Nav() {
     const dispatch = useDispatch();
     const history = useHistory(); //hook that uses history npm package
     const isAuthenticated = useSelector(state => state.accountReducer);
-    const [showMenu, setShowMenu] = React.useState(false)
+    const [showMenu, setShowMenu] = React.useState(false);
+    const [toggle, setToggle] = useState(false);
     const [openSigninModal, setOpenSigninModal] = useState(false);
-    const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'About', 'Sign In']
+    const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'About', 'Sign In'];
     const iconStyles = { cursor: 'pointer' }
     const isAuth = isAuthenticated.authenticated;
 
@@ -23,6 +24,16 @@ export default function Nav() {
         dispatch(userServerAPI('logout', token)); //logout from local and server
         history.push('/'); //redirect them to the homepage once logged out
         // setShowMenu(false);
+    }
+    
+    window.onclick = function(/*event*/) {
+        // if (!event.target.matches('burger-container')) {
+            if (showMenu && toggle) {
+                setShowMenu(false);
+            } else {
+                setToggle(true);
+            }
+        // }
     }
 
     return (
@@ -67,7 +78,10 @@ export default function Nav() {
 
                     {/* Only show this burger when the screen is too small for the nav bar */}
                     {/* When the burger is clicked, then toggle the showMenu state property and show the nav menu popout */}
-                    <div onClick={() => setShowMenu(showMenu === true ? false : true)} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
+                    <div onClick={() => {
+                        setShowMenu(showMenu === true ? false : true);
+                        setToggle(false);
+                    }} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
                     { showMenu && 
                         <div className="popout-nav">
                             { navLinks.map((navLink, index) => {
@@ -91,8 +105,10 @@ export default function Nav() {
                                 } else {
                                     return (
                                         <Link key={ index } to={`${navLink.toLowerCase().replace(' ', '')}`}>
-                                            {/* When we click a link, close the menu. */}
-                                            <li onClick={ () => setShowMenu(false) }>{ navLink }</li>
+                                            {/* When we click a link, close the menu. Don't need this part because of 
+                                            the double state toggle window.onclick, but keeping it just in case. */}
+                                            {/* <li onClick={ () => setShowMenu(false) }>{ navLink }</li> */}
+                                            <li>{ navLink }</li>
                                         </Link>
                                     )
                                 }

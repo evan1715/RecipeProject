@@ -1,0 +1,76 @@
+/*  Based off of these great resources:
+    https://www.w3schools.com/howto/howto_js_slideshow.asp
+    https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
+*/
+
+.pictures-container {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
+//Hide animations by default
+.pictures-slides {
+    display: none;
+}
+
+//Index of pictures
+.number-of {
+    color: #f2f2f2;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+//Next and previous buttons
+.prev, .next {
+    border-radius: 0 3px 3px 0;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    // margin-top: 1%;
+    padding: 16px;
+    position: absolute;
+    transition: 0.4s ease;
+    top: 35%;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+}
+
+.next {
+    border-radius: 3px 0 0 3px;
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+//Fading animation
+.fade {
+    -webkit-animation-duration: 1.0s;
+    -webkit-animation-name: fade;
+    animation-duration: 1.0s;
+    animation-name: fade;
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 0.4 }
+    to { opacity: 1 }
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.thumbnail {
+    opacity: 0.6;
+}
+
+.active, .thumbnail:hover {
+    cursor: pointer;
+    opacity: 1;
+}

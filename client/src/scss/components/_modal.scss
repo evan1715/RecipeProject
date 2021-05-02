@@ -28,11 +28,13 @@
     text-align: center;
 }
 
-//Replaced this with base settings title.
-// .modal__title {
-//     font-size: 30px;
-//     margin: 1px 1px 16px 1px; //top right bottom left
-// }
+.modal__pictures {
+    background: darken(rgb(240, 240, 240), 40%);
+    color: white;
+    max-width: 650px;
+    padding: 32px;
+    text-align: center;
+}
 
 .modal__form--input {
     font-size: 15px;

@@ -55,6 +55,11 @@
                 - ViewRecipePage now takes in the location of the URL, takes the recipe_id off of the URL, dispatches to get the recipe with the id, and only renders the information if successful fetched recipe.
                 - Anyone can now visit /recipe?id={recipe_id} whether they're a user or not and still view the recipe.
             }
+            - 5-2: {
+                - Renamed ModifyRecipePicturesModal to ModifyPicturesModal. Added functionality to select which picture to delete or to just delete all. Added a question asking for confirmation to delete all pictures. Modal closes on upload or delete submission. Added some styles.
+                - MyRecipePage now has a function to handle edit recipe. It takes in the recipe_id and it dispatches show loading bar as well as a couple other things. Changed variable names to reflect modal name change.
+                - ViewRecipePage had quite a bit done to it. It now dispatches showing loading bar when opening. Added image slideshow, image selection, arrow functionality, and other things. Added styles to the images as well. 
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -65,6 +70,7 @@
             - 4-23: getRecipe now takes in the data to dispatch. updateRecipe now has checks before dispatching.
             - 4-25: Created a function to handle a response without json to avoid error in console "error at json row 1, column 1" thing. Catch error now only console logs goes if error exists. Created a loop to append pictures to get ready to send to the server. Modified delete pictures to temporarily delete all with ?image=all query.
                 - Renamed useServerAPI to userServerAPI and placed in in the database folder instead of hook folder.
+            - 5-2: Added pic_id to query picture deletion.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -83,6 +89,13 @@
             - 4-26: Attempted lazy loading page components in router, but I put it back to regular imports for now. It didn't seem to reduce the size enough for me. To be determined later.
         SCSS:
             - 4-25: Added _my-recipes-page.scss and _recipe-form.scss then included them in styles.scss master file.
+            - 5-2: {
+                - Base file now has cursor: pointer; to be used as needed.
+                - Created a view-recipe-page to include styles for the recipe pictures. It was based on w3school's examples. Great resource.
+                - Modal file was changed to add modal__pictures to increase the width to hold the pictures.
+                - Popout nav was modified so that the dropdown menu was closer to the button. Also added z-index to ensure it is placed on top of everything when open.
+                - Added view_recipe_page.scss to styles.scss main file.
+            }
         Store:
             - 4-13: Added serverErrorReducer.
             - 4-18: Redux logger now collapses messages so it doesn't take up as much space.
@@ -96,6 +109,7 @@
         - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it. Added RandomRecipe to graveyard since it wasn't in use.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
+        - 5-2: Added query processing to delete images based on picture id.
 
 
 

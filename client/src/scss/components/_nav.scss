@@ -70,8 +70,8 @@
     @include flexCenter(space-around);
     flex-direction: column;
     position: absolute;
-    top: 125px;
-    right: 3.5vw;
+    top: 55px; //was 125
+    right: 4vw; //was 3.5
     width: auto;
     border: solid black 2px;
     li {
@@ -81,6 +81,7 @@
         }
     }
     background: white;
+    z-index: 99; //added so menu is on top
 }
 
 @media screen and (min-width: 1420px) {

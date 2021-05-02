@@ -15,6 +15,9 @@
 - Add pagination to all recipes, my recipes, searching recipes.
 - Add "View My Recipes" button next to "My Account", maybe even a "submit a new recipe"
 - Add loading bar to more locations. Especially if we're going to lazy load stuff.
+- Add accessibility with <label> on inputs.
+- Improve network efficiency by using current state or manipulating current state to avoid downloading again. For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
+- Make View or edit my recipes, Submit a new recipe, My Account, View recipe buttons into links so that they're clickable to a new tab.
 
 
 

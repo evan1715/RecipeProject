@@ -13,10 +13,9 @@ const MyAccountMenu = () => {
     // const iconSize = { size: '50px' }
     const verticalAlign = { verticalAlign: 'middle' }
 
-    const handleClick = () => {
-        history.push('/myaccount');
-    }
-
+    const handleClick = () => history.push('/myaccount');
+    
+// https://www.w3schools.com/howto/howto_js_dropdown.asp <---- try this out
     return (
         <div className="my-account-menu" 
         // onClick={() => setShowMenu(showMenu === true ? false : true)}

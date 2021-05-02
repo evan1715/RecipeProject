@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar'
-import ModifyRecipePicturesModal from './RecipePictures.js';
+import ModifyPicturesModal from './ModifyPicturesModal.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const MyRecipesPage = () => {
@@ -13,12 +13,14 @@ const MyRecipesPage = () => {
     const [selectedRecipe, setSelectedRecipe] = useState();
     const [selectedPictures, setSelectedPictures] = useState([]);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    // const [approveViewRecipePush, setApproveViewRecipePush] = useState(false);
     const [approveEditRecipePush, setApproveEditRecipePush] = useState(false);
-    const [openModifyRecipePicturesModal, setOpenModifyRecipePicturesModal] = useState(false);
+    const [openModifyPicturesModal, setOpenModifyPicturesModal] = useState(false);
 
-    //upload pictures to recipe
-    //delete pictures of recipe
+    const handleEditRecipe = (recipe_id) => {
+        dispatch(showLoading());
+        dispatch(recipeServerAPI('getRecipe', recipe_id));
+        setApproveEditRecipePush(true);
+    }
 
     const handleDeleteRecipe = (recipe_id) => {
         const config = { recipe_id, token }
@@ -43,10 +45,6 @@ const MyRecipesPage = () => {
         if (approveEditRecipePush) {
             history.push('/editrecipe');
         }
-        // if (approveViewRecipePush) {
-        //     // history.push('/recipe');
-        //     history.push(`/recipe?id=${selectedRecipe}`);
-        // }
     }, [userRecipes])
 
     return (
@@ -58,31 +56,25 @@ const MyRecipesPage = () => {
                     <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
 
                     <div className="my-recipes-buttons">
-                        <button className="button" onClick={ () => {
-                            // dispatch(recipeServerAPI('getRecipe', recipe._id));
-                            // setSelectedRecipe(recipe._id);
-                            // setApproveViewRecipePush(true);
-                            history.push(`/recipe?id=${recipe._id}`);
-                        }}>View</button>
+                        <button className="button" onClick={ () => history.push(`/recipe?id=${recipe._id}`) }>
+                            View
+                        </button>
+
+                        <button className="button" onClick={ () => handleEditRecipe(recipe._id)}>
+                            Edit
+                        </button>
 
                         <button className="button" onClick={ () => {
-                            dispatch(recipeServerAPI('getRecipe', recipe._id));
-                            setApproveEditRecipePush(true);
-                        }}>Edit</button>
-
-                        
-                        <button className="button" onClick={ () => {
-                            setOpenModifyRecipePicturesModal(true);
+                            setOpenModifyPicturesModal(true);
                             setSelectedRecipe(recipe._id);
                             setSelectedPictures(recipe.pictures);
                         }}>Modify pictures</button>
-                        <ModifyRecipePicturesModal
-                            openModifyRecipePicturesModal={ openModifyRecipePicturesModal }
-                            handleCloseModal={ () => setOpenModifyRecipePicturesModal(false) }
+                        <ModifyPicturesModal
+                            openModifyPicturesModal={ openModifyPicturesModal }
+                            handleCloseModal={ () => setOpenModifyPicturesModal(false) }
                             recipe_id={ selectedRecipe }
                             pictures={ selectedPictures }
                         />
-                        
 
                         <button className="button" onClick={ () => (setConfirmDelete(true), setSelectedRecipe(recipe._id)) }>Delete</button>
                         { confirmDelete && (recipe._id === selectedRecipe) && 

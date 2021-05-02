@@ -181,9 +181,18 @@ router.delete('/recipes/:id/pictures', auth, async (req, res) => {
             throw new Error();
         }
 
+        for (let i = 0; i < recipe.pictures.length; i++) {
+            const id = recipe.pictures[i]._id.toString();
+            
+            if (req.query.image === id) {
+                recipe.pictures.splice(i, 1);
+            }
+        }
+
         if (req.query.image === 'all') {
             recipe.pictures = [];
         }
+
         await recipe.save();
         res.send();
     } catch (error) {

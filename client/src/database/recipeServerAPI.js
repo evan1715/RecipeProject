@@ -296,10 +296,10 @@ const getRecipePictures = (recipe_id) => {
 
 //Delete pictures for a recipe
 const deletePictures = (config) => {
-    const { recipe_id, token, username } = config
-    console.log("From deletePics fetch:", config);
+    const { recipe_id, token, username, pic_id } = config
+
     return dispatch => {
-        fetch(`/recipes/${recipe_id}/pictures?image=all`, {
+        fetch(`/recipes/${recipe_id}/pictures?image=${pic_id}`, {
             method: 'DELETE',
             headers: { 'Authorization': token }
         })

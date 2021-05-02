@@ -58,7 +58,8 @@
             - 5-2: {
                 - Renamed ModifyRecipePicturesModal to ModifyPicturesModal. Added functionality to select which picture to delete or to just delete all. Added a question asking for confirmation to delete all pictures. Modal closes on upload or delete submission. Added some styles.
                 - MyRecipePage now has a function to handle edit recipe. It takes in the recipe_id and it dispatches show loading bar as well as a couple other things. Changed variable names to reflect modal name change.
-                - ViewRecipePage had quite a bit done to it. It now dispatches showing loading bar when opening. Added image slideshow, image selection, arrow functionality, and other things. Added styles to the images as well. 
+                - ViewRecipePage had quite a bit done to it. It now dispatches showing loading bar when opening. Added image slideshow, image selection, arrow functionality, and other things. Added styles to the images as well.
+                - ViewRecipePage now only loads the pictures section if the recipe has pictures.
             }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.

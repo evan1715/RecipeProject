@@ -53,32 +53,34 @@ const ViewRecipePage = () => {
                 <p className="center">Submitted by: pending feature - owner_id: { userRecipe.owner }</p>
                 <p className="center">Submitted: { userRecipe.createdAt }. Last updated: { userRecipe.updatedAt }</p>
 
-                <div className="pictures-container">
-                    { userRecipe.pictures.map((pic, index) => (
-                        <div key={ pic._id } className="pictures-slides fade">
-                            <div className="number-of">{ index + 1 } of { userRecipe.pictures.length }</div>
-                            <img 
-                                style={{ width: '100%' }}
-                                src={ `data:image/jpeg;base64,${pic.picture.data}` }
-                            />
-                        </div>
-                    ))}
-                    <a className="prev" onClick={ () => plusSlides(-1) }>&#10094;</a>
-                    <a className="next" onClick={ () => plusSlides(1) }>&#10095;</a>
-
-                    <div className="row">
+                { userRecipe.pictures && 
+                    <div className="pictures-container">
                         { userRecipe.pictures.map((pic, index) => (
-                            <div key={ pic._id } className="column">
-                                <img
-                                    className="thumbnail"
+                            <div key={ pic._id } className="pictures-slides fade">
+                                <div className="number-of">{ index + 1 } of { userRecipe.pictures.length }</div>
+                                <img 
                                     style={{ width: '100%' }}
                                     src={ `data:image/jpeg;base64,${pic.picture.data}` }
-                                    onClick={ () => currentSlide(index + 1) }
                                 />
                             </div>
                         ))}
+                        <a className="prev" onClick={ () => plusSlides(-1) }>&#10094;</a>
+                        <a className="next" onClick={ () => plusSlides(1) }>&#10095;</a>
+
+                        <div className="row">
+                            { userRecipe.pictures.map((pic, index) => (
+                                <div key={ pic._id } className="column">
+                                    <img
+                                        className="thumbnail"
+                                        style={{ width: '100%' }}
+                                        src={ `data:image/jpeg;base64,${pic.picture.data}` }
+                                        onClick={ () => currentSlide(index + 1) }
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                }
 
                 <p className="center">Cook time: { userRecipe.cookTime } minutes.</p>
 

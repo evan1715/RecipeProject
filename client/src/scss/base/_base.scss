@@ -85,8 +85,46 @@ a {
     &:focus {
         outline: none;
     }
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
-.button:disabled {
-    opacity: 0.5;
+.button__link {
+    background: #3c280d;
+    border: solid #3c280d 1px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-size: 20px;
+    // font-weight: 10;
+    height: 50px;
+    margin: 10px;
+    // opacity: 0;
+    // padding: 8px 48px 11px 48px; //top right bottom left
+    padding: 0;
+    width: auto;
+    &:hover {
+        background: rgb(240, 240, 240);
+        color: #3c280d;
+        border: solid #3c280d 1px;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        opacity: 0.5;
+    }
+}
+
+.button__link--Link {
+    color: white;
+    // margin: -3px -9px 0 -9px;
+    // padding: 12px 29px 14px 33px; //top right bottom left
+    // margin: -1px;
+    padding: 14px 32px 14px 32px; //top right bottom left
+    &:hover {
+        color: #3c280d;
+    }
 }

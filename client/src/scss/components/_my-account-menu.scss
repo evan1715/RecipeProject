@@ -38,8 +38,39 @@
     // text-align-last: end;
 }
 
-.button--menu:disabled {
-    opacity: 0.5;
+.my-account-button {
+    background: #3c280d;
+    border: solid #3c280d 1px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-size: 20px;
+    // font-weight: 10;
+    height: 45px;
+    margin: 10px;
+    // opacity: 0;
+    padding: 0; //top right bottom left
+    width: auto;
+    &:hover {
+        background: rgb(240, 240, 240);
+        color: #3c280d;
+        border: solid #3c280d 1px;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        opacity: 0.5;
+    }
+}
+
+.my-account-button__link {
+    color: white;
+    padding: 8px 48px 11px 48px;
+    &:hover {
+        color: #3c280d;
+    }
 }
 
 .dropdown-icon {

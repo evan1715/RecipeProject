@@ -60,6 +60,7 @@
                 - MyRecipePage now has a function to handle edit recipe. It takes in the recipe_id and it dispatches show loading bar as well as a couple other things. Changed variable names to reflect modal name change.
                 - ViewRecipePage had quite a bit done to it. It now dispatches showing loading bar when opening. Added image slideshow, image selection, arrow functionality, and other things. Added styles to the images as well.
                 - ViewRecipePage now only loads the pictures section if the recipe has pictures.
+                - MyAccountPage buttons View or edit my recipes & Submit a new recipe are now link-based instead of history. Same for MyRecipePage's view button and My Account button in nav. Allows a user to open a new tab of the link if they wanted (I do this often). Added styles to incorporate this. The CSS was the torture of it.
             }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
@@ -108,6 +109,7 @@
         - 4-23: Added SubmitRecipePage without RecipeForm component to the graveyard. Updated notes.
         - 4-25: Updated changelog and ideas.
         - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it. Added RandomRecipe to graveyard since it wasn't in use.
+        - 5-2: Updated notes.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
         - 5-2: Added query processing to delete images based on picture id.

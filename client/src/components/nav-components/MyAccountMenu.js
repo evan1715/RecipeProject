@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import IosMenu from 'react-ionicons/lib/IosMenu';
 // import useServerAPI from '../../hooks/useServerAPI.js';
@@ -20,11 +20,28 @@ const MyAccountMenu = () => {
         <div className="my-account-menu" 
         // onClick={() => setShowMenu(showMenu === true ? false : true)}
         >
-            <button className="button button--menu" disabled={ !isAuth } onClick={ handleClick }>
+            {/* <button className="button button--menu" disabled={ !isAuth } onClick={ handleClick }>
                 My Account <IosMenu className="dropdown-icon" 
                             fontSize="25px" 
                             color={ iconColor } 
                             style={ verticalAlign } />
+            </button> */}
+            <button className="my-account-button" disabled={ !isAuth }>
+                { isAuth ? 
+                    <Link className="my-account-button__link" to="/myaccount">
+                        My Account <IosMenu className="dropdown-icon" 
+                                    fontSize="25px" 
+                                    color={ iconColor } 
+                                    style={ verticalAlign } />
+                    </Link>
+                : 
+                    <div className="my-account-button__link">
+                        My Account <IosMenu className="dropdown-icon" 
+                        fontSize="25px" 
+                        color={ iconColor } 
+                        style={ verticalAlign } />
+                    </div>
+                }
             </button>
             {/* { showMenu &&
                 <div className='popout-menu'>

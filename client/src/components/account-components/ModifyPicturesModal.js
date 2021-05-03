@@ -93,7 +93,7 @@ const ModifyPicturesModal = (props) => {
             { !deleteConfirm ? 
                 <div>
                     <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-                    <button className="button" onClick={ () => deletePictures(selectedPicture) } disabled={ !selectedPicture }>Delete selected</button>
+                    <button className="button" onClick={ () => deletePictures(selectedPicture) } disabled={ !selectedPicture }>Delete one</button>
                     <button className="button" onClick={ () => setDeleteConfirm(true) }>Delete all</button>
                     <button className="button" onClick={ isAuth && uploadPictures }>Upload</button>
                 </div>

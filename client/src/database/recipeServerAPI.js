@@ -32,10 +32,7 @@ import {
     allRecipesAction,
     myRecipesAction,
     getRecipeAction,
-    // updateRecipeAction,
     deleteRecipeAction,
-    getRecipePicturesAction,
-    // deletePicturesAction
 } from '../actions/userRecipes.js';
 
 //Take in the call. Based on type, send it to a function as well as what's being passed into it (config).
@@ -270,28 +267,6 @@ const uploadPictures = (data) => {
     })
     .then(res => handleResponseNoJSON(res))
     .then(error => handleCatchError(error));
-}
-
-//Get the pictures for a recipe, non-auth
-/*  This may not get used since I'm sending the images with each recipe anyway. Therefore, 
-    can call images off of state rather than a separate database call to recipe pictures. */
-const getRecipePictures = (recipe_id) => {
-    return dispatch => {
-        fetch(`/recipes/${recipe_id}/pictures`, {
-            method: 'GET'
-        })
-        .then(res => res.blob())
-        .then(data => {
-            //Check if there's a file at all.
-            if (data.size > 0) {
-                const url = URL.createObjectURL(data);
-                dispatch(getRecipePicturesAction(url));
-            } else if (data.error) {
-                dispatch(serverErrorAction(handleDataError(data)));
-            }
-        })
-        .catch(error => handleCatchError(error));
-    }
 }
 
 //Delete pictures for a recipe

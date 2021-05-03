@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar';
@@ -8,6 +8,7 @@ const ViewRecipePage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const userRecipe = useSelector(state => state.userRecipesReducer);
+    const [username, setUsername] = useState('account no longer exists');
     let slideIndex = 1;
 
     const plusSlides = (n) => showSlides(slideIndex += n);
@@ -37,10 +38,14 @@ const ViewRecipePage = () => {
         dispatch(recipeServerAPI('getRecipe', recipe_id));
     }, [])
 
-    useEffect(() => {
+    useEffect(async () => {
         //Only call the slideshow if there is any pictures.
         if (userRecipe.pictures && userRecipe.pictures.length > 0) {
             showSlides(slideIndex);
+        }
+        //Only send this out if we got anything.
+        if (userRecipe.owner) {
+            setUsername(await (await fetch(`/user/username/${userRecipe.owner}`)).json());
         }
     }, [userRecipe.pictures])
     
@@ -50,10 +55,12 @@ const ViewRecipePage = () => {
             <div>
                 <h1 className="title center">{ userRecipe.title }</h1>
 
-                <p className="center">Submitted by: pending feature - owner_id: { userRecipe.owner }</p>
-                <p className="center">Submitted: { userRecipe.createdAt }. Last updated: { userRecipe.updatedAt }</p>
+                <p className="center">Submitted by: { username }</p>
+                <p className="center">Submitted: { userRecipe.createdAt }.</p>
+                <p className="center">Last updated: { userRecipe.updatedAt }</p>
 
-                { userRecipe.pictures && //Only load the picture section if the recipe has pictures.
+                {/* Only load the picture section if the recipe has pictures. */}
+                { userRecipe.pictures.length > 0 &&
                     <div className="pictures-container">
                         { userRecipe.pictures.map((pic, index) => (
                             <div key={ pic._id } className="pictures-slides fade">

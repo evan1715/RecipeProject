@@ -61,6 +61,18 @@ router.post('/user/logoutAll', auth, async (req, res) => {
     }
 });
 
+//Get username by id.
+router.get('/user/username/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        const username = user.username;
+
+        res.send(username);
+    } catch (error) {
+        res.status(500).send();
+    }
+});
+
 //View profile. Why doesn't just /user/ work and it's forcing /users/? --- creating patch and delete seemed to fix it.
 router.get('/user/profile', auth, async (req, res) => {
     res.send(req.user);

@@ -3,11 +3,8 @@
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
-- Have the popout/burger menu close when clicking outside of it.
 - Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
-- Modify recipeRouter to take in which picture at a time. Delete currently only takes in query ?image=all
-- Have a username on recipes to show who submitted them.
---Make them clickable to view a user's profile and the rest of their recipes.
+- Make a username clickable to view a user's profile and the rest of their recipes.
 - On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance.
 - Have selectors for recipes to indicate if it's vegan or vegetarian or something similar.
 - On All Recipes, make them all clickable as well as displaying images and description previews.
@@ -17,7 +14,7 @@
 - Add loading bar to more locations. Especially if we're going to lazy load stuff.
 - Add accessibility with <label> on inputs.
 - Improve network efficiency by using current state or manipulating current state to avoid downloading again. For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
-- Make View or edit my recipes, Submit a new recipe, My Account, View recipe buttons into links so that they're clickable to a new tab.
+
 
 
 
@@ -28,6 +25,10 @@ Completed:
 + Send back errors from mongodb when creating account or logging in.
 + Set up private links and public links. "My account" settings for example.
 + Put a pop up module on deleting recipes asking, "Are you sure?" -- No pop up, just asks for confirmation.
++ Make View or edit my recipes, Submit a new recipe, My Account, View recipe buttons into links so that they're clickable to a new tab.
++ Have a username on recipes to show who submitted them.
++ Modify recipeRouter to take in which picture at a time. Delete currently only takes in query ?image=all.
++ Have the popout/burger menu close when clicking outside of it.
 
 
 

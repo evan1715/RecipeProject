@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
     into the browser until after the javascript runs, which takes some time. */
 //CssMinimizerPlugin will optimize and minify the CSS.
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 console.log("Webpack is in:", process.env.NODE_ENV, "mode");
@@ -22,7 +23,10 @@ module.exports = {
         path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'),
         filename: 'bundle.js'
     },
-    plugins: devMode ? [] : [new MiniCssExtractPlugin({ filename: 'styles.css' })],
+    plugins: devMode ? [] : [
+        new MiniCssExtractPlugin({ filename: 'styles.css' }), 
+        new MomentLocalesPlugin()
+    ],
     module: {
         rules: [{
             test: /\.js$/,

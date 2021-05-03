@@ -17,6 +17,11 @@
             - 4-23: getRecipeAction now takes in data.
             - 4-25: Added a function to convert the buffer image coming in from the database to store the pictures as a binary to make it easier to render them in the userRecipes action file.
             - 4-26: Added buffer to binary image conversion in userRecipes action if the data received is not an array, but is one singular image. It was previously working for only an array of recipes, but not if just one came back. It's fixed now.
+            - 5-3: {
+                - Removed unused actions. 
+                - Added moment in to replace a recipe's date style for all data incoming for easier access on dates. 
+                - Changed the name of the function to processData instead of convertBufferToImage since it is now multifunctional.
+            }
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -62,6 +67,10 @@
                 - ViewRecipePage now only loads the pictures section if the recipe has pictures.
                 - MyAccountPage buttons View or edit my recipes & Submit a new recipe are now link-based instead of history. Same for MyRecipePage's view button and My Account button in nav. Allows a user to open a new tab of the link if they wanted (I do this often). Added styles to incorporate this. The CSS was the torture of it.
             }
+            - 5-3: {
+                - Added a view button-link to AllRecipesPage to link to the recipe listed.
+                - In ModifyPicturesModal, changed button Delete selected to Delete one.
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -73,6 +82,7 @@
             - 4-25: Created a function to handle a response without json to avoid error in console "error at json row 1, column 1" thing. Catch error now only console logs goes if error exists. Created a loop to append pictures to get ready to send to the server. Modified delete pictures to temporarily delete all with ?image=all query.
                 - Renamed useServerAPI to userServerAPI and placed in in the database folder instead of hook folder.
             - 5-2: Added pic_id to query picture deletion.
+            - 5-3: Got rid of getPictures for recipes and unused imports.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -110,9 +120,16 @@
         - 4-25: Updated changelog and ideas.
         - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it. Added RandomRecipe to graveyard since it wasn't in use.
         - 5-2: Updated notes.
+        - 5-3: Updated changelog and ideas. Installed npm packages moment and moment-locales-webpack-plugin. Updated webpack config file to use new plugin.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
         - 5-2: Added query processing to delete images based on picture id.
+        - 5-3: Added a route on userRouter to receive the username based on id.
+
+
+
+
+
 
 
 

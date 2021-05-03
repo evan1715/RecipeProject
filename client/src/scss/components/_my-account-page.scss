@@ -1,52 +1,22 @@
-// @mixin flexCenter($justify) {
-//     display: flex;
-//     justify-content: $justify;
-//     align-items: center;
-// }
-
 .my-account-page__container {
-    // @include flexCenter(center);
-    // align-items: center; //y-axis
-    // border-color: red;
     display: flex;
     justify-content: center; //x-axis
     width: 100%;
 }
 
 .my-account-page__userinfo {
-    // flex-shrink: 1;
-    // min-width: 11%;
-    // max-width: 10%;
     order: 1;
 }
 
 .my-account-page__center {
     align-items: center;
-    // border-color: green;
     display: flex;
-    // flex: 1;
     flex-direction: column;
-    // flex-grow: 1;
     justify-content: center;
     order: 2;
     width: 40%;
 }
 
 .my-account-page__icon {
-    // align-self: flex-end; //y-axis
-    // border-color: red;
-    // display: flex;
-    // flex-shrink: 1;
     order: 3;
-    // text-align-last: center;
-    // flex: 2;
-    // justify-content: flex-end; //x-axis
-    // text-align: right;
-    // width: 50%;
 }
-
-// .my-account-page-icon {
-//     // text-align: right;
-//     border-color: red;
-//     justify-content: right;
-// }

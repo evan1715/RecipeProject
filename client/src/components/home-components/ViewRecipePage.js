@@ -53,7 +53,7 @@ const ViewRecipePage = () => {
                 <p className="center">Submitted by: pending feature - owner_id: { userRecipe.owner }</p>
                 <p className="center">Submitted: { userRecipe.createdAt }. Last updated: { userRecipe.updatedAt }</p>
 
-                { userRecipe.pictures && 
+                { userRecipe.pictures && //Only load the picture section if the recipe has pictures.
                     <div className="pictures-container">
                         { userRecipe.pictures.map((pic, index) => (
                             <div key={ pic._id } className="pictures-slides fade">

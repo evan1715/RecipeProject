@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar';
 import { 
@@ -16,10 +16,10 @@ import userServerAPI from '../../database/userServerAPI.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const { user, icon } = useSelector(state => state.accountReducer);
-    const userRecipes = useSelector(state => state.userRecipesReducer);
-    const [approveSubmitRecipePush, setApproveSubmitRecipePush] = useState(false);
+    // const userRecipes = useSelector(state => state.userRecipesReducer);
+    // const [approveSubmitRecipePush, setApproveSubmitRecipePush] = useState(false);
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
     const [openChangeUsernameModal, setOpenChangeUsernameModal] = useState(false);
     const [openChangeEmailModal, setOpenChangeEmailModal] = useState(false);
@@ -33,11 +33,11 @@ const MyAccountPage = () => {
         dispatch(userServerAPI('getIcon', user._id));
     }, []);
 
-    useEffect(() => {
-        if (approveSubmitRecipePush) {
-            history.push('/submitrecipe')
-        }
-    }, [userRecipes])
+    // useEffect(() => {
+    //     if (approveSubmitRecipePush) {
+    //         history.push('/submitrecipe')
+    //     }
+    // }, [userRecipes])
 
     return (
         <div className="my-account-page__container">
@@ -60,12 +60,20 @@ const MyAccountPage = () => {
             <div className="my-account-page__center">
     
                 <h2>My Recipes</h2>
-                    <button className="button" onClick={ () => history.push('/myrecipes') }>View or edit my recipes</button>
-                    <button className="button" onClick={ () => {
+                    {/* <button className="button" onClick={ () => history.push('/myrecipes') }>
+                        View or edit my recipes
+                    </button> */}
+                    <button className="button__link">
+                        <Link className="button__link--Link" to="/myrecipes">View or edit my recipes</Link>
+                    </button>
+                    {/* <button className="button" onClick={ () => {
                         dispatch(clearUserRecipesAction());
                         setApproveSubmitRecipePush(true);
-                    }}>Submit a new recipe</button>
-                
+                    }}>Submit a new recipe</button> */}
+                    <button className="button__link" onClick={ () => dispatch(clearUserRecipesAction()) }>
+                        <Link className="button__link--Link" to="/submitrecipe">Submit a new recipe</Link>
+                    </button>
+
 
                 <h2>My Account</h2>
                 <>

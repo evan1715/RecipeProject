@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar'
 import ModifyPicturesModal from './ModifyPicturesModal.js';
@@ -56,8 +56,12 @@ const MyRecipesPage = () => {
                     <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
 
                     <div className="my-recipes-buttons">
-                        <button className="button" onClick={ () => history.push(`/recipe?id=${recipe._id}`) }>
+                        {/* <button className="button" onClick={ () => history.push(`/recipe?id=${recipe._id}`) }>
                             View
+                        </button> */}
+
+                        <button className="button__link">
+                            <Link className="button__link--Link" to={ `/recipe?id=${recipe._id}` }>View</Link>
                         </button>
 
                         <button className="button" onClick={ () => handleEditRecipe(recipe._id)}>

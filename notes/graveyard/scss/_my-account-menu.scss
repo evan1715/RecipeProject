@@ -67,7 +67,7 @@
 
 .my-account-button__link {
     color: white;
-    padding: 8px 48px 11px 48px;
+    padding: 8px 30px 11px 30px; //top right bottom left
     &:hover {
         color: #3c280d;
     }
@@ -78,7 +78,7 @@
     text-align-last: end;
 }
 
-// .popout-menu:focus-visible {
+.popout-menu:focus-visible {
 .popout-menu {
     @include flexCenter(space-around);
     border: solid black 2px;

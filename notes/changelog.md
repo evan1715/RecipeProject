@@ -70,6 +70,10 @@
             - 5-3: {
                 - Added a view button-link to AllRecipesPage to link to the recipe listed.
                 - In ModifyPicturesModal, changed button Delete selected to Delete one.
+                - Added MyRecipesButton to second row nav.
+                - Renamed MyAccountMenu to MyAccountButton. Decided not to do a dropdown menu for it.
+                - Renamed the nav-components folder to just nav because of redundancy.
+                - Created MyRecipesButton for second row nav.
             }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
@@ -108,6 +112,7 @@
                 - Popout nav was modified so that the dropdown menu was closer to the button. Also added z-index to ensure it is placed on top of everything when open.
                 - Added view_recipe_page.scss to styles.scss main file.
             }
+            - 5-3: Put -my-account-menu.scss in the graveyard. Added the stuff in there to nav.scss. Added css for my recipes button in nav.
         Store:
             - 4-13: Added serverErrorReducer.
             - 4-18: Redux logger now collapses messages so it doesn't take up as much space.

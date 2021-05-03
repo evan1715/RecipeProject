@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UserRoute from './UserRoute.js'; //private routes
-import Nav from '../components/nav-components/Nav.js'; //nav
+import Nav from '../components/nav/Nav.js'; //nav
 // Home components/non-authorized pages.
 import HomePage from '../components/home-components/HomePage.js';
 import AllRecipesPage from '../components/home-components/AllRecipesPage.js';

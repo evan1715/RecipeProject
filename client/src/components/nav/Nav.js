@@ -5,7 +5,8 @@ import IosMenu from 'react-ionicons/lib/IosMenu'
 import userServerAPI from '../../database/userServerAPI.js';
 import SignInModal from './SignInModal.js';
 import SearchBar from './SearchBar'
-import MyAccountMenu from './MyAccountMenu.js';
+import MyAccountButton from './MyAccountButton.js';
+import MyRecipesButton from './MyRecipesButton.js';
 
 
 export default function Nav() {
@@ -23,17 +24,14 @@ export default function Nav() {
         const token = isAuthenticated.token;
         dispatch(userServerAPI('logout', token)); //logout from local and server
         history.push('/'); //redirect them to the homepage once logged out
-        // setShowMenu(false);
     }
     
     window.onclick = function(/*event*/) {
-        // if (!event.target.matches('burger-container')) {
-            if (showMenu && toggle) {
-                setShowMenu(false);
-            } else {
-                setToggle(true);
-            }
-        // }
+        if (showMenu && toggle) {
+            setShowMenu(false);
+        } else {
+            setToggle(true);
+        }
     }
 
     return (
@@ -49,12 +47,6 @@ export default function Nav() {
                         {navLinks.map((navLink, index) => {
                             if(navLinks.length === index + 1) {
                                 return (
-                                    // <Link id='sign-up' key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>
-                                    //     <li>
-                                    //         {navLink}
-                                    //     </li>   
-                                    // </Link>
-                                    // <><button id='sign-up' key={ index }
                                     <div key={index}>
                                         <button id="sign-up" key={ index } onClick={ isAuth ? logout : () => setOpenSigninModal(true) }>
                                             <li>{ isAuth ? 'Log Out' : 'Sign In' }</li>
@@ -116,30 +108,12 @@ export default function Nav() {
                             }
                         </div>
                     }
-
-
-
-                    {/* Only show this burger when the screen is too small for the nav bar */}
-                    {/* When the burger is clicked, then toggle the showMenu state property and show the nav menu popout */}
-                    {/* <div onClick={() => setShowMenu(showMenu === true ? false : true)} className="burger-container"><IosMenu style={iconStyles} fontSize="35px" /></div>
-
-                    {showMenu && 
-                        <div className="popout-nav">
-                            {navLinks.map((navLink, index) => (
-                                <Link key={index} to={`${navLink.toLowerCase().replace(' ', '')}`}>
-                                    <li>
-                                        {navLink}
-                                    </li>   
-                            </Link>
-                            ))}
-                        </div>
-                    } */}
-                    
                 </nav>
 
                 <div className="second-row-nav-container">
                     <SearchBar />
-                    <MyAccountMenu />
+                    <MyRecipesButton />
+                    <MyAccountButton />
                 </div>
             </div>
         </div>

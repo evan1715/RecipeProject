@@ -18,11 +18,11 @@ const ViewRecipePage = () => {
         
         //If n is more than the total slide because of "next" button, return to the first one.
         if (n > slides.length) {
-            slideIndex = 1 
+            slideIndex = 1;
         }
         //If n is less than one because of "prev" button, return to the last one.
         if (n < 1) {
-            slideIndex = slides.length
+            slideIndex = slides.length;
         }
 
         for (let i = 0; i < slides.length; i++) {
@@ -34,9 +34,8 @@ const ViewRecipePage = () => {
 
     useEffect(() => {
         dispatch(showLoading());
-        const recipe_id = location.search.split('?id=')[1];
-        dispatch(recipeServerAPI('getRecipe', recipe_id));
-    }, [])
+        dispatch(recipeServerAPI('getRecipe', location.search.split('?id=')[1]));
+    }, []);
 
     useEffect(async () => {
         //Only call the slideshow if there is any pictures.
@@ -47,7 +46,7 @@ const ViewRecipePage = () => {
         if (userRecipe.owner) {
             setUsername(await (await fetch(`/user/username/${userRecipe.owner}`)).json());
         }
-    }, [userRecipe.pictures])
+    }, [userRecipe.pictures]);
     
     return (
         <div>
@@ -56,8 +55,12 @@ const ViewRecipePage = () => {
                 <h1 className="title center">{ userRecipe.title }</h1>
 
                 <p className="center">Submitted by: { username }</p>
-                <p className="center">Submitted: { userRecipe.createdAt }.</p>
-                <p className="center">Last updated: { userRecipe.updatedAt }</p>
+                <p className="center">Submitted: { userRecipe.createdAt }</p>
+                {/*If a recipe is created on the same day it's submitted, we don't have to display updated.*/
+                    userRecipe.createdAt !== userRecipe.updatedAt
+                    &&
+                    <p className="center">Last updated: { userRecipe.updatedAt }</p>
+                }
 
                 {/* Only load the picture section if the recipe has pictures. */}
                 { userRecipe.pictures.length > 0 &&

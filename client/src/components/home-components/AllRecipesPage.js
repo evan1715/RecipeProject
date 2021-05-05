@@ -1,9 +1,4 @@
-import React, { 
-    useState, 
-    useEffect, 
-    // useLayoutEffect 
-} from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showLoading } from 'react-redux-loading-bar';
@@ -49,20 +44,9 @@ const AllRecipesPage = () => {
 
     useEffect(async () => {
         getUsername();
-    }, [allRecipes])
+    }, [allRecipes]);
 
     return (
-        // <ul>
-        //     { allRecipes.length > 0 && allRecipes.map((recipe, index) => (
-        //         <div key={ index } className="row">
-        //             <button className="button__link">
-        //                 <Link className="button__link--Link" to={`/recipe?id=${recipe._id}`}>View</Link>
-        //             </button>
-        //             <p>Title: { recipe.title } Cook time: { recipe.cookTime } Instructions: { recipe.instructions }</p>
-        //         </div>
-        //     ))}
-        // </ul>
-
         <table className="recipes-table">
             <thead>
                 <tr>
@@ -78,7 +62,7 @@ const AllRecipesPage = () => {
             { allRecipes.length > 0 && allRecipes.map((recipe, index) => (
                 <tr key={ recipe._id }>
                     <td>
-                        <Link className="link" to={`/recipe?id=${recipe._id}`}>View</Link>
+                        <Link className="link" to={ `/recipe?id=${recipe._id}` }>View</Link>
                     </td>
                     <td>{ recipe.pictures[0] &&
                         <img

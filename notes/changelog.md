@@ -78,6 +78,12 @@
             - 5-4: {
                 - Added more information on AllRecipesPage. Put everything in HTML table format. A user can now click a link to view a recipe, see an image of the recipe, recipe title, cook time, time submitted, and user who submitted it. Since we're using fetch requests per recipe to obtain the usernames, I made a storage & check code block to ensure we don't fetch more times than we need to. If the owner id matches up to a username we've already fetched, it won't fetch it again.
             }
+            - 5-5: {
+                - ViewRecipePage now only shows "Last updated" when the date is not the same as when it was submitted. Also cleaned up some.
+                - SubmitRecipePage and EditRecipePage now return to /myrecipes when something is submitted. Cleaned up some.
+                - RecipeForm functions now implicitly returns when possible. Cancel button now returns back to /myrecipes instead of homepage. Cleaned up some.
+                - Cleaned up some in CreateAccountModal and AllRecipesPage.
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -90,6 +96,7 @@
                 - Renamed useServerAPI to userServerAPI and placed in in the database folder instead of hook folder.
             - 5-2: Added pic_id to query picture deletion.
             - 5-3: Got rid of getPictures for recipes and unused imports.
+            - 5-4: Cleaned up some in recipeServerAPI.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.

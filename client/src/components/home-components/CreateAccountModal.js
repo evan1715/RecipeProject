@@ -29,7 +29,7 @@ const CreateAccountModal = (props) => {
 
     const handleClearError = () => {
         if (serverError.error != null) {
-            dispatch(clearErrorAction())
+            dispatch(clearErrorAction());
         }
     }
 

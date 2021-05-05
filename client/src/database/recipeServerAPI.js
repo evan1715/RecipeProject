@@ -52,8 +52,8 @@ const recipeServerAPI = (type, config) => {
             return deleteRecipe(config); //id
         case 'uploadPictures': //post
             return uploadPictures(config); //token & pictures
-        case 'getRecipePictures': //get
-            return getRecipePictures(config); //id
+        // case 'getRecipePictures': //get
+        //     return getRecipePictures(config); //id
         case 'deletePictures': //delete
             return deletePictures(config); //token & id
     }
@@ -289,10 +289,4 @@ const deletePictures = (config) => {
 }
 
 
-export { 
-    recipeServerAPI as default,
-    handleResponse,
-    handleDataError,
-    handleCatchError,
-    allRecipes
- }
+export { recipeServerAPI as default }

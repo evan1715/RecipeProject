@@ -35,24 +35,22 @@ const RecipeForm = (props) => {
     }
 
     //Add the ingredients with the details of amount, measurement, item type to an array.
-    const handleAddIngredients = () => {
+    const handleAddIngredients = () => (
         setIngredients(prevState => [...prevState, {
             amount: ingredientAmount,
             measurement: ingredientMeasurement,
             item: ingredientItem
-        }]);
-    }
+        }])
+    );
 
     //Delete added ingredients as needed.
-    const handleDeleteIngredient = (index) => {(
+    const handleDeleteIngredient = (index) => (
         setIngredients(prevState => {
             const newState = [...prevState];
-
             newState.splice(index, 1);
-
             return newState;
         })
-    )}
+    );
 
     //Check if there's any server errors sent back whenever the state changes and display them.
     useEffect(() => {
@@ -81,14 +79,13 @@ const RecipeForm = (props) => {
                 <h3 className="title">Ingredients are entered as the amount, the measurement of it, and what the item is (ex: chicken):</h3>
 
                 {/* Show them the ingredients they've added. */}
-                { ingredients.map((ingredient, index) => {
-                    return (
+                { ingredients.map((ingredient, index) => (
                         <div key={ index }>
                             <p>{ ingredient.amount } { ingredient.measurement } of { ingredient.item }</p>
                             <button onClick={ (e) => (e.preventDefault(), handleDeleteIngredient(index)) }>Remove</button>
                         </div>
                     )
-                })}
+                )}
 
                 <ol>
                     <li><input 
@@ -102,7 +99,7 @@ const RecipeForm = (props) => {
                     <li>
                         <input className="modal__form--input" placeholder="ingredient" onChange={ (e) => setIngredientItem(e.target.value) }/>
                     </li>
-                    <button onClick={ (e) => (e.preventDefault(), handleAddIngredients())}>Add an ingredient</button>
+                    <button onClick={ (e) => (e.preventDefault(), handleAddIngredients()) }>Add an ingredient</button>
                 </ol>
 
                 <h3 className="title">Detailed instructions on how to make it:</h3>
@@ -116,7 +113,7 @@ const RecipeForm = (props) => {
             { response && <p>{ response }</p> }
                 <button className="button" onClick={ () => {
                     dispatch(clearErrorAction());
-                    history.push('/');
+                    history.push('/myrecipes');
                 }}>Cancel</button>
                 <button className="button" onClick={ onSubmit }>Submit</button>
                 

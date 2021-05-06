@@ -8,12 +8,10 @@ server/config/
 startDB.bat
 
 #bundled/compiled
-client/public/dist/bundle.js
-client/public/dist/bundle.js.LICENSE.txt
-client/public/dist/bundle.js.map
-client/public/dist/styles.css
-client/public/dist/styles.css.map
-client/public/bundle.js
+client/public/
+
+#test folder
+client/tests/
 
 
 

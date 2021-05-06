@@ -1,29 +1,35 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//This creates a new html file per compile.
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 /*  MiniCssExtractPlugin This plugin creates a CSS file per JS file which requires CSS. It'll allow the build to be 
     smaller sized. Without it, all the styles are in bundle.js and all the styles don't get loaded 
     into the browser until after the javascript runs, which takes some time. */
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //CssMinimizerPlugin will optimize and minify the CSS.
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+//Moment is too big, so get rid of some things.
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
+//This will create a new html file with the webpack config every build.
+const htmlwbplugin = new HtmlWebpackPlugin({ template: './client/src/index.html' });
+//Store whether we're in dev or prod for utility.
 const devMode = process.env.NODE_ENV !== 'production';
+
+//Tell us what mode it is put in so we can confirm.
 console.log("Webpack is in:", process.env.NODE_ENV, "mode");
-// const devMode = process.env.NODE_ENV === 'development';
-// const plugins = [];
-// if (!devMode) {
-//     plugins.push(new MiniCssExtractPlugin({ filename: 'styles.css' }));
-// }
 
-// console.log(plugins);
-
+//Webpack Config
 module.exports = {
-    entry: '/client/src/index.js',
+    entry: {
+        index: '/client/src/index.js',
+    },
     output: {
         path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'),
-        filename: 'bundle.js'
+        filename: '[name].bundle.js',
+        clean: true //this will get rid of files that already exist in the dist folder
     },
-    plugins: devMode ? [] : [
+    plugins: devMode ? [htmlwbplugin] : [
+        htmlwbplugin,
         new MiniCssExtractPlugin({ filename: 'styles.css' }), 
         new MomentLocalesPlugin()
     ],
@@ -58,7 +64,21 @@ module.exports = {
     },
     optimization: {
         minimize: devMode ? false : true, //!=='production'
-        minimizer: devMode ? [] : [`...`, new CssMinimizerPlugin()] //!=='production'
+        minimizer: devMode ? [] : [`...`, new CssMinimizerPlugin()], //!=='production'
+        splitChunks: devMode ? {} : {
+            cacheGroups: {
+                axios_moment: {
+                    test: (/[\\/]node_modules[\\/](axios|moment)/),
+                    name: 'axios_moment',
+                    chunks: 'all'
+                },
+                react_redux: {
+                    test: (/[\\/]node_modules[\\/](react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|redux-thunk)/),
+                    name: 'react-redux',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     devtool: devMode ? 'inline-source-map' : 'source-map', //!=='production'
     mode: devMode ? 'development' : 'production', //!=='production'
@@ -69,10 +89,6 @@ module.exports = {
         //historyApiFallback says that we're going to handle all of our routing through React clientside.
         historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,
-        // proxy: {
-        //     target: 'http://localhost:3001',
-        //     context: () => true
-        // },
         open: true, //open browser
         liveReload: true //reload browser tab on change
     }

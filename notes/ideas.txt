@@ -11,8 +11,13 @@
 - Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
 - Add pagination to all recipes, my recipes, searching recipes.
 - Add loading bar to more locations. Especially if we're going to lazy load stuff.
+    -- Lazy load via webpack so we can do production vs development mode on lazy load.
 - Add accessibility with <label> on inputs.
 - Improve network efficiency by using current state or manipulating current state to avoid downloading again. For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
+- See if we can clean up processData function in userRecipes.js action.
+- Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
+- Convert axios to redux to get rid of package.
+- Put the public folder outside of client.
 
 
 

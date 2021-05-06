@@ -137,6 +137,12 @@
         - 4-26: Updated changelog. Put FilterIngredient in the graveyard since it's being unused. Renamed the copy of submit recipe page without the word "copy" in it. Added RandomRecipe to graveyard since it wasn't in use.
         - 5-2: Updated notes.
         - 5-3: Updated changelog and ideas. Installed npm packages moment and moment-locales-webpack-plugin. Updated webpack config file to use new plugin.
+        - 5-5: {
+            - Installed html-webpack-plugin and reconfigured webpack to use it. 
+            - Introduced split chunking to cache certain node modules. Two packages were cached, axios and moment. In the react_redux group, react, react-dom, react-ionicons, react-modal, react-redux, react-redux-loading-bar, react-router-dom, react-transition-group, redux, redux-logger, and redux-thunk were all cached.
+            -- The axios_moment group caches 71.1 KB and the react_redux bundle caches 207 KB. This leaves the index bundle at 121 KB.
+            - Changed gitignore to ignore all of the public folder now. For some reason, it isn't ignoring the two index.html files, but it's fine. I don't mind.
+            - Updated changelog and ideas.
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
         - 5-2: Added query processing to delete images based on picture id.

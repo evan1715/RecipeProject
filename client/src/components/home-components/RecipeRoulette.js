@@ -29,7 +29,10 @@ export default function RecipeRoulette() {
     }
 
     React.useEffect(() => {
-        dispatch(handleRecipeRoulette(url, 10))
+        //Load recipeRoulette when the app first loads. Don't load again unless the spin button is hit.
+        if (recipeRoulette.length < 1) {
+            dispatch(handleRecipeRoulette(url, 10))
+        }
     }, []) //got rid of [dispatch] because this would fire every time dispatch was fired
 
     // After 800ms, set inProp to true so that the cards fade back onto the screen after the API request finishes

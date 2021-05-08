@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
-// const validator = require('validator');
+const Filter = require('bad-words');
+
+const filter = new Filter();
 
 const recipeSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate(input) {
+            if (input.length > 50) {
+                throw new Error("Title cannot be longer than 50 characters.");
+            }
+            if (filter.isProfane(input)) {
+                throw new Error("That title contains profanity.");
+            }
+        }
     },
     cookTime: {
         type: Number,
@@ -23,16 +33,31 @@ const recipeSchema = new mongoose.Schema({
         },
         measurement: {
             type: String,
-            required: true
+            required: true,
+            validate(input) {
+                if (filter.isProfane(input)) {
+                    throw new Error("Your measurements contain profanity.");
+                }
+            }
         },
         item: {
             type: String,
-            required: true
+            required: true,
+            validate(input) {
+                if (filter.isProfane(input)) {
+                    throw new Error("Your ingredient items contain profanity.");
+                }
+            }
         }
     }],
     instructions: {
         type: String,
-        required: true
+        required: true,
+        validate(input) {
+            if (filter.isProfane(input)) {
+                throw new Error("Your instructions contain profanity.");
+            }
+        }
     },
     pictures: [{
         picture: {
@@ -60,17 +85,6 @@ recipeSchema.path('pictures').validate((num) => {
         throw new Error("Maximum number of pictures per recipe is 5.");
     }
 });
-
-//Adding array of ingredients to the schema
-// recipeSchema.methods.addIngredient = async function () {
-//     const recipe = this;
-//     const ingredient = ingrdient......
-
-//     recipe.ingredients = recipe.ingredients.concat({})
-//     recipe.save();
-
-//     return;
-// }
 
 
 

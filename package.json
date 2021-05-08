@@ -17,6 +17,7 @@
     "prod": "concurrently \"webpack --watch --node-env production\" \"env-cmd -f server/config/dev.env nodemon server/server.js -e js,html,css,scss\""
   },
   "dependencies": {
+    "bad-words": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

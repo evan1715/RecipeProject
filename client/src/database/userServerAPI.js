@@ -103,11 +103,11 @@ const handleMongoError = (data) => {
             }
         } else if (data.errors.email) {
             if (data.errors.email.kind === 'required') {
-                message = "Email required."
+                message = "Email required.";
             }
         } else if (data.errors.password) {
             if (data.errors.password.kind === 'required') {
-                message = "Password required."
+                message = "Password required.";
             }
         } else if (data.errors.name) {
             if (data.errors.name.kind === 'required') {
@@ -115,14 +115,23 @@ const handleMongoError = (data) => {
             }
         }
 
+        //Profanity filter handler
+        if (data.errors.username && data.errors.username.message === 'That username contains profanity.') {
+            message = data.errors.username.message;
+        } else if (data.errors.email && data.errors.email.message === 'That email contains profanity.') {
+            message = data.errors.email.message;
+        } else if (data.errors.name && data.errors.name.message === 'That name contains profanity.') {
+            message = data.errors.name.message;
+        }
+
     } else if (data.error === 'Invalid current password.') {
         message = data.error;
     } else if (data.error === 'Unable to login.') {
-        message = "Incorrect email and password combination."
+        message = "Incorrect email and password combination.";
     } else if (data.error === 'Unsupported image file type.') {
         message = data.error;
     } else {
-        message = "Unknown error."
+        message = "Unknown error.";
     }
 
     return message;
@@ -245,7 +254,6 @@ const updateUser = (config) => {
             previousPassword: previousPassword, 
             password: password
         }
-
     } else if (name) {
         newUserInfo = { name: name }
     }

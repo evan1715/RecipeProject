@@ -97,6 +97,7 @@
             - 5-2: Added pic_id to query picture deletion.
             - 5-3: Got rid of getPictures for recipes and unused imports.
             - 5-4: Cleaned up some in recipeServerAPI.
+            - 5-8: Handled errors for profanity filter in userServerAPI.js and recipeServerAPI.js. Trying out error on title length.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -143,10 +144,13 @@
             -- The axios_moment group caches 71.1 KB and the react_redux bundle caches 207 KB. This leaves the index bundle at 121 KB.
             - Changed gitignore to ignore all of the public folder now. For some reason, it isn't ignoring the two index.html files, but it's fine. I don't mind.
             - Updated changelog and ideas.
+        }
+        - 5-8: Installed bad-words package to filter profanity in userinfo and recipes. 
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
         - 5-2: Added query processing to delete images based on picture id.
         - 5-3: Added a route on userRouter to receive the username based on id.
+        - 5-8: In userModel, placed profanity filter to validate username, email, and name. In recipeModel, put the profanity filter in title, measurement, item, and instructions. 
 
 
 

@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const Recipe = require('./recipeModel.js');
+const Filter = require('bad-words');
+
+const filter = new Filter();
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -13,6 +15,9 @@ const userSchema = new mongoose.Schema({
         validate(input) {
             if (input === null) {
                 throw new Error("Must provide a username.");
+            }
+            if (filter.isProfane(input)) {
+                throw new Error("That username contains profanity.");
             }
         }
     },
@@ -25,6 +30,9 @@ const userSchema = new mongoose.Schema({
         validate(input) {
             if (!validator.isEmail(input)) {
                 throw new Error("Email is invalid.");
+            }
+            if (filter.isProfane(input)) {
+                throw new Error("That email contains profanity.");
             }
         }
     },
@@ -45,7 +53,12 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate(input) {
+            if (filter.isProfane(input)) {
+                throw new Error("That name contains profanity.");
+            }
+        }
     },
     //JSON web tokens so users can have logged in sessions. An array of them will allow multiple sessions.
     loginTokens: [{

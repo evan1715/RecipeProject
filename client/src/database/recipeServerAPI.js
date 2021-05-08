@@ -81,28 +81,49 @@ const handleResponseNoJSON = (res) => {
 //Handle errors sent back in data.
 const handleDataError = (data) => {
     let message;
-    
-    // console.log("1. Server data sent back: ", data);
-    // console.log("2. Server data sent back.json", data.json);
+    const dErrs = data.errors;
+    const dMsg = data.message;
 
     if (data.name === 'MongoError') {
         message = data;
     } else if (data.error) {
         message = data.error;
-    } else if (data.errors) {
-        if (data.errors.instructions) {
+    }
+    
+    if (dErrs) {
+        if (dErrs.instructions && dErrs.instructions.kind === 'required') {
             message = "Instructions for your recipe are required.";
-        } else if (data.errors.title) {
+        } else if (dErrs.title && dErrs.title.kind === 'required') {
             message = "Title for your recipe is required.";
+        } else if (dErrs.cookTime) {
+            message = "Cook time must be a positive number.";
+        }
+
+        if (dErrs.instructions && dErrs.instructions.message.includes('profanity')) {
+            message = dErrs.instructions.message;
+        }
+        if (dErrs.title && dErrs.title.message.includes('profanity')) {
+            message = dErrs.title.message;
+        }
+
+        if (dErrs.title & dErrs.title.message === 'Title cannot be longer than 50 characters') {
+            message = dErrs.title.message;
         }
     }
     
-    if (data.message) {
-        if (data.message.includes('amount') || data.message.includes('measurement') || data.message.includes('item')) {
-            message = "All three fields of amount, measurement, and ingredient type are required for each added ingredient.";
+    if (dMsg) {
+        if (dMsg.includes('Path')) {
+            if (dMsg.includes('amount') || dMsg.includes('measurement') || dMsg.includes('item')) {
+                message = "All three fields of amount, measurement, and ingredient type are required for each added ingredient.";
+            }
         }
-        if (data.message.includes('Cast to Number failed')) {
-            message = "Number not accepted. Could be a fractional error. Try converting to decimal."
+        if (dMsg.includes('profanity')) {
+            if (dMsg.includes('amount') || dMsg.includes('measurement') || dMsg.includes('item')) {
+                message = "Ingredients cannot contain profanity.";
+            }
+        }
+        if (dMsg.includes('Cast to Number failed')) {
+            message = "Number not accepted. Could be a fractional error. Try converting to decimal.";
         }
         console.log(data.message);
     }

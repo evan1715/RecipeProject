@@ -1,4 +1,3 @@
-- Introduce a profanity filter for usernames and recipe creations.
 - Comment box for recipes. Perhaps use it via a socket.io method?
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
@@ -10,15 +9,20 @@
 - On All Recipes, make them all clickable as well as displaying images and description previews.
 - Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
 - Add pagination to all recipes, my recipes, searching recipes.
-- Add loading bar to more locations. Especially if we're going to lazy load stuff.
-    -- Lazy load via webpack so we can do production vs development mode on lazy load.
+- Add loading bar to more locations.
 - Add accessibility with <label> on inputs.
-- Improve network efficiency by using current state or manipulating current state to avoid downloading again. For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
+
+Efficiency improvements:
+- Improve network efficiency by using current state or manipulating current state to avoid downloading again.
+-- For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
+-- This might be solved by browsers that cache.
 - See if we can clean up processData function in userRecipes.js action.
 - Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
 - Convert axios to redux to get rid of package.
 - Put the public folder outside of client.
-
+- Have recipe roulette only call a new set when someone hits "spin" button. Initial load one time, then change only if spin.
+- Add loading bar to more locations. Especially if we're going to lazy load stuff.
+-- Lazy load via webpack so we can do production vs development mode on lazy load.
 
 
 
@@ -34,6 +38,7 @@ Completed:
 + Modify recipeRouter to take in which picture at a time. Delete currently only takes in query ?image=all.
 + Have the popout/burger menu close when clicking outside of it.
 + Add "View My Recipes" button next to "My Account", maybe even a "submit a new recipe." Added button to view My Recipes.
++ Introduce a profanity filter for usernames and recipe creations.
 
 
 

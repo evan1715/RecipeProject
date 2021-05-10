@@ -1,3 +1,37 @@
 
 //Font
 $font-weight: 350;
+
+//Screen width, 16:9 aspect ratio
+$screen-nHD: 640px; //nHD 640x360
+$screen-768: 768px; //768x432
+$screen-FW: 854px; //FW 854x480
+$screen-qHD: 960px; //qHD 960x540
+$screen-HD: 1280px; //HD 1280x720
+$screen-HDp: 1600px; //HD+ 1600x900
+$screen-FHD: 1920px; //FHD 1920x1080
+$screen-QHD: 2560px; //QHD 2560X1440
+$screen-QHDp: 3200px; //QHD+ 3200x1800
+$screen-UHD: 3840px; //UHD 3840x2160
+
+//Grid column width
+$column-width: 400px;
+
+/*  16:10
+    160x100
+    240x150
+    288x180
+    320x200
+    384x240
+    400x250
+    480x300
+    640x400
+    720x450
+    960x600
+    1024x640
+    1150x720
+    1280x800
+    1440x900
+    1680x1050
+    1920x1200
+*/

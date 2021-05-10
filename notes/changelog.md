@@ -22,6 +22,10 @@
                 - Added moment in to replace a recipe's date style for all data incoming for easier access on dates. 
                 - Changed the name of the function to processData instead of convertBufferToImage since it is now multifunctional.
             }
+            - 5-9: {
+                - Extracted processData function and put it in a utils file for other files to use.
+                - Created selectedRecipes action file to store one recipe at a time. It'll be used for editing a recipe and viewing a recipe. This will also benefit instead of calling fetch to get the recipe to edit, we just transfer what's stored already into the editing process.
+            }
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -84,6 +88,17 @@
                 - RecipeForm functions now implicitly returns when possible. Cancel button now returns back to /myrecipes instead of homepage. Cleaned up some.
                 - Cleaned up some in CreateAccountModal and AllRecipesPage.
             }
+            - 5-8: RecipeRoulette now only loads recipes once instead of every time the component loaded. To refresh, the user must refresh the app or hit the spin button.
+            - 5-9: {
+                - Created PopulateRecipes component. The goal of it is to be used for future search results, All Recipes page, and potentially others. Added CSS Grid for it too.
+                - Modified EditRecipePage, MyAccountPage, MyRecipesPage, RecipeForm, and ViewRecipePage to reflect on the new selectedRecipe reducer.
+                    -- EditRecipePage will clearSelectedRecipe when returning to /myrecipes onSubmit.
+                    -- MyAccountPage will now clearSelectedRecipe when clicking "Submit a new recipe" instead of clearing userRecipes.
+                    -- MyRecipesPage will now use editRecipeAction in selectedRecipeReducer, not dispatch to server to get the recipe to edit, and push to /editrecipe?id=${id}. The function handleDeleteRecipe is now simplified onto one line and implicitly returns. Removed approveEditPush stuff.
+                    -- RecipeForm now uses the selectedRecipeReducer and will clear selected recipe when cancel button is clicked.
+                    -- ViewRecipePage now uses selectedRecipeReducer instead of userRecipeReducer.
+                - EditRecipePage now returns to /myrecipes page if no recipe is stored selectedRecipe. User must click the "Edit" button on /myrecipes page to edit.
+            }
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -98,6 +113,10 @@
             - 5-3: Got rid of getPictures for recipes and unused imports.
             - 5-4: Cleaned up some in recipeServerAPI.
             - 5-8: Handled errors for profanity filter in userServerAPI.js and recipeServerAPI.js. Trying out error on title length.
+            - 5-9: {
+                - Made a utils folder and put processData function in it for other files to use too.
+                - recipeServerAPI now calls in viewRecipeAction and dispatches to it on getRecipe call.
+            }
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -110,10 +129,12 @@
             - 4-18: Updated user recipes. Added clear error.
             - 4-21: Updated recipeRoulette.
             - 4-23: GET_RECIPE now takes in data.
+            - 5-9: Created selectedRecipeReducer to edit and view a single recipe instead of clearing out the array of recipes we already have. This will also benefit instead of calling fetch to get the recipe to edit, we just transfer what's stored already into the editing process.
         Router:
             - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
             - 4-23: Updated AppRouter to include ViewRecipePage and EditRecipePage. Organized the imports area alphabetically and the route section.
             - 4-26: Attempted lazy loading page components in router, but I put it back to regular imports for now. It didn't seem to reduce the size enough for me. To be determined later.
+            - 5-9: Added PopulateRecipe to Wine Pairing route for now.
         SCSS:
             - 4-25: Added _my-recipes-page.scss and _recipe-form.scss then included them in styles.scss master file.
             - 5-2: {
@@ -125,9 +146,11 @@
             }
             - 5-3: Put _my-account-menu.scss in the graveyard. Added the stuff in there to nav.scss. Added css for my recipes button in nav.
             - 5-4: Added _all-recipes-page.scss and some minor styling.
+            - 5-9: Added _populate_recipes.scss using CSS Grid to list recipes. Also modified _my-account-page so things align better. Modified files: styles, _settings, _my-account-page, and _populate-recipes.
         Store:
             - 4-13: Added serverErrorReducer.
             - 4-18: Redux logger now collapses messages so it doesn't take up as much space.
+            - 5-9: Added selectedRecipeReducer.
     General/Notes:
         - 4-12: Edited changelog and ideas.
         - 4-13: Edited changelog and notes.

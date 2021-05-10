@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar'
 import ModifyPicturesModal from './ModifyPicturesModal.js';
+import { editRecipeAction } from '../../actions/selectedRecipe.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const MyRecipesPage = () => {
@@ -13,19 +14,14 @@ const MyRecipesPage = () => {
     const [selectedRecipe, setSelectedRecipe] = useState();
     const [selectedPictures, setSelectedPictures] = useState([]);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    const [approveEditRecipePush, setApproveEditRecipePush] = useState(false);
     const [openModifyPicturesModal, setOpenModifyPicturesModal] = useState(false);
 
-    const handleEditRecipe = (recipe_id) => {
-        dispatch(showLoading());
-        dispatch(recipeServerAPI('getRecipe', recipe_id));
-        setApproveEditRecipePush(true);
+    const handleEditRecipe = (recipe) => {
+        dispatch(editRecipeAction(recipe));
+        history.push(`/editrecipe?${recipe._id}`);
     }
 
-    const handleDeleteRecipe = (recipe_id) => {
-        const config = { recipe_id, token }
-        dispatch(recipeServerAPI('deleteRecipe', config));
-    }
+    const handleDeleteRecipe = (recipe_id) => dispatch(recipeServerAPI('deleteRecipe', { recipe_id, token }));
 
     //Get the recipes when page initializes.
     useEffect(() => {
@@ -41,12 +37,6 @@ const MyRecipesPage = () => {
         }
     }, [userRecipes.recipe]);
 
-    useEffect(() => {
-        if (approveEditRecipePush) {
-            history.push('/editrecipe');
-        }
-    }, [userRecipes])
-
     return (
         <div className="my-recipes-page">
             <h1 className="title center">My Recipes</h1>
@@ -56,15 +46,11 @@ const MyRecipesPage = () => {
                     <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
 
                     <div className="my-recipes-buttons">
-                        {/* <button className="button" onClick={ () => history.push(`/recipe?id=${recipe._id}`) }>
-                            View
-                        </button> */}
-
                         <button className="button__link">
                             <Link className="button__link--Link" to={ `/recipe?id=${recipe._id}` }>View</Link>
                         </button>
 
-                        <button className="button" onClick={ () => handleEditRecipe(recipe._id)}>
+                        <button className="button" onClick={ () => handleEditRecipe(recipe)}>
                             Edit
                         </button>
 

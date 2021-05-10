@@ -7,7 +7,7 @@ import recipeServerAPI from '../../database/recipeServerAPI.js';
 const ViewRecipePage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const userRecipe = useSelector(state => state.userRecipesReducer);
+    const userRecipe = useSelector(state => state.selectedRecipeReducer);
     const [username, setUsername] = useState('account no longer exists');
     let slideIndex = 1;
 

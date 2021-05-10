@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import accountReducer from '../reducers/account.js';
 import recipeRoulette from '../reducers/recipe-roulette.js';
+import selectedRecipeReducer from '../reducers/selectedRecipe.js';
 import serverErrorReducer from '../reducers/serverError.js';
 import userRecipesReducer from '../reducers/userRecipes.js';
 
@@ -23,6 +24,7 @@ export default () => {
             loadingBar: loadingBarReducer,
             accountReducer,
             recipeRoulette,
+            selectedRecipeReducer,
             serverErrorReducer,
             userRecipesReducer
         }),

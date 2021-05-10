@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrorAction } from '../../actions/serverError.js';
+import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 
 const RecipeForm = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const userState = useSelector(state => state.accountReducer);
-    const userRecipeState = useSelector(state => state.userRecipesReducer);
+    const selectedRecipe = useSelector(state => state.selectedRecipeReducer);
     const serverError = useSelector(state => state.serverErrorReducer);
     const [response, setResponse] = useState();
-    const [title, setTitle] = useState(userRecipeState.title ? userRecipeState.title : ''); //title of recipe
-    const [cookTime, setCookTime] = useState(userRecipeState.cookTime ? userRecipeState.cookTime : '');
-    const [ingredients, setIngredients] = useState(userRecipeState.ingredients ? userRecipeState.ingredients : []);
+    const [title, setTitle] = useState(selectedRecipe.title ? selectedRecipe.title : ''); //title of recipe
+    const [cookTime, setCookTime] = useState(selectedRecipe.cookTime ? selectedRecipe.cookTime : '');
+    const [ingredients, setIngredients] = useState(selectedRecipe.ingredients ? selectedRecipe.ingredients : []);
     const [ingredientAmount, setIngredientAmount] = useState();
     const [ingredientMeasurement, setIngredientMeasurement] = useState(); //must be string
     const [ingredientItem, setIngredientItem] = useState(); //must be string
-    const [instructions, setInstructions] = useState(userRecipeState.instructions ? userRecipeState.instructions : '');
+    const [instructions, setInstructions] = useState(selectedRecipe.instructions ? selectedRecipe.instructions : '');
 
     //Handle the submission
     const onSubmit = () => {
@@ -54,7 +55,7 @@ const RecipeForm = (props) => {
 
     //Check if there's any server errors sent back whenever the state changes and display them.
     useEffect(() => {
-            setResponse(serverError.error);
+        setResponse(serverError.error);
     }, [serverError]);
 
     return (
@@ -113,6 +114,7 @@ const RecipeForm = (props) => {
             { response && <p>{ response }</p> }
                 <button className="button" onClick={ () => {
                     dispatch(clearErrorAction());
+                    dispatch(clearSelectedRecipeAction());
                     history.push('/myrecipes');
                 }}>Cancel</button>
                 <button className="button" onClick={ onSubmit }>Submit</button>

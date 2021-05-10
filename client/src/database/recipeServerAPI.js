@@ -31,9 +31,10 @@ import {
     submitRecipeAction,
     allRecipesAction,
     myRecipesAction,
-    getRecipeAction,
+    // getRecipeAction,
     deleteRecipeAction,
 } from '../actions/userRecipes.js';
+import { viewRecipeAction } from '../actions/selectedRecipe.js';
 
 //Take in the call. Based on type, send it to a function as well as what's being passed into it (config).
 const recipeServerAPI = (type, config) => {
@@ -101,14 +102,13 @@ const handleDataError = (data) => {
 
         if (dErrs.instructions && dErrs.instructions.message.includes('profanity')) {
             message = dErrs.instructions.message;
-        }
-        if (dErrs.title && dErrs.title.message.includes('profanity')) {
+        } else if (dErrs.title && dErrs.title.message.includes('profanity')) {
             message = dErrs.title.message;
         }
 
-        if (dErrs.title & dErrs.title.message === 'Title cannot be longer than 50 characters') {
-            message = dErrs.title.message;
-        }
+        // if (dErrs.title & dErrs.title.message === 'Title cannot be longer than 50 characters') {
+        //     message = dErrs.title.message;
+        // }
     }
     
     if (dMsg) {
@@ -214,7 +214,8 @@ const getRecipe = (recipe_id) => {
         .then(res => handleResponse(res))
         .then(data => {
             console.log("Server data sent back: ", data);
-            dispatch(getRecipeAction(data));
+            // dispatch(getRecipeAction(data));
+            dispatch(viewRecipeAction(data));
             dispatch(hideLoading());
             handleDataError(data);
         })

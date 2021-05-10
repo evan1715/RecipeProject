@@ -20,7 +20,6 @@ Efficiency improvements:
 - Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
 - Convert axios to redux to get rid of package.
 - Put the public folder outside of client.
-- Have recipe roulette only call a new set when someone hits "spin" button. Initial load one time, then change only if spin.
 - Add loading bar to more locations. Especially if we're going to lazy load stuff.
 -- Lazy load via webpack so we can do production vs development mode on lazy load.
 
@@ -39,6 +38,7 @@ Completed:
 + Have the popout/burger menu close when clicking outside of it.
 + Add "View My Recipes" button next to "My Account", maybe even a "submit a new recipe." Added button to view My Recipes.
 + Introduce a profanity filter for usernames and recipe creations.
++ Have recipe roulette only call a new set when someone hits "spin" button. Initial load one time, then change only if spin.
 
 
 

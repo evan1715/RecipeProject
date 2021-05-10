@@ -1,0 +1,92 @@
+/*  Grid Notes from Learn CSS Grid by Web Dev Simplified https://youtu.be/9zBsdzdE4sM : 
+    - grid-template-columns can take in pixels, rems, ems, percentages, etc., but can also take in 1fr or 2fr. Option fr is the same as flexbox grow. 1fr is 1 fraction of our size and 2fr is 2 fractions. Think of it as like 200px for 2fr vs 100px for 1fr.
+        - ex: grid-template-columns: 2fr 1fr;
+    - grid-template-columns can also use a "repeat" command. Instead of using 100px 100px 100px 100px;, we can use something like this where 4 is how many times it'll be repeated.
+        - ex: grid-template-columns: repeat(4, 100px);
+    - grid-template-rows will do the same on creating the size of the rows. 
+    - If we don't know how many rows it'll be, so we don't know what size it'll be, we can use grid-auto-rows which will determine the size of all rows that'll get added after our template rows.
+    - If we use grid-auto-rows: minmax(150px); we can define what we want or minimum and maximum size to be for our grid. The 150px will be the minimum, like in a case where we don't have any content to fill it, and the auto will fit all content in it.
+    - grid-row-gap will create a gap between each row.
+    - grid-column-gap will create a gap between each column.
+    - grid-gap will set a gap property on both column and row.
+    - grid-template-area allows us to create different strings for the areas that we want our grid to take up. If we want our header to take up our first two rows, we would put something like this:
+        - ex: grid-template-areas: "header header";
+        - Then we would go to the child grid-item and put grid-item { grid-area: header; }
+        - These allow us to set up our grid in the template concept.
+        ex: grid-template-areas:
+                "header header"
+                "sidebar content"
+                "sidebar content"
+            grid-item 1 { grid-area: header }
+            grid-item 2 { grid-area: sidebar }
+            grid-item 3 { grid-area: content }
+    - grid-column-start will begin at the first line of the column at 1, then at 2 it's the end of the column, but the beginning of the second column, if 3, it's the end of the column with grid-column-end. If we had two grid columns, with start at 1 and end at 2, it would only be the first column and what's between the column and the second column as 2. So, 3 would have to be the end column after the gap.
+        - grid-column: 1 / -1; would set grid-column-start and grid-column-end instead of doing them separately. The 1 / -1 is the same effect as grid-column-start: 1 and grid-column-end: -1.
+    - grid-row-start and grid-row-end can also do the same.
+    - grid-column & grid-row can take in span option too.
+    - There's two types, items and content, of align and justify
+*/
+
+.grid-container {
+    display: grid;
+    // grid-auto-columns: minmax(150px, auto);
+    grid-auto-rows: minmax(150px, auto);
+    grid-gap: 20px;
+    justify-content: center;
+}
+
+.grid-item {
+    align-items: center;
+    border: solid #3c280d 1px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0px 0px 10px 0px; //top right bottom left
+    justify-content: space-around;
+    // &:nth-child(even) {
+    //     background-color: aquamarine;
+    // }
+    // &:nth-child(odd) {
+    //     background-color: lightblue;
+    // }
+}
+
+
+
+//Resolution adjustment
+@media screen and (min-width: $screen-QHDp) {
+    .grid-container {
+        grid-template-columns: repeat(6, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-QHDp) {
+    .grid-container {
+        grid-template-columns: repeat(5, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-QHD) {
+    .grid-container {
+        grid-template-columns: repeat(4, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-FHD) {
+    .grid-container {
+        grid-template-columns: repeat(3, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-HDp) {
+    .grid-container {
+        grid-template-columns: repeat(2, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-FW) {
+    .grid-container {
+        grid-template-columns: repeat(1, $column-width);
+    }
+}

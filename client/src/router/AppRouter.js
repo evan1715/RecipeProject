@@ -6,6 +6,7 @@ import Nav from '../components/nav/Nav.js'; //nav
 import HomePage from '../components/home-components/HomePage.js';
 import AllRecipesPage from '../components/home-components/AllRecipesPage.js';
 import AboutPage from '../components/home-components/AboutPage.js';
+import PopulateRecipes from '../components/home-components/PopulateRecipes.js';
 import ViewRecipePage from '../components/home-components/ViewRecipePage.js';
 // const HomePage = React.lazy(() => import('../components/home-components/HomePage.js'));
 // const AllRecipesPage = React.lazy(() => import('../components/home-components/AllRecipesPage.js'));
@@ -31,7 +32,7 @@ const AppRouter = () => (
 
                 <Route path={'/allrecipes'} component={ AllRecipesPage } />
 
-                <Route path={'/winepairing'} component={HomePage} />
+                <Route path={'/winepairing'} component={ PopulateRecipes } />
 
                 <Route path={'/blogposts'} component={HomePage} />
 

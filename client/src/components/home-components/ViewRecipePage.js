@@ -54,13 +54,15 @@ const ViewRecipePage = () => {
             <div>
                 <h1 className="title center">{ userRecipe.title }</h1>
 
-                <p className="center">Submitted by: { username }</p>
-                <p className="center">Submitted: { userRecipe.createdAt }</p>
-                {/*If a recipe is created on the same day it's submitted, we don't have to display updated.*/
-                    userRecipe.createdAt !== userRecipe.updatedAt
-                    &&
-                    <p className="center">Last updated: { userRecipe.updatedAt }</p>
-                }
+                <div className="view-recipe__userinfo">
+                    <p className="view-recipe__userinfo--p">Submitted by: { username }</p>
+                    <p className="view-recipe__userinfo--p">Submitted: { userRecipe.createdAt }</p>
+                    {/*If a recipe is created on the same day it's submitted, we don't have to display updated.*/
+                        userRecipe.createdAt !== userRecipe.updatedAt
+                        &&
+                        <p className="view-recipe__userinfo--p">Last updated: { userRecipe.updatedAt }</p>
+                    }
+                </div>
 
                 {/* Only load the picture section if the recipe has pictures. */}
                 { userRecipe.pictures.length > 0 &&

@@ -24,7 +24,7 @@ module.exports = {
         index: '/client/src/index.js',
     },
     output: {
-        path: devMode ? path.join(__dirname, './client/public') : path.join(__dirname, './client/public/dist'),
+        path: devMode ? path.join(__dirname, './public') : path.join(__dirname, './public/dist'),
         filename: '[name].bundle.js',
         clean: true //this will get rid of files that already exist in the dist folder
     },
@@ -83,7 +83,7 @@ module.exports = {
     devtool: devMode ? 'inline-source-map' : 'source-map', //!=='production'
     mode: devMode ? 'development' : 'production', //!=='production'
     devServer: {
-        contentBase: path.join(__dirname, './client/public'),
+        contentBase: path.join(__dirname, './public'),
         //publicPath is to specify where the bundled assets should be.
         publicPath: devMode ? '/' : '/dist/', //!=='production'
         //historyApiFallback says that we're going to handle all of our routing through React clientside.

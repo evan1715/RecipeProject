@@ -35,14 +35,22 @@ const RecipeForm = (props) => {
         }
     }
 
+    //Handle cancel button click
+    const handleCancel = () => {
+        dispatch(clearErrorAction());
+        dispatch(clearSelectedRecipeAction());
+        history.push('/myrecipes');
+    }
+
     //Add the ingredients with the details of amount, measurement, item type to an array.
-    const handleAddIngredients = () => (
+    const handleAddIngredients = (e) => {
+        e.preventDefault();
         setIngredients(prevState => [...prevState, {
             amount: ingredientAmount,
             measurement: ingredientMeasurement,
             item: ingredientItem
         }])
-    );
+    }
 
     //Delete added ingredients as needed.
     const handleDeleteIngredient = (index) => (
@@ -59,66 +67,93 @@ const RecipeForm = (props) => {
     }, [serverError]);
 
     return (
-        <div>
-            <form>
-                <h3 className="title">Title for your recipe:</h3>
-                <input 
-                    className="modal__form--input" 
-                    placeholder="recipe title"
-                    value={ title }
-                    onChange={ (e) => setTitle(e.target.value) }
-                />
-                
-                <h3 className="title">Total cook time to make the food:</h3>
-                <input 
-                    className="modal__form--input" 
-                    placeholder="cook time (in minutes)"
-                    value={ cookTime }
-                    onChange={ (e) => setCookTime(e.target.value) }
-                />
+        <div className="recipe-form">
+            {/* <form className="recipe-form__form"> */}
+            <label className="recipe-form__labels" for="recipe-title">Title for your recipe:</label>
+            <input
+                className="modal__form--input"
+                id="recipe-title"
+                maxLength="64"
+                onChange={ (e) => setTitle(e.target.value) }
+                placeholder="recipe title"
+                type="text"
+                value={ title }
+            />
+            
+            <label className="recipe-form__labels" for="cook-time">Total cook time to make the food:</label>
+            <input
+                className="modal__form--input"
+                id="cook-time"
+                maxLength="4"
+                onChange={ (e) => setCookTime(e.target.value) }
+                placeholder="cook time (in minutes)"
+                type="number"
+                value={ cookTime }
+            />
 
-                <h3 className="title">Ingredients are entered as the amount, the measurement of it, and what the item is (ex: chicken):</h3>
+            <label className="recipe-form__labels" for="ingredients">Ingredients are entered as the amount, the measurement of it, and what the item is (ex: chicken):</label>
 
-                {/* Show them the ingredients they've added. */}
+            {/* Show them the ingredients they've added. */}
+            <div className="recipe-form__added-ingredients">
                 { ingredients.map((ingredient, index) => (
-                        <div key={ index }>
-                            <p>{ ingredient.amount } { ingredient.measurement } of { ingredient.item }</p>
-                            <button onClick={ (e) => (e.preventDefault(), handleDeleteIngredient(index)) }>Remove</button>
-                        </div>
-                    )
-                )}
-
-                <ol>
-                    <li><input 
-                        className="modal__form--input" 
-                        placeholder="amount"
-                        onChange={ (e) => setIngredientAmount(e.target.value) }
-                    /></li>
-                    <li>
-                        <input className="modal__form--input" placeholder="measurement" onChange={ (e) => setIngredientMeasurement(e.target.value) } />
+                    <li className="recipe-form__added-ingredients--list" key={ index }>
+                        <p>{ ingredient.amount } { ingredient.measurement } of { ingredient.item }</p>
+                        <button onClick={ (e) => (e.preventDefault(), handleDeleteIngredient(index)) }>Remove</button>
                     </li>
-                    <li>
-                        <input className="modal__form--input" placeholder="ingredient" onChange={ (e) => setIngredientItem(e.target.value) }/>
-                    </li>
-                    <button onClick={ (e) => (e.preventDefault(), handleAddIngredients()) }>Add an ingredient</button>
-                </ol>
+                ))}
+            </div>
 
-                <h3 className="title">Detailed instructions on how to make it:</h3>
+            <form className="recipe-form__add-ingredients" onSubmit={ (e) => handleAddIngredients(e) }>
                 <input 
-                    className="modal__form--input" 
-                    placeholder="instructions and details"
-                    value={ instructions }
-                    onChange={ (e) => setInstructions(e.target.value) }
+                    className="modal__form--input"
+                    id="ingredients"
+                    maxLength="4"
+                    onChange={ (e) => setIngredientAmount(e.target.value) }
+                    placeholder="amount"
+                    required
+                    type="number"
                 />
+                <select
+                    className="modal__form--input"
+                    onChange={ (e) => setIngredientMeasurement(e.target.value) }
+                    required>
+                    <option />
+                    <option value="tbsp">tbsp (tablespoon)</option>
+                    <option value="tsp">tsp (teaspoon)</option>
+                    <option value="oz">oz (ounce)</option>
+                    <option value="fl-oz">fl. oz (fluid ounce)</option>
+                    <option value="cup">cup</option>
+                    <option value="quart">quart</option>
+                    <option value="pint">pint</option>
+                    <option value="lb">lb (pound)</option>
+                </select>
+                <input
+                    className="modal__form--input"
+                    maxLength="32"
+                    onChange={ (e) => setIngredientItem(e.target.value) }
+                    placeholder="ingredient"
+                    required
+                    type="text"
+                />
+                <button className="button" type="submit">Add</button>
             </form>
-            { response && <p>{ response }</p> }
-                <button className="button" onClick={ () => {
-                    dispatch(clearErrorAction());
-                    dispatch(clearSelectedRecipeAction());
-                    history.push('/myrecipes');
-                }}>Cancel</button>
+
+            <label className="recipe-form__labels" for="description">Detailed instructions on how to make it:</label>
+            <textarea
+                className="modal__form--input"
+                id="description"
+                onChange={ (e) => setInstructions(e.target.value) }
+                placeholder="instructions and details"
+                rows="10"
+                value={ instructions }
+            />
+
+            <p className="recipe-form__response">{ response && <p>{ response }</p> }</p>
+
+            <div className="recipe-form__buttons">
+                <button className="button" onClick={ handleCancel }>Cancel</button>
                 <button className="button" onClick={ onSubmit }>Submit</button>
-                
+            </div>
         </div>
     )
 }

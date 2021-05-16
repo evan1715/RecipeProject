@@ -1,5 +1,51 @@
+/*
+- A class selector naming convention is to put two underscores and then the name for elements. 
+    Example: .header__title {}.
+-- This is known as the BEM naming convention, which stands for Block Element Modifier.
+-- A Block is the core building block. Something big like the actual header.
+-- Elements are things that go inside of blocks to make them useful. 
+-- For modifiers, we use the name with .button--link. Instead of underscores, we use two hyphens.
+*/
 .recipe-form {
+    align-items: center;
+    // border: solid 1px red;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.recipe-form__labels {
+    font-size: 18px;
+    font-weight: $font-weight;
+    padding: 10px;
+}
+
+.recipe-form__added-ingredients {
+    // border: solid 1px blue;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.recipe-form__added-ingredients--list {
+    // border: solid 1px yellow;
+    margin: 20px;
+}
+
+.recipe-form__add-ingredients {
+    // border: solid 1px teal;
+    display: flex;
+}
+
+.recipe-form__response {
+    // border: solid 1px pink;
+    font-size: x-large;
+}
+
+.recipe-form__buttons {
+    // align-items: center;
+    // border: solid 1px palegreen;
+    display: flex;
+    // flex-direction: ;
     justify-content: center;
 }

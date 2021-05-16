@@ -11,6 +11,7 @@
 - Add pagination to all recipes, my recipes, searching recipes.
 - Add loading bar to more locations.
 - Add accessibility with <label> on inputs.
+- Rework ViewRecipePage to use CSS Grid so sizing on resolutions will change the layout. Style ViewRecipePage.
 
 Efficiency improvements:
 - Improve network efficiency by using current state or manipulating current state to avoid downloading again.

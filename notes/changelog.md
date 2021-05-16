@@ -99,6 +99,7 @@
                     -- ViewRecipePage now uses selectedRecipeReducer instead of userRecipeReducer.
                 - EditRecipePage now returns to /myrecipes page if no recipe is stored selectedRecipe. User must click the "Edit" button on /myrecipes page to edit.
             }
+            - 5-16: Placed cancel button functionality into a separate function on RecipeForm. Styled the form. Added a dropdown selection for measurements of ingredients. Set maxlength & types for inputs. Added labels. AllRecipesPage uses the CSS Grid method for listing recipes from PopulateRecipes. Pending on future usage of PopulateRecipes still.
         Database/Hooks/Utilities:
             - 4-12: Made a draft for recipeServerAPI for fetching from the server.
             - 4-13: {
@@ -147,6 +148,7 @@
             - 5-3: Put _my-account-menu.scss in the graveyard. Added the stuff in there to nav.scss. Added css for my recipes button in nav.
             - 5-4: Added _all-recipes-page.scss and some minor styling.
             - 5-9: Added _populate_recipes.scss using CSS Grid to list recipes. Also modified _my-account-page so things align better. Modified files: styles, _settings, _my-account-page, and _populate-recipes.
+            - 5-16: Styled _recipe-form.
         Store:
             - 4-13: Added serverErrorReducer.
             - 4-18: Redux logger now collapses messages so it doesn't take up as much space.
@@ -168,7 +170,8 @@
             - Changed gitignore to ignore all of the public folder now. For some reason, it isn't ignoring the two index.html files, but it's fine. I don't mind.
             - Updated changelog and ideas.
         }
-        - 5-8: Installed bad-words package to filter profanity in userinfo and recipes. 
+        - 5-8: Installed bad-words package to filter profanity in userinfo and recipes.
+        - 5-16: Pulled public folder out of client and into the root folder. 
     Server:
         - 4-13: Started to add a function to add on ingredients, but pending finishing it and usage of it.
         - 5-2: Added query processing to delete images based on picture id.

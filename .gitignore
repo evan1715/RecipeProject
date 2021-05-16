@@ -8,7 +8,7 @@ server/config/
 startDB.bat
 
 #bundled/compiled
-client/public/
+public/
 
 #test folder
 client/tests/

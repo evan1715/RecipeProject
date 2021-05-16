@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { showLoading } from 'react-redux-loading-bar';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
-
 const AllRecipesPage = () => {
     const dispatch = useDispatch();
     const allRecipes = useSelector(state => state.userRecipesReducer);
@@ -47,39 +46,25 @@ const AllRecipesPage = () => {
     }, [allRecipes]);
 
     return (
-        <table className="recipes-table">
-            <thead>
-                <tr>
-                    <th>Link</th>
-                    <th>Picture</th>
-                    <th>Recipe</th>
-                    <th>Cook time</th>
-                    <th>Submitted</th>
-                    <th>User</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div className="grid-container">
             { allRecipes.length > 0 && allRecipes.map((recipe, index) => (
-                <tr key={ recipe._id }>
-                    <td>
-                        <Link className="link" to={ `/recipe?id=${recipe._id}` }>View</Link>
-                    </td>
-                    <td>{ recipe.pictures[0] &&
+                <ol key={ recipe._id } className="grid-item">
+                    <Link className="link" to={ `/recipe?id=${recipe._id}` }><h3>{ recipe.title }</h3></Link>
+                    <li>{ recipe.pictures[0] &&
+                        <Link to={ `/recipe?id=${recipe._id}` }>
                         <img
-                            className="table-pic"
-                            height="130"
-                            width="180"
+                            className="grid-pic"
+                            height="280"
+                            width="400"
                             src={ `data:image/jpeg;base64,${recipe.pictures[0].picture.data}` } 
-                        />
-                    }</td>
-                    <td>{ recipe.title }</td>
-                    <td>{ recipe.cookTime }</td>
-                    <td>{ recipe.createdAt }</td>
-                    <td>{ userNames[index] }</td>
-                </tr>
+                        /></Link>
+                    }</li>
+                    <li>Cook time: { recipe.cookTime }</li>
+                    <li>Created: { recipe.createdAt }</li>
+                    <li>By: { userNames[index] }</li>
+                </ol>
             ))}
-            </tbody>
-        </table>
+        </div>
     );
 }
 

@@ -3,6 +3,18 @@
     https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
 */
 
+.view-recipe__userinfo {
+    border: solid red 1px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.view-recipe__userinfo--p {
+    margin: 20px
+}
+
 .pictures-container {
     max-width: 1000px;
     margin: auto;

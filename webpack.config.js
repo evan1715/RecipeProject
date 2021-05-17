@@ -67,24 +67,14 @@ module.exports = {
         minimizer: devMode ? [] : [`...`, new CssMinimizerPlugin()], //!=='production'
         splitChunks: devMode ? {} : {
             cacheGroups: {
-                axios_moment: {
-                    test: (/[\\/]node_modules[\\/](axios|moment)/),
-                    name: 'axios_moment',
+                misc: {
+                    test: (/[\\/]node_modules[\\/](@babel|regenerator-runtime|styled-components|stylis)/),
+                    name: 'webpack_jargon',
                     chunks: 'all'
                 },
-                // react_redux: {
-                //     test: (/[\\/]node_modules[\\/](react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|redux-thunk)/),
-                //     name: 'react-redux',
-                //     chunks: 'all'
-                // }
                 react_redux: {
                     test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|redux-thunk|scheduler)/),
                     name: 'react-redux',
-                    chunks: 'all'
-                },
-                webpack_jargon: {
-                    test: (/[\\/]node_modules[\\/](@babel|regenerator-runtime|styled-components|stylis)/),
-                    name: 'webpack_jargon',
                     chunks: 'all'
                 }
             }

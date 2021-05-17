@@ -31,7 +31,6 @@ import { allRecipesAction } from '../actions/allRecipes.js';
 import {
     submitRecipeAction,
     myRecipesAction,
-    // getRecipeAction,
     deleteRecipeAction,
 } from '../actions/userRecipes.js';
 import { viewRecipeAction } from '../actions/selectedRecipe.js';
@@ -53,8 +52,6 @@ const recipeServerAPI = (type, config) => {
             return deleteRecipe(config); //id
         case 'uploadPictures': //post
             return uploadPictures(config); //token & pictures
-        // case 'getRecipePictures': //get
-        //     return getRecipePictures(config); //id
         case 'deletePictures': //delete
             return deletePictures(config); //token & id
     }
@@ -214,7 +211,6 @@ const getRecipe = (recipe_id) => {
         .then(res => handleResponse(res))
         .then(data => {
             console.log("Server data sent back: ", data);
-            // dispatch(getRecipeAction(data));
             dispatch(viewRecipeAction(data));
             dispatch(hideLoading());
             handleDataError(data);

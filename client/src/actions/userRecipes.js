@@ -18,16 +18,6 @@ const myRecipesAction = (data) => {
     }
 }
 
-//GET_RECIPE
-const getRecipeAction = (recipe) => {
-    const data = processData(recipe);
-
-    return {
-        type: 'GET_RECIPE',
-        recipe: data
-    }
-}
-
 //DELETE_RECIPE
 const deleteRecipeAction = () => ({
     type: 'DELETE_RECIPE'
@@ -40,9 +30,7 @@ const clearUserRecipesAction = () => ({
 
 export {
     submitRecipeAction,
-    // allRecipesAction,
     myRecipesAction,
-    getRecipeAction,
     deleteRecipeAction,
     clearUserRecipesAction
 }

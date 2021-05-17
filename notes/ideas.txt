@@ -41,6 +41,7 @@ Completed:
 + Introduce a profanity filter for usernames and recipe creations.
 + Have recipe roulette only call a new set when someone hits "spin" button. Initial load one time, then change only if spin.
 + Put the public folder outside of client.
++ Add 'whole' to measurement options
 
 
 

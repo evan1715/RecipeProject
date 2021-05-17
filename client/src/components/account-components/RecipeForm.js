@@ -126,6 +126,7 @@ const RecipeForm = (props) => {
                     <option value="quart">quart</option>
                     <option value="pint">pint</option>
                     <option value="lb">lb (pound)</option>
+                    <option value="whole">whole</option>
                 </select>
                 <input
                     className="modal__form--input"

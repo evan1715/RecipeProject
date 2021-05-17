@@ -16,7 +16,7 @@ export default function Nav() {
     const [showMenu, setShowMenu] = React.useState(false);
     const [toggle, setToggle] = useState(false);
     const [openSigninModal, setOpenSigninModal] = useState(false);
-    const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'About', 'Sign In'];
+    const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'Conversions', 'About', 'Sign In'];
     const iconStyles = { cursor: 'pointer' }
     const isAuth = isAuthenticated.authenticated;
 

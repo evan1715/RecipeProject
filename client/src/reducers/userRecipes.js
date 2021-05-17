@@ -8,10 +8,6 @@ const userRecipesReducer = (state = {}, action) => {
             return [
                 ...action.recipes
             ];
-        case 'GET_RECIPE':
-            return {
-                ...action.recipe
-            }
         case 'DELETE_RECIPE':
             return {
                 recipe: null

@@ -20,6 +20,7 @@ Efficiency improvements:
 - See if we can clean up processData function in userRecipes.js action.
 - Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
 - Convert axios to redux to get rid of package.
+
 - Add loading bar to more locations. Especially if we're going to lazy load stuff.
 -- Lazy load via webpack so we can do production vs development mode on lazy load.
 

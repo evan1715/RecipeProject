@@ -69,7 +69,7 @@ const RecipeForm = (props) => {
     return (
         <div className="recipe-form">
             {/* <form className="recipe-form__form"> */}
-            <label className="recipe-form__labels" for="recipe-title">Title for your recipe:</label>
+            <label className="recipe-form__labels" htmlFor="recipe-title">Title for your recipe:</label>
             <input
                 className="modal__form--input"
                 id="recipe-title"
@@ -80,7 +80,7 @@ const RecipeForm = (props) => {
                 value={ title }
             />
             
-            <label className="recipe-form__labels" for="cook-time">Total cook time to make the food:</label>
+            <label className="recipe-form__labels" htmlFor="cook-time">Total cook time to make the food:</label>
             <input
                 className="modal__form--input"
                 id="cook-time"
@@ -91,7 +91,7 @@ const RecipeForm = (props) => {
                 value={ cookTime }
             />
 
-            <label className="recipe-form__labels" for="ingredients">Ingredients are entered as the amount, the measurement of it, and what the item is (ex: chicken):</label>
+            <label className="recipe-form__labels" htmlFor="ingredients">Ingredients are entered as the amount, the measurement of it, and what the item is (ex: chicken):</label>
 
             {/* Show them the ingredients they've added. */}
             <div className="recipe-form__added-ingredients">
@@ -138,7 +138,7 @@ const RecipeForm = (props) => {
                 <button className="button" type="submit">Add</button>
             </form>
 
-            <label className="recipe-form__labels" for="description">Detailed instructions on how to make it:</label>
+            <label className="recipe-form__labels" htmlFor="description">Detailed instructions on how to make it:</label>
             <textarea
                 className="modal__form--input"
                 id="description"

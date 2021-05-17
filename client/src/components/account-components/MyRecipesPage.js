@@ -23,15 +23,9 @@ const MyRecipesPage = () => {
 
     const handleDeleteRecipe = (recipe_id) => dispatch(recipeServerAPI('deleteRecipe', { recipe_id, token }));
 
-    //Get the recipes when page initializes.
     useEffect(() => {
-        dispatch(showLoading());
-        dispatch(recipeServerAPI('myRecipes', user.username));
-    }, []);
-
-    //Get the recipes after one has been deleted.
-    useEffect(() => {
-        if (userRecipes.recipe === null) {
+        //Get the recipes when page initializes if we don't already have it & after one has been deleted.
+        if (!userRecipes.length || userRecipes.recipe === null) {
             dispatch(showLoading());
             dispatch(recipeServerAPI('myRecipes', user.username));
         }

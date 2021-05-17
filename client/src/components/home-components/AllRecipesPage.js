@@ -37,8 +37,11 @@ const AllRecipesPage = () => {
     }
 
     useEffect(() => {
-        dispatch(showLoading());
-        dispatch(recipeServerAPI('allRecipes'));
+        //Only get it if we don't already have it.
+        if (!allRecipes.length) {
+            dispatch(showLoading());
+            dispatch(recipeServerAPI('allRecipes'));
+        }
     }, []);
 
     useEffect(async () => {

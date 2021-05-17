@@ -1,0 +1,59 @@
+/* CSS Default for tables
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+*/
+
+.conversions__table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+tr:nth-child(even) {
+    background-color: darken($color: white, $amount: 20);
+}
+
+th {
+    border-bottom: thin double black;
+    font-size: larger;
+}
+
+td {
+    text-align: center;
+}
+
+.conversions__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.conversions__list--content {
+    margin: auto;
+    text-align: center;
+}

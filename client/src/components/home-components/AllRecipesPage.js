@@ -6,7 +6,7 @@ import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const AllRecipesPage = () => {
     const dispatch = useDispatch();
-    const allRecipes = useSelector(state => state.userRecipesReducer);
+    const allRecipes = useSelector(state => state.allRecipesReducer.allRecipes);
     const [userNames, setUsernames] = useState([]);
 
     const getUsername = async () => {

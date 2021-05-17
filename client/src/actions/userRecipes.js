@@ -8,16 +8,6 @@ const submitRecipeAction = (data) => ({
     recipe: data
 });
 
-//ALL_RECIPES
-const allRecipesAction = (data) => {
-    const recipes = processData(data);
-
-    return {
-        type: 'ALL_RECIPES',
-        recipes
-    }
-};
-
 //MY_RECIPES
 const myRecipesAction = (data) => {
     const recipes = processData(data);
@@ -50,7 +40,7 @@ const clearUserRecipesAction = () => ({
 
 export {
     submitRecipeAction,
-    allRecipesAction,
+    // allRecipesAction,
     myRecipesAction,
     getRecipeAction,
     deleteRecipeAction,

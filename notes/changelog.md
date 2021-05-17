@@ -26,6 +26,7 @@
                 - Extracted processData function and put it in a utils file for other files to use.
                 - Created selectedRecipes action file to store one recipe at a time. It'll be used for editing a recipe and viewing a recipe. This will also benefit instead of calling fetch to get the recipe to edit, we just transfer what's stored already into the editing process.
             }
+            - 5-16: Added a new action & reducer called AllRecipes to handle all recipes, search results, and hold usernames for gotten recipes. Modified userRecipes.js
         Components:
             - 4-12: Set up a draft for SubmitRecipePage.
             - 4-13: {
@@ -118,6 +119,7 @@
                 - Made a utils folder and put processData function in it for other files to use too.
                 - recipeServerAPI now calls in viewRecipeAction and dispatches to it on getRecipe call.
             }
+            - 5-16: Modified recipeServerAPI to use the new action/reducer for allRecipes.
         Index:
             - 4-18: Updated index.js to now use async to get the user to load the app. This'll be better than a simple 1 second timer before loading the app.
             - 4-21: Added try catch in index.js to still load the app if there is a token, but can't contact database.
@@ -131,6 +133,7 @@
             - 4-21: Updated recipeRoulette.
             - 4-23: GET_RECIPE now takes in data.
             - 5-9: Created selectedRecipeReducer to edit and view a single recipe instead of clearing out the array of recipes we already have. This will also benefit instead of calling fetch to get the recipe to edit, we just transfer what's stored already into the editing process.
+            - 5-16: Added a new action & reducer called AllRecipes to handle all recipes, search results, and hold usernames for gotten recipes. Modified userRecipes.js
         Router:
             - 4-18: Changed ViewMyRecipesPage to MyRecipesPage. Added AllRecipesPage.
             - 4-23: Updated AppRouter to include ViewRecipePage and EditRecipePage. Organized the imports area alphabetically and the route section.
@@ -153,6 +156,7 @@
             - 4-13: Added serverErrorReducer.
             - 4-18: Redux logger now collapses messages so it doesn't take up as much space.
             - 5-9: Added selectedRecipeReducer.
+            - 5-16: Added allRecipesReducer.
     General/Notes:
         - 4-12: Edited changelog and ideas.
         - 4-13: Edited changelog and notes.

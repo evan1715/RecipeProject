@@ -27,9 +27,9 @@
 
 import { hideLoading } from 'react-redux-loading-bar';
 import { serverErrorAction } from '../actions/serverError.js';
+import { allRecipesAction } from '../actions/allRecipes.js';
 import {
     submitRecipeAction,
-    allRecipesAction,
     myRecipesAction,
     // getRecipeAction,
     deleteRecipeAction,

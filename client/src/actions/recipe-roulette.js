@@ -1,22 +1,14 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
-import axios from 'axios'
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 const handleRecipeRoulette = (url, number) => async dispatch => {
     dispatch(showLoading());
 
     try {
-        const response = await axios.request({
-            method: 'GET',
-            url: url.concat('?apiKey=REDACTED'),
-            params: { number: number}
-        });
-        const recipes = await response.data.recipes;
-        
+        const response = await (await fetch(url.concat(`?apiKey=REDACTED&number=${number}`))).json();
+        const recipes = response.recipes;
+
         dispatch(hideLoading());
-        return dispatch({
-            type: 'RECEIVE_RECIPE_ROULETTE',
-            recipes
-        })
+        return dispatch({ type: 'RECEIVE_RECIPE_ROULETTE', recipes });
     } catch (error) {
         console.log(error);
         dispatch(hideLoading());

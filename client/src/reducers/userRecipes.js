@@ -4,10 +4,6 @@ const userRecipesReducer = (state = {}, action) => {
             return {
                 ...action.recipe
             }
-        case 'ALL_RECIPES':
-            return [
-                ...action.recipes
-            ];
         case 'MY_RECIPES':
             return [
                 ...action.recipes

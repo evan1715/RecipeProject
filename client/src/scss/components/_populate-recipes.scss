@@ -33,6 +33,7 @@
     grid-auto-rows: minmax(150px, auto);
     grid-gap: 20px;
     justify-content: center;
+    // border: thin solid red;
 }
 
 .grid-item {
@@ -44,12 +45,20 @@
     overflow: hidden;
     padding: 0px 0px 10px 0px; //top right bottom left
     justify-content: space-around;
+    // border: thin solid blue;
     // &:nth-child(even) {
     //     background-color: aquamarine;
     // }
     // &:nth-child(odd) {
     //     background-color: lightblue;
     // }
+}
+
+.link {
+    &:hover {
+        letter-spacing: 1px;
+        text-decoration-line: underline;
+    }
 }
 
 

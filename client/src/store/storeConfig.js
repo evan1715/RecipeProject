@@ -3,6 +3,7 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import accountReducer from '../reducers/account.js';
+import allRecipesReducer from '../reducers/allRecipes.js';
 import recipeRoulette from '../reducers/recipe-roulette.js';
 import selectedRecipeReducer from '../reducers/selectedRecipe.js';
 import serverErrorReducer from '../reducers/serverError.js';
@@ -22,6 +23,7 @@ export default () => {
     const store = createStore(
         combineReducers({
             loadingBar: loadingBarReducer,
+            allRecipesReducer,
             accountReducer,
             recipeRoulette,
             selectedRecipeReducer,

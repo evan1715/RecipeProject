@@ -26,8 +26,10 @@ const MyAccountPage = () => {
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 
     useEffect(() => {
-        dispatch(showLoading());
-        dispatch(userServerAPI('getIcon', user._id));
+        if (!icon) {
+            dispatch(showLoading());
+            dispatch(userServerAPI('getIcon', user._id));
+        }
     }, []);
 
     return (

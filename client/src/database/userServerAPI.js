@@ -327,6 +327,8 @@ const getIcon = (id) => {
                 const url = URL.createObjectURL(image);
                 dispatch(getIconAction(url));
                 dispatch(hideLoading());
+            } else {
+                dispatch(hideLoading());
             }
         })
         .catch(error => handleCatchError(error));

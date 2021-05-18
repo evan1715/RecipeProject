@@ -7,8 +7,8 @@ const handleRecipeRoulette = (url, number) => async dispatch => {
         const response = await (await fetch(url.concat(`?apiKey=REDACTED&number=${number}`))).json();
         const recipes = response.recipes;
 
+        dispatch({ type: 'RECEIVE_RECIPE_ROULETTE', recipes });
         dispatch(hideLoading());
-        return dispatch({ type: 'RECEIVE_RECIPE_ROULETTE', recipes });
     } catch (error) {
         console.log(error);
         dispatch(hideLoading());

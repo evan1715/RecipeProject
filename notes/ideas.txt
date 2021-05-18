@@ -6,23 +6,14 @@
 - Make a username clickable to view a user's profile and the rest of their recipes.
 - On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance.
 - Have selectors for recipes to indicate if it's vegan or vegetarian or something similar.
-- On All Recipes, make them all clickable as well as displaying images and description previews.
 - Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
 - Add pagination to all recipes, my recipes, searching recipes.
-- Add loading bar to more locations.
 - Add accessibility with <label> on inputs.
 - Rework ViewRecipePage to use CSS Grid so sizing on resolutions will change the layout. Style ViewRecipePage.
 
 Efficiency improvements:
-- Improve network efficiency by using current state or manipulating current state to avoid downloading again.
--- For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time. Maybe.
--- This might be solved by browsers that cache.
 - See if we can clean up processData function in userRecipes.js action.
 - Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
-- Convert axios to redux to get rid of package.
-
-- Add loading bar to more locations. Especially if we're going to lazy load stuff.
--- Lazy load via webpack so we can do production vs development mode on lazy load.
 
 
 
@@ -42,6 +33,12 @@ Completed:
 + Have recipe roulette only call a new set when someone hits "spin" button. Initial load one time, then change only if spin.
 + Put the public folder outside of client.
 + Add 'whole' to measurement options
++ Add loading bar to more locations.
++ Lazy load via React in router.
++ Convert axios to redux to get rid of package.
++ Improve network efficiency by using current state or manipulating current state to avoid downloading again.
+++ For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time.
++ On All Recipes, make them all clickable as well as displaying images and description previews.
 
 
 

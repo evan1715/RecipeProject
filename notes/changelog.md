@@ -12,7 +12,9 @@
             - 5-17: Recipe roulette action now uses fetch instead of axios.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
+            - 5-17: Improved network efficiency by not re-fetching the icon every time the My Account component loads. Changes made to MyAccountModal and MyAccountPage. If no icon is in store, it'll dispatch a fetch.
         Database:
+            - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
         Reducers:
         Router:

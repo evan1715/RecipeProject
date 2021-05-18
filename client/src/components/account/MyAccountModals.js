@@ -12,7 +12,6 @@ Modal.setAppElement('#root');
 const UploadUserIconModal = (props) => {
     const dispatch = useDispatch();
     const { user, token, authenticated: isAuth, icon } = useSelector(state => state.accountReducer);
-    const [userIcon, setUserIcon] = useState();
     const [iconFile, setIconFile] = useState();
     const [response, setResponse] = useState();
     const user_id = user._id;
@@ -47,15 +46,6 @@ const UploadUserIconModal = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (userIcon) {
-            console.log("Current userIcon link:", userIcon);
-            URL.revokeObjectURL(userIcon);
-            console.log("New userIcon link:", icon);
-        }
-        setUserIcon(icon);
-    }, [icon]);
-
     return (
         <Modal
             isOpen={ props.openUploadUserIconModal }
@@ -66,8 +56,8 @@ const UploadUserIconModal = (props) => {
             closeTimeoutMS={ 250 }
             className="modal"
         >
-            <form encType='multipart/form-data'>
-                <img src={ userIcon }></img>
+            <form encType="multipart/form-data">
+                <img src={ icon }></img>
                 <input type="file" id="image-upload" onChange={ (e) => setIconFile(e.target.files[0]) } />
             </form>
             { response && <p>{ response }</p> }

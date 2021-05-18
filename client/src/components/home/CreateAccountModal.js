@@ -60,17 +60,17 @@ const CreateAccountModal = (props) => {
         >
             <h2 className="title">Create Account</h2>
             <form>
-                <input className="modal__form--input" value={ username } placeholder="username" onChange={ (e) => setUsername(e.target.value) } />
-                <input className="modal__form--input" type="email" value={ email } placeholder="example@example.com" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="modal__form--input" type="password" placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
-                <input className="modal__form--input" type="password" placeholder="verify password" onChange={ (e) => setPasswordVerify(e.target.value) } />
-                <input className="modal__form--input" value={ name } placeholder="name" onChange={ (e) => setName(e.target.value) } />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setUsername(e.target.value) } placeholder="username" title="username" type="text" value={ username } />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setEmail(e.target.value) } placeholder="example@example.com" title="email" type="email" value={ email } />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setPassword(e.target.value) } placeholder="password" title="password" type="password" />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setPasswordVerify(e.target.value) } placeholder="verify password" title="verify password" type="password" />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setName(e.target.value) } placeholder="name" title="your name" type="text" value={ name } />
             </form>
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
-            <button className="button" onClick={ props.handleCloseModal }>Close</button>
-            <button className="button" onClick={ createAccount }>Submit</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Close">Close</button>
+            <button className="button" onClick={ createAccount } title="Submit">Submit</button>
         </Modal>
     )
 }

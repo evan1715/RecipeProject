@@ -49,14 +49,14 @@ const SignInModal = (props) => {
         >
             <h1 className="title">Sign In</h1>
             <form>
-                <input className="modal__form--input" type="email" value={ email } placeholder="email" onChange={ (e) => setEmail(e.target.value) } />
-                <input className="modal__form--input" type="password" placeholder="password" onChange={ (e) => setPassword(e.target.value) } />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setEmail(e.target.value) } placeholder="email" title="your email" type="email" value={ email } />
+                <input className="modal__form--input" maxLength="32" onChange={ (e) => setPassword(e.target.value) } placeholder="password" title="your password" type="password" />
             </form>
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
-            <button className="button" onClick={ props.handleCloseModal }>Close</button>
-            <button className="button" onClick={ signIn }>Submit</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Close">Close</button>
+            <button className="button" onClick={ signIn } title="Submit">Submit</button>
         </Modal>
     )
 }

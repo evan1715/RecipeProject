@@ -135,7 +135,7 @@ const MyAccountPage = () => {
                 </>
             </div>
             <div className="my-account-page__icon">
-                <img src={ icon } />
+                <img alt="my account icon" src={ icon } />
             </div>
         </div>
     )

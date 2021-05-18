@@ -61,9 +61,9 @@ const UploadUserIconModal = (props) => {
                 <input type="file" id="image-upload" onChange={ (e) => setIconFile(e.target.files[0]) } />
             </form>
             { response && <p>{ response }</p> }
-            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ deleteIcon }>Delete icon</button>
-            <button className="button" onClick={ isAuth && uploadIcon }>Upload</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Cancel">Cancel</button>
+            <button className="button" onClick={ deleteIcon } title="Delete icon">Delete icon</button>
+            <button className="button" onClick={ isAuth && uploadIcon } title="Delete icon">Upload</button>
         </Modal>
     )
 }
@@ -128,16 +128,19 @@ const ChangeUsernameModal = (props) => {
             <p>Current username: { user.username }</p>
 
             <input 
-                className="modal__form--input" 
-                placeholder="username" 
-                onChange={ (e) => setUsername(e.target.value) } 
+                className="modal__form--input"
+                maxLength="32"
+                onChange={ (e) => setUsername(e.target.value) }
+                placeholder="username"
+                title="new username"
+                type="text"
             />
 
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
-            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ isAuth && updateUser }>Update</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Cancel">Cancel</button>
+            <button className="button" onClick={ isAuth && updateUser } title="Update">Update</button>
         </Modal>
     )
 }
@@ -202,16 +205,19 @@ const ChangeEmailModal = (props) => {
             <p>Current email: { user.email }</p>
 
             <input 
-                className="modal__form--input" 
-                placeholder="email" 
-                onChange={ (e) => setEmail(e.target.value) } 
+                className="modal__form--input"
+                maxLength="32"
+                onChange={ (e) => setEmail(e.target.value) }
+                placeholder="email"
+                title="new email"
+                type="email"
             />
 
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
-            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ isAuth && updateUser }>Update</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Cancel">Cancel</button>
+            <button className="button" onClick={ isAuth && updateUser } title="Update">Update</button>
         </Modal>
     )
 }
@@ -285,13 +291,14 @@ const ChangePasswordModal = (props) => {
             <h2 className="title">Update password</h2>
             <form>
                 <input 
-                    className="modal__form--input" 
+                    className="modal__form--input"
                     id="prevPass"
-                    title="current password"
+                    maxLength="32"
+                    onChange={ (e) => setPreviousPassword(e.target.value) }
                     placeholder="current password"
                     required
+                    title="current password"
                     type="password"
-                    onChange={ (e) => setPreviousPassword(e.target.value) }
                 />
                 <input type="checkbox" title="toggle visibility" onClick={ () => {
                     var toggle = document.getElementById('prevPass');
@@ -300,24 +307,26 @@ const ChangePasswordModal = (props) => {
                 <input
                     className="modal__form--input"
                     id="newPass"
-                    title="new password"
+                    maxLength="32"
+                    onChange={ (e) => setNewPassword(e.target.value) }
                     placeholder="new password"
                     required
+                    title="new password"
                     type="password"
-                    onChange={ (e) => setNewPassword(e.target.value) }
                 />
                 <input type="checkbox" title="toggle visibility" onClick={ () => {
                     var toggle = document.getElementById('newPass');
                     toggle.type === "password" ? toggle.type = "text" : toggle.type = "password"
                 }} />
                 <input 
-                    className="modal__form--input" 
+                    className="modal__form--input"
                     id="verifyPass"
-                    title="verify new password"
+                    maxLength="32"
+                    onChange={ (e) => setNewPasswordVerified(e.target.value) }
                     placeholder="verify new password"
                     required
+                    title="verify new password"
                     type="password"
-                    onChange={ (e) => setNewPasswordVerified(e.target.value) } 
                 />
                 <input type="checkbox" title="toggle visibility" onClick={ () => {
                     var toggle = document.getElementById('verifyPass');
@@ -327,8 +336,8 @@ const ChangePasswordModal = (props) => {
             { /* If there's a response, then show the response to the user here. */
                 response && <p>{ response }</p> 
             } 
-            <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ isAuth && updateUser }>Update</button>
+            <button className="button" onClick={ props.handleCloseModal } title="Cancel">Cancel</button>
+            <button className="button" onClick={ isAuth && updateUser } title="Update">Update</button>
         </Modal>
     )
 }
@@ -393,10 +402,12 @@ const ChangeNameModal = (props) => {
             <p>Current name: { user.name }</p>
 
             <input 
-                className="modal__form--input" 
-                // value={ name } 
-                placeholder="name" 
-                onChange={ (e) => setName(e.target.value) } 
+                className="modal__form--input"
+                maxLength="32"
+                onChange={ (e) => setName(e.target.value) }
+                placeholder="name"
+                title="new name"
+                type="text"
             />
 
             { /* If there's a response, then show the response to the user here. */

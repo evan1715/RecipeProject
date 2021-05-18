@@ -76,6 +76,7 @@ const RecipeForm = (props) => {
                 maxLength="64"
                 onChange={ (e) => setTitle(e.target.value) }
                 placeholder="recipe title"
+                title="Title of recipe"
                 type="text"
                 value={ title }
             />
@@ -87,6 +88,7 @@ const RecipeForm = (props) => {
                 maxLength="4"
                 onChange={ (e) => setCookTime(e.target.value) }
                 placeholder="cook time (in minutes)"
+                title="Cook time (in minutes)"
                 type="number"
                 value={ cookTime }
             />
@@ -111,20 +113,22 @@ const RecipeForm = (props) => {
                     onChange={ (e) => setIngredientAmount(e.target.value) }
                     placeholder="amount"
                     required
+                    title="amount"
                     type="number"
                 />
                 <select
                     className="modal__form--input"
                     onChange={ (e) => setIngredientMeasurement(e.target.value) }
-                    required>
+                    required
+                    title="measurement type">
                     <option />
                     <option value="tbsp">tbsp (tablespoon)</option>
                     <option value="tsp">tsp (teaspoon)</option>
                     <option value="oz">oz (ounce)</option>
                     <option value="fl-oz">fl. oz (fluid ounce)</option>
                     <option value="cup">cup</option>
-                    <option value="quart">quart</option>
-                    <option value="pint">pint</option>
+                    <option value="quart">qt (quart)</option>
+                    <option value="pint">pt (pint)</option>
                     <option value="lb">lb (pound)</option>
                     <option value="whole">whole</option>
                 </select>
@@ -134,9 +138,10 @@ const RecipeForm = (props) => {
                     onChange={ (e) => setIngredientItem(e.target.value) }
                     placeholder="ingredient"
                     required
+                    title="ingredient"
                     type="text"
                 />
-                <button className="button" type="submit">Add</button>
+                <button className="button" title="Add ingredient" type="submit">Add</button>
             </form>
 
             <label className="recipe-form__labels" htmlFor="description">Detailed instructions on how to make it:</label>
@@ -146,14 +151,15 @@ const RecipeForm = (props) => {
                 onChange={ (e) => setInstructions(e.target.value) }
                 placeholder="instructions and details"
                 rows="10"
+                title="Instructions for recipe"
                 value={ instructions }
             />
 
             <p className="recipe-form__response">{ response && <p>{ response }</p> }</p>
 
             <div className="recipe-form__buttons">
-                <button className="button" onClick={ handleCancel }>Cancel</button>
-                <button className="button" onClick={ onSubmit }>Submit</button>
+                <button className="button" onClick={ handleCancel } title="Cancel">Cancel</button>
+                <button className="button" onClick={ onSubmit } title="Submit">Submit</button>
             </div>
         </div>
     )

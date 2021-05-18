@@ -9,15 +9,19 @@
     5-17-2021 - 
     Client:
         Actions:
+            - 5-17: Recipe roulette action now uses fetch instead of axios.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
-        Database/Hooks/Utilities:
+        Database:
         Index:
         Reducers:
         Router:
         SCSS:
         Store:
+        Utilities:
     General/Notes:
+        - 5-17: Uninstalled axios. Allows for smaller compile. Adapted webpack to it.
+        - 5-18: Renamed home-components folder to home and renamed account-components to account.
     Server:
 
 

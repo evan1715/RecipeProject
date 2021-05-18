@@ -5,7 +5,7 @@ import processData from '../utils/processData.js';
 //ALL_RECIPES
 const allRecipesAction = (data) => {
     const recipes = processData(data);
-
+    
     return {
         type: 'ALL_RECIPES',
         recipes
@@ -13,12 +13,10 @@ const allRecipesAction = (data) => {
 }
 
 //RECIPE_OWNERS
-const recipeOwnersAction = (data) => {
-    return {
-        type: 'RECIPE_OWNERS',
-        data
-    }
-}
+const recipeOwnersAction = (usernames) => ({
+    type: 'RECIPE_OWNERS',
+    usernames
+});
 
 //SEARCH_RESULTS
 const searchResultsAction = (data) => {

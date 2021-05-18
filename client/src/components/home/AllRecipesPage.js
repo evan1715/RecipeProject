@@ -2,51 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showLoading } from 'react-redux-loading-bar';
+import processUsernames from '../../utils/processUsernames.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const AllRecipesPage = () => {
     const dispatch = useDispatch();
     const allRecipes = useSelector(state => state.allRecipesReducer.allRecipes);
+    const recipeOwners = useSelector(state => state.allRecipesReducer.recipeOwners);
     const [userNames, setUsernames] = useState([]);
 
-    const getUsername = async () => {
-        let list = [];
-        let owners = [];
-
-        for (let i = 0; i < allRecipes.length; i++) {
-        /*  If we've already fetched a recipe's owner's username, let's not waste resources by checking our list
-            we've already received from fetch. We'll filter an array of objects containing the user id and their
-            username. Then we'll only call fetch if there isn't one. If there is, we'll just what we already
-            have without calling fetch. */
-            try {
-                const owner_id = allRecipes[i].owner;
-                const already = owners.find(id => id.owner_id === owner_id);
-
-                if (!already) {
-                    const user = await (await fetch(`/user/username/${owner_id}`)).json();
-                    list.push(user);
-                    owners.push({ owner_id, user });
-                } else {
-                    list.push(already.user);
-                }
-            } catch (error) {
-                list.push('Account Not Found');
-            }
-        }
-        setUsernames(list);
-    }
-
-    useEffect(() => {
+    useEffect(async () => {
         //Only get it if we don't already have it.
         if (!allRecipes.length) {
             dispatch(showLoading());
             dispatch(recipeServerAPI('allRecipes'));
         }
-    }, []);
-
-    useEffect(async () => {
-        getUsername();
+        //Get the usernames if we have recipes and if we don't already have their usernames stored.
+        if (allRecipes.length && !recipeOwners.length) {
+            dispatch(processUsernames(allRecipes));
+        }
     }, [allRecipes]);
+
+    useEffect(() => {
+        setUsernames(recipeOwners);
+    }, [recipeOwners]);
 
     return (
         <div className="grid-container">

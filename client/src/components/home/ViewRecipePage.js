@@ -8,7 +8,7 @@ const ViewRecipePage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const userRecipe = useSelector(state => state.selectedRecipeReducer);
-    const [username, setUsername] = useState('account no longer exists');
+    const [username, setUsername] = useState('Account Not Found');
     let slideIndex = 1;
 
     const plusSlides = (n) => showSlides(slideIndex += n);

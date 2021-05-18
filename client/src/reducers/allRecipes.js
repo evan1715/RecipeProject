@@ -1,6 +1,6 @@
 const defaultState = {
     allRecipes: {},
-    recipeUsernames: {}, 
+    recipeOwners: {}, 
     searchResults: {}
 }
 
@@ -14,7 +14,7 @@ const allRecipesReducer = (state = defaultState, action) => {
         case 'RECIPE_OWNERS':
             return {
                 ...state,
-                usernames: action.usernames
+                recipeOwners: action.usernames
             }
         case 'SEARCH_RESULTS':
             return {

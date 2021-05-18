@@ -10,10 +10,12 @@
     Client:
         Actions:
             - 5-17: Recipe roulette action now uses fetch instead of axios.
-            - 5-18: Recipe roulette action now has hide loading bar after the reducer dispatch.
+            - 5-18: Recipe roulette action now has hide loading bar after the reducer dispatch. File allRecipes now implicitly returns the action to the reducer.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
-            - 5-17: Improved network efficiency by not re-fetching the icon every time the My Account component loads. Changes made to MyAccountModal and MyAccountPage. If no icon is in store, it'll dispatch a fetch.
+            - 5-17: 
+                - Improved network efficiency by not re-fetching the icon every time the My Account component loads. Changes made to MyAccountModal and MyAccountPage. If no icon is in store, it'll dispatch a fetch.
+                - Extracted the username fetch request and put it in its own file in utils. The page now calls that action then dispatches out to the store to hold the usernames to be reused. 
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -22,6 +24,7 @@
         SCSS:
         Store:
         Utilities:
+            - 5-18: Created processUsernames.js which was extracted from AllRecipesPage to process usernames and store them. This method will reduce network by using what we already have by storing it.
     General/Notes:
         - 5-17: Uninstalled axios. Allows for smaller compile. Adapted webpack to it.
         - 5-18: Renamed home-components folder to home and renamed account-components to account.

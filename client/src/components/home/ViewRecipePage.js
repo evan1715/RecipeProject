@@ -43,7 +43,7 @@ const ViewRecipePage = () => {
             showSlides(slideIndex);
         }
         //Only send this out if we got anything.
-        if (userRecipe.owner) {
+        if (location.search.split('?id=')[1] === userRecipe._id) {
             setUsername(await (await fetch(`/user/username/${userRecipe.owner}`)).json());
         }
     }, [userRecipe.pictures]);

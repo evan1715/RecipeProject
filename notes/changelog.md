@@ -15,13 +15,16 @@
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
             - 5-17: 
                 - Improved network efficiency by not re-fetching the icon every time the My Account component loads. Changes made to MyAccountModal and MyAccountPage. If no icon is in store, it'll dispatch a fetch.
-                - Extracted the username fetch request and put it in its own file in utils. The page now calls that action then dispatches out to the store to hold the usernames to be reused. 
+                - Extracted the username fetch request and put it in its own file in utils. The page now calls that action then dispatches out to the store to hold the usernames to be reused.
+            - 5-21: Fixed an issue in ViewRecipePage where the previous state username was displaying instead of the current one.
+            - 5-22: ViewRecipePage now displays the recipe better. MyAccountPage now displays the three most recent recipes submitted. Added in a fetch to get the user recipes on the page too.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
         Reducers:
         Router:
         SCSS:
+            - 5-22: Added some CSS to view recipe page styling.
         Store:
         Utilities:
             - 5-18: Created processUsernames.js which was extracted from AllRecipesPage to process usernames and store them. This method will reduce network by using what we already have by storing it.

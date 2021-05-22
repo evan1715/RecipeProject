@@ -21,6 +21,9 @@ body {
 
 .cursor {
     cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 // All children <Link /> components being rendered from react router will have no underline

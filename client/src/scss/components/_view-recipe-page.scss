@@ -86,3 +86,32 @@
     cursor: pointer;
     opacity: 1;
 }
+
+.view-recipe__recipe {
+    // border: thin solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.view-recipe__recipe--cook-time {
+    // border: thin solid green;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 75px 15px 75px; //top right bottom left
+}
+
+.view-recipe__recipe--ingredients {
+    // border: thin solid blue;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 75px 15px 75px; //top right bottom left
+}
+
+.view-recipe__recipe--instructions {
+    // border: thin solid yellow;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 75px 15px 75px; //top right bottom left
+}

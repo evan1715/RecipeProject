@@ -94,19 +94,25 @@ const ViewRecipePage = () => {
                     </div>
                 }
 
-                <p className="center">Cook time: { userRecipe.cookTime } minutes.</p>
-
-                <ul>
-                    <h3 className="title center">Ingredients:</h3>
-                    { userRecipe.ingredients.map((ingredient) => (
-                        <li className="center" key={ ingredient._id }>
-                            { ingredient.amount } { ingredient.measurement } of { ingredient.item }
-                        </li>
-                    ))}
-                </ul>
-
-                <h3 className="title center">Instructions:</h3>
-                <blockquote className="center">{ userRecipe.instructions }</blockquote>
+                <div className="view-recipe__recipe">
+                    <div className="view-recipe__recipe--cook-time">
+                        <h2 className="title center">Cook time:</h2>
+                        <p className="center">{ userRecipe.cookTime } minutes.</p>
+                    </div>
+                    <div className="view-recipe__recipe--ingredients">
+                        <h2 className="title center">Ingredients:</h2>
+                        { userRecipe.ingredients.map((ingredient) => (
+                            <li key={ ingredient._id }>
+                                - { ingredient.amount } { ingredient.measurement } of { ingredient.item }
+                            </li>
+                        ))}
+                    </div>
+                    
+                    <div className="view-recipe__recipe--instructions">
+                        <h2 className="title center">Instructions:</h2>
+                        <blockquote className="center">{ userRecipe.instructions }</blockquote>
+                    </div>
+                </div>
             </div>
             }
         </div>

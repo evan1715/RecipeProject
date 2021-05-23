@@ -33,8 +33,13 @@ const ViewRecipePage = () => {
     }
 
     useEffect(() => {
-        dispatch(showLoading());
-        dispatch(recipeServerAPI('getRecipe', location.search.split('?id=')[1]));
+        const id = location.search.split('?id=')[1];
+        
+        //Check if this recipe is already stored before fetching again.
+        if (userRecipe._id !== id) {
+            dispatch(showLoading());
+            dispatch(recipeServerAPI('getRecipe', id));
+        }
     }, []);
 
     useEffect(async () => {
@@ -49,8 +54,7 @@ const ViewRecipePage = () => {
     }, [userRecipe.pictures]);
     
     return (
-        <div>
-            { userRecipe.title && //Only render once we have the recipe.
+        <>{ userRecipe.title && //Only render once we have the recipe.
             <div>
                 <h1 className="title center">{ userRecipe.title }</h1>
 
@@ -115,7 +119,7 @@ const ViewRecipePage = () => {
                 </div>
             </div>
             }
-        </div>
+        </>
     )
 }
 

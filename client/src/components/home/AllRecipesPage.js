@@ -43,7 +43,11 @@ const AllRecipesPage = () => {
                     }</li>
                     <li>Cook time: { recipe.cookTime }</li>
                     <li>Created: { recipe.createdAt }</li>
-                    <li>By: { userNames[index] }</li>
+                    { userNames[index] === 'Account Not Found' ?
+                        <li>By: { userNames[index] }</li>
+                        :
+                        <li>By: <Link className="cursor" to={`/user?id=${recipe.owner}`}>{ userNames[index] }</Link></li>
+                    }
                 </ol>
             ))}
         </div>

@@ -168,6 +168,9 @@ const MyAccountPage = () => {
             </div>
             <div className="my-account-page__icon">
                 <img alt="my account icon" src={ icon } />
+                <button className="button__link">
+                    <Link className="button__link--Link" to={ `/user?id=${user._id}` }>View my profile</Link>
+                </button>
             </div>
         </div>
     )

@@ -18,6 +18,11 @@
                 - Extracted the username fetch request and put it in its own file in utils. The page now calls that action then dispatches out to the store to hold the usernames to be reused.
             - 5-21: Fixed an issue in ViewRecipePage where the previous state username was displaying instead of the current one.
             - 5-22: ViewRecipePage now displays the recipe better. MyAccountPage now displays the three most recent recipes submitted. Added in a fetch to get the user recipes on the page too.
+            - 5-23: 
+                - Created a UserProfilePage to display a user's info, recipe, icon, etc. Can click each recipe to go view it.
+                - MyRecipesPage now centers the message of not having any recipes submitted. There's now a button for "View my profile" on the page.
+                - AllRecipesPage now links to a user's profile page if they click the username under a recipe.
+                - ViewRecipePage now will not fetch if the same recipe is already stored in redux instead of fetching on every load. Changed the first div at the beginning of the html to a react/div fragment.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:

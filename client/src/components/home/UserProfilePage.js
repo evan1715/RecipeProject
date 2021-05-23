@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 // import userServerAPI from '../../database/userServerAPI.js';
@@ -43,7 +43,7 @@ const UserProfilePage = () => {
                     <h2 className="title">{ username }'s Recipes</h2>
                     { userRecipes && userRecipes.length < 1 && <p>This user hasn't submitted any recipes yet!</p>}
                     { userRecipes && userRecipes.length > 0 && userRecipes.map((recipe) => (
-                        <li key={ recipe._id }>{ recipe.title }</li>
+                        <Link className="cursor" key={ recipe._id } to={ `/recipe?id=${recipe._id}` }>{ recipe.title }</Link>
                     ))}
                 </div>
 

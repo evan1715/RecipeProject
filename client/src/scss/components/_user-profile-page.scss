@@ -1,0 +1,30 @@
+.user-profile-page {
+    border: thin solid black;
+    display: flex;
+}
+
+.user-profile-page__left {
+    border: thin solid green;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    order: 1;
+}
+
+.user-profile-page__center {
+    border: thin solid red;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    order: 2;
+}
+
+.user-profile-page__right {
+    border: thin solid peachpuff;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    order: 3;
+}

@@ -11,6 +11,7 @@
         Actions:
             - 5-17: Recipe roulette action now uses fetch instead of axios.
             - 5-18: Recipe roulette action now has hide loading bar after the reducer dispatch. File allRecipes now implicitly returns the action to the reducer.
+            - 5-23: Added a new action for userProfile to store viewing a profile for userinfo and recipe data.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
             - 5-17: 
@@ -19,24 +20,33 @@
             - 5-21: Fixed an issue in ViewRecipePage where the previous state username was displaying instead of the current one.
             - 5-22: ViewRecipePage now displays the recipe better. MyAccountPage now displays the three most recent recipes submitted. Added in a fetch to get the user recipes on the page too.
             - 5-23: 
-                - Created a UserProfilePage to display a user's info, recipe, icon, etc. Can click each recipe to go view it.
+                - Created a UserProfilePage to display a user's info, recipe, icon, etc. Can click each recipe to go view it. Added recipes and recent recipes to the page. Utilized grid.
                 - MyRecipesPage now centers the message of not having any recipes submitted. There's now a button for "View my profile" on the page.
                 - AllRecipesPage now links to a user's profile page if they click the username under a recipe.
                 - ViewRecipePage now will not fetch if the same recipe is already stored in redux instead of fetching on every load. Changed the first div at the beginning of the html to a react/div fragment.
+            - 5-24:
+                - Created LeftColumn and RightColumn components to house most recent recipes & userinfo on left and icon and button on the right. Now using it for MyAccountPage, MyRecipesPage, and UserProfilePage to display most recent recipes, userinfo, and icon. It will change based on if it's the user's info or if it's a profile they're viewing. Redid CSS to simplify the column layouts by creating a columns.scss and merging multiple styles from these pages into that one.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
+            - 5-23: Renamed the route of /profile to /me in the fetch.
         Reducers:
+            - 5-23: Added a new reducer for userProfile to store viewing a profile for userinfo and recipe data.
         Router:
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
+            - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
+            - 5-24: Created columns.scss to use for the left, right, and center columns that will display for MyAccountPage, MyRecipesPage, and UserProfilePage. Deleted my-account-page.scss since the styling was merged into the columns. Took out the same styling that was in my-recipes-page.scss and user-profile-page.scss since they're also using the columns.scss file.
         Store:
+            - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:
             - 5-18: Created processUsernames.js which was extracted from AllRecipesPage to process usernames and store them. This method will reduce network by using what we already have by storing it.
     General/Notes:
         - 5-17: Uninstalled axios. Allows for smaller compile. Adapted webpack to it.
         - 5-18: Renamed home-components folder to home and renamed account-components to account.
+        - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
     Server:
+        - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 
 
 

@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import LeftColumn from './../account/LeftColumn.js';
+import RightColumn from './../account/RightColumn.js';
 import { profileRecipesAction, profileUserAction } from '../../actions/userProfile';
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const userProfile = useSelector(state => state.userProfileReducer);
-    const user = userProfile.user;
     const [username, setUsername] = useState();
     const [userRecipes, setUserRecipes] = useState();
     const user_id = location.search.split('?id=')[1]; //get the user's id off the url string
-    const [recent, setRecent] = useState();
-
-    const recentRecipes = () => {
-        const length = userProfile.recipes.length;
-        const recipes = [];
-
-        for (let i = 1; i <= 3; i++) {
-            recipes.push(userProfile.recipes[length-i]);
-        }
-
-        setRecent(recipes);
-    }
 
     useEffect(async () => {
         //If we already have the same thing stored, no need to retrieve it.
@@ -42,39 +31,18 @@ const UserProfilePage = () => {
         }
     }, []);
 
-    useEffect(() => {
-        if (userProfile.recipes && userProfile.recipes.length) {
-            recentRecipes();
-        }
-    }, [userProfile])
-
     return (
         <>{ username && 
             <>
-            <h1 className="center title">{ username }'s Profile</h1>
-            <div className="user-profile-page">
+            <h1 className="columns-header">{ username }'s Profile</h1>
+            <div className="columns">
                 
-                <div className="user-profile-page__left">
-                    <h2 className="title center">Most recent</h2>
-                    { userProfile.recipes.length < 1 && <p>No recipes submitted yet!</p> }
-                    { recent && recent.length > 0 && recent.map((recipe) => (
-                        <li
-                            className="cursor"
-                            key={ recipe._id }
-                            onClick={ () => history.push(`/recipe?id=${recipe._id}`) }
-                        >{ recipe.title }</li>
-                    ))}
-                    <h2 className="title center">User's Information</h2>
-                    <p>Username: { username }</p>
-                    <p>Name: { user.name }</p>
-                    <p>Location: ~pending~</p>
-                    <p>Total Recipes: { userProfile.recipes.length }</p>
-                </div>
+                <LeftColumn isPublic={ true } />
 
-                <div className="user-profile-page__center">
-                    <h2 className="title">{ username }'s Recipes</h2>
+                <div className="columns__center">
+                    <h2 className="columns__title">{ username }'s Recipes</h2>
+                    { userRecipes && userRecipes.length < 1 && <p>This user hasn't submitted any recipes yet!</p>}
                     <div className="user-profile-page__center--grid">
-                        { userRecipes && userRecipes.length < 1 && <p>This user hasn't submitted any recipes yet!</p>}
                         { userRecipes && userRecipes.length > 0 && userRecipes.map((recipe) => (
                             <div key={ recipe._id } className="user-profile-page__center--recipe">
                                 { recipe.pictures[0] &&
@@ -100,9 +68,7 @@ const UserProfilePage = () => {
                     </div>
                 </div>
 
-                <div className="user-profile-page__right">
-                    <img height="250" width="250" src={ `/user/${user_id}/icon` } />
-                </div>
+                <RightColumn isPublic={ true } />
             </div></>
         }</>
     )

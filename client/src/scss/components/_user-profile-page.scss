@@ -1,29 +1,6 @@
-.user-profile-page {
-    border: thin solid black;
-    display: flex;
-}
-
-.user-profile-page__left {
-    border: thin solid green;
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    order: 1;
-}
-
-.user-profile-page__center {
-    border: thin solid red;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-    order: 2;
-}
-
 .user-profile-page__center--grid {
     display: grid;
-    border: thin solid gold;
+    // border: thin solid gold;
     grid-auto-rows: minmax(150px, auto);
     grid-gap: 20px;
     // grid-template-columns: repeat(3, $column-width);
@@ -49,7 +26,7 @@
 
 .user-profile-page__center--recipe-content {
     align-items: center;
-    border: thin solid purple;
+    // border: thin solid purple;
     display: flex;
     flex-wrap: wrap;
     font-weight: $font-weight;
@@ -63,16 +40,8 @@
 }
 
 .user-profile-page__center--recipe-content--title {
-    border: thin  solid black;
+    // border: thin  solid black;
     font-weight: $font-weight;
-}
-
-.user-profile-page__right {
-    border: thin solid peachpuff;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    order: 3;
 }
 
 

@@ -1,0 +1,46 @@
+.columns-header {
+    // border: thin solid red;
+    display: flex;
+    font-weight: $font-weight;
+    justify-content: center;
+}
+
+.columns {
+    display: flex;
+}
+
+.columns__left {
+    // border: thin solid green;
+    align-items: flex-end;
+    display: flex;
+    flex-basis: 250px; //This makes the left equal to the right with the 250px size icon.
+    flex-direction: column;
+    flex-grow: 1;
+    order: 1;
+}
+
+.columns__center {
+    // border: thin solid chartreuse;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    order: 2;
+}
+
+.columns__title {
+    font-weight: 400;
+}
+
+.columns__right {
+    // border: thin solid slateblue;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    order: 3;
+    img {
+        height: 250px;
+        width: 250px;
+    }
+}

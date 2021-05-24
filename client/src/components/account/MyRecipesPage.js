@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLoading } from 'react-redux-loading-bar'
+import LeftColumn from './LeftColumn.js';
+import RightColumn from './RightColumn.js';
 import ModifyPicturesModal from './ModifyPicturesModal.js';
 import { editRecipeAction } from '../../actions/selectedRecipe.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
@@ -32,46 +34,63 @@ const MyRecipesPage = () => {
     }, [userRecipes.recipe]);
 
     return (
-        <div className="my-recipes-page">
-            <h1 className="title center">My Recipes</h1>
-            { userRecipes.length < 1 && <p className="center">You haven't submitted any recipes yet!</p> }
-            { userRecipes.length > 0 && userRecipes.map((recipe) => (
-                <div className="my-recipes" key={ recipe._id }>
-                    <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
+        <>
+        <h1 className="columns-header">My Recipes</h1>
+        <div className="columns">
 
-                    <div className="my-recipes-buttons">
-                        <button className="button__link">
-                            <Link className="button__link--Link" to={ `/recipe?id=${recipe._id}` }>View</Link>
-                        </button>
+            <LeftColumn isPublic={ false } />
 
-                        <button className="button" onClick={ () => handleEditRecipe(recipe)}>
-                            Edit
-                        </button>
+            <div className="columns__center">
+                <h1 className="title center">My Submitted Recipes</h1>
+                { userRecipes.length < 1 && 
+                <>
+                    <p className="center">You haven't submitted any recipes yet!</p>
+                    <button className="button__link" onClick={ () => dispatch(clearSelectedRecipeAction()) }>
+                        <Link className="button__link--Link" to="/submitrecipe">Submit a new recipe</Link>
+                    </button>
+                </>
+                }
+                { userRecipes.length > 0 && userRecipes.map((recipe) => (
+                    <div className="my-recipes" key={ recipe._id }>
+                        <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
 
-                        <button className="button" onClick={ () => {
-                            setOpenModifyPicturesModal(true);
-                            setSelectedRecipe(recipe._id);
-                            setSelectedPictures(recipe.pictures);
-                        }}>Modify pictures</button>
-                        <ModifyPicturesModal
-                            openModifyPicturesModal={ openModifyPicturesModal }
-                            handleCloseModal={ () => setOpenModifyPicturesModal(false) }
-                            recipe_id={ selectedRecipe }
-                            pictures={ selectedPictures }
-                        />
+                        <div className="my-recipes-buttons">
+                            <button className="button__link">
+                                <Link className="button__link--Link" to={ `/recipe?id=${recipe._id}` }>View</Link>
+                            </button>
 
-                        <button className="button" onClick={ () => (setConfirmDelete(true), setSelectedRecipe(recipe._id)) }>Delete</button>
-                        { confirmDelete && (recipe._id === selectedRecipe) && 
-                            <p style={{ fontSize: 30 }}>
-                                Are you sure?
-                                <button className="button" onClick={ () => handleDeleteRecipe(recipe._id) }>Yes</button>
-                                <button className="button" onClick={ () => setConfirmDelete(false) }>No</button>
-                            </p>
-                        }
+                            <button className="button" onClick={ () => handleEditRecipe(recipe)}>
+                                Edit
+                            </button>
+
+                            <button className="button" onClick={ () => {
+                                setOpenModifyPicturesModal(true);
+                                setSelectedRecipe(recipe._id);
+                                setSelectedPictures(recipe.pictures);
+                            }}>Modify pictures</button>
+                            <ModifyPicturesModal
+                                openModifyPicturesModal={ openModifyPicturesModal }
+                                handleCloseModal={ () => setOpenModifyPicturesModal(false) }
+                                recipe_id={ selectedRecipe }
+                                pictures={ selectedPictures }
+                            />
+
+                            <button className="button" onClick={ () => (setConfirmDelete(true), setSelectedRecipe(recipe._id)) }>Delete</button>
+                            { confirmDelete && (recipe._id === selectedRecipe) && 
+                                <p style={{ fontSize: 30 }}>
+                                    Are you sure?
+                                    <button className="button" onClick={ () => handleDeleteRecipe(recipe._id) }>Yes</button>
+                                    <button className="button" onClick={ () => setConfirmDelete(false) }>No</button>
+                                </p>
+                            }
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+
+            <RightColumn isPublic={ false } />
+
+        </div></>
     )
 }
 

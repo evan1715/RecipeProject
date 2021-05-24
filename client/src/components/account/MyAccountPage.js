@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { showLoading } from 'react-redux-loading-bar';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import MyRightColumn from './RightColumn.js';
+import LeftColumn from './LeftColumn.js';
 import { 
     UploadUserIconModal, 
     ChangeUsernameModal,
@@ -12,14 +13,9 @@ import {
     DeleteAccountModal 
 } from './MyAccountModals.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
-import userServerAPI from '../../database/userServerAPI.js';
-import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const MyAccountPage = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { user, icon } = useSelector(state => state.accountReducer);
-    const userRecipes = useSelector(state => state.userRecipesReducer);
     const [openUploadUserIconModal, setOpenUploadUserIconModal] = useState(false);
     const [openChangeUsernameModal, setOpenChangeUsernameModal] = useState(false);
     const [openChangeEmailModal, setOpenChangeEmailModal] = useState(false);
@@ -27,64 +23,17 @@ const MyAccountPage = () => {
     const [openChangeNameModal, setOpenChangeNameModal] = useState(false);
     const [openLogoutAllModal, setOpenLogoutAllModal] = useState(false);
     const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
-    const [recent, setRecent] = useState();
-
-    const recentRecipes = () => {
-        const length = userRecipes.length;
-        const recipes = [];
-
-        for (let i = 1; i <= 3; i++) {
-            recipes.push(userRecipes[length-i]);
-        }
-
-        setRecent(recipes);
-    }
-
-    useEffect(() => {
-        if (!icon) {
-            dispatch(showLoading());
-            dispatch(userServerAPI('getIcon', user._id));
-        }
-        if (!userRecipes.length || userRecipes.recipe === null) {
-            dispatch(showLoading());
-            dispatch(recipeServerAPI('myRecipes', user.username));
-        }
-    }, []);
-
-    useEffect(() => {
-        if (userRecipes && userRecipes.length) {
-            recentRecipes();
-        }
-    }, [userRecipes]);
 
     return (
-        <div className="my-account-page__container">
+        <>
+        <h1 className="columns-header">My Account</h1>
+        <div className="columns">
 
-            <div className="my-account-page__userinfo">
-                <h3 className="center">My recent recipes</h3>
-                <ol>
-                    { userRecipes.length < 1 && <p>You haven't submitted any recipes yet!</p> }
-                    { recent && recent.length > 0 && recent.map((recipe) => (
-                        <li
-                            className="cursor"
-                            key={ recipe._id }
-                            onClick={ () => history.push(`/recipe?id=${recipe._id}`) }
-                        >{ recipe.title }</li>
-                    ))}
-                </ol>
+            <LeftColumn isPublic={ false } />
 
-                <h3 className="center">User Info:</h3>
-                <ol>
-                    <li>Username: { user.username }</li>
-                    <li>Email: { user.email }</li>
-                    <li>Name: { user.name }</li>
-                </ol>
-            </div>
-
-            
-            <div className="my-account-page__center">
+            <div className="columns__center">
     
-                <h2>My Recipes</h2>
+                <h2 className="columns__title">My Recipes</h2>
 
                     <button className="button__link">
                         <Link className="button__link--Link" to="/myrecipes">View or edit my recipes</Link>
@@ -95,7 +44,7 @@ const MyAccountPage = () => {
                     </button>
 
 
-                <h2>My Account</h2>
+                <h2 className="columns__title">My Account</h2>
                 <>
                     <button className="button" onClick={ () => setOpenUploadUserIconModal(true) }>
                         Upload or modify user icon
@@ -166,13 +115,11 @@ const MyAccountPage = () => {
                     />
                 </>
             </div>
-            <div className="my-account-page__icon">
-                <img alt="my account icon" src={ icon } />
-                <button className="button__link">
-                    <Link className="button__link--Link" to={ `/user?id=${user._id}` }>View my profile</Link>
-                </button>
-            </div>
+            
+            <MyRightColumn isPublic={ false } />
+            
         </div>
+        </>
     )
 }
 

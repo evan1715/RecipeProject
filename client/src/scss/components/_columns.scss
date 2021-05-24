@@ -1,5 +1,6 @@
 .columns-header {
     // border: thin solid red;
+    background-color: darken($color: rgb(240, 240, 240), $amount: 5);
     display: flex;
     font-weight: $font-weight;
     justify-content: center;

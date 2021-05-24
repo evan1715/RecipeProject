@@ -1,4 +1,6 @@
 //Sourced from https://github.com/reduxjs/redux-thunk/blob/master/src/index.js
+//Full package - https://github.com/reduxjs/redux-thunk
+//License https://github.com/reduxjs/redux-thunk/blob/master/LICENSE.md
 
 function createThunkMiddleware(extraArgument) {
     return ({ dispatch, getState }) => (next) => (action) => {

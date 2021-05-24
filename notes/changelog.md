@@ -46,6 +46,7 @@
         - 5-17: Uninstalled axios. Allows for smaller compile. Adapted webpack to it.
         - 5-18: Renamed home-components folder to home and renamed account-components to account.
         - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
+        - 5-24: Cleaned up graveyard some. Also cleaned up SCSS some.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

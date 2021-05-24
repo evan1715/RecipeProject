@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import IosMenu from 'react-ionicons/lib/IosMenu'
-import userServerAPI from '../../database/userServerAPI.js';
+import IosMenu from 'react-ionicons/lib/IosMenu';
 import SignInModal from './SignInModal.js';
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar.js';
 import MyAccountButton from './MyAccountButton.js';
 import MyRecipesButton from './MyRecipesButton.js';
+import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
+import { clearUserRecipesAction } from '../../actions/userRecipes.js';
+import userServerAPI from '../../database/userServerAPI.js';
 
 
 export default function Nav() {
@@ -23,10 +25,12 @@ export default function Nav() {
     const logout = () => {
         const token = isAuthenticated.token;
         dispatch(userServerAPI('logout', token)); //logout from local and server
+        dispatch(clearSelectedRecipeAction());
+        dispatch(clearUserRecipesAction());
         history.push('/'); //redirect them to the homepage once logged out
     }
     
-    window.onclick = function(/*event*/) {
+    window.onclick = function() {
         if (showMenu && toggle) {
             setShowMenu(false);
         } else {

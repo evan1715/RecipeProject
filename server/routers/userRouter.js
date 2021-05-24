@@ -74,8 +74,19 @@ router.get('/user/username/:id', async (req, res) => {
 });
 
 //View profile. Why doesn't just /user/ work and it's forcing /users/? --- creating patch and delete seemed to fix it.
-router.get('/user/profile', auth, async (req, res) => {
+router.get('/user/me', auth, async (req, res) => {
     res.send(req.user);
+});
+
+//Get a user without the login process. View their profile.
+router.get('/user/profile/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        res.send(user);
+    } catch (error) {
+        res.status(500).send();
+    }
 });
 
 //Update a user.
@@ -147,7 +158,7 @@ router.post('/user/profile/icon', auth, upload.single('icon'), async (req, res) 
         await req.user.save();
         res.send();
     } catch (error) {
-        res.status(400).send({ error: error.message })
+        res.status(400).send({ error: error.message });
     }
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message });

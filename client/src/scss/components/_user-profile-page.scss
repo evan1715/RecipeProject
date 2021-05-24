@@ -21,10 +21,89 @@
     order: 2;
 }
 
+.user-profile-page__center--grid {
+    display: grid;
+    border: thin solid gold;
+    grid-auto-rows: minmax(150px, auto);
+    grid-gap: 20px;
+    // grid-template-columns: repeat(3, $column-width);
+    justify-content: center;
+    // width: 100%;
+}
+
+.user-profile-page__center--recipe {
+    align-items: center;
+    border: solid #3c280d 1px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    padding: 0px 0px 10px 0px; //top right bottom left
+    justify-content: space-around;
+}
+
+.user-profile-page__center--recipe-image {
+    margin: 10px;
+    height: 140px;
+    width: 200px;
+}
+
+.user-profile-page__center--recipe-content {
+    align-items: center;
+    border: thin solid purple;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: $font-weight;
+    margin: 10px;
+    flex-direction: column;
+    width: 100%;
+    p: {
+        font-family: $font-family;
+        margin: 0px;
+    }
+}
+
+.user-profile-page__center--recipe-content--title {
+    border: thin  solid black;
+    font-weight: $font-weight;
+}
+
 .user-profile-page__right {
     border: thin solid peachpuff;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     order: 3;
+}
+
+
+
+//Resolution adjustment
+@media screen and (min-width: $screen-UHD) {
+    .user-profile-page__center--grid {
+        grid-template-columns: repeat(5, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-QHDp) {
+    .user-profile-page__center--grid {
+        grid-template-columns: repeat(4, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-QHD) {
+    .user-profile-page__center--grid {
+        grid-template-columns: repeat(3, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-FHD) {
+    .user-profile-page__center--grid {
+        grid-template-columns: repeat(2, $column-width);
+    }
+}
+
+@media screen and (max-width: $screen-HDp) {
+    .user-profile-page__center--grid {
+        grid-template-columns: repeat(1, $column-width);
+    }
 }

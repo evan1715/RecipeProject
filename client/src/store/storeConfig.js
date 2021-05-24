@@ -1,12 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunk from './thunk.js';
 import accountReducer from '../reducers/account.js';
 import allRecipesReducer from '../reducers/allRecipes.js';
 import recipeRoulette from '../reducers/recipe-roulette.js';
 import selectedRecipeReducer from '../reducers/selectedRecipe.js';
 import serverErrorReducer from '../reducers/serverError.js';
+import userProfileReducer from '../reducers/userProfile.js';
 import userRecipesReducer from '../reducers/userRecipes.js';
 
 /*  Added the the Redux Devtool Extension for Firefox and Edge/Chrome to our browsers. 
@@ -28,6 +29,7 @@ export default () => {
             recipeRoulette,
             selectedRecipeReducer,
             serverErrorReducer,
+            userProfileReducer,
             userRecipesReducer
         }),
         composeEnhancers(applyMiddleware(logger, thunk))

@@ -36,8 +36,6 @@ const AllRecipesPage = () => {
                         <Link to={ `/recipe?id=${recipe._id}` }>
                         <img
                             className="grid-pic"
-                            height="280"
-                            width="400"
                             src={ `data:image/jpeg;base64,${recipe.pictures[0].picture.data}` } 
                         /></Link>
                     }</li>

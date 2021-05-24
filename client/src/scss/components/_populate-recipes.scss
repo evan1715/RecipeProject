@@ -1,10 +1,11 @@
 .grid-container {
+    // border: thin solid red;
     display: grid;
     // grid-auto-columns: minmax(150px, auto);
-    grid-auto-rows: minmax(150px, auto);
+    grid-auto-rows: minmax(150px, 100%);
     grid-gap: 20px;
     justify-content: center;
-    // border: thin solid red;
+    overflow: hidden;
 }
 
 .grid-item {
@@ -13,16 +14,10 @@
     border-radius: 3px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     padding: 0px 0px 10px 0px; //top right bottom left
-    justify-content: space-around;
-    // border: thin solid blue;
-    // &:nth-child(even) {
-    //     background-color: aquamarine;
-    // }
-    // &:nth-child(odd) {
-    //     background-color: lightblue;
-    // }
+    img {
+        width: 100%;
+    }
 }
 
 .link {

@@ -52,30 +52,30 @@
             div {
                 width: 100%;
                 justify-content: space-between;
-                // li {
-                //     width: 40vw;
-                // }
+                li {
+                    width: 40vw;
+                }
             }
         }
     }
 }
   
-// @media screen and (max-width: 1420px) {
-//     .recipe-roulette-card {
-//         width: 20vw;
-//     }
-// }
+@media screen and (max-width: 1420px) {
+    .recipe-roulette-card {
+        width: 20vw;
+    }
+}
   
-// @media screen and (max-width: 1000px) {
-//     .recipe-roulette-card {
-//         width: 42vw;
-//     }
-// }
+@media screen and (max-width: 1000px) {
+    .recipe-roulette-card {
+        width: 42vw;
+    }
+}
   
 @media screen and (max-width: 800px) {
-    .recipe-roulette-cards-container {
-        flex-direction: column;
-    }
+    // .recipe-roulette-cards-container {
+    //     flex-direction: column;
+    // }
     .recipe-roulette-card {
         width: 94vw;
     }

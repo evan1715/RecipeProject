@@ -1,6 +1,7 @@
 // Recipe Roulette Styles
 
 .recipe-roulette {
+    // border: thin solid gold;
     height: auto;
     div {
         background: rgb(240, 240, 240);
@@ -10,6 +11,7 @@
   
 .recipe-roulette-cards-container {
     @include flexCenter(space-around);
+    // border: thin solid greenyellow;
     flex-wrap: wrap;
     > * {
         flex: 18%;
@@ -17,7 +19,8 @@
     }
 }
   
-#recipe-roulette-card {
+.recipe-roulette-card {
+    // border: thin solid red;
     background: white;
     width: 100%;
     height: 450px;
@@ -43,35 +46,38 @@
 @media screen and (max-width: 1420px) {
     .recipe-roulette {
         div {
-            width: 90%;
+            width: 100%;
             margin-top: 30px;
             justify-content: center;
             div {
                 width: 100%;
                 justify-content: space-between;
-                li {
-                    width: 40vw;
-                }
+                // li {
+                //     width: 40vw;
+                // }
             }
         }
     }
 }
   
-@media screen and (max-width: 1420px) {
-    #recipe-roulette-card {
-        width: 20vw;
-    }
-}
+// @media screen and (max-width: 1420px) {
+//     .recipe-roulette-card {
+//         width: 20vw;
+//     }
+// }
   
-@media screen and (max-width: 1000px) {
-    #recipe-roulette-card {
-        width: 42vw;
-    }
-}
+// @media screen and (max-width: 1000px) {
+//     .recipe-roulette-card {
+//         width: 42vw;
+//     }
+// }
   
 @media screen and (max-width: 800px) {
-    #recipe-roulette-card {
-        width: 40vw;
+    .recipe-roulette-cards-container {
+        flex-direction: column;
+    }
+    .recipe-roulette-card {
+        width: 94vw;
     }
 }
   

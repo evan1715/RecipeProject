@@ -37,7 +37,10 @@
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
             - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
-            - 5-24: Created columns.scss to use for the left, right, and center columns that will display for MyAccountPage, MyRecipesPage, and UserProfilePage. Deleted my-account-page.scss since the styling was merged into the columns. Took out the same styling that was in my-recipes-page.scss and user-profile-page.scss since they're also using the columns.scss file.
+            - 5-24: 
+                - Created columns.scss to use for the left, right, and center columns that will display for MyAccountPage, MyRecipesPage, and UserProfilePage.
+                - Deleted my-account-page.scss since the styling was merged into the columns. Took out the same styling that was in my-recipes-page.scss and user-profile-page.scss since they're also using the columns.scss file.
+                - Readjusted image sizing for recipe roulette and all recipes. Fixed typo for # id to className . in recipe roulette.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

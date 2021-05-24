@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { showLoading } from 'react-redux-loading-bar'
 import LeftColumn from './LeftColumn.js';
 import RightColumn from './RightColumn.js';
 import ModifyPicturesModal from './ModifyPicturesModal.js';
@@ -11,7 +10,7 @@ import recipeServerAPI from '../../database/recipeServerAPI.js';
 const MyRecipesPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { user, token } = useSelector(state => state.accountReducer);
+    const { token } = useSelector(state => state.accountReducer);
     const userRecipes = useSelector(state => state.userRecipesReducer);
     const [selectedRecipe, setSelectedRecipe] = useState();
     const [selectedPictures, setSelectedPictures] = useState([]);
@@ -24,14 +23,6 @@ const MyRecipesPage = () => {
     }
 
     const handleDeleteRecipe = (recipe_id) => dispatch(recipeServerAPI('deleteRecipe', { recipe_id, token }));
-
-    useEffect(() => {
-        //Get the recipes when page initializes if we don't already have it & after one has been deleted.
-        if (!userRecipes.length || userRecipes.recipe === null) {
-            dispatch(showLoading());
-            dispatch(recipeServerAPI('myRecipes', user.username));
-        }
-    }, [userRecipes.recipe]);
 
     return (
         <>

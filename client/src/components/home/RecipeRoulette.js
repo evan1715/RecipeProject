@@ -1,80 +1,67 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import handleRecipeRoulette from '../../actions/recipe-roulette'
-import IoTimeOutline from 'react-ionicons/lib/IosTimeOutline'
-import { Transition } from 'react-transition-group'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import IoTimeOutline from 'react-ionicons/lib/IosTimeOutline';
+import { Transition } from 'react-transition-group';
+import handleRecipeRoulette from '../../actions/recipe-roulette';
 
 // Recipe Roulette idea: This component will display 10 cards each containing a random recipe. If the user doesn't like any of the recipes on the
 // cards, then some animation will trigger and continue until 10 new recipes have been received from the API and can be displayed
 // on the page.
 
-export default function RecipeRoulette() {
-    const dispatch = useDispatch()
-    const recipeRoulette = useSelector(state => state.recipeRoulette)
-    const url = 'https://api.spoonacular.com/recipes/random'
+const RecipeRoulette = () => {
+    const dispatch = useDispatch();
+    const recipeRoulette = useSelector(state => state.recipeRoulette);
+    const url = 'https://api.spoonacular.com/recipes/random';
 
-    // Transition state + variables
-    const [inProp, setInProp] = React.useState(true)
-    const duration = 400
-    const defaultStyle = {
-        transition: `opacity ${duration}ms ease-in-out`,
-        opacity: 0
-    }
+    //Transition state and variables
+    const [inProp, setInProp] = useState(true);
+    const defaultStyle = { transition: 'opacity 400ms ease-in-out', opacity: 0 }
     const transitionStyles = {
         entering: { opacity: 1 },
         entered: { opacity: 1 },
         exiting: { opacity: 0 },
         exited: { opacity: 0 }
-
     }
 
-    // React.useEffect(() => {
-    //     //Load recipeRoulette when the app first loads. Don't load again unless the spin button is hit.
-    //     if (recipeRoulette.length < 1) {
-    //         dispatch(handleRecipeRoulette(url, 10))
-    //     }
-    // }, []) //got rid of [dispatch] because this would fire every time dispatch was fired
-
-    // After 800ms, set inProp to true so that the cards fade back onto the screen after the API request finishes
-    React.useEffect(() => {
-        const timeout = setTimeout(() => setInProp(true), 800)
-
-        return () => clearTimeout(timeout)
-    }, [inProp])
+    useEffect(() => {
+        if (recipeRoulette.length < 1) {
+            dispatch(handleRecipeRoulette(url, 10));
+        }
+        setTimeout(() => setInProp(true), 800);
+    }, [inProp]);
 
     return (
-        <div className='center recipe-roulette'>
-            <div>
-                <h1 className='title'>Recipe Roulette</h1>
-                <h2 className='title'>Nothing piquing your interest? Take it for a 
-                    <button 
-                        className='button' 
-                        onClick={() => { setInProp(false); dispatch(handleRecipeRoulette(url, 10)) }}
-                    >
+        <div className="recipe-roulette">
+            <div className="recipe-roulette__header">
+                <h1 className="title">Recipe Roulette</h1>
+                <h2 className="title">Nothing piquing your interest? Take it for a
+                    <button className="button" onClick={ () => {
+                        setInProp(false);
+                        dispatch(handleRecipeRoulette(url, 10))
+                    }}>
                         spin!
                     </button>
                 </h2>
+            </div>
 
-                <div className='recipe-roulette-cards-container'>
-                    {recipeRoulette.map((recipe, index) => (
-                        <Transition key={index} in={inProp} timeout={800}>
-                            {state => (
-                                <div style={{
-                                    ...defaultStyle,
-                                    ...transitionStyles[state]
-                                }}>
-                                    <li key={index} className='recipe-roulette-card'>
-                                        <img src={recipe.image} alt='finished dish' />
-                                        <p>{recipe.title}</p>
-                                        <p><IoTimeOutline /> {recipe.readyInMinutes} minutes</p>
-                                        <p>Popularity Rating: {recipe.spoonacularScore}</p>
-                                    </li>
-                                </div>
-                            )}
-                        </Transition>
-                    ))}
-                </div>
+            <div className="recipe-roulette__cards">
+                { recipeRoulette.map((recipe, index) => (
+                    <Transition in={ inProp } key={ index } timeout={ 800 }>
+                        { state => (
+                            <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
+                                <li className="recipe-roulette__cards--card">
+                                    <img alt="finished dish" src={ recipe.image } />
+                                    <p>{ recipe.title }</p>
+                                    <p><IoTimeOutline /> { recipe.readyInMinutes }</p>
+                                    <p>Popularity rating: { recipe.spoonacularScore }</p>
+                                </li>
+                            </div>
+                        )}
+                    </Transition>
+                ))}
             </div>
         </div>
     )
 }
+
+export { RecipeRoulette as default }

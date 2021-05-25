@@ -27,6 +27,7 @@
             - 5-24:
                 - Created LeftColumn and RightColumn components to house most recent recipes & userinfo on left and icon and button on the right. Now using it for MyAccountPage, MyRecipesPage, and UserProfilePage to display most recent recipes, userinfo, and icon. It will change based on if it's the user's info or if it's a profile they're viewing. Redid CSS to simplify the column layouts by creating a columns.scss and merging multiple styles from these pages into that one.
                 - Log out will now clear selected recipe and user recipes reducers.
+            - 5-25: Rewrote RecipeRoulette component and associated CSS to fix a bug.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -41,6 +42,7 @@
                 - Created columns.scss to use for the left, right, and center columns that will display for MyAccountPage, MyRecipesPage, and UserProfilePage.
                 - Deleted my-account-page.scss since the styling was merged into the columns. Took out the same styling that was in my-recipes-page.scss and user-profile-page.scss since they're also using the columns.scss file.
                 - Readjusted image sizing for recipe roulette and all recipes. Fixed typo for # id to className . in recipe roulette.
+            - 5-25: Redid recipe roulette CSS for cleaner, easier method and to fix mobile issue. 
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

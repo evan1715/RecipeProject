@@ -8,6 +8,7 @@ const RightColumn = (props) => {
 
     return (
         <div className="columns__right">
+            <h2 className="columns__title">User Icon</h2>
             <img alt="my account icon" src={ !props.isPublic ? `/user/${user._id}/icon` : `/user/${userProfile._id}/icon`} />
             { !props.isPublic && 
                 <button className="button__link">

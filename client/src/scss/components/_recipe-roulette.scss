@@ -1,22 +1,75 @@
 .recipe-roulette {
-    border: thin solid greenyellow;
+    // border: thin solid greenyellow;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 5%;
+    // flex-wrap: wrap;
+    margin-top: 1%;
 }
 
 .recipe-roulette__header {
     align-items: center;
-    border: thin solid blue;
+    // border: thin solid blue;
     display: flex;
     flex-direction: column;
+    h1 {
+        margin: 5px;
+        padding: 5px;
+    }
+    h2 {
+        margin: 5px;
+        padding: 5px;
+    }
 }
 
 .recipe-roulette__cards {
     border: thin solid red;
+    display: grid;
+    grid-auto-rows: minmax(250px, 450px);
+    grid-gap: 10px;
+    // grid-template-columns: repeat(2, $column-width);
+    // grid-row-start: 50px;
+    // grid-row-end: 50px;
+    justify-content: center;
 }
 
+//cards are 262x452 max on previous version
 .recipe-roulette__cards--card {
+    align-items: center;
     border: thin solid green;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 250px;
+    // max-width: 100%;
+    padding: 5px;
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+//Resolution adjustment
+@media screen and (min-width: $screen-HDp) {
+    .recipe-roulette__cards {
+        grid-template-columns: repeat(5, 280px);
+    }
+}
+
+@media screen and (max-width: $screen-HDp) {
+    .recipe-roulette__cards {
+        grid-template-columns: repeat(3, 280px);
+    }
+}
+
+@media screen and (max-width: $screen-qHD) {
+    .recipe-roulette__cards {
+        grid-template-columns: repeat(2, 280px);
+    }
+}
+
+@media screen and (max-width: $screen-FW) {
+    .recipe-roulette__cards {
+        grid-template-columns: repeat(1, 280px);
+    }
 }

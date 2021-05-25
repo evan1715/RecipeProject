@@ -29,10 +29,12 @@ const MyRecipesPage = () => {
         <h1 className="columns-header">My Recipes</h1>
         <div className="columns">
 
-            <LeftColumn isPublic={ false } />
+            <div className="columns__left columns--hide">
+                <LeftColumn isPublic={ false } />
+            </div>
 
             <div className="columns__center">
-                <h1 className="title center">My Submitted Recipes</h1>
+                <h2 className="columns__title" style={{ fontSize: 30 }}>My Submitted Recipes</h2>
                 { userRecipes.length < 1 && 
                 <>
                     <p className="center">You haven't submitted any recipes yet!</p>
@@ -43,7 +45,7 @@ const MyRecipesPage = () => {
                 }
                 { userRecipes.length > 0 && userRecipes.map((recipe) => (
                     <div className="my-recipes" key={ recipe._id }>
-                        <li className="center" style={{ fontSize: 30 }}>{ recipe.title }</li>
+                        <h3 className="title center" style={{ fontSize: 30 }}>{ recipe.title }</h3>
 
                         <div className="my-recipes-buttons">
                             <button className="button__link">
@@ -79,7 +81,9 @@ const MyRecipesPage = () => {
                 ))}
             </div>
 
-            <RightColumn isPublic={ false } />
+            <div className="columns__right columns--hide">
+                <RightColumn isPublic={ false } />
+            </div>
 
         </div></>
     )

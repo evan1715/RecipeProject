@@ -49,12 +49,10 @@ const RecipeRoulette = () => {
                     <Transition in={ inProp } key={ index } timeout={ 800 }>
                         { state => (
                             <div className="recipe-roulette__cards--card" style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                                {/* <li className="recipe-roulette__cards--card"> */}
-                                    <img alt="finished dish" src={ recipe.image } />
-                                    <p>{ recipe.title }</p>
-                                    <p><IoTimeOutline /> { recipe.readyInMinutes }</p>
-                                    <p>Popularity rating: { recipe.spoonacularScore }</p>
-                                {/* </li> */}
+                                <img alt="finished dish" src={ recipe.image } />
+                                <h3>{ recipe.title }</h3>
+                                <p><IoTimeOutline /> { recipe.readyInMinutes } minutes</p>
+                                <p>Popularity rating: { recipe.spoonacularScore }</p>
                             </div>
                         )}
                     </Transition>

@@ -73,6 +73,9 @@
 }
 
 @media screen and (max-width: $screen-FW) {
+    .recipe-roulette {
+        margin-top: 5%;
+    }
     .recipe-roulette__cards {
         grid-template-columns: repeat(1, 280px);
     }

@@ -27,7 +27,10 @@
             - 5-24:
                 - Created LeftColumn and RightColumn components to house most recent recipes & userinfo on left and icon and button on the right. Now using it for MyAccountPage, MyRecipesPage, and UserProfilePage to display most recent recipes, userinfo, and icon. It will change based on if it's the user's info or if it's a profile they're viewing. Redid CSS to simplify the column layouts by creating a columns.scss and merging multiple styles from these pages into that one.
                 - Log out will now clear selected recipe and user recipes reducers.
-            - 5-25: Rewrote RecipeRoulette component and associated CSS to fix a bug.
+            - 5-25: 
+                - Rewrote RecipeRoulette component and associated CSS to fix a bug.
+                - Added a title to RightColumn.
+                - Added columns--hide styling to MyRecipes page to hide them on smaller screens. Doesn't seem necessary at on this page to display the information in the columns.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -45,6 +48,7 @@
             - 5-25: 
                 - Redid recipe roulette CSS for cleaner, easier method and to fix mobile issue.
                 -- Added a top margin for smaller screen for the title area.
+                - Added flex-wrap to the columns container. Added smaller screen adjustment to change the order, margin, sizing, centering, and whether to display it or hide it depending on the page.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:
@@ -54,6 +58,7 @@
         - 5-18: Renamed home-components folder to home and renamed account-components to account.
         - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
         - 5-24: Cleaned up graveyard some. Also cleaned up SCSS some.
+        - 5-25: Removed thunk package from webpack cache.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

@@ -8,6 +8,7 @@
 
 .columns {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .columns__left {
@@ -43,5 +44,30 @@
     img {
         height: 250px;
         width: 250px;
+    }
+}
+
+@media screen and (max-width: $screen-FW) {
+    .columns__left, .columns__right {
+        align-items: center;
+    }
+    .columns__left {
+        order: 2;
+        p {
+            margin: 0;
+        }
+    }
+    .columns__center {
+        order: 3;
+    }
+    .columns__right {
+        order: 1;
+        img {
+            height: 150px;
+            width: 150px;
+        }
+    }
+    .columns--hide {
+        display: none;
     }
 }

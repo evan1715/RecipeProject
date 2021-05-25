@@ -48,13 +48,13 @@ const RecipeRoulette = () => {
                 { recipeRoulette.map((recipe, index) => (
                     <Transition in={ inProp } key={ index } timeout={ 800 }>
                         { state => (
-                            <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                                <li className="recipe-roulette__cards--card">
+                            <div className="recipe-roulette__cards--card" style={{ ...defaultStyle, ...transitionStyles[state] }}>
+                                {/* <li className="recipe-roulette__cards--card"> */}
                                     <img alt="finished dish" src={ recipe.image } />
                                     <p>{ recipe.title }</p>
                                     <p><IoTimeOutline /> { recipe.readyInMinutes }</p>
                                     <p>Popularity rating: { recipe.spoonacularScore }</p>
-                                </li>
+                                {/* </li> */}
                             </div>
                         )}
                     </Transition>

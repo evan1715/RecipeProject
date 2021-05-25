@@ -1,13 +1,12 @@
-import React from 'react'
-import CreateAccount from './CreateAccount'
-import RecipeRoulette from './RecipeRoulette'
+import React from 'react';
+import CreateAccount from './CreateAccount.js';
+import RecipeRoulette from './RecipeRoulette.js';
 
-export default function HomePage() {
-    return (
-        <div className='container column'>
-            <CreateAccount /> 
-            <RecipeRoulette />
-        </div>
-    )
-}
+const HomePage = () => (
+    <div>
+        <CreateAccount />
+        <RecipeRoulette />
+    </div>
+);
 
+export { HomePage as default }

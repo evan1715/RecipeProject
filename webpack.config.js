@@ -73,7 +73,7 @@ module.exports = {
                     chunks: 'all'
                 },
                 react_redux: {
-                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|redux-thunk|scheduler)/),
+                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|scheduler)/),
                     name: 'react-redux',
                     chunks: 'all'
                 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import IoTimeOutline from 'react-ionicons/lib/IosTimeOutline';
 import { Transition } from 'react-transition-group';
 import handleRecipeRoulette from '../../actions/recipe-roulette';
@@ -49,8 +50,12 @@ const RecipeRoulette = () => {
                     <Transition in={ inProp } key={ index } timeout={ 800 }>
                         { state => (
                             <div className="recipe-roulette__cards--card" style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                                <img alt="finished dish" src={ recipe.image } />
-                                <h3>{ recipe.title }</h3>
+                                <Link to={ `/recipe?type=spoon?id=${recipe.id}` }>
+                                    <img alt="finished dish" src={ recipe.image } />
+                                </Link>
+                                <Link className="link" to={ `/recipe?type=spoon?id=${recipe.id}` }>
+                                    <h3>{ recipe.title }</h3>
+                                </Link>
                                 <p><IoTimeOutline /> { recipe.readyInMinutes } minutes</p>
                                 <p>Popularity rating: { recipe.spoonacularScore }</p>
                             </div>

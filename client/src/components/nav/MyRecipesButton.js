@@ -6,13 +6,16 @@ const MyRecipesButton = () => {
     const isAuth = useSelector(state => state.accountReducer.authenticated);
 
     return (
-        <button className="my-account__button" disabled={ !isAuth }>
-        { isAuth ? 
-            <Link className="my-recipes__button--link" to="/myrecipes">My Recipes</Link>
-        :
-            <div className="my-recipes__button--link">My Recipes</div>
-        }
-        </button>
+        <>
+            <Link className="nav-bottom__link" to="/myrecipes">My Recipes</Link>
+            <button className="nav-bottom__btn" disabled={ !isAuth }>
+            { isAuth ? 
+                <Link className="nav-bottom__btn--link" to="/myrecipes">My Recipes</Link>
+                :
+                <div className="nav-bottom__btn--link">My Recipes</div>
+            }
+            </button>
+        </>
     )
 }
 

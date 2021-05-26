@@ -1,0 +1,106 @@
+//Second row nav
+.nav-bottom {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    justify-content: space-around;
+    width: 100%;
+}
+
+//Larger display
+@media screen and (min-width: 1420px) {
+    //Container for buttons/links
+    .nav-bottom__btn-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    //Don't display
+    .nav-bottom__menu-container, .nav-bottom__link {
+        display: none;
+    }
+
+    //My Account button
+    .nav-bottom__btn {
+        background: #3c280d;
+        border: solid #3c280d 1px;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        font-family: Tahoma;
+        font-size: 20px;
+        height: 45px;
+        margin: 10px;
+        padding: 0; //top right bottom left
+        width: auto;
+        &:hover {
+            background: rgb(240, 240, 240);
+            color: #3c280d;
+            border: solid #3c280d 1px;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+
+    .nav-bottom__btn--link {
+        color: white;
+        padding: 9px 30px 12px 30px; //top right bottom left
+        &:hover {
+            color: #3c280d;
+        }
+    }
+    
+    .nav-bottom__btn--icon {
+        text-align-last: end;
+    }
+}
+
+
+
+//Smaller display
+@media screen and (max-width: 1420px) {
+    //Container for buttons/links
+    .nav-bottom__btn-container, .nav-bottom__btn {
+        display: none;
+    }
+
+    //https://www.w3schools.com/Css/css_dropdowns.asp
+    //Dropdown
+    .nav-bottom__menu-container {
+        cursor: pointer;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .nav-bottom__menu-container:hover .dropdown-content {
+        display: flex;
+    }
+
+    .dropdown-content {
+        align-items: center; //Centers the links
+        background-color: white;
+        border: 2px solid black;
+        display: none;
+        flex-direction: column; //To list it all
+        min-width: 150px;
+        position: absolute; //So nothing moves
+        right: 0; //This allows it not to go out of the screen & pushes it over.
+        z-index: 1; //Puts it on top of everything
+    }
+
+    .nav-bottom__link {
+        padding: 20px;
+        &:hover {
+            color: darkred;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+
+

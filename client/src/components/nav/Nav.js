@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import IosMenu from 'react-ionicons/lib/IosMenu';
+import NavBottom from './NavBottom.js';
 import SignInModal from './SignInModal.js';
-import SearchBar from './SearchBar.js';
-import MyAccountButton from './MyAccountButton.js';
-import MyRecipesButton from './MyRecipesButton.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 import { clearUserRecipesAction } from '../../actions/userRecipes.js';
 import userServerAPI from '../../database/userServerAPI.js';
@@ -113,12 +111,7 @@ export default function Nav() {
                         </div>
                     }
                 </nav>
-
-                <div className="second-row-nav-container">
-                    <SearchBar />
-                    <MyRecipesButton />
-                    <MyAccountButton />
-                </div>
+                <NavBottom />
             </div>
         </div>
     )

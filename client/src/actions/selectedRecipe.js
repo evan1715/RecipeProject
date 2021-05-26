@@ -1,7 +1,11 @@
 import processData from '../utils/processData.js';
 
 const viewRecipeAction = (data) => {
-    const recipe = processData(data);
+    let recipe = data;
+    
+    if (data.pictures) {
+        recipe = processData(data);
+    }
 
     return {
         type: 'SELECTED_RECIPE',

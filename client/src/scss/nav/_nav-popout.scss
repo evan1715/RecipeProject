@@ -1,0 +1,50 @@
+.nav-burger-btn {
+    cursor: pointer;
+}
+
+.nav-popout {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    width: 100%;
+}
+
+.nav-popout__menu {
+    background-color: white;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 55px;
+    z-index: 1;
+}
+
+.nav-popout__middle {
+    background-color: darkslategray;
+    width: 1px;
+}
+
+.nav-popout__links {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    p {
+        color: darkslategray;
+        display: flex;
+        font-size: larger;
+        justify-content: center;
+    }
+}
+
+.nav-popout__links--link {
+    cursor: pointer;
+    padding: 20px;
+    &:hover {
+        color: darkred;
+        letter-spacing: 0.5px;
+    }
+}

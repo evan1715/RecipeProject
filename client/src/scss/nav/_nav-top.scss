@@ -1,0 +1,37 @@
+.nav-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.nav-top__links {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.nav-top__links--link {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    height: 40px;
+    justify-content: space-around;
+    transition: 0.2s;
+    width: 145px;
+    &:hover {
+        letter-spacing: 0.5px;
+    }
+}
+
+#sign-up {
+    border: solid black 1px;
+    border-radius: 7px;
+    height: 45px; //previous 40px
+    width: 150px; //previous 135px
+    &:hover {
+        color: white;
+        background: #3c280d;
+    }
+}

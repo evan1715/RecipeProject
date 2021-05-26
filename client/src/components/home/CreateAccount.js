@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import CreateAccountModal from './CreateAccountModal.js';
+import CreateAccountModal from '../nav/CreateAccountModal.js';
 
 export default function CreateAccount() {
     const isAuth = useSelector(state => state.accountReducer.authenticated);

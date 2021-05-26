@@ -12,6 +12,7 @@
             - 5-17: Recipe roulette action now uses fetch instead of axios.
             - 5-18: Recipe roulette action now has hide loading bar after the reducer dispatch. File allRecipes now implicitly returns the action to the reducer.
             - 5-23: Added a new action for userProfile to store viewing a profile for userinfo and recipe data.
+            - 5-26: Selected recipe will now only process picture data if it is user-based and not spoonacular api.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
             - 5-17: 
@@ -33,7 +34,10 @@
                 - Added columns--hide styling to MyRecipes page to hide them on smaller screens. Doesn't seem necessary at on this page to display the information in the columns.
                 - Reworked second row nav to display on smaller screens. Made the second row nav into its own component file called NavBottom. Created styles for it.
             - 5-26:
-                - 
+                - ViewRecipePage can now display recipes from the spoonacular api.
+                - Added "pkg" to RecipeForm list of options for measurements.
+                - RecipeRoulette cards are now clickable to view their details.
+                - Moved CreateAccountModal.js to nav folder. Adjusted CreateAccount.js to import correctly.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -55,7 +59,7 @@
                 - Reworked second row nav to work with a smaller screen. Created a separate file for it called _nav-bottom. It'll now have a dropdown menu and adapt to screen size.
                 - User profile now goes into column view per recipe when on 1 column to fit a smaller screen. Decreased the width of the card too.
             - 5-26:
-                - 
+                - Adjusted _recipe-roulette card height to fit ones with longer titles.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

@@ -15,7 +15,6 @@
     flex-direction: row;
     overflow: hidden;
     padding: 0px 0px 10px 0px; //top right bottom left
-    justify-content: space-around;
 }
 
 .user-profile-page__center--recipe-image {
@@ -73,6 +72,10 @@
 
 @media screen and (max-width: $screen-HDp) {
     .user-profile-page__center--grid {
-        grid-template-columns: repeat(1, $column-width);
+        // border: thin solid red;
+        grid-template-columns: repeat(1, 300px);
+    }
+    .user-profile-page__center--recipe {
+        flex-direction: column;
     }
 }

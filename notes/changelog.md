@@ -51,6 +51,7 @@
                 -- Added a top margin for smaller screen for the title area.
                 - Added flex-wrap to the columns container. Added smaller screen adjustment to change the order, margin, sizing, centering, and whether to display it or hide it depending on the page.
                 - Reworked second row nav to work with a smaller screen. Created a separate file for it called _nav-bottom. It'll now have a dropdown menu and adapt to screen size.
+                - User profile now goes into column view per recipe when on 1 column to fit a smaller screen. Decreased the width of the card too.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

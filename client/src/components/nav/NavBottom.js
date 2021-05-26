@@ -40,7 +40,7 @@ const NavBottom = () => {
                     color={ isAuth ? 'green' : 'red' }
                     fontSize="35px"
                 />
-                { isAuth &&
+                { isAuth && //Only allow this menu to show if they're logged in.
                     <div className="dropdown-content">
                         <MyAccountButton />
                         <MyRecipesButton />

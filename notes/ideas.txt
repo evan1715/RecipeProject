@@ -10,8 +10,7 @@
 - Add pagination to all recipes, my recipes, searching recipes.
 - Add accessibility with <label> on inputs.
 - Rework ViewRecipePage to use CSS Grid so sizing on resolutions will change the layout. Style ViewRecipePage.
-- When a user logs out, clear redux.
-- Make the account page sides, left and right, into separate components to load onto multiple pages such as my account, my recipes, edit recipe. Potential to use for viewing other person's profile. Might look bad on all recipes or search. Can use for user specific stuff.
+- Rework nav file to be more clean.
 
 Efficiency improvements:
 - See if we can clean up processData function in userRecipes.js action.
@@ -41,6 +40,8 @@ Completed:
 + Improve network efficiency by using current state or manipulating current state to avoid downloading again.
 ++ For a list of recipes, update one in the array of pictures if deleted or uploaded instead of fully downloading each time.
 + On All Recipes, make them all clickable as well as displaying images and description previews.
++ When a user logs out, clear redux.
++ Make the account page sides, left and right, into separate components to load onto multiple pages such as my account, my recipes, edit recipe. Potential to use for viewing other person's profile. Might look bad on all recipes or search. Can use for user specific stuff.
 
 
 

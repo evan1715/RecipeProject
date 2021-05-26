@@ -9,23 +9,30 @@ const MyAccountButton = () => {
     const verticalAlign = { verticalAlign: 'middle' }
 
     return (
-        <button className="my-account__button" disabled={ !isAuth }>
-            { isAuth ? 
-                <Link className="my-account__button--link" to="/myaccount">
-                    My Account <IosMenu className="my-account__button--icon" 
-                                fontSize="25px" 
-                                color={ iconColor } 
-                                style={ verticalAlign } />
-                </Link>
-            : 
-                <div className="my-account__button--link">
-                    My Account <IosMenu className="my-account__button--icon" 
-                    fontSize="25px" 
-                    color={ iconColor } 
-                    style={ verticalAlign } />
-                </div>
-            }
-        </button>
+        <>
+            <Link className="nav-bottom__link" to="/myaccount">My Account</Link>
+            <button className="nav-bottom__btn" disabled={ !isAuth }>
+                { isAuth ? 
+                    <Link className="nav-bottom__btn--link" to="/myaccount">
+                        My Account <IosMenu
+                                    className="nav-bottom__btn--icon"
+                                    color={ iconColor }
+                                    fontSize="25px"
+                                    style={ verticalAlign }
+                                    />
+                    </Link>
+                    :
+                    <div className="nav-bottom__btn--link">
+                        My Account <IosMenu
+                                    className="nav-bottom__btn--icon"
+                                    color={ iconColor }
+                                    fontSize="25px"
+                                    style={ verticalAlign }
+                                     />
+                    </div>
+                }
+            </button>
+        </>
     )
 }
 

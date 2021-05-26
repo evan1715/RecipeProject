@@ -31,6 +31,7 @@
                 - Rewrote RecipeRoulette component and associated CSS to fix a bug.
                 - Added a title to RightColumn.
                 - Added columns--hide styling to MyRecipes page to hide them on smaller screens. Doesn't seem necessary at on this page to display the information in the columns.
+                - Reworked second row nav to display on smaller screens. Made the second row nav into its own component file called NavBottom. Created styles for it.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -49,6 +50,7 @@
                 - Redid recipe roulette CSS for cleaner, easier method and to fix mobile issue.
                 -- Added a top margin for smaller screen for the title area.
                 - Added flex-wrap to the columns container. Added smaller screen adjustment to change the order, margin, sizing, centering, and whether to display it or hide it depending on the page.
+                - Reworked second row nav to work with a smaller screen. Created a separate file for it called _nav-bottom. It'll now have a dropdown menu and adapt to screen size.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

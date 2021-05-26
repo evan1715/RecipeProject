@@ -6,16 +6,16 @@ const SearchBar = () => {
     const input = React.useRef('')
 
     return (
-            <div className="searchbar">
-                <input 
-                    ref={input}
-                    placeholder="Search All Recipes" 
-                />
+        <div className="searchbar">
+            <input 
+                ref={input}
+                placeholder="Search All Recipes" 
+            />
 
-                <button>
-                    <IoSearchOutline />
-                </button>
-            </div>
+            <button>
+                <IoSearchOutline />
+            </button>
+        </div>
     )
 }
 

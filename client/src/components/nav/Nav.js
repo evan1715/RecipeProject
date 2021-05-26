@@ -12,16 +12,14 @@ import userServerAPI from '../../database/userServerAPI.js';
 export default function Nav() {
     const dispatch = useDispatch();
     const history = useHistory(); //hook that uses history npm package
-    const isAuthenticated = useSelector(state => state.accountReducer);
+    const { token, authenticated: isAuth } = useSelector(state => state.accountReducer);
     const [showMenu, setShowMenu] = React.useState(false);
     const [toggle, setToggle] = useState(false);
     const [openSigninModal, setOpenSigninModal] = useState(false);
     const navLinks = ['All Recipes', 'Wine Pairing', 'Blog Posts', 'Cooking Videos', 'Conversions', 'About', 'Sign In'];
     const iconStyles = { cursor: 'pointer' }
-    const isAuth = isAuthenticated.authenticated;
 
     const logout = () => {
-        const token = isAuthenticated.token;
         dispatch(userServerAPI('logout', token)); //logout from local and server
         dispatch(clearSelectedRecipeAction());
         dispatch(clearUserRecipesAction());

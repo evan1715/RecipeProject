@@ -32,6 +32,8 @@
                 - Added a title to RightColumn.
                 - Added columns--hide styling to MyRecipes page to hide them on smaller screens. Doesn't seem necessary at on this page to display the information in the columns.
                 - Reworked second row nav to display on smaller screens. Made the second row nav into its own component file called NavBottom. Created styles for it.
+            - 5-26:
+                - 
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -52,6 +54,8 @@
                 - Added flex-wrap to the columns container. Added smaller screen adjustment to change the order, margin, sizing, centering, and whether to display it or hide it depending on the page.
                 - Reworked second row nav to work with a smaller screen. Created a separate file for it called _nav-bottom. It'll now have a dropdown menu and adapt to screen size.
                 - User profile now goes into column view per recipe when on 1 column to fit a smaller screen. Decreased the width of the card too.
+            - 5-26:
+                - 
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:
@@ -62,6 +66,7 @@
         - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
         - 5-24: Cleaned up graveyard some. Also cleaned up SCSS some.
         - 5-25: Removed thunk package from webpack cache.
+        - 5-26: Placed MyAccountButton.js, MyRecipesButton.js, Nav.js, NavBottom.js, _nav-bottom.scss, and _nav.scss to the graveyard.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

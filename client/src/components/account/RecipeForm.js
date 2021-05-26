@@ -131,6 +131,7 @@ const RecipeForm = (props) => {
                     <option value="pint">pt (pint)</option>
                     <option value="lb">lb (pound)</option>
                     <option value="whole">whole</option>
+                    <option value="pkg">"pkg (package)</option>
                 </select>
                 <input
                     className="modal__form--input"

@@ -38,6 +38,18 @@
                 - Added "pkg" to RecipeForm list of options for measurements.
                 - RecipeRoulette cards are now clickable to view their details.
                 - Moved CreateAccountModal.js to nav folder. Adjusted CreateAccount.js to import correctly.
+                *- Redid the entire nav code.
+                    - Nav.js is now the main file where all nav components come into one.
+                    - Created NavTop.js and NavPopout.js.
+                    - Now on smaller windows, only one nav row will show instead of a top and bottom. The top and bottom will still show on a desktop or a screen wide enough to support it.
+                    - The two burger menus were merged together into one to condense the size from two nav rows into one for smaller screens. The menu was reorganized and includes pages and account links.
+                    - Account links in burger menu will change depending on if the user is logged in or not.
+                    - I decided to keep the changing color burger menu. It is red if not logged in, green if logged in.
+                    - Removed the burger menu case from the second row/NavBottom since NavBottom is now only used on larger screens and since there is only one burger menu now.
+                    - Instead of having two files for MyRecipesButton and MyAccountButton, the both of them are now located in NavBottom.js instead of separated.
+                    - The method of listing links in the menu is now raw link format rather than mapping links.
+                    - NavTop and NavBottom are now both used in desktop while NavPopout is for smaller.
+                    - NavPopout is the smaller screen burger menu file that will display all links. It will dynamically change based on whether a person is logged in or not.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -60,6 +72,11 @@
                 - User profile now goes into column view per recipe when on 1 column to fit a smaller screen. Decreased the width of the card too.
             - 5-26:
                 - Adjusted _recipe-roulette card height to fit ones with longer titles.
+                *- Redid the entire code for nav.
+                    - All nav-related styles will now be in their own folder rather than all in the component folder.
+                    - The nav will switch based on width on whether it will use the desktop nav or the mobile nav.
+                    - Created _nav-top.scss and nav-popout.scss to style the new format and files.
+                    - Removed smaller screen styling for nav-bottom since it is no longer used.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

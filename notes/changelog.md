@@ -54,6 +54,8 @@
                 - Fixed missing action import on MyRecipesPage.
                 - Fixed two errors on RecipeForm. One was a typo including a " on pkg in ingredient. The other was nesting a <p> instead of a <p> with the error response.
                 - NavTop and NavPopout now include a logo file import that webpack will handle. Nav bar finally has a logo again.
+                - ViewRecipePage now only shows a gallery bar below the image if there's more than one image.
+                - Fixed error in UserProfilePage that added an extra ? in the url param.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:

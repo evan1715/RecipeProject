@@ -46,7 +46,7 @@ const UserProfilePage = () => {
                         { userRecipes && userRecipes.length > 0 && userRecipes.map((recipe) => (
                             <div key={ recipe._id } className="user-profile-page__center--recipe">
                                 { recipe.pictures[0] &&
-                                    <Link to={ `/recipe?id=?${recipe._id}` }>
+                                    <Link to={ `/recipe?id=${recipe._id}` }>
                                         <img
                                             className="user-profile-page__center--recipe-image"
                                             src={ `data:image/jpeg;base64,${recipe.pictures[0].picture.data}` }

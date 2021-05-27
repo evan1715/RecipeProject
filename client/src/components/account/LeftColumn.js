@@ -49,13 +49,17 @@ const MyLeftColumn = (props) => {
                 userProfile.recipes.length < 1 && <p>No recipes submitted yet!</p>
             }
 
-            { recent[0] !== undefined && recent.map((recipe) => (
-                <p key={ recipe._id }>
-                    <Link className="cursor" to={ `/recipe?id=${recipe._id}` }>
-                        { recipe.title }
-                    </Link>
-                </p>
-            ))}
+            { recent && recent[0] !== undefined && recent.map((recipe) => {
+                if (recipe) {
+                    return (
+                        <p key={ recipe._id }>
+                            <Link className="cursor" to={ `/recipe?id=${recipe._id}` }>
+                                { recipe.title }
+                            </Link>
+                        </p>
+                    )
+                }
+            })}
 
             <h2 className="columns__title">User Information</h2>
             <p>Username: { !props.isPublic ? user.username : userProfile.user.username }</p>

@@ -2,15 +2,16 @@
 - Create a ratings system for recipes.
 - Create a wishlist or "my favorites" for recipes.
 - Convert project to NextJS.
-- Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
-- Make a username clickable to view a user's profile and the rest of their recipes.
 - On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance.
 - Have selectors for recipes to indicate if it's vegan or vegetarian or something similar.
 - Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
 - Add pagination to all recipes, my recipes, searching recipes.
 - Add accessibility with <label> on inputs.
 - Rework ViewRecipePage to use CSS Grid so sizing on resolutions will change the layout. Style ViewRecipePage.
-- Rework nav file to be more clean.
+-- Rework all CSS grid to use the same styles universally for MyRecipesPage, AllRecipes, RecipeRoulette, UserProfilePage, and search results.
+- Add a footer for the app !!! ~~~~~~~~~~~
+- Fill in the About page.
+- Remove Wine Pairing and Blog Posts, even if temporary, since they don't do anything.
 
 Efficiency improvements:
 - See if we can clean up processData function in userRecipes.js action.
@@ -42,6 +43,9 @@ Completed:
 + On All Recipes, make them all clickable as well as displaying images and description previews.
 + When a user logs out, clear redux.
 + Make the account page sides, left and right, into separate components to load onto multiple pages such as my account, my recipes, edit recipe. Potential to use for viewing other person's profile. Might look bad on all recipes or search. Can use for user specific stuff.
++ Rework nav file to be more clean.
++ Make a username clickable to view a user's profile and the rest of their recipes.
++ Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
 
 
 

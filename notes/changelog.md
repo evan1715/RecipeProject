@@ -87,6 +87,7 @@
                 - Made the logo image in the nav bar smaller from 75px to 60px.
                 - Fixed issue of image going out of recipe cards.
                 - ViewRecipePage gallery is now centered and a max-height of 150px.
+                - Adjusted the height of the logo when on a smaller screen from 60px to 40px.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

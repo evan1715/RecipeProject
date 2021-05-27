@@ -131,7 +131,7 @@ const RecipeForm = (props) => {
                     <option value="pint">pt (pint)</option>
                     <option value="lb">lb (pound)</option>
                     <option value="whole">whole</option>
-                    <option value="pkg">"pkg (package)</option>
+                    <option value="pkg">pkg (package)</option>
                 </select>
                 <input
                     className="modal__form--input"
@@ -156,7 +156,7 @@ const RecipeForm = (props) => {
                 value={ instructions }
             />
 
-            <p className="recipe-form__response">{ response && <p>{ response }</p> }</p>
+            <p className="recipe-form__response">{ response && { response } }</p>
 
             <div className="recipe-form__buttons">
                 <button className="button" onClick={ handleCancel } title="Cancel">Cancel</button>

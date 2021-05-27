@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LeftColumn from './LeftColumn.js';
 import RightColumn from './RightColumn.js';
 import ModifyPicturesModal from './ModifyPicturesModal.js';
-import { editRecipeAction } from '../../actions/selectedRecipe.js';
+import { editRecipeAction, clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 import recipeServerAPI from '../../database/recipeServerAPI.js';
 
 const MyRecipesPage = () => {

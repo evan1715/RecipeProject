@@ -5,6 +5,7 @@ import SignInModal from './SignInModal.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 import { clearUserRecipesAction } from '../../actions/userRecipes.js';
 import userServerAPI from '../../database/userServerAPI.js';
+import logo from '../../logo.png';
 
 const NavTop = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const NavTop = () => {
 
     return (
         <div className="nav-top">
-            <Link className="nav-top__logo" to="/"><img alt="dished online logo" src="" /></Link>
+            <Link className="nav-logo" to="/"><img alt="dished online logo" src={ logo } /></Link>
 
             <nav className="nav-top__links">
                 <Link className="nav-top__links--link" to="/allrecipes">All Recipes</Link>

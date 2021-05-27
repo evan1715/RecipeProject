@@ -50,6 +50,10 @@
                     - The method of listing links in the menu is now raw link format rather than mapping links.
                     - NavTop and NavBottom are now both used in desktop while NavPopout is for smaller.
                     - NavPopout is the smaller screen burger menu file that will display all links. It will dynamically change based on whether a person is logged in or not.
+                - Fixed bug that would crash the app with left column loading recipes.
+                - Fixed missing action import on MyRecipesPage.
+                - Fixed two errors on RecipeForm. One was a typo including a " on pkg in ingredient. The other was nesting a <p> instead of a <p> with the error response.
+                - NavTop and NavPopout now include a logo file import that webpack will handle. Nav bar finally has a logo again.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -77,6 +81,7 @@
                     - The nav will switch based on width on whether it will use the desktop nav or the mobile nav.
                     - Created _nav-top.scss and nav-popout.scss to style the new format and files.
                     - Removed smaller screen styling for nav-bottom since it is no longer used.
+                - Made the logo image in the nav bar smaller from 75px to 60px.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:
@@ -87,7 +92,10 @@
         - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
         - 5-24: Cleaned up graveyard some. Also cleaned up SCSS some.
         - 5-25: Removed thunk package from webpack cache.
-        - 5-26: Placed MyAccountButton.js, MyRecipesButton.js, Nav.js, NavBottom.js, _nav-bottom.scss, and _nav.scss to the graveyard.
+        - 5-26: 
+            - Placed MyAccountButton.js, MyRecipesButton.js, Nav.js, NavBottom.js, _nav-bottom.scss, and _nav.scss to the graveyard.
+            - Installed file-loader and configured webpack to use it.
+            - Including a logo file to use on the website. It'll utilize file-loader.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

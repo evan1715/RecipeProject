@@ -60,6 +60,11 @@ module.exports = {
                     }
                 }
             ] 
+        }, {
+            test: /\.(png|jpg|jpeg|bmp|gif)$/,
+            use: {
+                loader: 'file-loader'
+            }
         }]
     },
     optimization: {

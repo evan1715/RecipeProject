@@ -8,6 +8,7 @@ import CreateAccountModal from './CreateAccountModal.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 import { clearUserRecipesAction } from '../../actions/userRecipes.js';
 import userServerAPI from '../../database/userServerAPI.js';
+import logo from '../../logo.png';
 
 const NavPopout = () => {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const NavPopout = () => {
 
     return (
         <div className="nav-popout">
-            <Link className="nav-logo" to="/"><img alt="dished online logo" src="" /></Link>
+            <Link className="nav-logo" to="/"><img alt="dished online logo" src={ logo } /></Link>
             <SearchBar />
             <IosMenu className="nav-burger-btn" color={ isAuth ? 'green' : 'red' } fontSize="35px" onClick={ () => {
                 setShowMenu(!showMenu);

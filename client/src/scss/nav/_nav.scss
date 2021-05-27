@@ -13,6 +13,12 @@
         margin: 10px;
         width: 1400px;
     }
+
+    .nav-logo {
+        img {
+            height: 60px;
+        }
+    }
 }
 
 @media screen and (max-width: 1420px) {
@@ -29,10 +35,10 @@
         margin: 10px;
         width: 100%;
     }
-}
 
-.nav-logo {
-    img {
-        height: 60px;
+    .nav-logo {
+        img {
+            height: 40px;
+        }
     }
 }

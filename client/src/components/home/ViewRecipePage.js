@@ -107,19 +107,21 @@ const ViewRecipePage = () => {
                         ))}
                         <a className="prev" onClick={ () => plusSlides(-1) }>&#10094;</a>
                         <a className="next" onClick={ () => plusSlides(1) }>&#10095;</a>
-
-                        <div className="row">
-                            { userRecipe.pictures.map((pic, index) => (
-                                <div key={ pic._id } className="column">
-                                    <img
-                                        className="thumbnail"
-                                        style={{ width: '100%' }}
-                                        src={ `data:image/jpeg;base64,${pic.picture.data}` }
-                                        onClick={ () => currentSlide(index + 1) }
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                        
+                        { userRecipe.pictures && userRecipe.pictures.length > 1 &&
+                            <div className="row">
+                                { userRecipe.pictures.map((pic, index) => (
+                                    <div key={ pic._id } className="column">
+                                        <img
+                                            className="thumbnail"
+                                            style={{ width: '100%' }}
+                                            src={ `data:image/jpeg;base64,${pic.picture.data}` }
+                                            onClick={ () => currentSlide(index + 1) }
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        }
                     </div>
                 }
 

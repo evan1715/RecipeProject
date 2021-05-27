@@ -56,6 +56,7 @@
                 - NavTop and NavPopout now include a logo file import that webpack will handle. Nav bar finally has a logo again.
                 - ViewRecipePage now only shows a gallery bar below the image if there's more than one image.
                 - Fixed error in UserProfilePage that added an extra ? in the url param.
+                - ViewRecipePage gallery is now centered and a max-height of 150px.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -85,6 +86,7 @@
                     - Removed smaller screen styling for nav-bottom since it is no longer used.
                 - Made the logo image in the nav bar smaller from 75px to 60px.
                 - Fixed issue of image going out of recipe cards.
+                - ViewRecipePage gallery is now centered and a max-height of 150px.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

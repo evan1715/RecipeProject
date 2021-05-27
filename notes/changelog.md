@@ -84,6 +84,7 @@
                     - Created _nav-top.scss and nav-popout.scss to style the new format and files.
                     - Removed smaller screen styling for nav-bottom since it is no longer used.
                 - Made the logo image in the nav bar smaller from 75px to 60px.
+                - Fixed issue of image going out of recipe cards.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

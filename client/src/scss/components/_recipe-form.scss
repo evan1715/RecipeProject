@@ -14,6 +14,10 @@
 .recipe-form__added-ingredients {
     display: flex;
     flex-direction: row;
+    button {
+        height: auto;
+        padding: 5px 30px 5px 30px; //top right bottom left
+    }
 }
 
 .recipe-form__added-ingredients--list {
@@ -34,7 +38,18 @@
 }
 
 @media screen and (max-width: $screen-FW) {
-    .recipe-form__add-ingredients {
+    .recipe-form__add-ingredients, .recipe-form__added-ingredients {
         flex-direction: column;
+    }
+    .recipe-form__add-ingredients {
+        button {
+            height: 40px;
+        }
+    }
+    .recipe-form__added-ingredients--list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 5px;
     }
 }

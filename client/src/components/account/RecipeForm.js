@@ -100,7 +100,7 @@ const RecipeForm = (props) => {
                 { ingredients.map((ingredient, index) => (
                     <li className="recipe-form__added-ingredients--list" key={ index }>
                         <p>{ ingredient.amount } { ingredient.measurement } of { ingredient.item }</p>
-                        <button onClick={ (e) => (e.preventDefault(), handleDeleteIngredient(index)) }>Remove</button>
+                        <button className="button" onClick={ (e) => (e.preventDefault(), handleDeleteIngredient(index)) }>Remove</button>
                     </li>
                 ))}
             </div>

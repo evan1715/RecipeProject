@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UserRoute from './UserRoute.js'; //private routes
 import Nav from '../components/nav/Nav.js'; //nav
+import Footer from '../components/nav/Footer.js'; //footer
 // Home components/non-authorized pages.
 const HomePage = React.lazy(() => import('../components/home/HomePage.js'));
 const AllRecipesPage = React.lazy(() => import('../components/home/AllRecipesPage.js'));
@@ -24,15 +25,15 @@ const AppRouter = () => (
 
                 <Route path={'/allrecipes'} component={ AllRecipesPage } />
 
-                <Route path={'/winepairing'} component={ AllRecipesPage } />
+                {/* <Route path={'/winepairing'} component={ AllRecipesPage } /> */}
 
-                <Route path={'/blogposts'} component={HomePage} />
+                {/* <Route path={'/blogposts'} component={HomePage} /> */}
 
-                <Route path={'/cookingvideos'} component={ () => {
+                {/* <Route path={'/cookingvideos'} component={ () => {
                     //just a fun troll
                     // window.location.href = "https://youtu.be/dQw4w9WgXcQ"; //same tab
                     window.open('https://youtu.be/dQw4w9WgXcQ', '_blank'); //new tab
-                } } />
+                } } /> */}
 
                 <Route path={'/conversions'} component={ ConversionsPage } />
 
@@ -53,6 +54,7 @@ const AppRouter = () => (
                 <Route render={() => <h1 className="center">404: Page Not Found</h1>} />
             </Switch>
         </React.Suspense>
+        <Footer />
     </Router>
 );
 

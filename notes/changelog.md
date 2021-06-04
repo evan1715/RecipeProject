@@ -57,6 +57,7 @@
                 - ViewRecipePage now only shows a gallery bar below the image if there's more than one image.
                 - Fixed error in UserProfilePage that added an extra ? in the url param.
                 - ViewRecipePage gallery is now centered and a max-height of 150px.
+            - 6-4: Commented out unused nav links in NavPopout and NavTop. Created footer file. Home link is now available in nav.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -64,6 +65,7 @@
         Reducers:
             - 5-23: Added a new reducer for userProfile to store viewing a profile for userinfo and recipe data.
         Router:
+            - 6-4: Commented out unused nav links. Included footer file.
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
             - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
@@ -88,6 +90,12 @@
                 - Fixed issue of image going out of recipe cards.
                 - ViewRecipePage gallery is now centered and a max-height of 150px.
                 - Adjusted the height of the logo when on a smaller screen from 60px to 40px.
+            - 6-4: 
+                - Renamed some files to exclude the "page" at the end of files.
+                - Created a footer file.
+                - Add ingredients on recipe form will now go to into a column style on a smaller screen.
+                - Recipe Form ingredients buttons are now styled and are readjusted in size. Modified for better visual experience.
+                - Added ingredients on recipe form will now go into column style on a smaller screen.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

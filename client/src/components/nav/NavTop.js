@@ -25,6 +25,7 @@ const NavTop = () => {
             <Link className="nav-logo" to="/"><img alt="dished online logo" src={ logo } /></Link>
 
             <nav className="nav-top__links">
+                <Link className="nav-top__links--link" to="/">Home</Link>
                 <Link className="nav-top__links--link" to="/allrecipes">All Recipes</Link>
                 {/* <Link className="nav-top__links--link" to="/winepairing">Wine Pairing</Link> */}
                 {/* <Link className="nav-top__links--link" to="/blogposts">Blog Posts</Link> */}

@@ -48,6 +48,7 @@ const NavPopout = () => {
                 <nav className="nav-popout__menu">
                     <div className="nav-popout__links">
                         <p>Pages</p>
+                        <Link className="nav-popout__links--link" to="/">Home</Link>
                         <Link className="nav-popout__links--link" to="/allrecipes">All Recipes</Link>
                         {/* <Link className="nav-popout__links--link" to="/winepairing">Wine Pairing</Link> */}
                         {/* <Link className="nav-popout__links--link" to="/blogposts">Blog Posts</Link> */}

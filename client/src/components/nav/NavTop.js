@@ -26,9 +26,9 @@ const NavTop = () => {
 
             <nav className="nav-top__links">
                 <Link className="nav-top__links--link" to="/allrecipes">All Recipes</Link>
-                <Link className="nav-top__links--link" to="/winepairing">Wine Pairing</Link>
-                <Link className="nav-top__links--link" to="/blogposts">Blog Posts</Link>
-                <Link className="nav-top__links--link" to="/cookingvideos">Cooking Videos</Link>
+                {/* <Link className="nav-top__links--link" to="/winepairing">Wine Pairing</Link> */}
+                {/* <Link className="nav-top__links--link" to="/blogposts">Blog Posts</Link> */}
+                {/* <Link className="nav-top__links--link" to="/cookingvideos">Cooking Videos</Link> */}
                 <Link className="nav-top__links--link" to="/conversions">Conversions</Link>
                 <Link className="nav-top__links--link" to="/about">About</Link>
                 <button className="nav-top__links--link" id="sign-up" onClick={ isAuth ? logout : () => setOpenSigninModal(true) }>

@@ -14,7 +14,6 @@
 .recipe-form__added-ingredients {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .recipe-form__added-ingredients--list {
@@ -32,4 +31,10 @@
 .recipe-form__buttons {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: $screen-FW) {
+    .recipe-form__add-ingredients {
+        flex-direction: column;
+    }
 }

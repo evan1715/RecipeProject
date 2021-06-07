@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import IoSearchOutline from 'react-ionicons/lib/IosSearchOutline';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
-    // ref will store the value of the input field so that this component can be without state.
-    const input = React.useRef('')
+    const history = useHistory();
+    const [searchInput, setSearchInput] = useState();
+
+    const handleSubmit = () => history.push(`/search?=${searchInput}`)
 
     return (
         <div className="searchbar">
-            <input 
-                ref={input}
+            <input
+                onChange={ (e) => setSearchInput(e.target.value) }
+                onKeyPress={ (e) => (e.key === 'Enter') && handleSubmit() }
                 placeholder="Search All Recipes" 
+                type="text"
             />
 
-            <button>
+            <button onClick={ handleSubmit } >
                 <IoSearchOutline />
             </button>
         </div>

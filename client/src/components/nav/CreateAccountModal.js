@@ -59,7 +59,7 @@ const CreateAccountModal = (props) => {
             className="modal"
         >
             <h2 className="title">Create Account</h2>
-            <form>
+            <form onKeyPress={ (e) => (e.key === 'Enter') && createAccount() }>
                 <input className="modal__form--input" maxLength="32" onChange={ (e) => setUsername(e.target.value) } placeholder="username" title="username" type="text" value={ username } />
                 <input className="modal__form--input" maxLength="32" onChange={ (e) => setEmail(e.target.value) } placeholder="example@example.com" title="email" type="email" value={ email } />
                 <input className="modal__form--input" maxLength="32" onChange={ (e) => setPassword(e.target.value) } placeholder="password" title="password" type="password" />

@@ -58,6 +58,13 @@
                 - Fixed error in UserProfilePage that added an extra ? in the url param.
                 - ViewRecipePage gallery is now centered and a max-height of 150px.
             - 6-4: Commented out unused nav links in NavPopout and NavTop. Created footer file. Home link is now available in nav.
+            - 6-7:
+                - Added Create Account button to top nav. Removed unused links in PopoutNav.js and TopNav.js.
+                - Made SearchBar functional by sending the search to the url and pushing to SearchResultsPage as well as ability to hit enter on keyboard.
+                - Made use of PopulateRecipe to have recipes and data passed into it to show the grid.
+                - AllRecipesPage now utilizes PopulateRecipe component.
+                - CreateAccountModal, SignInModal, ChangeUsernameModal, ChangeEmailModal, ChangePasswordModal, and ChangeNameModal will now submit when the Enter key is pressed on keyboard.
+                - DeleteAccountModal now disables the button unless the username matches. It now clears state when modal closes.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -66,6 +73,7 @@
             - 5-23: Added a new reducer for userProfile to store viewing a profile for userinfo and recipe data.
         Router:
             - 6-4: Commented out unused nav links. Included footer file.
+            - 6-7: Added SearchResultsPage to AppRouter. Removed unused routes.
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
             - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
@@ -96,6 +104,7 @@
                 - Add ingredients on recipe form will now go to into a column style on a smaller screen.
                 - Recipe Form ingredients buttons are now styled and are readjusted in size. Modified for better visual experience.
                 - Added ingredients on recipe form will now go into column style on a smaller screen.
+            - 6-7: Styled footer some. Has much better spacing between body now.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

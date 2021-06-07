@@ -48,7 +48,7 @@ const SignInModal = (props) => {
             className="modal"
         >
             <h1 className="title">Sign In</h1>
-            <form>
+            <form onKeyPress={ (e) => (e.key === 'Enter') && signIn() }>
                 <input className="modal__form--input" maxLength="32" onChange={ (e) => setEmail(e.target.value) } placeholder="email" title="your email" type="email" value={ email } />
                 <input className="modal__form--input" maxLength="32" onChange={ (e) => setPassword(e.target.value) } placeholder="password" title="your password" type="password" />
             </form>

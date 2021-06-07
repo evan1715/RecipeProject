@@ -65,6 +65,7 @@
                 - AllRecipesPage now utilizes PopulateRecipe component.
                 - CreateAccountModal, SignInModal, ChangeUsernameModal, ChangeEmailModal, ChangePasswordModal, and ChangeNameModal will now submit when the Enter key is pressed on keyboard.
                 - DeleteAccountModal now disables the button unless the username matches. It now clears state when modal closes.
+                - Delete button on MyRecipes page now has a pop up modal to ask if the user to confirm to delete the selected recipe.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:

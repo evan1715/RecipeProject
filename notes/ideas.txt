@@ -11,7 +11,6 @@
 -- Rework all CSS grid to use the same styles universally for MyRecipesPage, AllRecipes, RecipeRoulette, UserProfilePage, and search results.
 - Fill in the About page.
 - Fill in Footer.
-- Add a popup modal to ask if they're sure if they want to delete a recipe.
 - Fix the "delete picture" selection in ModifyPicturesModal.
 - Add sorting for recipes.
 - Code the search functionality.
@@ -51,8 +50,9 @@ Completed:
 + Add min/max lengths for passwords, usernames, names, emails, recipes, recipe info, etc
 + Adjust RecipeForm for ingredients adding to be column style on smaller screens.
 + Remove Wine Pairing and Blog Posts, even if temporary, since they don't do anything.
-- Add a footer for the app !!! ~~~~~~~~~~~
++ Add a footer for the app
 + Add "Home" link to popout menu & regular nav.
++ Add a popup modal to ask if they're sure if they want to delete a recipe.
 
 
 

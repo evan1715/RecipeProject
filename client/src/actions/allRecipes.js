@@ -20,7 +20,11 @@ const recipeOwnersAction = (usernames) => ({
 
 //SEARCH_RESULTS
 const searchResultsAction = (data) => {
-    const recipes = processData(data);
+    let recipes = data;
+
+    if (data.pictures) {
+        recipes = processData(data);
+    }
 
     return {
         type: 'SEARCH_RESULTS',

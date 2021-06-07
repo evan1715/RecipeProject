@@ -8,6 +8,7 @@ const HomePage = React.lazy(() => import('../components/home/HomePage.js'));
 const AllRecipesPage = React.lazy(() => import('../components/home/AllRecipesPage.js'));
 const AboutPage = React.lazy(() => import('../components/home/AboutPage.js'));
 const ConversionsPage = React.lazy(() => import('../components/home/ConversionsPage.js'));
+const SearchResultsPage = React.lazy(() => import('../components/home/SearchResultsPage.js'));
 const UserProfilePage = React.lazy(() => import('../components/home/UserProfilePage.js'));
 const ViewRecipePage = React.lazy(() => import('../components/home/ViewRecipePage.js'));
 //Account components/authorized only pages.
@@ -25,16 +26,6 @@ const AppRouter = () => (
 
                 <Route path={'/allrecipes'} component={ AllRecipesPage } />
 
-                {/* <Route path={'/winepairing'} component={ AllRecipesPage } /> */}
-
-                {/* <Route path={'/blogposts'} component={HomePage} /> */}
-
-                {/* <Route path={'/cookingvideos'} component={ () => {
-                    //just a fun troll
-                    // window.location.href = "https://youtu.be/dQw4w9WgXcQ"; //same tab
-                    window.open('https://youtu.be/dQw4w9WgXcQ', '_blank'); //new tab
-                } } /> */}
-
                 <Route path={'/conversions'} component={ ConversionsPage } />
 
                 <Route path={'/about'} component={ AboutPage } />
@@ -42,6 +33,8 @@ const AppRouter = () => (
                 <Route path={'/recipe'} component={ ViewRecipePage } />
 
                 <Route path={'/user'} component={ UserProfilePage } />
+
+                <Route path={'/search'} component={ SearchResultsPage } />
 
                 <UserRoute path='/editrecipe' component={ EditRecipePage } />
 

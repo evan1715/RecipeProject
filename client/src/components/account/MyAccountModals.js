@@ -131,6 +131,7 @@ const ChangeUsernameModal = (props) => {
                 className="modal__form--input"
                 maxLength="32"
                 onChange={ (e) => setUsername(e.target.value) }
+                onKeyPress={ (e) => (e.key === 'Enter') && updateUser() }
                 placeholder="username"
                 title="new username"
                 type="text"
@@ -208,6 +209,7 @@ const ChangeEmailModal = (props) => {
                 className="modal__form--input"
                 maxLength="32"
                 onChange={ (e) => setEmail(e.target.value) }
+                onKeyPress={ (e) => (e.key === 'Enter') && updateUser() }
                 placeholder="email"
                 title="new email"
                 type="email"
@@ -289,7 +291,7 @@ const ChangePasswordModal = (props) => {
             className="modal"
         >
             <h2 className="title">Update password</h2>
-            <form>
+            <form onKeyPress={ (e) => (e.key === 'Enter') && updateUser() }>
                 <input 
                     className="modal__form--input"
                     id="prevPass"
@@ -405,6 +407,7 @@ const ChangeNameModal = (props) => {
                 className="modal__form--input"
                 maxLength="32"
                 onChange={ (e) => setName(e.target.value) }
+                onKeyPress={ (e) => (e.key === 'Enter') && updateUser() }
                 placeholder="name"
                 title="new name"
                 type="text"
@@ -468,12 +471,13 @@ const DeleteAccountModal = (props) => {
             contentLabel="Delete my account" //Accessability label
             closeTimeoutMS={ 250 }
             className="modal"
+            onAfterClose={ () => setUsername('') }
         >
             <h2 className="title">Are you sure you want to delete your account?</h2>
             <p>Type your username to delete your account.</p>
             <input className="modal__form--input" onChange={ (e) => setUsername(e.target.value) } />
             <button className="button" onClick={ props.handleCloseModal }>Cancel</button>
-            <button className="button" onClick={ handleDeleteUser }>Delete</button>
+            <button className="button" disabled={ username !== user.username } onClick={ handleDeleteUser }>Delete</button>
         </Modal>
     )
 }

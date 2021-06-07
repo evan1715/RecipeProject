@@ -13,6 +13,8 @@
 - Fill in Footer.
 - Add a popup modal to ask if they're sure if they want to delete a recipe.
 - Fix the "delete picture" selection in ModifyPicturesModal.
+- Add sorting for recipes.
+- Code the search functionality.
 
 Efficiency improvements:
 - See if we can clean up processData function in userRecipes.js action.

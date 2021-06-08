@@ -53,7 +53,7 @@ const MyLeftColumn = (props) => {
                 if (recipe) {
                     return (
                         <p key={ recipe._id }>
-                            <Link className="cursor" to={ `/recipe?id=${recipe._id}` }>
+                            <Link className="link-blue" to={ `/recipe?id=${recipe._id}` }>
                                 { recipe.title }
                             </Link>
                         </p>

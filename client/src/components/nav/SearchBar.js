@@ -16,7 +16,7 @@ const SearchBar = () => {
             <input
                 onChange={ (e) => setSearchInput(e.target.value) }
                 onKeyPress={ (e) => (e.key === 'Enter') && handleSubmit() }
-                placeholder="Search All Recipes" 
+                placeholder="Search for Recipes" 
                 type="text"
                 value={ searchInput }
             />

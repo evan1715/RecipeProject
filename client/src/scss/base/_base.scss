@@ -15,18 +15,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    width: 98vw;
-    // height: 100vh;
-}
-
-.cursor {
-    cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
 // All children <Link /> components being rendered from react router will have no underline
 
 li {
@@ -43,9 +31,10 @@ a {
     color: black;
 }
 
-.row {
+
+.center {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
 }
 
 .column {
@@ -53,9 +42,36 @@ a {
     flex-direction: column;
 }
 
-.center {
+.container {
+    width: 98vw;
+    // height: 100vh;
+}
+
+.cursor {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.link-blue {
+    color: darkblue;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.link {
+    &:hover {
+        letter-spacing: 1px;
+        text-decoration-line: underline;
+    }
+}
+
+.row {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
 }
 
 .title {

@@ -9,6 +9,7 @@
 .columns {
     display: flex;
     flex-wrap: wrap;
+    min-height: $footer-desktop;
 }
 
 .columns__left {
@@ -48,6 +49,9 @@
 }
 
 @media screen and (max-width: $screen-FW) {
+    .columns {
+        min-height: $footer-mobile;
+    }
     .columns__left, .columns__right {
         align-items: center;
     }

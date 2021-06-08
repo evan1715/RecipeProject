@@ -20,6 +20,10 @@ $screen-UHD: 3840px; //UHD 3840x2160
 //Grid column width
 $column-width: 400px;
 
+//Footer position
+$footer-mobile: calc(100vh - 261px);
+$footer-desktop: calc(100vh - 336px);
+
 /*  16:10
     160x100
     240x150

@@ -1,12 +1,9 @@
-
-.about-container {
+.search-results {
     min-height: $footer-desktop;
-    margin: auto;
-    width: 70%;
 }
 
 @media screen and (max-width: 1420px) {
-    .about-container {
+    .search-results {
         min-height: $footer-mobile;
     }
 }

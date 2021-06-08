@@ -63,8 +63,8 @@ const ViewRecipePage = () => {
     }, [userRecipe.pictures]);
     
     return (
-        <>{ userRecipe.title && //Only render once we have the recipe.
-            <div>
+        <div className="view-recipe">{ userRecipe.title && //Only render once we have the recipe.
+            <>
                 <h1 className="title center">{ userRecipe.title }</h1>
 
                 { !spoon ?
@@ -171,9 +171,9 @@ const ViewRecipePage = () => {
                         }</blockquote>
                     </div>
                 </div>
-            </div>
+            </>
             }
-        </>
+        </div>
     )
 }
 

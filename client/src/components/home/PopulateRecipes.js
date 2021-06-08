@@ -29,7 +29,7 @@ const PopulateRecipes = (props) => (
                 { props.users && <div>{ props.users[index] === 'Account Not Found' ?
                     <li>By: { props.users[index] }</li>
                     :
-                    <li>By: <Link className="cursor" to={`/user?id=${recipe.owner}`}>{ props.users[index] }</Link></li>
+                    <li>By: <Link className="link-blue" to={`/user?id=${recipe.owner}`}>{ props.users[index] }</Link></li>
                 }</div>}
             </ol>
         ))}

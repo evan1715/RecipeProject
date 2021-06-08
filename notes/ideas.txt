@@ -1,24 +1,9 @@
-- Comment box for recipes. Perhaps use it via a socket.io method?
-- Create a ratings system for recipes.
-- Create a wishlist or "my favorites" for recipes.
-- Convert project to NextJS.
-- On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance.
-- Have selectors for recipes to indicate if it's vegan or vegetarian or something similar.
-- Add a description to each recipe? Maybe just the ingredients, time, and pictures will do.
-- Add pagination to all recipes, my recipes, searching recipes.
-- Add accessibility with <label> on inputs.
+- Add accessibility on all.
 - Rework ViewRecipePage to use CSS Grid so sizing on resolutions will change the layout. Style ViewRecipePage.
 -- Rework all CSS grid to use the same styles universally for MyRecipesPage, AllRecipes, RecipeRoulette, UserProfilePage, and search results.
 - Fill in the About page.
 - Fill in Footer.
 - Fix the "delete picture" selection in ModifyPicturesModal.
-- Add sorting for recipes.
-- Code the search functionality.
-
-Efficiency improvements:
-- See if we can clean up processData function in userRecipes.js action.
-- Package moment is rather bulky when compiled. See if we can just do dates ourselves with a function.
-
 
 
 Completed:
@@ -53,9 +38,20 @@ Completed:
 + Add a footer for the app
 + Add "Home" link to popout menu & regular nav.
 + Add a popup modal to ask if they're sure if they want to delete a recipe.
++ Code the search functionality.
 
 
 
 Decided to drop:
 - Fix issue with only production build and server communicating so that dev mode also can do it.
 +/ Rework the ServerAPI call and make it useful for all API calls. //Sort of already did, sort of.
+- On MyRecipes, make it display more information to the user. Description and pictures to make it more recognizable at a glance. Decided it wasn't necessary since the user can view the recipe or click the pictures button.
+- Have selectors for recipes to indicate if it's vegan or vegetarian or something similar. Since this is a project, doing this would be more of the same by just adding this to the mongoose model. Not necessary.
+- Add a description to each recipe? Maybe just the ingredients, time, and pictures will do. I don't know what I was saying here since the recipe already has a description.
+- These were dropped due to just trying to have a completed project. It's possible to have "v2.0" of this website in the future for another project.
+    - Comment box for recipes. Perhaps use it via a socket.io method?
+    - Create a ratings system for recipes.
+    - Create a wishlist or "my favorites" for recipes.
+    - Convert project to NextJS.
+    - Add pagination to all recipes, my recipes, searching recipes.
+    - Add sorting for recipes.

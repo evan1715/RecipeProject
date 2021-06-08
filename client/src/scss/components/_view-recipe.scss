@@ -3,6 +3,10 @@
     https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
 */
 
+.view-recipe {
+    min-height: $footer-desktop;
+}
+
 .view-recipe__userinfo {
     // border: solid red 1px;
     display: flex;
@@ -122,4 +126,10 @@
     display: flex;
     flex-direction: column;
     margin: 15px 75px 15px 75px; //top right bottom left
+}
+
+@media screen and (max-width: 1420px) {
+    .view-recipe {
+        min-height: $footer-mobile;
+    }
 }

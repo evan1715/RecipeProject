@@ -65,7 +65,6 @@ const MyLeftColumn = (props) => {
             <p>Username: { !props.isPublic ? user.username : userProfile.user.username }</p>
             <p>Name: { !props.isPublic ? user.name : userProfile.user.name }</p>
             { !props.isPublic && <p>Email: { user.email }</p> }
-            <p>Location: ~pending~</p>
             <p>Total Recipes: { !props.isPublic ?
                 userRecipes && userRecipes.length > 0  && userRecipes.length
                 :

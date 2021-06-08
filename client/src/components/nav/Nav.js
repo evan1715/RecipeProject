@@ -13,6 +13,6 @@ const Nav = () => (
             <NavPopout />
         </div>
     </div>
-)
+);
 
 export { Nav as default }

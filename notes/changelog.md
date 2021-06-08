@@ -68,7 +68,8 @@
                 - Delete button on MyRecipes page now has a pop up modal to ask if the user to confirm to delete the selected recipe.
                 - Created SearchResultsPage to display results using spoonacular search. Utilizes PopulateRecipes to display them.
                 - Modified PopulateRecipes to support spoonacular recipes and user recipes.
-                - SearchBar now clears on submit. 
+                - SearchBar now clears on submit.
+            - 6-8: Search results will now use a smaller data fetch for faster results. It will just display the picture and the title of a recipe.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -109,6 +110,7 @@
                 - Recipe Form ingredients buttons are now styled and are readjusted in size. Modified for better visual experience.
                 - Added ingredients on recipe form will now go into column style on a smaller screen.
             - 6-7: Styled footer some. Has much better spacing between body now.
+            - 6-8: Adjusted styles to better position the footer on all pages.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

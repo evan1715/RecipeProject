@@ -1,5 +1,4 @@
 .columns-header {
-    // border: thin solid red;
     background-color: darken($color: rgb(240, 240, 240), $amount: 5);
     display: flex;
     font-weight: $font-weight;
@@ -13,7 +12,6 @@
 }
 
 .columns__left {
-    // border: thin solid green;
     align-items: flex-end;
     display: flex;
     flex-basis: 250px; //This makes the left equal to the right with the 250px size icon.
@@ -23,7 +21,6 @@
 }
 
 .columns__center {
-    // border: thin solid chartreuse;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -36,7 +33,6 @@
 }
 
 .columns__right {
-    // border: thin solid slateblue;
     align-items: flex-start;
     display: flex;
     flex-direction: column;

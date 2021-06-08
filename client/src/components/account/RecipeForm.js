@@ -68,7 +68,6 @@ const RecipeForm = (props) => {
 
     return (
         <div className="recipe-form">
-            {/* <form className="recipe-form__form"> */}
             <label className="recipe-form__labels" htmlFor="recipe-title">Title for your recipe:</label>
             <input
                 className="modal__form--input"

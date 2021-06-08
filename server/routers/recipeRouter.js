@@ -23,7 +23,6 @@ router.post('/recipes', auth, async (req, res) => {
 });
 
 //No authentication to get all recipes listed.
-//NEEDS PAGINATION
 router.get('/recipes/all', async (req, res) => {
     try {
         const recipes = await Recipe.find({});
@@ -34,7 +33,6 @@ router.get('/recipes/all', async (req, res) => {
 });
 
 //Get a user's submitted recipes.
-//NEEDS PAGINATION
 router.get('/recipes/user/:username', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.username });
@@ -128,11 +126,6 @@ router.post('/recipes/:id/pictures', auth, upload.array('pictures', 5), async (r
     try {
         const recipe = await Recipe.findOne({ _id: req.params.id, owner: req.user._id });
 
-        //const recipe = await Recipe.findOne(req.user._id);
-        // if (req.user._id.toString() !== recipe.owner.toString()) {
-        //     return res.status(403).send("User is not owner of the recipe.");
-        // }
-
         if (!recipe) {
             return res.status(404).send("Cannot find recipe.");
         }
@@ -154,7 +147,6 @@ router.post('/recipes/:id/pictures', auth, upload.array('pictures', 5), async (r
 });
 
 //Get picture(s)
-//What if we used pagination or populate for the individual images in the pictures array? Query strings?
 router.get('/recipes/:id/pictures', async (req, res) => {
     try {
         const recipe = await Recipe.findById(req.params.id);
@@ -172,7 +164,6 @@ router.get('/recipes/:id/pictures', async (req, res) => {
 });
 
 //Delete picture(s) of the food.
-//What if we used pagination or populate for the individual images in the pictures array? Query strings?
 router.delete('/recipes/:id/pictures', auth, async (req, res) => {
     try {
         const recipe = await Recipe.findOne({ _id: req.params.id, owner: req.user._id });
@@ -199,10 +190,6 @@ router.delete('/recipes/:id/pictures', auth, async (req, res) => {
         res.status(500).send();
     }
 });
-
-
-
-
 
 
 module.exports = router;

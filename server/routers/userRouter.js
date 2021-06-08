@@ -73,7 +73,7 @@ router.get('/user/username/:id', async (req, res) => {
     }
 });
 
-//View profile. Why doesn't just /user/ work and it's forcing /users/? --- creating patch and delete seemed to fix it.
+//View profile.
 router.get('/user/me', auth, async (req, res) => {
     res.send(req.user);
 });
@@ -191,9 +191,6 @@ router.delete('/user/profile/icon', auth, async (req, res) => {
         res.status(500).send();
     }
 });
-
-
-
 
 
 module.exports = router;

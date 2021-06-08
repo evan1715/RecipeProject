@@ -29,7 +29,7 @@ const logoutAction = (token) => ({
     token: token
 });
 
-//GET_USER //would this just be a hook instead?
+//GET_USER
 const getUserAction = (profile) => ({
     type: 'GET_USER',
     user: profile

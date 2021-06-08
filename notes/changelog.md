@@ -132,6 +132,7 @@
             - Placed MyAccountButton.js, MyRecipesButton.js, Nav.js, NavBottom.js, _nav-bottom.scss, and _nav.scss to the graveyard.
             - Installed file-loader and configured webpack to use it.
             - Including a logo file to use on the website. It'll utilize file-loader.
+        6-8: Cleaned up files. Removed unused code, added comments, removed comments, etc.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

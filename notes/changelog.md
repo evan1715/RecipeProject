@@ -110,7 +110,10 @@
                 - Recipe Form ingredients buttons are now styled and are readjusted in size. Modified for better visual experience.
                 - Added ingredients on recipe form will now go into column style on a smaller screen.
             - 6-7: Styled footer some. Has much better spacing between body now.
-            - 6-8: Adjusted styles to better position the footer on all pages.
+            - 6-8: 
+                - Adjusted styles to better position the footer on all pages.
+                - Image and searchbar are now more aligned on smaller screens.
+                - MyRecipes listed recipes now have a border to better separate them visually.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

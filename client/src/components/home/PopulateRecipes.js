@@ -23,7 +23,7 @@ const PopulateRecipes = (props) => (
                         <img className="grid-pic" src={ recipe.image } />
                     </Link>
                 }
-                <li>Cook time: { recipe.cookTime ? recipe.cookTime : recipe.readyInMinutes }</li>
+                { recipe.cookTime && <li>Cook time: { recipe.cookTime }</li> }
                 { recipe.createdAt && <li>Created: { recipe.createdAt }</li> }
                 
                 { props.users && <div>{ props.users[index] === 'Account Not Found' ?
@@ -34,6 +34,6 @@ const PopulateRecipes = (props) => (
             </ol>
         ))}
     </div>
-)
+);
 
 export { PopulateRecipes as default }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
@@ -9,6 +9,7 @@ const SearchResultsPage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const searchResults = useSelector(state => state.allRecipesReducer.searchResults);
+    const [showReason, setShowReason] = useState(false);
 
     useEffect(async () => {
         dispatch(showLoading());
@@ -23,7 +24,16 @@ const SearchResultsPage = () => {
 
     return (
         <div className="search-results">
-            <h1 className="center title">Search Results</h1>
+            <h1 className="center title">Search Results by Spoonacular</h1>
+            <p className="center">The results do not contain user submitted recipes. View the All Recipes page to see user recipes.</p>
+            <p className="search-results__learn-more">
+                <p className="center link-blue" onClick={ () => setShowReason(!showReason) }>Why no user submitted results?</p>
+                { showReason && <p className="center">
+                    There's too few user submitted recipes. If there's a significant amount, then it will 
+                    be implemented into the search. For now, being there's so little, the All Recipes page is 
+                    easy enough to navigate with such little selection so a search for it is not necessary.
+                </p>}
+            </p>
             { searchResults.length && <PopulateRecipes recipes={ searchResults } /> }
         </div>
     )

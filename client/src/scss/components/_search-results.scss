@@ -2,6 +2,16 @@
     min-height: $footer-desktop;
 }
 
+.search-results__learn-more {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    p {
+        margin: 0;
+    }
+}
+
 @media screen and (max-width: 1420px) {
     .search-results {
         min-height: $footer-mobile;

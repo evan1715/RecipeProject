@@ -1,5 +1,4 @@
 .recipe-roulette {
-    // border: thin solid greenyellow;
     display: flex;
     flex-direction: column;
     margin-top: 1%;
@@ -7,7 +6,6 @@
 
 .recipe-roulette__header {
     align-items: center;
-    // border: thin solid blue;
     display: flex;
     flex-direction: column;
     h1 {
@@ -21,7 +19,6 @@
 }
 
 .recipe-roulette__cards {
-    // border: thin solid red;
     display: grid;
     grid-auto-rows: minmax(250px, 400px);
     grid-gap: 10px;

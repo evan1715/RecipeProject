@@ -14,8 +14,6 @@ export default function CreateAccount() {
                     <h1>The home for all your recipes</h1>
                     <p>Browse and save all of your favorite recipes in one place. Search for ingredients, category, or access 1000's of recipes from the comfort of your home or
                     on your mobile device.</p>
-                    {/* This button will be a <Link> to /createaccount where redux will dispatch whatever action will create a new user */}
-                    {/* <Link to='/createaccount'><button className='button'>Create An Account</button></Link> */}
                     { isAuth ? 
                         <Link to='/myrecipes'>
                             <button className="button" onClick={ () => setOpenCreateAccountModal('false') }>

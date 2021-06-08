@@ -23,6 +23,7 @@ const deleteRecipeAction = () => ({
     type: 'DELETE_RECIPE'
 });
 
+//CLEAR_USER_RECIPES
 const clearUserRecipesAction = () => ({
     type: 'CLEAR_USER_RECIPES'
 });

@@ -1,11 +1,9 @@
 .user-profile-page__center--grid {
     display: grid;
-    // border: thin solid gold;
     grid-auto-rows: minmax(150px, auto);
     grid-gap: 20px;
     // grid-template-columns: repeat(3, $column-width);
     justify-content: center;
-    // width: 100%;
 }
 
 .user-profile-page__center--recipe {
@@ -25,7 +23,6 @@
 
 .user-profile-page__center--recipe-content {
     align-items: center;
-    // border: thin solid purple;
     display: flex;
     flex-wrap: wrap;
     font-weight: $font-weight;
@@ -39,7 +36,6 @@
 }
 
 .user-profile-page__center--recipe-content--title {
-    // border: thin  solid black;
     font-weight: $font-weight;
 }
 
@@ -72,7 +68,6 @@
 
 @media screen and (max-width: $screen-HDp) {
     .user-profile-page__center--grid {
-        // border: thin solid red;
         grid-template-columns: repeat(1, 300px);
     }
     .user-profile-page__center--recipe {

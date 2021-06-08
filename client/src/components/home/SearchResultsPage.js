@@ -15,16 +15,17 @@ const SearchResultsPage = () => {
         const searchInput = location.search.split('?=')[1];
         const spoonURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchInput}`;
         const key = '&apiKey=REDACTED';
-        const spoonSearch = await (await fetch(`${spoonURL}&addRecipeInformation=true&number=10${key}`)).json();
+        //&addRecipeInformation=true for more recipe info (& larger download)
+        const spoonSearch = await (await fetch(`${spoonURL}&number=20${key}`)).json();
         dispatch(searchResultsAction(spoonSearch.results));
         dispatch(hideLoading());
     }, [location]);
 
     return (
-        <>
+        <div className="search-results">
             <h1 className="center title">Search Results</h1>
             { searchResults.length && <PopulateRecipes recipes={ searchResults } /> }
-        </>
+        </div>
     )
 }
 

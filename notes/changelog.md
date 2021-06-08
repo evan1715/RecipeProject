@@ -69,7 +69,10 @@
                 - Created SearchResultsPage to display results using spoonacular search. Utilizes PopulateRecipes to display them.
                 - Modified PopulateRecipes to support spoonacular recipes and user recipes.
                 - SearchBar now clears on submit.
-            - 6-8: Search results will now use a smaller data fetch for faster results. It will just display the picture and the title of a recipe.
+            - 6-8: 
+                - Search results will now use a smaller data fetch for faster results. It will just display the picture and the title of a recipe.
+                - Added information on why it is only a spoonacular search and not a user recipe search.
+                - ViewRecipePage now has clickable username to view a user's profile.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -114,6 +117,7 @@
                 - Adjusted styles to better position the footer on all pages.
                 - Image and searchbar are now more aligned on smaller screens.
                 - MyRecipes listed recipes now have a border to better separate them visually.
+                - Links are now more visibly clear by adding darkblue to the color of the text of links.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

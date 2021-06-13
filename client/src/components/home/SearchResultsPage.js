@@ -27,8 +27,8 @@ const SearchResultsPage = () => {
             <h1 className="center title">Search Results by Spoonacular</h1>
             <p className="center">The results do not contain user submitted recipes. View the All Recipes page to see user recipes.</p>
             <p className="search-results__learn-more">
-                <p className="center link-blue" onClick={ () => setShowReason(!showReason) }>Why no user submitted results?</p>
-                { showReason && <p className="center">
+                <p className="center link-blue" id="learn-more--question" onClick={ () => setShowReason(!showReason) }>Why no user submitted results?</p>
+                { showReason && <p className="center" id="learn-more--reason">
                     There's too few user submitted recipes. If there's a significant amount, then it will 
                     be implemented into the search. For now, being there's so little, the All Recipes page is 
                     easy enough to navigate with such little selection so a search for it is not necessary.

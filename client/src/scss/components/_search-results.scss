@@ -3,12 +3,16 @@
 }
 
 .search-results__learn-more {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin: 0;
-    p {
+    #learn-more--question {
         margin: 0;
+        width: 300px;
+    }
+    #learn-more--reason {
+        max-width: 800px;
     }
 }
 

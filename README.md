@@ -1,6 +1,6 @@
 # Recipe Project
 
-This full-stack project based on the MERN stack, which consists of MongoDB, Express, React, and Node. It also utilizes Mongoose, Redux, Webpack, and SCSS. The website can be used to create accounts, profiles, submit recipes, view others' recipes & profiles, or view recipes using spoonacular's API by searching. The website is also formatted to be able to use on both mobile and desktop screen sizes.
+This full-stack project based on the MERN stack, which consists of MongoDB, Express, React, and Node. It also utilizes Mongoose, Redux, Webpack, and SCSS. This website was designed to be a user-based recipe app. It can be used to create accounts, profiles, submit recipes, view others' recipes & profiles, or view recipes using spoonacular's API by searching. The website is also formatted to be able to use on both mobile and desktop screen sizes.
 
 [View the website here](https://jd1715-recipe-project.herokuapp.com/)
 
@@ -89,6 +89,7 @@ This full-stack project based on the MERN stack, which consists of MongoDB, Expr
 
 
 
+
 ### Efficiency
 * AllRecipes, a user's MyRecipes, UserProfilePage, and RecipeRoulette are all stored after the initial request so that if the components reload, it will use the local information instead of retrieving the data from the server again. This will save network traffic.
 * If a user edits or submits a new recipe, then MyRecipes will be reloaded.
@@ -102,6 +103,7 @@ This full-stack project based on the MERN stack, which consists of MongoDB, Expr
 
 
 
+
 ## Server-side features
 * Created with Nodejs, Express, MongoDB, Mongoose.
 * Authentication middleware for users, their accounts, and their recipes.
@@ -112,3 +114,20 @@ This full-stack project based on the MERN stack, which consists of MongoDB, Expr
 * Both routers have CRUD for creating, reading, updating, and deleting numerous things in the user account or their recipes.
 * User icons and up to five pictures per recipe.
 * Modules used are bad-words, bcryptjs, express, jsonwebtoken, mongodb, mongoose, multer, sharp, and validator.
+
+
+
+
+## Webpack
+* This project uses webpack.
+* Packages for webpack in this project include @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, @babel/preset-react, @babel/runtime, babel-loader, css-loader, file-loader, html-webpack-plugin, mini-css-extract-plugin, moment-locales-webpack-plugin, sass-loader, webpack, and webpack-cli.
+* For plugins:
+- * @babel/core, @babel/preset-react, and babel-loader are required for webpack to compile React.
+- * @babel/plugin-transform-runtime will decrease the code size, especially when @babel/preset-env is used. @babel/runtime is required for it.
+- * @babel/preset-env is a smart plugin that will compile the the bundle to transform the JS to as early as ES5 to be more compatible with certain environments.
+- * css-loader, sass, and sass-loader are required to compile the SCSS stylings used.
+- * file-loader is used so that the logo for the page can be included into the bundle.
+- * html-webpack-plugin will create a new html file per compile.
+- * mini-css-extract-plugin will create a separate CSS file when compiled.
+- * moment-locales-webpack-plugin excludes unnecessary locales from being compiled with the bundle to decrease overall size by almost half.
+- * webpack and webpack-cli are needed to compile webpack and use for dev purposes.

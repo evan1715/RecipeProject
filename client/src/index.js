@@ -5,7 +5,7 @@ import LoadingBar from 'react-redux-loading-bar';
 import AppRouter from './router/AppRouter.js';
 import storeConfig from './store/storeConfig.js';
 import './scss/styles.scss'; //all styles
-import { loginAction } from './actions/account.js';
+import { loginAction, logoutAction } from './actions/account.js';
 
 
 const store = storeConfig();
@@ -27,7 +27,13 @@ const getUser = async () => {
     if (token) {
         try {
             const user = await (await fetch('/user/me', { headers: { 'Authorization': token }})).json();
-            store.dispatch(loginAction(user, token));
+
+            if (user.error) {
+                //If the account can't be found, log them out locally.
+                store.dispatch(logoutAction(token));
+            } else {
+                store.dispatch(loginAction(user, token));
+            }
         } catch (error) {
             console.log(error);
         }

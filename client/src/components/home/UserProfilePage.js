@@ -60,7 +60,6 @@ const UserProfilePage = () => {
                                         </h3>
                                     </Link>
                                     <p>{ recipe.createdAt }</p>
-                                    {/* { recipe.createdAt !== recipe.updatedAt && <p>Updated: { recipe.updatedAt }</p> } */}
                                     <p>{ recipe.cookTime } minutes</p>
                                 </div>
                             </div>

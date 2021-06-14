@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
     smaller sized. Without it, all the styles are in bundle.js and all the styles don't get loaded 
     into the browser until after the javascript runs, which takes some time. */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//CssMinimizerPlugin will optimize and minify the CSS.
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 //Moment is too big, so get rid of some things.
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
@@ -28,7 +26,7 @@ module.exports = {
         filename: '[name].bundle.js',
         clean: true //this will get rid of files that already exist in the dist folder
     },
-    plugins: devMode ? [htmlwbplugin] : [
+    plugins: [
         htmlwbplugin,
         new MiniCssExtractPlugin({ filename: 'styles.css' }), 
         new MomentLocalesPlugin()
@@ -39,6 +37,7 @@ module.exports = {
             use: {
                 loader: 'babel-loader', //loader runs a single loader
                 options: {
+                    //@babel/preset-env needs @babel/plugin-transform-runtime or else it's too big. If we get rid of one, we might as well get rid of the other one.
                     presets: ['@babel/preset-env', '@babel/preset-react'],
                     plugins: ['@babel/plugin-transform-runtime']
                 }
@@ -47,7 +46,7 @@ module.exports = {
         }, { 
             test: /\.s?css$/,
             use: [ //use allows us to use an array of loaders
-                devMode ? 'style-loader' : MiniCssExtractPlugin.loader, //!=='production'
+                MiniCssExtractPlugin.loader,
                 {
                     loader: 'css-loader', 
                     options: {
@@ -69,16 +68,10 @@ module.exports = {
     },
     optimization: {
         minimize: devMode ? false : true, //!=='production'
-        minimizer: devMode ? [] : [`...`, new CssMinimizerPlugin()], //!=='production'
         splitChunks: devMode ? {} : {
             cacheGroups: {
-                misc: {
-                    test: (/[\\/]node_modules[\\/](@babel|regenerator-runtime|styled-components|stylis)/),
-                    name: 'webpack_jargon',
-                    chunks: 'all'
-                },
                 react_redux: {
-                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-ionicons|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|scheduler)/),
+                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|scheduler)/),
                     name: 'react-redux',
                     chunks: 'all'
                 }
@@ -87,7 +80,7 @@ module.exports = {
     },
     devtool: devMode ? 'inline-source-map' : 'source-map', //!=='production'
     mode: devMode ? 'development' : 'production', //!=='production'
-    devServer: {
+    devServer: { //webpack-dev-server is a required package module for this.
         contentBase: path.join(__dirname, './public'),
         //publicPath is to specify where the bundled assets should be.
         publicPath: devMode ? '/' : '/dist/', //!=='production'

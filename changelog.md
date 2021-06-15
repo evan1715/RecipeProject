@@ -125,6 +125,7 @@
                 - Links are now more visibly clear by adding darkblue to the color of the text of links.
             - 6-13: Adjusted instructions on ViewRecipePage to fill out the page more on smaller screens.
             - 6-14: Fixed a typo in the styles.scss file.
+            - 6-15: Adjusted recipe roulette cards.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

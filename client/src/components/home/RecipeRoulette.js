@@ -52,8 +52,8 @@ const RecipeRoulette = () => {
                                 <Link to={ `/recipe?type=spoon?id=${recipe.id}` }>
                                     <img alt="finished dish" src={ recipe.image } />
                                 </Link>
-                                <Link className="link" to={ `/recipe?type=spoon?id=${recipe.id}` }>
-                                    <h3>{ recipe.title }</h3>
+                                <Link className="cursor" to={ `/recipe?type=spoon?id=${recipe.id}` }>
+                                    <h3 className="recipe-roulette__cards--title">{ recipe.title }</h3>
                                 </Link>
                                 <p>
                                     {/* This svg/path part was sourced from the compiled version of displaying IoTimeOutline from react-ionicons@3.1.4.

@@ -47,7 +47,6 @@
     "moment": "^2.29.1",
     "moment-locales-webpack-plugin": "^1.2.0",
     "nodemon": "^2.0.7",
-    "react-ionicons": "^3.1.4",
     "react-modal": "^3.14.2",
     "react-redux-loading-bar": "^5.0.0",
     "react-router-dom": "^5.2.0",

@@ -66,7 +66,7 @@ module.exports = {
         splitChunks: devMode ? {} : {
             cacheGroups: {
                 react_redux: {
-                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|react-dom|react-modal|react-redux|react-redux-loading-bar|react-router-dom|react-transition-group|redux|redux-logger|scheduler)/),
+                    test: (/[\\/]node_modules[\\/](history|hoist-non-react-statics|mini-create-react-context|prop-types|react|redux|scheduler)/),
                     name: 'react-redux',
                     chunks: 'all'
                 }

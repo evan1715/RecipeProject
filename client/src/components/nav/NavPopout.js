@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import IosMenu from 'react-ionicons/lib/IosMenu';
 import SearchBar from './SearchBar.js';
 import SignInModal from './SignInModal.js';
 import CreateAccountModal from './CreateAccountModal.js';
@@ -39,10 +38,16 @@ const NavPopout = () => {
         <div className="nav-popout">
             <Link className="nav-logo" to="/"><img alt="dished online logo" src={ logo } /></Link>
             <SearchBar />
-            <IosMenu className="nav-burger-btn" color={ isAuth ? 'green' : 'red' } fontSize="35px" onClick={ () => {
+
+            {/* This svg/path part was sourced from the compiled version of displaying IosMenu from react-ionicons@3.1.4.
+                Visit npmjs.com/package/react-ionicons for the full package.
+                Getting rid of the module saves 54kb on bundle size and the package has major vulnerabilities, so I'm using this instead. */}
+            <svg className="nav-burger-btn" fill={ isAuth ? 'green' : 'red' } height="35px" onClick={ () => {
                 setShowMenu(!showMenu);
                 setToggle(false);
-            }} />
+            }} rotate="0" viewBox="0 0 1024 1024" width="35px">
+                <path d="M128 288h768v64h-768v-64z M128 480h768v64h-768v-64z M128 672h768v64h-768v-64z"></path>
+            </svg>
 
             { showMenu &&
                 <nav className="nav-popout__menu">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import IoTimeOutline from 'react-ionicons/lib/IosTimeOutline';
 import { Transition } from 'react-transition-group';
 import handleRecipeRoulette from '../../actions/recipe-roulette';
 
@@ -56,7 +55,15 @@ const RecipeRoulette = () => {
                                 <Link className="link" to={ `/recipe?type=spoon?id=${recipe.id}` }>
                                     <h3>{ recipe.title }</h3>
                                 </Link>
-                                <p><IoTimeOutline /> { recipe.readyInMinutes } minutes</p>
+                                <p>
+                                    {/* This svg/path part was sourced from the compiled version of displaying IoTimeOutline from react-ionicons@3.1.4.
+                                        Visit npmjs.com/package/react-ionicons for the full package.
+                                        Getting rid of the module saves 54kb on bundle size and the package has major vulnerabilities, so I'm using this instead. */}
+                                    <svg fill="#000000" width="22px" height="22px" viewBox="0 0 1024 1024" rotate="0">
+                                        <path d="M512 96c-229.8 0-416 186.2-416 416s186.2 416 416 416c229.8 0 416-186.2 416-416s-186.2-416-416-416zM512 
+                                        893.4c-210.2 0-381.4-171-381.4-381.4 0-210.2 171-381.4 381.4-381.4 210.2 0 381.4 171 381.4 381.4 0 210.2-171.2 
+                                        381.4-381.4 381.4z M512 512h-192v34.6h226.6v-290.6h-34.6z" />
+                                    </svg> { recipe.readyInMinutes } minutes</p>
                                 <p>Popularity rating: { recipe.spoonacularScore }</p>
                             </div>
                         )}

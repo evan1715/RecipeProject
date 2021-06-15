@@ -13,6 +13,3 @@ public/
 #test folder
 client/tests/
 server/tests/
-
-#dev-server.js
-server/dev-server.js

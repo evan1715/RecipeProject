@@ -154,6 +154,7 @@
                 - Removed the misc cache group since it didn't seem necessary. 
                 - Removed the devMode conditional on plugins and loader so it just uses the mini-css-extract-plugin every time, whether on prod or dev.
                 - Decreased the amount of lines of code by modifying the config some.
+                - Removed some packages from the cache group that weren't changing the sizes anyway.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

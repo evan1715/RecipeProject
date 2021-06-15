@@ -35,11 +35,6 @@
     height: 400px;
     overflow: hidden;
     width: 250px;
-    h3 {
-        font-size: 20px;
-        font-weight: 500;
-        margin: 10px;
-    }
     img {
         border: thin solid black;
         max-height: 100%;
@@ -47,8 +42,13 @@
     }
     p {
         @include flexCenter(center);
-        font-weight: $font-weight;
+        font-weight: 300;
     }
+}
+
+.recipe-roulette__cards--title {
+    font-weight: $font-weight;
+    margin: 10px;
 }
 
 //Resolution adjustment

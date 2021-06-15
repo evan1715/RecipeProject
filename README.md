@@ -121,6 +121,7 @@ This full-stack project based on the MERN stack, which consists of MongoDB, Expr
 ## Webpack
 * This project uses webpack.
 * Packages for webpack in this project include @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, @babel/preset-react, @babel/runtime, babel-loader, css-loader, file-loader, html-webpack-plugin, mini-css-extract-plugin, moment-locales-webpack-plugin, sass-loader, webpack, and webpack-cli.
+* The config checks for settings to decide if we're in development and production and will use different methods, depending on what it is.
 * For plugins:
 - * @babel/core, @babel/preset-react, and babel-loader are required for webpack to compile React.
 - * @babel/plugin-transform-runtime will decrease the code size, especially when @babel/preset-env is used. @babel/runtime is required for it.

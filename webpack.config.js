@@ -12,9 +12,9 @@ module.exports = {
         index: '/client/src/index.js',
     },
     output: {
-        path: devMode ? path.join(__dirname, './public') : path.join(__dirname, './public/dist'),
+        path: path.join(__dirname, './public'),
         filename: '[name].bundle.js',
-        clean: true //this will get rid of files that already exist in the dist folder
+        clean: true //this will get rid of files that already exist
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './client/src/index.html' }),
@@ -69,7 +69,7 @@ module.exports = {
     mode: devMode ? 'development' : 'production',
     devServer: { //webpack-dev-server is a required package module for this.
         contentBase: path.join(__dirname, './public'),
-        publicPath: devMode ? '/' : '/dist/', //publicPath is to specify where the bundled assets should be.
+        publicPath: '/', //publicPath is to specify where the bundled assets should be.
         //historyApiFallback says that we're going to handle all of our routing through React clientside.
         historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,

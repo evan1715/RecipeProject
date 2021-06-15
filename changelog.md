@@ -75,6 +75,7 @@
                 - ViewRecipePage now has clickable username to view a user's profile.
             - 6-13: Fixed an issue on search results page. Fixed issue of displaying a link on a username when no user account was found for it.
             - 6-14: Removed unused code in UserProfilePage. Modified RecipeRoulette, NavBottom, NavTop, NavPopout, and SearchBar to use svg icons from react-ionicons to save bundle size a good chunk.
+            - 6-15: Search results without any results now displays a message.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:

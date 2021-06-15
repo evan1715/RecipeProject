@@ -16,6 +16,14 @@
     }
 }
 
+.search-results--none {
+    align-items: center;
+    color: darkred;
+    display: flex;
+    font-size: x-large;
+    justify-content: center;
+}
+
 @media screen and (max-width: 1420px) {
     .search-results {
         min-height: $footer-mobile;

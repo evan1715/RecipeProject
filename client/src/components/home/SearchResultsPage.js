@@ -34,7 +34,8 @@ const SearchResultsPage = () => {
                     easy enough to navigate with such little selection so a search for it is not necessary.
                 </p>}
             </p>
-            { searchResults.length && <PopulateRecipes recipes={ searchResults } /> }
+            { searchResults.length < 1 && <p className="search-results--none">There are no results for that search. Try something else!</p>}
+            { searchResults.length > 0 && <PopulateRecipes recipes={ searchResults } /> }
         </div>
     )
 }

@@ -2,6 +2,7 @@
 
 This full-stack project based on the MERN stack, which consists of MongoDB, Express, React, and Node. It also utilizes Mongoose, Redux, Webpack, and SCSS. This website was designed to be a user-based recipe app. It can be used to create accounts, profiles, submit recipes, view others' recipes & profiles, or view recipes using spoonacular's API by searching. The website is also formatted to be able to use on both mobile and desktop screen sizes.
 
+Most of the features will be with a user account. Make an account and try it out!
 [View the website here](https://jd1715-recipe-project.herokuapp.com/)
 
 

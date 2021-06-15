@@ -13,3 +13,6 @@ public/
 #test folder
 client/tests/
 server/tests/
+
+#notes folder
+notes/

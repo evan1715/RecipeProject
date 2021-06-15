@@ -15,12 +15,12 @@
             - 5-26: Selected recipe will now only process picture data if it is user-based and not spoonacular api.
         Components:
             - 5-17: Added "whole" as a measurement option on RecipeForm. Created a very simple page to display measurement conversions. Added it to nav, router, and added css for it.
-            - 5-17: 
+            - 5-17:
                 - Improved network efficiency by not re-fetching the icon every time the My Account component loads. Changes made to MyAccountModal and MyAccountPage. If no icon is in store, it'll dispatch a fetch.
                 - Extracted the username fetch request and put it in its own file in utils. The page now calls that action then dispatches out to the store to hold the usernames to be reused.
             - 5-21: Fixed an issue in ViewRecipePage where the previous state username was displaying instead of the current one.
             - 5-22: ViewRecipePage now displays the recipe better. MyAccountPage now displays the three most recent recipes submitted. Added in a fetch to get the user recipes on the page too.
-            - 5-23: 
+            - 5-23:
                 - Created a UserProfilePage to display a user's info, recipe, icon, etc. Can click each recipe to go view it. Added recipes and recent recipes to the page. Utilized grid.
                 - MyRecipesPage now centers the message of not having any recipes submitted. There's now a button for "View my profile" on the page.
                 - AllRecipesPage now links to a user's profile page if they click the username under a recipe.
@@ -28,7 +28,7 @@
             - 5-24:
                 - Created LeftColumn and RightColumn components to house most recent recipes & userinfo on left and icon and button on the right. Now using it for MyAccountPage, MyRecipesPage, and UserProfilePage to display most recent recipes, userinfo, and icon. It will change based on if it's the user's info or if it's a profile they're viewing. Redid CSS to simplify the column layouts by creating a columns.scss and merging multiple styles from these pages into that one.
                 - Log out will now clear selected recipe and user recipes reducers.
-            - 5-25: 
+            - 5-25:
                 - Rewrote RecipeRoulette component and associated CSS to fix a bug.
                 - Added a title to RightColumn.
                 - Added columns--hide styling to MyRecipes page to hide them on smaller screens. Doesn't seem necessary at on this page to display the information in the columns.
@@ -69,14 +69,17 @@
                 - Created SearchResultsPage to display results using spoonacular search. Utilizes PopulateRecipes to display them.
                 - Modified PopulateRecipes to support spoonacular recipes and user recipes.
                 - SearchBar now clears on submit.
-            - 6-8: 
+            - 6-8:
                 - Search results will now use a smaller data fetch for faster results. It will just display the picture and the title of a recipe.
                 - Added information on why it is only a spoonacular search and not a user recipe search.
                 - ViewRecipePage now has clickable username to view a user's profile.
+            - 6-13: Fixed an issue on search results page. Fixed issue of displaying a link on a username when no user account was found for it.
+            - 6-14: Removed unused code in UserProfilePage. Modified RecipeRoulette, NavBottom, NavTop, NavPopout, and SearchBar to use svg icons from react-ionicons to save bundle size a good chunk.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
             - 5-23: Renamed the route of /profile to /me in the fetch.
+            - 6-14: User will now be logged out and token deleted locally if no account is found even though they have a token. They will have to login again or create another account.
         Reducers:
             - 5-23: Added a new reducer for userProfile to store viewing a profile for userinfo and recipe data.
         Router:
@@ -85,11 +88,11 @@
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
             - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
-            - 5-24: 
+            - 5-24:
                 - Created columns.scss to use for the left, right, and center columns that will display for MyAccountPage, MyRecipesPage, and UserProfilePage.
                 - Deleted my-account-page.scss since the styling was merged into the columns. Took out the same styling that was in my-recipes-page.scss and user-profile-page.scss since they're also using the columns.scss file.
                 - Readjusted image sizing for recipe roulette and all recipes. Fixed typo for # id to className . in recipe roulette.
-            - 5-25: 
+            - 5-25:
                 - Redid recipe roulette CSS for cleaner, easier method and to fix mobile issue.
                 -- Added a top margin for smaller screen for the title area.
                 - Added flex-wrap to the columns container. Added smaller screen adjustment to change the order, margin, sizing, centering, and whether to display it or hide it depending on the page.
@@ -106,18 +109,20 @@
                 - Fixed issue of image going out of recipe cards.
                 - ViewRecipePage gallery is now centered and a max-height of 150px.
                 - Adjusted the height of the logo when on a smaller screen from 60px to 40px.
-            - 6-4: 
+            - 6-4:
                 - Renamed some files to exclude the "page" at the end of files.
                 - Created a footer file.
                 - Add ingredients on recipe form will now go to into a column style on a smaller screen.
                 - Recipe Form ingredients buttons are now styled and are readjusted in size. Modified for better visual experience.
                 - Added ingredients on recipe form will now go into column style on a smaller screen.
             - 6-7: Styled footer some. Has much better spacing between body now.
-            - 6-8: 
+            - 6-8:
                 - Adjusted styles to better position the footer on all pages.
                 - Image and searchbar are now more aligned on smaller screens.
                 - MyRecipes listed recipes now have a border to better separate them visually.
                 - Links are now more visibly clear by adding darkblue to the color of the text of links.
+            - 6-13: Adjusted instructions on ViewRecipePage to fill out the page more on smaller screens.
+            - 6-14: Fixed a typo in the styles.scss file.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:
@@ -128,11 +133,27 @@
         - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile.
         - 5-24: Cleaned up graveyard some. Also cleaned up SCSS some.
         - 5-25: Removed thunk package from webpack cache.
-        - 5-26: 
+        - 5-26:
             - Placed MyAccountButton.js, MyRecipesButton.js, Nav.js, NavBottom.js, _nav-bottom.scss, and _nav.scss to the graveyard.
             - Installed file-loader and configured webpack to use it.
             - Including a logo file to use on the website. It'll utilize file-loader.
-        6-8: Cleaned up files. Removed unused code, added comments, removed comments, etc.
+        - 6-8: Cleaned up files. Removed unused code, added comments, removed comments, etc.
+        - 6-14:
+            - Created a README.md file.
+            - Removed unused file, processIndividualImage.js, in utils folder.
+            - Updated gitignore.
+            - Modified npm modules:
+                - Updated @babel/runtime, monogdb, mongoose, react, react-dom, react-redux, react-transition-group, sharp, validator, @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, @babel/preset-react, concurrently, css-loader, mini-css-extract-plugin, react-modal, redux, sass, sass-loader, webpack, and webpack-cli.
+                - Switched @babel/runtime to a dependency since it's on the runtime.
+                - Removed style-loader in favor of mini-css-extract-plugin.
+                - Removed webpack-dev-server since it isn't really used anymore.
+                - Removed css-minimizer-webpack-plugin because it only reduced the size of the styles file by 0.3kb.
+                - Removed react-ionicons and am just using the icons itself as svg tags to decrease the size of the bundle by ~54kb.
+            - Modified webpack. 
+                - Removed css-minimizer-webpack-plugin and style-loader usage in webpack config.
+                - Removed the misc cache group since it didn't seem necessary. 
+                - Removed the devMode conditional on plugins and loader so it just uses the mini-css-extract-plugin every time, whether on prod or dev.
+                - Decreased the amount of lines of code by modifying the config some.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
 

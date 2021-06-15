@@ -8,8 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //Moment is too big, so get rid of some things.
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
-//This will create a new html file with the webpack config every build.
-const htmlwbplugin = new HtmlWebpackPlugin({ template: './client/src/index.html' });
 //Store whether we're in dev or prod for utility.
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -27,8 +25,8 @@ module.exports = {
         clean: true //this will get rid of files that already exist in the dist folder
     },
     plugins: [
-        htmlwbplugin,
-        new MiniCssExtractPlugin({ filename: 'styles.css' }), 
+        new HtmlWebpackPlugin({ template: './client/src/index.html' }),
+        new MiniCssExtractPlugin({ filename: 'styles.css' }),
         new MomentLocalesPlugin()
     ],
     module: {
@@ -45,8 +43,7 @@ module.exports = {
             exclude: /node_modules/
         }, { 
             test: /\.s?css$/,
-            use: [ //use allows us to use an array of loaders
-                MiniCssExtractPlugin.loader,
+            use: [MiniCssExtractPlugin.loader, //use allows us to use an array of loaders
                 {
                     loader: 'css-loader', 
                     options: {
@@ -61,9 +58,7 @@ module.exports = {
             ] 
         }, {
             test: /\.(png|jpg|jpeg|bmp|gif)$/,
-            use: {
-                loader: 'file-loader'
-            }
+            loader: 'file-loader'
         }]
     },
     optimization: {

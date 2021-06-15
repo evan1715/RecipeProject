@@ -1,18 +1,10 @@
 const path = require('path')
-//This creates a new html file per compile.
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-/*  MiniCssExtractPlugin This plugin creates a CSS file per JS file which requires CSS. It'll allow the build to be 
-    smaller sized. Without it, all the styles are in bundle.js and all the styles don't get loaded 
-    into the browser until after the javascript runs, which takes some time. */
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//Moment is too big, so get rid of some things.
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //This creates a new html file per compile.
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //This plugin creates a CSS file per JS file which requires CSS
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin'); //Moment is too big, so get rid of some things.
 
-//Store whether we're in dev or prod for utility.
-const devMode = process.env.NODE_ENV !== 'production';
-
-//Tell us what mode it is put in so we can confirm.
-console.log("Webpack is in:", process.env.NODE_ENV, "mode");
+const devMode = process.env.NODE_ENV !== 'production'; //Store whether we're in dev or prod for utility.
+console.log("Webpack is in:", process.env.NODE_ENV, "mode"); //Tell us what mode it is put in so we can confirm.
 
 //Webpack Config
 module.exports = {
@@ -62,7 +54,7 @@ module.exports = {
         }]
     },
     optimization: {
-        minimize: devMode ? false : true, //!=='production'
+        minimize: devMode ? false : true,
         splitChunks: devMode ? {} : {
             cacheGroups: {
                 react_redux: {
@@ -73,12 +65,11 @@ module.exports = {
             }
         }
     },
-    devtool: devMode ? 'inline-source-map' : 'source-map', //!=='production'
-    mode: devMode ? 'development' : 'production', //!=='production'
+    devtool: devMode ? 'inline-source-map' : 'source-map',
+    mode: devMode ? 'development' : 'production',
     devServer: { //webpack-dev-server is a required package module for this.
         contentBase: path.join(__dirname, './public'),
-        //publicPath is to specify where the bundled assets should be.
-        publicPath: devMode ? '/' : '/dist/', //!=='production'
+        publicPath: devMode ? '/' : '/dist/', //publicPath is to specify where the bundled assets should be.
         //historyApiFallback says that we're going to handle all of our routing through React clientside.
         historyApiFallback: true, //This will return index.html for all 404 routes.
         port: 3000,

@@ -85,6 +85,7 @@
         Router:
             - 6-4: Commented out unused nav links. Included footer file.
             - 6-7: Added SearchResultsPage to AppRouter. Removed unused routes.
+            - 6-14: Disabled lazy loading and returned to regular imports. The app is small enough to not really need lazy loading. It's a faster app with it all together too.
         SCSS:
             - 5-22: Added some CSS to view recipe page styling.
             - 5-23: Added CSS Grid to user-profile-page with page resizing and recipe listing.
@@ -142,21 +143,26 @@
             - Created a README.md file.
             - Removed unused file, processIndividualImage.js, in utils folder.
             - Updated gitignore.
-            - Modified npm modules:
+            - Modified npm modules & package.json:
                 - Updated @babel/runtime, monogdb, mongoose, react, react-dom, react-redux, react-transition-group, sharp, validator, @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, @babel/preset-react, concurrently, css-loader, mini-css-extract-plugin, react-modal, redux, sass, sass-loader, webpack, and webpack-cli.
                 - Switched @babel/runtime to a dependency since it's on the runtime.
                 - Removed style-loader in favor of mini-css-extract-plugin.
                 - Removed webpack-dev-server since it isn't really used anymore.
                 - Removed css-minimizer-webpack-plugin because it only reduced the size of the styles file by 0.3kb.
                 - Removed react-ionicons and am just using the icons itself as svg tags to decrease the size of the bundle by ~54kb.
+                - Modified package.json scripts to reflect the change of deleting dev-server.js and server.js.
             - Modified webpack. 
                 - Removed css-minimizer-webpack-plugin and style-loader usage in webpack config.
                 - Removed the misc cache group since it didn't seem necessary. 
                 - Removed the devMode conditional on plugins and loader so it just uses the mini-css-extract-plugin every time, whether on prod or dev.
                 - Decreased the amount of lines of code by modifying the config some.
                 - Removed some packages from the cache group that weren't changing the sizes anyway.
+                - Cleaned up the config file.
+                - Removed some modules from the cache group because they weren't changing the file sizes anyway.
+                - Adjusted the paths to just public folder since dev-server was deleted.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
+        - 6-14: Removed dev-server.js. Modified server.js to just use the public folder instead of public\dist.
 
 
 

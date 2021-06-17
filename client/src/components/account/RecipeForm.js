@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrorAction } from '../../actions/serverError.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
+import recipeServerAPI from '../../database/recipeServerAPI';
 
 const RecipeForm = (props) => {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const RecipeForm = (props) => {
             setResponse("You have to add ingredients!");
         } else {
             props.onSubmit(config);
+            dispatch(recipeServerAPI('allRecipes'));
             if (serverError.error !== null) {
                 dispatch(clearErrorAction());
             }

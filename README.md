@@ -133,3 +133,7 @@ Most of the features will be with a user account. Make an account and try it out
 - * mini-css-extract-plugin will create a separate CSS file when compiled.
 - * moment-locales-webpack-plugin excludes unnecessary locales from being compiled with the bundle to decrease overall size by almost half.
 - * webpack and webpack-cli are needed to compile webpack and use for dev purposes.
+
+
+## MongoDB
+The website uses an official cluster database hosted by MongoDB. All passwords are hashed with bcrypt. Recipes and user information are all located within this database.

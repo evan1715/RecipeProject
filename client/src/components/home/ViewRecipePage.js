@@ -58,7 +58,8 @@ const ViewRecipePage = () => {
         }
         //Only send this out if we got anything.
         if (location.search.split('?id=')[1] === userRecipe._id) {
-            setUsername(await (await fetch(`/user/username/${userRecipe.owner}`)).json());
+            const data = await (await fetch(`/user/username/${userRecipe.owner}`)).json();
+            setUsername(data.username);
         }
     }, [userRecipe.pictures]);
     
@@ -113,8 +114,12 @@ const ViewRecipePage = () => {
                                 />
                             </div>
                         ))}
-                        <a className="prev" onClick={ () => plusSlides(-1) }>&#10094;</a>
-                        <a className="next" onClick={ () => plusSlides(1) }>&#10095;</a>
+                        { userRecipe.pictures && userRecipe.pictures.length > 1 &&
+                            <>
+                                <a className="prev" onClick={ () => plusSlides(-1) }>&#10094;</a>
+                                <a className="next" onClick={ () => plusSlides(1) }>&#10095;</a>
+                            </>
+                        }
                         
                         { userRecipe.pictures && userRecipe.pictures.length > 1 &&
                             <div className="gallery-container">

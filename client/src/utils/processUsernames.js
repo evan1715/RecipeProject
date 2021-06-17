@@ -14,7 +14,9 @@ const processUsernames = (data) => async dispatch => {
             const already = owners.find(id => id.owner_id === owner_id);
 
             if (!already) {
-                const user = await (await fetch(`/user/username/${owner_id}`)).json();
+                const data = await (await fetch(`/user/username/${owner_id}`)).json();
+                const user = data.username;
+                
                 list.push(user);
                 owners.push({ owner_id, user });
             } else {

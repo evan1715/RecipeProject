@@ -67,7 +67,7 @@ router.get('/user/username/:id', async (req, res) => {
         const user = await User.findById(req.params.id);
         const username = user.username;
 
-        res.send(username);
+        res.send({username});
     } catch (error) {
         res.status(500).send();
     }

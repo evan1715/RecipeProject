@@ -76,6 +76,7 @@
             - 6-13: Fixed an issue on search results page. Fixed issue of displaying a link on a username when no user account was found for it.
             - 6-14: Removed unused code in UserProfilePage. Modified RecipeRoulette, NavBottom, NavTop, NavPopout, and SearchBar to use svg icons from react-ionicons to save bundle size a good chunk.
             - 6-15: Search results without any results now displays a message.
+            - 6-17: Fixed issue of usernames not displaying for recipes.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -126,6 +127,7 @@
             - 6-13: Adjusted instructions on ViewRecipePage to fill out the page more on smaller screens.
             - 6-14: Fixed a typo in the styles.scss file.
             - 6-15: Adjusted recipe roulette cards.
+            - 6-17: Fixed issue of added ingredients on RecipeForm going off the page by adding flex-wrap: wrap.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

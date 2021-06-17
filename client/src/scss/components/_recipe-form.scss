@@ -15,6 +15,7 @@
 .recipe-form__added-ingredients {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     button {
         height: auto;
         padding: 5px 30px 5px 30px; //top right bottom left

@@ -18,7 +18,7 @@ Most of the features will be with a user account. Make an account and try it out
 
 ### Navigation Components
 * The navigation features two nav rows on desktop with logo, links, search, log in, log out, create account, buttons that are disabled unless the user is logged in by checking the reducer.
-* On a smaller screen, the nav is shrunk down to one nav row to include the logo, search, and a popout menu. The popout menu will change the Account side buttons based on whether a use is logged in or not.
+* On a smaller screen, the nav is shrunk down to one nav row to include the logo, search, and a popout menu. The popout menu will change the Account side buttons based on whether a user is logged in or not.
 * Pop up modals are used for when a user creates an account or signs in.
 * Error handling is used and displayed to the user if the email, username, etc is already taken, if it has profanity, or if the login information is incorrect or does not fit the format.
 * Users are pushed to the home page after they log out.
@@ -120,7 +120,6 @@ Most of the features will be with a user account. Make an account and try it out
 
 
 ## Webpack
-* This project uses webpack.
 * Packages for webpack in this project include @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, @babel/preset-react, @babel/runtime, babel-loader, css-loader, file-loader, html-webpack-plugin, mini-css-extract-plugin, moment-locales-webpack-plugin, sass-loader, webpack, and webpack-cli.
 * The config checks for settings to decide if we're in development and production and will use different methods, depending on what it is.
 * For plugins:

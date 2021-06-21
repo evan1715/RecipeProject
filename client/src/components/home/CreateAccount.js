@@ -29,7 +29,7 @@ export default function CreateAccount() {
                 </div>
 
                 <div>
-                    <img src="https://images.pexels.com/photos/6232438/pexels-photo-6232438.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="placeholder" />
+                    //<img src="https://images.pexels.com/photos/6232438/pexels-photo-6232438.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="placeholder" />
                 </div>
             </div>
         </div>

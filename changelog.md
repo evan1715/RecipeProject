@@ -6,7 +6,7 @@
 
 
 
-    5-17-2021 - 
+    5-17-2021 - 6-27-2021
     Client:
         Actions:
             - 5-17: Recipe roulette action now uses fetch instead of axios.
@@ -77,6 +77,7 @@
             - 6-14: Removed unused code in UserProfilePage. Modified RecipeRoulette, NavBottom, NavTop, NavPopout, and SearchBar to use svg icons from react-ionicons to save bundle size a good chunk.
             - 6-15: Search results without any results now displays a message.
             - 6-17: Fixed issue of usernames not displaying for recipes. When a user submits a recipe, allRecipes will be now be refreshed. Updated about and footer.
+            - 6-27: Redid CreateAccount component to fix some styling issues and to match code style. Added image files to source code with images folder and adapted files to location.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -128,6 +129,7 @@
             - 6-14: Fixed a typo in the styles.scss file.
             - 6-15: Adjusted recipe roulette cards.
             - 6-17: Fixed issue of added ingredients on RecipeForm going off the page by adding flex-wrap: wrap.
+            - 6-27: Redid create-account to fix styling issues on different screens. More concise, more readable, more editable, etc. Just better.
         Store:
             - 5-23: Uninstalled thunk and extracted the file itself to router folder. This should allow for smaller compile. Added the new userProfile reducer.
         Utilities:

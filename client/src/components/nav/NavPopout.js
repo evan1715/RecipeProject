@@ -7,7 +7,7 @@ import CreateAccountModal from './CreateAccountModal.js';
 import { clearSelectedRecipeAction } from '../../actions/selectedRecipe.js';
 import { clearUserRecipesAction } from '../../actions/userRecipes.js';
 import userServerAPI from '../../database/userServerAPI.js';
-import logo from '../../logo.png';
+import logo from '../../images/logo.png';
 
 const NavPopout = () => {
     const dispatch = useDispatch();

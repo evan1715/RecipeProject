@@ -13,7 +13,7 @@ const AllRecipesPage = () => {
 
     useEffect(async () => {
         //Only get it if we don't already have it.
-        if (!allRecipes.length) {
+        if (!allRecipes.length && allRecipes.length !== 0) {
             dispatch(showLoading());
             dispatch(recipeServerAPI('allRecipes'));
         }
@@ -30,10 +30,14 @@ const AllRecipesPage = () => {
     return (
         <>
             <h1 className="center title">All User Recipes</h1>
-            <PopulateRecipes
-                recipes={ allRecipes.length && allRecipes }
-                users={ userNames }
-            />
+            { allRecipes.length < 1 ?
+                <p className="search-results--none">None found!</p>
+                :
+                <PopulateRecipes
+                    recipes={ allRecipes.length && allRecipes }
+                    users={ userNames }
+                />
+            }
         </>
     );
 }

@@ -77,7 +77,12 @@
             - 6-14: Removed unused code in UserProfilePage. Modified RecipeRoulette, NavBottom, NavTop, NavPopout, and SearchBar to use svg icons from react-ionicons to save bundle size a good chunk.
             - 6-15: Search results without any results now displays a message.
             - 6-17: Fixed issue of usernames not displaying for recipes. When a user submits a recipe, allRecipes will be now be refreshed. Updated about and footer.
-            - 6-27: Redid CreateAccount component to fix some styling issues and to match code style. Added image files to source code with images folder and adapted files to location.
+            - 6-27: 
+                - Redid CreateAccount component to fix some styling issues and to match code style.
+                - Added image files to source code with images folder and adapted files to location.
+                - Fixed p descendant of p in SearchResultsPage.
+                - Fixed looping of fetch when no recipes are found on AllRecipesPage.
+                - Added message to user that no recipes are found on AllRecipesPage.
         Database:
             - 5-17: userServerAPI under getIcon now hides loading bar if there is no icon on the account.
         Index:
@@ -166,6 +171,7 @@
                 - Cleaned up the config file.
                 - Removed some modules from the cache group because they weren't changing the file sizes anyway.
                 - Adjusted the paths to just public folder since dev-server was deleted.
+        - 6-27: Updated readme and changelog.
     Server:
         - 5-23: Added a new route to userRouter to get a user's info to view their profile without auth. Renamed the user login from /profile to /me.
         - 6-14: Removed dev-server.js. Modified server.js to just use the public folder instead of public\dist.

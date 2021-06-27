@@ -6,6 +6,13 @@ Most of the features will be with a user account. Make an account and try it out
 [View the website here](https://jd1715-recipe-project.herokuapp.com/)
 
 
+## How to install the source code
+1. Download the code and open it in Visual Studio Code, Visual Studio, or other editor/IDE.
+2. In the terminal, execute npm install
+3. In the server folder, create a folder called config. 
+4. In the config folder, create a file called dev.env and type in PORT=3000, a JWT_SECRET={what you want}, and MONGODB_RECIPE=mongodb://127.0.0.1:27017/recipe
+5. Run your local MongoDB service.
+6. Run npm run dev to start the app in development mode or npm run prod for production mode.
 
 
 ## Client-side

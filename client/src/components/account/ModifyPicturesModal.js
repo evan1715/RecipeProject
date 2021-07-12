@@ -80,7 +80,8 @@ const ModifyPicturesModal = (props) => {
                             height="120" width="120"
                             src={ `data:image/jpeg;base64,${pic.picture.data}` } 
                         />
-                        <input type="radio" onClick={ () => setSelectedPicture(pic._id) } />
+                        {/* The name attribute will group all images so one can be selected at a time. It will automatically deselect ones outside of the group name. */}
+                        <input name="radio-image" onClick={ () => setSelectedPicture(pic._id) } type="radio" />
                     </div>
                 ))}
                 </div>

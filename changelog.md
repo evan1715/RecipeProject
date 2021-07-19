@@ -2,7 +2,9 @@
 [Github guide for writing markdown file](https://guides.github.com/features/mastering-markdown/)
 
 
-
+    7-12-2021 - 7-19-2021
+    - 7-12: Fixed radio selection on ModifyPicturesModal to select one at a time by use of the name attribute on the radio selections.
+    - 7-19: Got rid of HTML tags on ViewRecipePage when a set of instructions from spoonacular API included tags with .replace(/<.*?>/g, ' ') regex.
 
 
 

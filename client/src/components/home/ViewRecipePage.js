@@ -177,7 +177,7 @@ const ViewRecipePage = () => {
                         <h2 className="title center">Instructions:</h2>
                         <blockquote className="center">{
                             userRecipe.instructions ?
-                                userRecipe.instructions
+                                userRecipe.instructions.replace(/<.*?>/g, ' ')
                                 :
                                 //In the case that the recipe does not have instructions, direct them.
                                 <a className="cursor" href={ userRecipe.sourceUrl }>Click here to view the original source for instructions.</a>

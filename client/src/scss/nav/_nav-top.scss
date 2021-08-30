@@ -31,7 +31,8 @@
     height: 45px; //previous 40px
     width: 150px; //previous 135px
     &:hover {
-        color: white;
         background: #3c280d;
+        color: white;
+        cursor: pointer;
     }
 }

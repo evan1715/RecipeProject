@@ -157,7 +157,7 @@ const RecipeForm = (props) => {
                 value={ instructions }
             />
 
-            <p className="recipe-form__response">{ response && { response } }</p>
+            <p className="recipe-form__response">{ response && response }</p>
 
             <div className="recipe-form__buttons">
                 <button className="button" onClick={ handleCancel } title="Cancel">Cancel</button>

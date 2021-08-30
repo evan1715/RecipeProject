@@ -10,7 +10,7 @@ startDB.bat
 #bundled/compiled
 public/
 
-#test folder
+#test folders
 client/tests/
 server/tests/
 

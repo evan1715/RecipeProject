@@ -16,9 +16,9 @@ const CreateAccount = () => {
                     <p>Browse and save all of your favorite recipes in one place. Search for ingredients, category, or access 1000's of recipes from the comfort of your home or
                     on your mobile device.</p>
                     { isAuth ? 
-                        <Link to='/myrecipes'>
+                        <Link to="/submitrecipe">
                             <button className="button" onClick={ () => setOpenCreateAccountModal('false') }>
-                                View My Recipes
+                                Submit a Recipe
                             </button>
                         </Link> 
                         :

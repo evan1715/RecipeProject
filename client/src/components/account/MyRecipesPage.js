@@ -49,6 +49,12 @@ const MyRecipesPage = () => {
             </div>
 
             <div className="columns__center">
+                { userRecipes.length > 0 &&
+                    <Link to="/submitrecipe">
+                        <button className="button">Submit a New Recipe</button>
+                    </Link>
+                }
+
                 <h2 className="columns__title" style={{ fontSize: 30 }}>My Submitted Recipes</h2>
                 { userRecipes.length < 1 && 
                 <>

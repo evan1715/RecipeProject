@@ -103,9 +103,9 @@ const handleDataError = (data) => {
             message = dErrs.title.message;
         }
 
-        // if (dErrs.title & dErrs.title.message === 'Title cannot be longer than 50 characters') {
-        //     message = dErrs.title.message;
-        // }
+        if (dErrs.title & dErrs.title.message.includes('characters')) {
+            message = dErrs.title.message;
+        }
     }
     
     if (dMsg) {

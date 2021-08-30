@@ -9,8 +9,8 @@ const recipeSchema = new mongoose.Schema({
         required: true,
         trim: true,
         validate(input) {
-            if (input.length > 50) {
-                throw new Error("Title cannot be longer than 50 characters.");
+            if (input.length > 64) {
+                throw new Error("Title cannot be longer than 64 characters.");
             }
             if (filter.isProfane(input)) {
                 throw new Error("That title contains profanity.");

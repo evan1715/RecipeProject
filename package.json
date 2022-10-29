@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node server/server.js",
     "heroku-postbuild": "npm run build:prod",
+    "build": "webpack --node-env production",
     "db": "startDB.bat",
     "build:dev": "webpack --node-env development",
     "build:prod": "webpack --node-env production",

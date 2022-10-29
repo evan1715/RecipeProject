@@ -50,7 +50,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: Expand-Archive recipe.zip
+        run: unzip recipe.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2

@@ -27,8 +27,8 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
-      - name: Zip artifact for deployment
-        run: Compress-Archive . recipe.zip
+      # - name: Zip artifact for deployment
+      #   run: Compress-Archive . recipe.zip
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -49,8 +49,8 @@ jobs:
         with:
           name: node-app
 
-      - name: Unzip artifact for deployment
-        run: unzip recipe.zip
+      # - name: Unzip artifact for deployment
+      #   run: unzip recipe.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2

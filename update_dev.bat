@@ -1,0 +1,2 @@
+@echo Updating dev dependencies
+npm i @babel/core @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react babel-loader concurrently css-loader env-cmd file-loader html-webpack-plugin mini-css-extract-plugin moment-locales-webpack-plugin nodemon redux-logger sass sass-loader webpack webpack-cli --save-dev

@@ -1,0 +1,2 @@
+@echo Updating all dependencies
+npm i @babel/runtime bad-words bcryptjs express jsonwebtoken moment mongodb mongoose multer react react-dom react-modal react-redux react-redux-loading-bar react-router-dom react-transition-group redux sharp validator

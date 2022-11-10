@@ -8,14 +8,7 @@ server/config/
 startDB.bat
 
 #bundled/compiled
-# public/
-public/*.css
-public/*.html
-public/*.jpeg
-public/*.js
-public/*.map
-public/*.png
-public/*.txt
+public/
 
 #test folders
 client/tests/
